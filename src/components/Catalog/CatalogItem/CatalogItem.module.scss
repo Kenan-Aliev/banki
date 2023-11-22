@@ -1,0 +1,19 @@
+.catalog_item {
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  backdrop-filter: blur(9.5px);
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  span{
+    color: #000;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 13.824px */
+  }
+}

@@ -1,0 +1,22 @@
+.main_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  div {
+    padding: 14.645px 21.968px 14.645px 30px;
+    color: #424242;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Raleway, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+@media (max-width: 480px){
+  .main_container{
+    flex-wrap: wrap;
+  }
+}

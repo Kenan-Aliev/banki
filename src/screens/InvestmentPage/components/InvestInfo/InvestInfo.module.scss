@@ -1,0 +1,125 @@
+.wrapp {
+  margin: 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+
+  .title {
+    margin-bottom: 2rem;
+    color: var(--main, #121212);
+    font-size: 40px;
+    font-style: normal;
+    text-align: left;
+    font-weight: 500;
+    line-height: 86.4%; /* 34.56px */
+  }
+
+  .sub {
+    margin: 1rem 0;
+    align-self: stretch;
+    color: #121212;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .l {
+    width: 612px;
+
+    .info_items {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 2rem 0;
+
+      .info_item {
+        width: 294px;
+        height: 367px;
+        border-radius: 14px;
+        background: #FFF;
+        padding: 24px;
+
+        .inf_title {
+          margin: 10px 0;
+          color: var(--blu-main, #4DA7FF);
+          font-variant-numeric: lining-nums proportional-nums;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 86.4%; /* 17.28px */
+        }
+
+        .inf_sub {
+          margin-bottom: 1rem;
+          overflow: hidden;
+          color: var(--main, #121212);
+          font-variant-numeric: lining-nums proportional-nums;
+          text-overflow: ellipsis;
+          whitespace: nowrap;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal; /* 12.096px */
+          display: -webkit-box;
+          -webkit-line-clamp: 3; /* number of lines to show */
+          line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
+      }
+    }
+  }
+
+  .line {
+    height: 705px;
+    width: 1px;
+    background: #B4B4B4;
+  }
+
+  .r {
+    width: 484px;
+    .cont_bank{
+      margin: 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapp{
+    flex-wrap: wrap;
+    gap: 20px;
+    .title{
+      font-size: 25px;
+      br{
+        display: none;
+      }
+    }
+    .l{
+      width: 100%;
+      button{
+        width: 100% !important;
+      }
+      .info_items{
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+    .line{
+      display: none;
+    }
+    .r{
+      width: 100%;
+      .cont_bank{
+        justify-content: center;
+      }
+      button{
+        width: 100% !important;
+      }
+    }
+  }
+}

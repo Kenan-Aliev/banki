@@ -1,0 +1,22 @@
+.btn{
+  height: 60px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  background: #4DA7FF;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 86.4%; /* 17.28px */
+  cursor: pointer;
+}
+@media (max-width: 480px){
+  //.btn{
+  //  width: 100% !important;
+  //}
+}

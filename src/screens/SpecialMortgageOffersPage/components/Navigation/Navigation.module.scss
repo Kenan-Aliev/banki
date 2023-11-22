@@ -1,0 +1,100 @@
+.main_container {
+  width: 100%;
+  margin-top: 32px;
+  height: 322px;
+  padding-top: 38px;
+  padding-left: 88px;
+  background: #FFF;
+  background: url('../../../../assets/icons/special-offers-cards.jpg') no-repeat white right;
+  background-size: 550px 322px;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+
+  .nav_container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    p {
+      color: #121212;
+      font-family: Raleway, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%;
+    }
+
+    .grey_text {
+      color: var(--2, #B4B4B4);
+      font-family: Raleway, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%;
+    }
+  }
+
+  .main_cont {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .text {
+      color: #121212;
+      font-family: Raleway, sans-serif;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+    }
+
+    .blue_text {
+      color: var(--blu-main, #4DA7FF);
+      font-family: Raleway, sans-serif;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .top_container {
+    display: block;
+    text-align: center;
+  }
+  .main_container {
+    padding: 10px;
+    margin: 0;
+    height: auto;
+    background-image: none;
+  }
+  .nav_container {
+    justify-content: center !important;
+    flex-wrap: wrap;
+  }
+  .text_container {
+    padding: 10px;
+    margin: 0;
+  }
+  .bottom_container {
+    width: 100%;
+  }
+  .main_cont {
+    flex-wrap: wrap !important;
+    gap: 5px !important;
+    justify-content: center;
+
+    p {
+      font-size: 25px !important;
+      text-align: center;
+
+    }
+
+  }
+  .little_text_cont {
+    width: 100% !important;
+  }
+}

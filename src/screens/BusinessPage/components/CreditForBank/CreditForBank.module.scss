@@ -1,0 +1,104 @@
+.main_container {
+  width: 100%;
+  display: flex;
+  gap: 60px;
+  margin-top: 100px;
+  justify-content: center;
+
+  .left_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 482px;
+
+    .main_text {
+      width: 417px;
+      color: var(--main, #121212);
+      text-align: center;
+      font-family: Raleway, sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+    }
+
+    .text {
+      width: 482px;
+      margin-top: 24px;
+      color: #000;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-family: Raleway, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+
+  .right_container {
+    display: flex;
+    gap: 8px;
+
+    .item_container {
+      width: 304px;
+      height: 122px;
+      border-radius: 7px;
+      border: 1px solid var(--stroke-1, #D9DBDF);
+      background: #FFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 16px;
+
+      .text {
+        color: #000;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-family: Raleway, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%;
+        margin-top: 2px;
+      }
+
+      .blue_text {
+        color: var(--blu-main, #4DA7FF);
+        font-variant-numeric: lining-nums proportional-nums;
+        font-family: Raleway, sans-serif;
+        font-size: 14px;
+        margin-top: 8px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main_container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+    .left_container {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+
+      .main_text {
+        width: 100%;
+      }
+
+      .text {
+        width: 100%;
+      }
+    }
+
+    .right_container {
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+  }
+}

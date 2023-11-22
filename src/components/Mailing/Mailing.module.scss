@@ -1,0 +1,114 @@
+.mailing {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  align-items: flex-end;
+
+
+  .info {
+    .title {
+      color: #121212;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 34.56px */
+      margin-bottom: 4rem;
+
+      mark {
+        background: transparent;
+        color: #4DA7FF;
+      }
+    }
+
+    .mailing_i {
+      width: 620px;
+      height: 188px;
+      border-radius: 14px;
+      border: 1px solid #4DA7FF;
+      background: rgba(217, 231, 250, 0.40);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+
+      .mail_cont {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        input {
+          outline: 0;
+          width: 385px;
+          height: 60px;
+          border-radius: 9px;
+          border: 1px solid var(--stroke-2, #E0EAFF);
+          background: #FFF;
+          color: #000;
+          font-size: 20px;
+          padding-left: 1rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 86.4%; /* 17.28px */
+          backdrop-filter: blur(9px);
+        }
+
+      }
+
+      .inp_label {
+        margin-top: 10px;
+        display: flex;
+        word-wrap: break-word;
+        align-items: center;
+        gap: 10px;
+
+        span {
+          color: #121212;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 100%;
+
+          a {
+            text-decoration-line: underline;
+          }
+        }
+      }
+
+
+    }
+  }
+
+}
+
+@media (max-width: 480px) {
+  .mailing {
+    img{
+      display: none;
+    }
+    .info{
+      .title{
+        width: 100%;
+        font-size: 25px;
+        word-wrap: break-word;
+        white-space: normal;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .mailing_i{
+        width: 100%;
+        height: auto;
+        backdrop-filter: none;
+        .mail_cont{
+          flex-wrap: wrap;
+          gap: 10px;
+          button{
+            width: 100% !important;
+          }
+          input{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

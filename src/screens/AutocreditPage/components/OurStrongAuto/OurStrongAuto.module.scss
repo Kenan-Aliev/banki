@@ -1,0 +1,43 @@
+.our {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  height: 662px;
+  background: url("../../../../assets/icons/our_auto_back.png") no-repeat white right;
+
+  .our_i {
+    margin-top: 6rem;
+    margin-left: 5rem;
+
+    .title {
+      margin-bottom: 2rem;
+      color: #121212;
+      font-family: 'Raleway', sans-serif;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 39.744px */
+      mark {
+        background: transparent;
+        color: #4DA7FF;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .our {
+    background-image: none;
+    height: auto;
+    .our_i {
+      margin: 0;
+      margin-top: 2rem;
+      .title {
+        text-align: center;
+        font-size: 25px;
+      }
+    }
+  }
+}

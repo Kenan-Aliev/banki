@@ -1,0 +1,24 @@
+.wrapper {
+  .title {
+    margin: 0;
+    margin-bottom: 1rem;
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .choseCont {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .items_cont {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -1,0 +1,13 @@
+.wrap {
+  width: 327px;
+  height: 54px;
+  border-radius: 9px;
+  border: 0.915px solid var(--stroke-1, #D9DBDF);
+  background: #F5F5F5;
+  padding: 15px 22px;
+  backdrop-filter: blur(8.695621490478516px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}

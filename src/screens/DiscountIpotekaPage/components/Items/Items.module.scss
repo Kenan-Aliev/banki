@@ -1,0 +1,35 @@
+.items_container {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+
+  .item {
+    height: 60px;
+    padding: 0px 24px;
+    display: flex;
+    align-items: center;
+    border-radius: 14px;
+    border: 1px solid var(--stroke-1, #D9DBDF);
+    background: #FFF;
+    color: #000;
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 86.4%;
+  }
+}
+
+@media (max-width: 480px) {
+  .items_container{
+    overflow: auto;
+    justify-content: flex-start;
+    gap: 10px;
+    div{
+      flex-shrink: 0;
+    }
+  }
+}

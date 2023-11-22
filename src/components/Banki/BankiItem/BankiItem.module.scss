@@ -1,0 +1,38 @@
+.bank_item {
+  width: 350px;
+  height: 70px;
+  display: flex;
+  padding: 17px 26px 17px 17px;
+  align-items: center;
+  gap: 11px;
+  border-radius: 16px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  img{
+    width: 57px;
+    height: 36px;
+  }
+  .info {
+    div {
+      width: 230px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: #000;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 17.362px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 15.001px */
+    }
+
+    span {
+      color: #ADADAD;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 111.9%;
+    }
+  }
+}

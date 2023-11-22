@@ -1,0 +1,41 @@
+.wrapper {
+  margin: 4rem 0;
+
+  .title {
+    color: #000;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 34.56px */
+    margin: 2rem 0;
+  }
+
+  .item_cont {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    .wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper{
+    .title{
+      font-size: 25px;
+    }
+    .item_cont{
+      justify-content: flex-start;
+      overflow: auto;
+    }
+  }
+  .arr {
+    display: none;
+  }
+}

@@ -1,0 +1,120 @@
+.main_contianer {
+  margin-top: 32px;
+  height: 928px;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  background: url("../../../../assets/icons/out_strong_bg.jpg") no-repeat white right;
+  background-size: 600px 928px;
+  padding-top: 83px;
+  padding-left: 87px;
+
+  .text_container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    p {
+      color: #121212;
+      font-family: Raleway, sans-serif;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+    }
+
+    .blue {
+      color: var(--blu-main, #4DA7FF);
+      font-family: Raleway, sans-serif;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+    }
+  }
+
+  .items_container {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .item_cont {
+      width: 573px;
+      border-radius: 14px;
+      background: rgba(217, 231, 250, 0.40);
+      backdrop-filter: blur(9.973308563232422px);
+      padding: 32px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .text_container {
+        width: 444px;
+        color: #000;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-family: Raleway, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .top_cont {
+        display: flex;
+        gap: 16px;
+
+        .text_blue {
+          color: var(--stroke-3, #4DA7FF);
+          font-variant-numeric: lining-nums proportional-nums;
+          font-family: Raleway, sans-serif;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 86.4%;
+        }
+
+        .text {
+          color: #121212;
+          font-family: Raleway, sans-serif;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 86.4%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main_contianer {
+    padding: 20px;
+    background-image: none;
+    height: auto;
+
+    .text_container {
+      flex-wrap: wrap;
+      justify-content: center;
+
+      p {
+        font-size: 25px !important;
+      }
+    }
+    .items_container{
+      .item_cont{
+        width: 100%;
+        height: auto;
+        backdrop-filter: none;
+        .text_container{
+          width: 100%;
+        }
+      }
+      .top_cont{
+        p{
+          font-size: 22px !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.stock_item {
+  width: 280px;
+  height: 100px;
+  border-radius: 14px;
+  border: 1px solid #e0eaff;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(9.5px);
+  padding: 1.2rem 1rem;
+  cursor: pointer;
+
+  .title {
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 86.4%; /* 13.824px */
+  }
+  .sup {
+    margin-top: 1rem;
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 86.4%; /* 12.096px */
+  }
+}
+
+@media (max-width: 1220px) {
+  .stock_item {
+    width: 230px;
+  }
+}

@@ -1,0 +1,108 @@
+.our_strongs {
+  margin: 4rem 0;
+  width: 100%;
+  height: 747px;
+  background: url("../../../../assets/icons/strong_mor_back.png") no-repeat right top white;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+
+  .info {
+    margin-top: 6rem;
+    margin-left: 6rem;
+
+    .title {
+      margin-bottom: 2rem;
+      color: #121212;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 39.744px */
+      mark {
+        color: #4DA7FF;
+        background: transparent;
+      }
+    }
+
+    .strong_item {
+      margin-bottom: 1rem;
+      width: 535px;
+      padding: 32px 40px;
+      border-radius: 14px;
+      background: rgba(217, 231, 250, 0.40);
+
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0;
+      }
+
+      span:first-child {
+        color: #4DA7FF;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 27.648px */
+        margin-right: 10px;
+      }
+
+      span {
+        color: #121212;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 20.736px */
+      }
+
+      p {
+        margin-top: 10px;
+        color: #000;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .our_strongs {
+    background-image: none;
+    height: auto;
+
+    .info {
+      margin: 10px;
+      margin-top: 2rem;
+
+      .title {
+        text-align: center;
+        font-size: 25px;
+      }
+
+      .strong_item {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+
+        .title {
+          justify-content: center;
+
+          span {
+            text-align: start;
+            font-size: 17px !important;
+          }
+
+        }
+
+        p {
+          text-align: center;
+        }
+
+      }
+    }
+
+  }
+}

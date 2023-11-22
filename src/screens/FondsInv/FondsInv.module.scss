@@ -1,0 +1,34 @@
+.text {
+  width: 1094px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  .title {
+    text-align: center;
+    color: #121212;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 34.56px */
+  }
+
+  p {
+
+    overflow: hidden;
+    color: #121212;
+    font-variant-numeric: lining-nums proportional-nums;
+    text-overflow: ellipsis;
+    whitespace: nowrap;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    line-height: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}

@@ -1,0 +1,95 @@
+.main_container {
+  width: 100%;
+  height: 376px;
+  border-radius: 14px;
+  border: 1px solid #d9dbdf;
+  margin-top: 32px;
+  display: flex;
+  background: url('../../../../assets/icons/credit_cards_back.png') no-repeat white right;
+}
+
+.text_container {
+  margin-left: 88px;
+  margin-top: 38px;
+}
+
+.top_container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  .black_text {
+    color: #121212;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 86.4%;
+  }
+
+  mark {
+    background: transparent;
+    color: #b4b4b4;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 86.4%;
+  }
+}
+
+.middle_container {
+  font-size: 46px;
+  margin-top: 32px;
+  line-height: normal;
+
+  .bold_text {
+    color: var(--main, #121212);
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%;
+  }
+
+  mark {
+    background: transparent;
+    color: var(--stroke-3, #4da7ff);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%;
+  }
+}
+
+.bottom_container {
+  width: 673px;
+  color: #121212;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-family: "Raleway";
+  margin-top: 24px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media (max-width: 480px) {
+  .top_container{
+    display: block;
+    text-align: center;
+  }
+  .main_container {
+    padding: 10px;
+    margin: 0;
+    height: auto;
+    background-image: none;
+  }
+  .text_container {
+    padding: 10px;
+    margin: 0;
+  }
+  .bottom_container {
+    width: 100%;
+  }
+  .middle_container {
+    font-size: 25px;
+    text-align: center;
+  }
+}

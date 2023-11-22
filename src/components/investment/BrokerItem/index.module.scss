@@ -1,0 +1,33 @@
+.loan_org {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 310px;
+  height: 92px;
+  padding: 16px;
+  justify-content: center;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  backdrop-filter: blur(9.5px);
+
+  .info {
+    div {
+      color: #000;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 17.28px */
+    }
+    span{
+      white-space: nowrap;
+      color: rgba(18, 18, 18, 0.4);
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%; /* 13.824px */
+    }
+  }
+}

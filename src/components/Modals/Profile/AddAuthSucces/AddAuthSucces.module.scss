@@ -1,0 +1,31 @@
+.back {
+  background: rgba(119, 152, 185, 0.41);
+  backdrop-filter: blur(2.5px);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  top: 0;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    width: 667px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px;
+    border-radius: 7px;
+    border: 1px solid #D9DBDF;
+    background: #FFF;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    .close{
+      cursor: pointer;
+    }
+  }
+}

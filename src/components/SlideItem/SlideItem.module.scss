@@ -1,0 +1,24 @@
+.slideItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+  gap: 10px;
+  padding: 16px 24px 16px 16px;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  backdrop-filter: blur(9.5px);
+
+  span {
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 13.824px */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+

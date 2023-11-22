@@ -1,0 +1,18 @@
+.wrapper {
+  margin: 3rem 0;
+  height: 261px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke-1, #D9DBDF);
+  background: var(--, #FFF);
+
+  .choose_up {
+    display: flex;
+    gap: 10px;
+
+    &:last-child {
+      margin-top: 2rem;
+    }
+  }
+}

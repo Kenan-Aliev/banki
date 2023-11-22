@@ -1,0 +1,55 @@
+.deposits {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    span {
+      mark {
+        background: transparent;
+        color: #4DA7FF;
+      }
+
+      color: #121212;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+    }
+  }
+
+  .deposit_offers {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .btn_cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .deposits {
+    .title {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      gap: 10px;
+
+      span {
+        font-size: 25px;
+      }
+    }
+  }
+}

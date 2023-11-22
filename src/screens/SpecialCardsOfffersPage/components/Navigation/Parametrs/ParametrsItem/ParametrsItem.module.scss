@@ -1,0 +1,36 @@
+.parametr_container {
+  padding: 10px 16px;
+  border-radius: 7px;
+  border: 1px solid var(--2, #b4b4b4);
+  background: rgba(255, 255, 255, 0.4);
+  color: #000;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-family: "Raleway";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  display: flex;
+  gap: 6px;
+  line-height: 86.4%;
+}
+
+.parametr_container_active {
+  padding: 10px 16px;
+  border-radius: 7px;
+  border: 1px solid var(--stroke-3, #4da7ff);
+  background: var(--unnamed, rgba(217, 231, 250, 0.4));
+  color: var(--stroke-3, #4da7ff);
+  font-variant-numeric: lining-nums proportional-nums;
+  font-family: "Raleway";
+  font-size: 14px;
+  font-style: normal;
+  display: flex;
+  gap: 6px;
+  font-weight: 600;
+  line-height: 86.4%;
+}
+
+.item {
+  width: 16px;
+  height: 16px;
+}

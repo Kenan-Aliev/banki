@@ -1,0 +1,199 @@
+.main_container {
+  width: 100%;
+  height: 748px;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  margin-top: 32px;
+  padding-top: 38px;
+  padding-left: 88px;
+  background: url('../../../../assets/icons/discount_ipoteka_bg.svg') no-repeat white right bottom;
+  background-size: 550px 660px;
+
+  .navigation {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    p {
+      color: #121212;
+      font-family: Raleway, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%;
+    }
+
+    .grey_text {
+      color: var(--2, #B4B4B4);
+      font-family: Raleway, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%;
+    }
+  }
+
+  .main_text_container {
+    margin-top: 32px;
+
+    .main_text_cont {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        color: #121212;
+        font-family: Raleway, sans-serif;
+        font-size: 46px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%;
+      }
+
+      .blue_text {
+        color: var(--blu-main, #4DA7FF);
+        font-family: Raleway, sans-serif;
+        font-size: 46px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%;
+      }
+    }
+
+    .little_text {
+      margin-top: 13px;
+      width: 686px;
+      color: #121212;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-family: Raleway, sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+
+  .choose_container {
+    margin-top: 16px;
+    width: 623px;
+    height: 318px;
+    border-radius: 14px;
+    border: 1px solid var(--stroke-3, #4DA7FF);
+    background: var(--unnamed, rgba(217, 231, 250, 0.40));
+    backdrop-filter: blur(9.973308563232422px);
+    padding: 32px 24px;
+
+    .inputs {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .input_cont {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #121212;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-family: Raleway, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+
+      .input {
+        border: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid #4DA7FF;
+        background: #FFF;
+      }
+
+      input {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid #4DA7FF;
+        background: #FFF;
+      }
+    }
+
+    .text_container {
+      margin-top: 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .item_cont {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+
+
+        .item {
+          width: 385px;
+          height: 60px;
+          padding: 14.645px 21.968px;
+          display: flex;
+          flex-direction: column;
+          gap: 9px;
+        }
+      }
+    }
+  }
+}
+
+.button {
+  border-radius: 7px;
+  border: 1px solid var(--stroke-2, #E0EAFF);
+  background: #FFF;
+  display: flex;
+  width: 173px;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--main, #121212);
+  leading-trim: both;
+  text-edge: cap;
+  font-family: Raleway, sans-serif;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 86.4%;
+}
+
+.grey_text_item {
+  color: #A3A3A3;
+  font-family: Raleway, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 86.4%;
+}
+
+.text_item {
+  color: var(--accent, #212121);
+  font-variant-numeric: lining-nums proportional-nums;
+  font-family: Raleway, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 86.4%;
+}
+
+.item_with_img {
+  display: flex;
+  width: 385px;
+  height: 60px;
+  padding: 14.645px 21.968px;
+  align-items: center;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+}

@@ -1,0 +1,109 @@
+.main_container {
+  width: 100%;
+  height: 424px;
+  margin-top: 32px;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  padding-top: 38px;
+  padding-left: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: url("../../../../assets/icons/news_back.png") right bottom white no-repeat;
+}
+
+.navigation_container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .text {
+    color: #121212;
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 86.4%;
+  }
+
+  .grey_text {
+    color: var(--2, #B4B4B4);
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 86.4%;
+  }
+
+}
+
+.text_container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  .blue_text {
+    color: var(--stroke-3, #4DA7FF);
+    font-family: Raleway, sans-serif;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%;
+  }
+  .text {
+    width: 538px;
+    color: #121212;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.button {
+  display: flex;
+  width: 240px;
+  height: 60px;
+  border-radius: 7px;
+  background: var(--stroke-3, #4DA7FF);
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #FFF;
+  leading-trim: both;
+  text-edge: cap;
+  font-family: Raleway, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 86.4%;
+}
+
+@media (max-width: 480px) {
+  .main_container{
+    width: 100%;
+    height: auto;
+    background-image: none;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .navigation_container{
+    justify-content: center;
+  }
+  .text_container{
+    justify-content: center;
+    .blue_text{
+      font-size: 25px;
+      text-align: center;
+    }
+    .text{
+      width: 100%;
+    }
+  }
+  .button{
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

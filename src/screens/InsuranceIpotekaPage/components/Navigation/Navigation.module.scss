@@ -1,0 +1,169 @@
+.main_container {
+  width: 100%;
+  height: 547px;
+  padding-left: 88px;
+  padding-top: 38px;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  margin-top: 32px;
+  background: url('../../../../assets/icons/insurance_ipoteka_bg.jpg') no-repeat white right;
+  background-size: 700px 547px;
+
+  .nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    p {
+      color: #121212;
+      font-family: Raleway, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%;
+    }
+
+    .grey_text {
+      color: var(--2, #B4B4B4);
+      font-family: Raleway, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%;
+    }
+  }
+
+  .main_text_container {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+
+    .blue {
+      color: var(--stroke-3, #4DA7FF);
+      font-family: Raleway, sans-serif;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+    }
+
+    div {
+      width: 686px;
+      color: #121212;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-family: Raleway, sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+
+  .bottom_blocks_container {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+
+    .left_block {
+      width: 621px;
+      height: 214px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke-3, #4DA7FF);
+      background: var(--unnamed, rgba(217, 231, 250, 0.40));
+      backdrop-filter: blur(9.973308563232422px);
+      padding: 28px 24.001px 28px 23.996px;
+
+      .main_text {
+        width: 548px;
+        color: #121212;
+        font-family: Raleway, sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%;
+      }
+
+      .text_container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 24px;
+
+        p {
+          color: var(--accent, #212121);
+          font-variant-numeric: lining-nums proportional-nums;
+          font-family: Raleway, sans-serif;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 86.4%;
+        }
+      }
+
+      .text {
+        margin-top: 16px;
+        color: #121212;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-family: Raleway, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        span {
+          color: var(--stroke-3, #4DA7FF);
+          font-variant-numeric: lining-nums proportional-nums;
+          font-family: Raleway, sans-serif;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+        }
+      }
+    }
+
+    .right_block {
+      width: 422px;
+      height: 135px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke-3, #4DA7FF);
+      background: var(--unnamed, rgba(217, 231, 250, 0.40));
+      backdrop-filter: blur(9.973308563232422px);
+      padding: 28px 26px 23px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      p {
+        width: 372px;
+        color: #121212;
+        font-family: Raleway, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%;
+      }
+
+      button {
+        width: 173px;
+        height: 40px;
+        border-radius: 7px;
+        border: 1px solid var(--stroke-3, #4DA7FF);
+        background: #FFF;
+        color: var(--stroke-3, #4DA7FF);
+        leading-trim: both;
+        text-edge: cap;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-family: Raleway, sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%;
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+.item {
+  width: 485px;
+  height: 159px;
+  padding: 32px 16px;
+  border-radius: 7px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+
+  mark {
+    background: transparent;
+    color: #121212;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 13.824px */
+  }
+
+  .info_m {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    span:first-child {
+      color: #000;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 20.736px */
+      margin-bottom: .5rem;
+    }
+
+    span {
+      color: #B4B4B4;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%; /* 13.824px */
+
+    }
+  }
+
+  .btn_zero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 7px;
+    background: #4DA7FF;
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 12.096px */
+  }
+
+  .btn_one {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 7px;
+    border: 1px solid var(--stroke-3, #4DA7FF);
+    background: rgba(204, 230, 255, 0.40);
+    color: #4DA7FF;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 12.096px */
+  }
+
+  .btn_two {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 7px;
+    border: 1px solid var(--stroke-1, #D9DBDF);
+    background: rgba(217, 219, 223, 0.20);
+    color: var(--2, #B4B4B4);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 12.096px */
+  }
+
+  .contact {
+    margin-top: 2rem;
+    color: var(--2, #B4B4B4);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 15.552px */
+  }
+}

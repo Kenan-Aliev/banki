@@ -1,0 +1,42 @@
+.wrap {
+  margin: 6rem 0;
+
+  .title {
+    color: var(--main, #121212);
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 34.56px */
+    mark {
+      color: #4DA7FF;
+      background: transparent;
+    }
+  }
+
+  .cont {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .arr {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    .cont {
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      overflow: auto;
+
+      .arr {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.item {
+  min-width: 215px;
+  max-width: 250px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+
+  .title {
+    margin: 0;
+    color: #000;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal; /* 17.28px */
+  }
+
+  .sub {
+    color: #121212;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; /* 13.824px */
+  }
+}

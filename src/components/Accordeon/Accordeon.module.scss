@@ -1,0 +1,11 @@
+.acc_items {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (max-width: 375px){
+  .acc_items{
+    margin-top: 1rem;
+  }
+}

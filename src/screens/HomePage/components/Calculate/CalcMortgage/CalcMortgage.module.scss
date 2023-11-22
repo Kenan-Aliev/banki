@@ -1,0 +1,58 @@
+.calc_i {
+  width: 100%;
+  height: 366px;
+  margin-bottom: 2rem;
+  border-radius: 14px;
+  padding-top: 3rem;
+  padding-left: 2rem;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  background-image: url("../../../../../assets/icons/calc.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+
+  .calc_inps {
+    width: 845px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 1rem;
+
+
+
+    .stavka {
+      width: 370px;
+      height: 60px;
+      border-radius: 9px;
+      border: 1px solid #D9DBDF;
+      background: #F5F5F5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+
+      span {
+        color: #121212;
+        leading-trim: both;
+        text-edge: cap;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 17.28px */
+      }
+
+      span:last-child {
+        color: #121212;
+        leading-trim: both;
+        text-edge: cap;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 17.28px */
+      }
+    }
+
+
+  }
+}

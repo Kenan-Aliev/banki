@@ -1,0 +1,55 @@
+.wrapper {
+  border-radius: 7px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  width: 450px;
+  height: 200px;
+  padding: 10px;
+
+  .pencil {
+    cursor: pointer;
+    margin-left: auto;
+  }
+
+  .info {
+    padding-left: 1rem;
+
+    .date {
+      color: #B4B4B4;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      line-height: normal;
+    }
+    .title{
+      margin: 0;
+      color: #424242;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+    .star_cont{
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .text{
+      overflow: hidden;
+      margin-top: 10px;
+      width: 370px;
+      color: #424242;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+  }
+}

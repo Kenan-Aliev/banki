@@ -1,0 +1,36 @@
+.item {
+  border-radius: 17.383px;
+  border: 1.242px solid #D9DBDF;
+  background: #FFF;
+  padding: 23px;
+  cursor: pointer;
+
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      span {
+        color: #000;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-family: 'Raleway', sans-serif;
+        font-size: 14.899px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 86.4%; /* 12.873px */
+        &:first-child {
+          color: #000;
+          font-size: 17.383px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 86.4%; /* 15.019px */
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+.intro {
+  width: 100%;
+  height: 497px;
+  background: url("../../../../assets/icons/deposit_back.png") no-repeat right bottom white;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+
+  .info {
+    margin-top: 2rem;
+    margin-left: 5rem;
+
+    .title {
+      color: #121212;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 39.744px */
+      mark {
+        background: transparent;
+        color: #4da7ff;
+      }
+    }
+
+    .sub {
+      width: 693px;
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+      color: #121212;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+
+      mark {
+        background: transparent;
+        color: #4da7ff;
+      }
+    }
+
+    .calculate {
+      padding: 26px 23px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 2rem;
+      height: 190px;
+      width: 620px;
+      border-radius: 14px;
+      border: 1px solid #4DA7FF;
+      background: rgba(217, 231, 250, 0.40);
+      backdrop-filter: blur(10px);
+
+      .btnChange {
+        border-radius: 7px;
+        border: 1px solid #E0EAFF;
+        background: #FFF;
+        display: flex;
+        width: 173px;
+        height: 60px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        color: #121212;
+        leading-trim: both;
+        text-edge: cap;
+        font-family: Raleway;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        cursor: pointer;
+        line-height: 86.4%; /* 17.28px */
+      }
+    }
+
+    .breadCrumbs {
+      margin-bottom: 1rem;
+      color: #121212;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%; /* 13.824px */
+      mark {
+        background: transparent;
+        color: #B4B4B4;
+      }
+    }
+  }
+
+}
+
+
+@media (max-width: 480px) {
+  .intro {
+    background: none;
+    border: none;
+    height: auto;
+
+    .info {
+      margin: 0;
+      .title{
+        font-size: 20px;
+        text-align: center;
+      }
+      .breadCrumbs{
+        text-align: center;
+      }
+      .sub {
+        width: auto;
+        text-align: justify;
+
+        br {
+          display: none;
+        }
+      }
+
+      .calculate {
+        padding: 10px;
+        backdrop-filter: none;
+        width: 100%;
+        height: auto;
+
+        div {
+          width: 100% !important;
+          backdrop-filter: none;
+          input {
+            width: 100% !important;
+
+          }
+
+          div {
+            width: 20% !important;
+          }
+
+        }
+
+        button {
+          width: 100% !important;
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,42 @@
+.wrapper {
+  width: 579px;
+  height: 280px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  border: 1px solid var(--stroke-1, #D9DBDF);
+  background: var(--, #FFF);
+  padding: 24px;
+
+  .title {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+  }
+
+  .info_cont {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 2rem 0;
+    align-items: flex-start;
+
+    .info_item {
+      color: var(--main, #121212);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  button {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+}

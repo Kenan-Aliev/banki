@@ -1,0 +1,28 @@
+.years {
+  width: 453px;
+  height: 60px;
+  border-radius: 9px;
+  border: 1px solid #D9DBDF;
+  overflow: hidden;
+  background: #F5F5F5;
+  backdrop-filter: blur(8px);
+  padding: 10px 20px;
+
+  div {
+    color: #A3A3A3;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 12.096px */
+  }
+
+  select {
+    appearance: none;
+    width: 100%;
+    background: transparent;
+    outline: 0;
+    background: url('../../assets/icons/arr_small.svg') no-repeat right;
+    background-position-y: calc(100%);
+    font-variant-numeric: lining-nums proportional-nums;
+  }
+}

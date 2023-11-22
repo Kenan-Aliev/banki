@@ -1,0 +1,8 @@
+.deposit_offers_children {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+}

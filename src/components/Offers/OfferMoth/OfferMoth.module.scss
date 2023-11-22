@@ -1,0 +1,59 @@
+.offer_month {
+  padding-top: 4rem;
+
+  .title {
+    color: #121212;
+    text-align: center;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 39.744px */
+    margin-bottom: 2rem;
+
+    span {
+      color: #4DA7FF;
+    }
+  }
+
+  .select_items {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .offer_cont {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 1220px) {
+  .offer_month {
+    .title {
+      font-size: 20px;
+    }
+
+    .select_items {
+      flex-wrap: wrap;
+    }
+
+    .offer_cont {
+      justify-content: flex-start;
+      gap: 8px;
+      overflow: auto;
+      width: 90vw;
+      margin-right: auto;
+      margin-left: auto;
+
+      .arr {
+        display: none;
+
+      }
+    }
+  }
+}

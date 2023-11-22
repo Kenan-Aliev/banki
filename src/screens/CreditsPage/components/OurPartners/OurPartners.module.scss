@@ -1,0 +1,33 @@
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  margin: 6rem 0;
+  .title {
+    color: var(--main, #121212);
+    text-align: center;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 39.744px */
+    margin-bottom: 2rem;
+    mark {
+      background: transparent;
+      color: #4da7ff;
+    }
+  }
+  // .cont {
+  //   width: 100%;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+  // }
+}
+
+@media (max-width: 480px) {
+  .wrapp {
+    .title {
+      font-size: 25px;
+    }
+  }
+}

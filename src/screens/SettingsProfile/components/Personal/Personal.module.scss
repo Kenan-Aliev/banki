@@ -1,0 +1,121 @@
+.wrapper {
+  padding: 32px 27px 31px 32px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke-1, #D9DBDF);
+  background: #FFF;
+  width: 475px;
+  height: 383px;
+
+  .title {
+    margin: 0;
+    margin-bottom: 2rem;
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+
+    .profile_img {
+      text-align: center;
+      width: 92px;
+
+      .img {
+        width: 92px;
+        overflow: hidden;
+        height: 95px;
+
+        img {
+          width: 92px;
+          height: 92px;
+          border-radius: 92px;
+          //overflow: hidden;
+        }
+
+
+        &::after {
+          content: url("../../../../assets/icons/change_img_btn.png");
+          width: 28px;
+          height: 28px;
+          display: block;
+          position: relative;
+          z-index: 999;
+          bottom: 25px;
+          left: 65px;
+          cursor: pointer;
+        }
+      }
+
+      span {
+        margin-top: 10px;
+        color: #A3A3A3;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 10.368px */
+      }
+    }
+
+    .inps_cont {
+      width: 304px;
+      height: 196px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .inpDate {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        width: 148px;
+        height: 60px;
+        padding: 10px 20px;
+        border-radius: 9px;
+        border: 1px solid #D9DBDF;
+        background: rgba(217, 231, 250, 0.15);
+
+        span {
+          white-space: nowrap;
+          color: #A3A3A3;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 86.4%;
+        }
+
+        input {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          margin-top: 5px;
+          width: 100%;
+          background: transparent;
+          outline: 0;
+          font-variant-numeric: lining-nums proportional-nums;
+
+          &::-webkit-calendar-picker-indicator {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .bluetxt {
+    color: var(--stroke-3, #4DA7FF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 86.4%; /* 15.552px */
+    cursor: pointer;
+  }
+}

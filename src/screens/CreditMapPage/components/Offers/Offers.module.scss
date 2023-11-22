@@ -1,0 +1,78 @@
+.main_container {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.count_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 32px;
+  .left_container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    p {
+      color: var(--main, #121212);
+      font-variant-numeric: lining-nums proportional-nums;
+      font-family: Raleway;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+    }
+  }
+  .right_container {
+    display: flex;
+    align-items: center;
+    p {
+      color: #121212;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-family: Raleway;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+    }
+    .blue {
+      color: var(--blu-main, #4da7ff);
+      font-variant-numeric: lining-nums proportional-nums;
+      font-family: Raleway;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%;
+      margin-right: 8px;
+    }
+  }
+}
+.deposit_offers {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+.deposit_offers_children {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  overflow: hidden;
+  transition: height 1s ease-in-out;
+}
+.btn_cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 480px) {
+  .count_container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}

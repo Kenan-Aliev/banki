@@ -1,0 +1,37 @@
+.howWorks {
+  margin: 6rem 0;
+
+  .title {
+    text-align: center;
+    color: #000;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%;
+
+    mark {
+      color: #4DA7FF;
+      background: transparent;
+    }
+  }
+
+  .work_items {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .howWorks {
+    .title {
+      font-size: 25px;
+    }
+
+    .work_items {
+      flex-wrap: wrap;
+    }
+  }
+}

@@ -1,0 +1,189 @@
+.wrapper {
+  height: 497px;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  background: url("../../../../assets/icons/banks_back.png") right no-repeat #FFF;
+
+  .info {
+    margin-top: 2.5rem;
+    margin-left: 5rem;
+
+    .breadCrumbs {
+      mark {
+        background: transparent;
+        color: #B4B4B4;
+      }
+
+      color: #121212;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%; /* 13.824px */
+    }
+
+    .title {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #121212;
+      font-size: 42px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 39.744px */
+      mark {
+        background: transparent;
+        color: #4DA7FF;
+      }
+    }
+
+    .sub {
+      color: #121212;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%; /* 20.736px */
+    }
+
+    .find {
+      margin-top: 2rem;
+      width: 680px;
+      height: 207px;
+      border-radius: 22px;
+      border: 1px solid var(--stroke-1, #D9DBDF);
+      background: #F5F5F5;
+      padding: 15px;
+
+    }
+
+    .inps {
+      margin-top: 1rem;
+      padding-left: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #D9DBDF;
+
+      .con {
+        color: #121212;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 13.824px */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+
+    .letters {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+
+      .alph {
+        display: flex;
+        gap: 5px;
+
+        .let_cont {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          width: 100%;
+          overflow: auto;
+        }
+
+        .letter {
+          color: #121212;
+          font-size: 16.476px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal; /* 14.235px */
+          &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+      }
+
+      span {
+        color: #121212;
+        font-family: Raleway;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 12.096px */
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    background: none;
+    border: none;
+    height: auto;
+
+    .info {
+      width: auto;
+      margin: 0;
+
+      p {
+        br {
+          display: none;
+        }
+      }
+
+      .title {
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .breadCrumbs {
+        text-align: center;
+      }
+
+      .sub {
+        width: auto;
+        text-align: justify;
+
+        br {
+          display: none;
+        }
+      }
+
+      .ch_cont {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .find {
+        width: auto;
+        height: auto;
+      }
+
+      .letters {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        .alph {
+          .let_cont {
+            width: 90vw;
+          }
+        }
+      }
+
+      .inps {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+    }
+
+
+  }
+}

@@ -1,0 +1,26 @@
+.catalog_items {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+
+
+  .title {
+    color: #000;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    line-height: 86.4%; /* 34.56px */
+  }
+  .items_cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+

@@ -1,0 +1,14 @@
+.main_container {
+  width: 634px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+@media (max-width: 480px){
+  .main_container{
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,221 @@
+.intro {
+  width: 100%;
+  height: 640px;
+  background-image: url("../../../../assets/icons/mortgage_back.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+  border-radius: 14px;
+  border: 1px solid #D9DBDF;
+  background-color: #FFF;
+  padding: 20px;
+
+  .info_cont {
+    margin-top: 1.5rem;
+    margin-left: 4rem;
+
+    .breadCrumbs {
+      color: #121212;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%; /* 13.824px */
+      mark {
+        background: transparent;
+        color: #B4B4B4;
+      }
+    }
+
+    .title {
+      margin-top: 2rem;
+      color: #121212;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 39.744px */
+      mark {
+        background: transparent;
+        color: #4DA7FF;
+      }
+    }
+
+    .sub {
+      margin-top: 1rem;
+      color: #121212;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+
+      mark {
+        background: transparent;
+        color: #4DA7FF;
+      }
+    }
+
+    .ch_cont {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+
+  .infoCont {
+    margin-top: 1rem;
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+
+    .l {
+      width: 623px;
+      height: 380px;
+      padding: 24px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke-3, #4DA7FF);
+      background: var(--unnamed, rgba(217, 231, 250, 0.40));
+      backdrop-filter: blur(9.973308563232422px);
+
+      .cont_checks {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .check {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 10px;
+          color: #121212;
+          font-variant-numeric: lining-nums proportional-nums;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 86.4%; /* 13.824px */
+        }
+      }
+
+      .inps_cont {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+
+    mark {
+      background: transparent;
+      color: #4da7ff;
+    }
+  }
+
+
+  .right {
+    width: 422px;
+    height: 135px;
+    padding: 24px;
+    border-radius: 14px;
+    border: 1px solid var(--stroke-3, #4DA7FF);
+    background: var(--unnamed, rgba(217, 231, 250, 0.40));
+    backdrop-filter: blur(9.973308563232422px);
+
+    .name {
+      color: #121212;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 13.824px */
+    }
+
+    .btn {
+      cursor: pointer;
+      color: var(--stroke-3, #4DA7FF);
+      leading-trim: both;
+      text-edge: cap;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 15.552px */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+      width: 173px;
+      height: 40px;
+      border-radius: 7px;
+      border: 1px solid var(--stroke-3, #4DA7FF);
+      background: #FFF;
+    }
+  }
+
+}
+
+@media (max-width: 480px) {
+  .intro {
+    background: none;
+    border: none;
+    height: auto;
+
+    .info_cont {
+      width: auto;
+      margin: 0;
+
+      .title {
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .breadCrumbs {
+        text-align: center;
+      }
+
+      .sub {
+        width: auto;
+        text-align: justify;
+
+        br {
+          display: none;
+        }
+      }
+
+      .ch_cont {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    .infoCont {
+      flex-wrap: wrap;
+
+      .l {
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        button{
+          width: 100% !important;
+        }
+        .cont_checks {
+          flex-wrap: wrap;
+          gap: 10px;
+          justify-content: center;
+        }
+      }
+
+      .inp {
+        gap: 10px !important;
+      }
+
+      .right {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,56 @@
+.years {
+  width: 453px;
+  height: 60px;
+  border-radius: 9px;
+  border: 1px solid #D9DBDF;
+  overflow: hidden;
+  background: #F5F5F5;
+  backdrop-filter: blur(8px);
+  padding: 10px 20px;
+
+  div {
+    white-space: nowrap;
+    color: #A3A3A3;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 12.096px */
+  }
+
+  input {
+    appearance: none;
+
+    margin-top: 5px;
+    width: 100%;
+    background: transparent;
+    outline: 0;
+    font-variant-numeric: lining-nums proportional-nums;
+
+    &::-webkit-calendar-picker-indicator {
+      //color: rgba(0, 0, 0, 0);
+      //opacity: 1;
+      display: block;
+      position: absolute;
+      right: 20px;
+      bottom: 18px;
+      background: url('../../assets/icons/Calendar_i.svg') no-repeat;
+      width: 20px;
+
+      height: 20px;
+      //border-width: thin;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .years{
+    input{
+      &::-webkit-calendar-picker-indicator{
+        position: relative;
+        right: 0;
+        left: 1px;
+        bottom: 3px;
+      }
+    }
+  }
+}

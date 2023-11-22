@@ -1,0 +1,32 @@
+.wrapper {
+  margin: 4rem 0;
+
+  .title {
+    text-align: center;
+    color: var(--main, #121212);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%;
+
+    mark {
+      background: transparent;
+      color: #4da7ff;
+    }
+  }
+
+  .cont {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    .cont {
+      flex-wrap: wrap;
+    }
+  }
+}

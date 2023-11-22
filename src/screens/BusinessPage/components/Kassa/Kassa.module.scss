@@ -1,0 +1,104 @@
+.main_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  gap: 40px;
+
+  .text {
+    color: var(--main, #121212);
+    text-align: center;
+    font-family: Raleway, sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%;
+  }
+
+  .items_container {
+    display: flex;
+    gap: 8.15px;
+    width: 100%;
+    justify-content: center;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: 11.587px;
+      border: 0.828px solid var(--stroke-1, #D9DBDF);
+      background: #FFF;
+      padding: 21px 26.852px 20.958px 29px;
+
+      .text {
+        margin-top: 8px;
+        color: #000;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-family: Raleway, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%;
+      }
+
+      .button_container {
+        display: flex;
+        margin-top: 24px;
+        gap: 12px;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6.3px;
+
+          .blue {
+            color: var(--blu-main, #4DA7FF);
+            font-variant-numeric: lining-nums proportional-nums;
+            font-family: Raleway, sans-serif;
+            font-size: 12.222px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 86.4%;
+          }
+
+          .text {
+            color: var(--main, #121212);
+            font-variant-numeric: lining-nums proportional-nums;
+            font-family: Raleway, sans-serif;
+            font-size: 16.296px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 86.4%;
+          }
+        }
+
+        .button {
+          color: var(--stroke-3, #4DA7FF);
+          font-family: Raleway, sans-serif;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 86.4%;
+          height: 40px;
+          width: 222px;
+          border-radius: 7px;
+          border: 1px solid var(--stroke-3, #4DA7FF);
+          background: var(--unnamed, rgba(217, 231, 250, 0.40));
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main_container {
+    .items_container {
+      justify-content: flex-start;
+      gap: 10px;
+      width: 100%;
+      overflow: auto;
+    }
+  }
+
+}

@@ -1,0 +1,66 @@
+.wrapper {
+  .title {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+  }
+
+  .cont {
+    margin-top: 1rem;
+    width: 450px;
+    height: 460px;
+    padding: 32px;
+    border-radius: 7px;
+    border: 1px solid #D9DBDF;
+    background: #FFF;
+  }
+
+  .date {
+    color: var(--2, #B4B4B4);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 13.824px */
+    margin-bottom: 1rem;
+    mark {
+      background: transparent;
+      color: var(--main, #121212);
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 13.824px */
+    }
+  }
+
+  .inp_cont {
+    margin-bottom: 1rem;
+
+    label {
+      color: var(--main, #121212);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%; /* 12.096px */
+      margin-bottom: 15px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 5px;
+    }
+  }
+  .textarea{
+    width: 388px;
+    height: 100px;
+    padding: 16px;
+    border-radius: 7px;
+    border: 1px solid var(--stroke-1, #D9DBDF);
+    background: #FFF;
+    resize: none;
+  }
+}

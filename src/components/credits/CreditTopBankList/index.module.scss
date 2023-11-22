@@ -1,0 +1,34 @@
+.wrapper {
+  padding-top: 2rem;
+
+  .title {
+    color: var(--main, #121212);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 36px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%;
+    margin-bottom: 2rem;
+
+    mark {
+      color: #4DA7FF;
+      background: transparent;
+    }
+  }
+
+  .banks_items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    .title {
+      font-size: 20px !important;
+    }
+  }
+}

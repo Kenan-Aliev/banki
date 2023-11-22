@@ -1,0 +1,65 @@
+.summa {
+  width: 453px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 9px;
+  border: 1px solid #D9DBDF;
+  overflow: hidden;
+  background: #F5F5F5;
+  backdrop-filter: blur(8px);
+
+  .select {
+    width: 100px;
+    padding: 0 12px;
+    border-left: 1px solid #D9DBDF;
+
+    select {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      outline: 0;
+
+      border: 0;
+
+      background: transparent;
+      color: #212121;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 86.4%; /* 20.736px */
+      option {
+        width: 40px;
+      }
+    }
+  }
+
+  .sum_info {
+    margin-top: 12px;
+    margin-left: 20px;
+
+    div {
+      color: #A3A3A3;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 12.096px */
+    }
+
+    input {
+      margin-top: 7px;
+      color: #212121;
+      display: flex;
+      width: 300px;
+      font-variant-numeric: lining-nums proportional-nums;
+      background: transparent;
+      font-size: 16px;
+      outline: 0;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 13.824px */
+    }
+  }
+}

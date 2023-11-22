@@ -1,0 +1,71 @@
+.offer_item {
+  border-radius: 11px;
+  border: 1px solid #D9DBDF;
+  background: #FFF;
+  padding: 20px;
+  width: 280px;
+  flex-shrink: 0;
+  .inf {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .info {
+      .name {
+        color: #000;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 15.552px */
+      }
+
+      .subtitle {
+        margin-top: 5px;
+        color: #B4B4B4;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 86.4%; /* 12.096px */
+      }
+    }
+  }
+
+  .line {
+    margin: 15px 0;
+    width: 100%;
+    height: 1px;
+    background: #E0EAFF;
+  }
+
+  .tarifs {
+    display: flex;
+    gap: 30px;
+
+    .years {
+      .title {
+        color: #4DA7FF;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 10.368px */
+        margin-bottom: 5px;
+      }
+
+      span {
+        color: #121212;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 86.4%; /* 13.824px */
+      }
+    }
+
+    .time {
+
+    }
+  }
+}

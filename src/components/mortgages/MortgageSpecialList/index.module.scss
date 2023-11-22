@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding-left: 2%;
+
+  .map_cont {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .image {
+      height: 430px;
+      margin-top: 40px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    .map_cont {
+      justify-content: center;
+      align-items: center;
+    }
+
+  }
+}

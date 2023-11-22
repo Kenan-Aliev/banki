@@ -1,0 +1,40 @@
+.main_container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .main_text {
+    color: var(--main, #121212);
+    text-align: center;
+    font-family: Raleway, sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%;
+  }
+
+  .little_text {
+    margin-top: 16px;
+    color: #000;
+    text-align: center;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .items_container {
+    display: flex;
+    gap: 8px;
+    margin-top: 40px;
+  }
+}
+@media (max-width: 480px){
+  .items_container{
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}

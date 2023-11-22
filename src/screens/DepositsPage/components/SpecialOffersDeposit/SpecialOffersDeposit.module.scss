@@ -1,0 +1,33 @@
+.wrapper {
+  margin: 4rem 0;
+  width: 100%;
+
+  .title {
+    text-align: center;
+    color: #121212;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%;
+
+    mark {
+      background: transparent;
+      color: #4DA7FF;
+    }
+  }
+  .itemsCont{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper{
+    .itemsCont{
+      flex-wrap: wrap;
+    }
+  }
+}

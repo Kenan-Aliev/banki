@@ -1,0 +1,12 @@
+.cont{
+  margin: 2rem 0;
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  .items_cont{
+    display: flex;
+    gap: 10px;
+  }
+}

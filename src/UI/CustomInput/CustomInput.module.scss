@@ -1,0 +1,24 @@
+.cont {
+  width: 385px;
+  height: 60px;
+  border-radius: 9px;
+  border: 0.915px solid var(--stroke-2, #E0EAFF);
+  background: #FFF;
+  backdrop-filter: blur(8.695621490478516px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 21px;
+
+  .inp {
+    color: var(--accent, #212121);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 13.824px */
+    outline: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

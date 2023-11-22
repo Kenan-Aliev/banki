@@ -1,0 +1,91 @@
+.back {
+  background: rgba(119, 152, 185, 0.41);
+  backdrop-filter: blur(2.5px);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  top: 0;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    width: 531px;
+    height: 625px;
+    padding: 32px;
+    border-radius: 14px;
+    border: 1px solid #D9DBDF;
+    background: #FFF;
+
+    .close {
+      cursor: pointer;
+    }
+  }
+
+  .modal_h {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .text {
+    .title {
+      color: var(--main, #121212);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+
+    margin-top: 20px;
+    color: var(--main, #121212);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .inp_cont {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    label {
+      color: var(--main, #121212);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+
+  .timer {
+    margin-top: 10px;
+    color: var(--2, #B4B4B4);
+    text-align: center;
+    leading-trim: both;
+    text-edge: cap;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 12.096px */
+  }
+
+  .btnCont {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+}
