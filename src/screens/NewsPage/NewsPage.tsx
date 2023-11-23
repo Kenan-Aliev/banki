@@ -1,15 +1,15 @@
 'use client';
 
 import Wrapper from '@/containers/Wrapper';
+import { useAppSelector } from '@/hooks/redux';
 import Navigation from '@/screens/NewsPage/components/Navigation/Navigation';
 import News from '@/screens/NewsPage/components/News/News';
 import React, { useEffect, useState } from 'react';
-import { useTypedSelector } from '@/hooks/redux';
 
 export default function NewsPage() {
-  const { list, safeList, loansList, insuranceList, saveList } = useTypedSelector((state) => state.news);
+  const { list, safeList, loansList, insuranceList, saveList } = useAppSelector((state) => state.news);
   const [current, setCurrent] = useState<string>('Сегодня');
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   return (
     <Wrapper>

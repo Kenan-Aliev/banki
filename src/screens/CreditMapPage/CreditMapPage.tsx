@@ -13,12 +13,12 @@ import Feedback from '@/components/FeedBacks/Feedback/Feedback';
 import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions';
 import data from '@/core/data/index';
 import BanksWithButton from '@/components/BanksWithButton/BanksWithButton';
-import { useTypedSelector } from '@/hooks/redux';
 import { CreditCardT } from '@/models/Cards/Cards';
+import { useAppSelector } from '@/hooks/redux';
 
 export default function CreditMapPage() {
   const staticData = data.CreditCardsPage;
-  const staticCards: CreditCardT[] = useTypedSelector((state) => state.cards.creditCards);
+  const staticCards: CreditCardT[] = useAppSelector((state) => state.cards.creditCards);
 
   return (
     <Wrapper>

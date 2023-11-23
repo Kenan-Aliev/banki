@@ -4,7 +4,7 @@ import s from './LatestNews.module.scss';
 import NewsItem from '@/components/NewsItem/NewsItem';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
-import { useTypedSelector } from '@/hooks/redux';
+import { useAppSelector } from '@/hooks/redux';
 
 interface ChoicesInterface {
   name: string;
@@ -20,7 +20,7 @@ const mockFilterItems: ChoicesInterface[] = [
 ];
 
 const LatestNews = () => {
-  const { list, saveList, loansList, insuranceList, safeList } = useTypedSelector((state) => state.news);
+  const { list, saveList, loansList, insuranceList, safeList } = useAppSelector((state) => state.news);
 
   const [currentChoise, setCurrentChoise] = useState('Все');
 
