@@ -44,7 +44,7 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
             <div className={s.info_item}>
               <div className={s.title}>Срок</div>
               <span>
-                {timeframe_min} — {timeframe_max} дн.
+                {timeframe_min} — {timeframe_max} мес.
               </span>
             </div>
             <div className={s.info_item}>

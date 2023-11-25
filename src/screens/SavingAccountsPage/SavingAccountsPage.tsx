@@ -11,6 +11,7 @@ import TopBanks from '@/components/TopBanks/TopBanks';
 import { getDepositsI } from '@/models/Services';
 import { getDeposits } from '@/core/store/deposits/deposits-actions';
 import { useAppDispatch } from '@/hooks/redux';
+import { resetDeposits } from '@/core/store/deposits/deposits-slice';
 
 interface SavingAccountsPageProps {
   staticData: any;
@@ -25,17 +26,23 @@ const SavingAccountsPage = ({ staticData }: SavingAccountsPageProps) => {
     page: 1,
   })
 
+  const handleChangeFilter = (prop: string, value: any) => {
+    if (prop === 'page') {
+      setFilterData({ ...filterData, [prop]: value })
+    }
+    else {
+      dispatch(resetDeposits())
+      setFilterData({ ...filterData, [prop]: value, page: 1 })
+    }
+  }
+
   const fetchDeposits = (params: getDepositsI) => {
     dispatch(getDeposits(params))
   }
 
-  const handleChangeFilter = (prop: string, value: any) => {
-    setFilterData({ ...filterData, [prop]: value })
-  }
-
   useEffect(() => {
     fetchDeposits(filterData)
-  }, [])
+  }, [filterData])
 
   return (
     <PageWrapper>
@@ -45,7 +52,6 @@ const SavingAccountsPage = ({ staticData }: SavingAccountsPageProps) => {
 
       <OffersBanks
         options={['По процентной ставке', 'По рейтингу банка', 'По максимальному взносу']}
-        fetchDeposits={fetchDeposits}
         filterData={filterData}
         handleChangeFilter={handleChangeFilter}
       />

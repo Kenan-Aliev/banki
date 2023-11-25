@@ -5,7 +5,7 @@ import Image, { StaticImageData } from 'next/image';
 
 interface BonusProps {
   title?: string;
-  img?: StaticImageData;
+  img?: StaticImageData | string;
   text?: string;
   height?: number;
 }
@@ -20,7 +20,7 @@ const Bonus = (props: BonusProps) => {
 
   return (
     <div className={s.bonus} style={{ height: `${height}px` }}>
-      {img ? <Image src={img} alt={'logo bank'} /> : <div className={s.logo}>Логотип</div>}
+      {img ? <Image src={img} alt={'logo bank'} width={300} height={300} /> : <div className={s.logo}>Логотип</div>}
       <div className={s.info}>
         <div className={s.title}>{title}</div>
         <p>{text}</p>

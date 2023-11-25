@@ -13,13 +13,12 @@ import { getDepositsI } from '@/models/Services';
 
 interface OfferBanksProps {
   options: string[];
-  fetchDeposits: (params: getDepositsI) => void
   filterData: getDepositsI
   handleChangeFilter: (prop: string, value: any) => void
 }
 
 const OffersBanks = (props: OfferBanksProps) => {
-  const { options, fetchDeposits, filterData, handleChangeFilter } = props;
+  const { options, filterData, handleChangeFilter } = props;
   const { deposits, len } = useAppSelector(selectDeposits)
   const getDepositsStatus = useAppSelector(selectGetDepositsStatus)
 
@@ -50,14 +49,6 @@ const OffersBanks = (props: OfferBanksProps) => {
   }, [sortValue]);
 
 
-  const getDeposits = (page: number) => {
-    fetchDeposits({
-      ...filterData,
-      page: page
-    })
-    handleChangeFilter('page', page)
-  }
-
   return (
     <div className={s.deposits}>
       <div className={s.title}>
@@ -86,7 +77,7 @@ const OffersBanks = (props: OfferBanksProps) => {
       {len && len > filterData.page * filterData.limit &&
         <div className={s.btn_cont}>
           <BlueBtn text={'Показать еще'} width={235}
-            onClick={() => getDeposits(filterData.page + 1)}
+            onClick={() => handleChangeFilter('page', filterData.page + 1)}
           />
         </div>}
 

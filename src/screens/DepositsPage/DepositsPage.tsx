@@ -21,6 +21,7 @@ import { getDeposits } from '@/core/store/deposits/deposits-actions';
 import { getDepositsI } from '@/models/Services';
 import { selectGetDepositsStatus } from '@/core/store/deposits/deposits-selectors';
 import { getBanks } from '@/core/store/banks/banks-actions';
+import { resetDeposits } from '@/core/store/deposits/deposits-slice';
 
 
 
@@ -42,7 +43,13 @@ const DepositsPage = () => {
   }
 
   const handleChangeFilter = (prop: string, value: any) => {
-    setFilterData({ ...filterData, [prop]: value })
+    if (prop === 'page') {
+      setFilterData({ ...filterData, [prop]: value })
+    }
+    else {
+      dispatch(resetDeposits())
+      setFilterData({ ...filterData, [prop]: value, page: 1 })
+    }
   }
 
   const fetchDeposits = (params: getDepositsI) => {
@@ -56,8 +63,11 @@ const DepositsPage = () => {
 
   useEffect(() => {
     fetchBanks()
-    fetchDeposits(filterData)
   }, [])
+
+  useEffect(() => {
+    fetchDeposits(filterData)
+  }, [filterData])
 
 
 
@@ -69,13 +79,16 @@ const DepositsPage = () => {
         handleScrollToDeposits={handleScrollToDeposits}
         fetchDeposits={fetchDeposits}
       />
-      <Bonus img={absolut} />
+      <Bonus
+        img={'https://leasing.express/wp-content/themes/leasinge/assets/images/logo.svg'}
+        title='Получи +2% к ставке при открытии счета в leasing.express до конца месяца'
+        text='Откройте вклад до конца месяца и наслаждайтесь дополнительной прибылью вместе с leasing.express'
+      />
       <div
         ref={ref}
       >
         <OffersBanks
           options={['По процентной ставке', 'По рейтингу банка', 'По максимальному взносу']}
-          fetchDeposits={fetchDeposits}
           filterData={filterData}
           handleChangeFilter={handleChangeFilter}
         />
