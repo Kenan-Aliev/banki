@@ -29,8 +29,9 @@ export interface getDepositsI {
     timeframe?: number;
     page?: number;
     limit?: number;
-    sort?: number;
+    sort?: string;
     sort_type?: number;
+    currency_id?: number
 }
 
 export interface getInvestNewsI {
@@ -87,8 +88,8 @@ export interface getNews {
 export interface getAllBanksT {
     page: number,
     limit: number,
-    sort: string,
-    sort_type: number
+    sort?: string,
+    sort_type?: number
 }
 
 
@@ -98,3 +99,5 @@ export interface getBanksOfficesT {
     sort?: string,
     sort_type?: number
 }
+
+export type RequestStatus = 'initial' | 'loading' | 'success' | 'error'

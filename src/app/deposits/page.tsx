@@ -8,5 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Deposits() {
-  return <DepositsPage staticData={data.DepositsPage} />;
+   
+  return <DepositsPage />;
 }

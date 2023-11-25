@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './CalcMortgage.module.scss';
 import MoneySelect from '@/UI/MoneySelect/MoneySelect';
 import CustomWhiteSelectTitle from '@/UI/CustomWhiteSelectTitle/CustomWhiteSelectTitle';
@@ -11,7 +11,7 @@ type Props = {
     currency?: string;
     setCurrency?: React.Dispatch<string>;
 }
-const CalcMortgage = ({currency, setCurrency}: Props) => {
+const CalcMortgage = ({ currency, setCurrency }: Props) => {
 
     const [money, setMoney] = useState<number>(120000);
     const [moneytow, setMoneytow] = useState<number>(1200);
@@ -35,15 +35,15 @@ const CalcMortgage = ({currency, setCurrency}: Props) => {
     return (
         <div className={s.calc_i}>
             <div className={s.calc_inps}>
-                <MoneySelect currency={currency} setCurrency={setCurrency} value={money}
-                             title={'Стоимость недвижимости'} setValue={setMoney}
+                <MoneySelect currency_id={+currency} amount={money}
+                    title={'Стоимость недвижимости'}
                 />
                 <div className={s.stavka}>
                     <span>Ставка:</span>
                     <span>От {stavka}%</span>
                 </div>
-                <MoneySelect currency={currency} setCurrency={setCurrency} value={moneytow}
-                             title={'Первоначальный взнос'} setValue={setMoneytow}
+                <MoneySelect currency_id={+currency} amount={moneytow}
+                    title={'Первоначальный взнос'}
                 />
                 <div className={s.stavka}>
                     <span>Платеж:</span>
@@ -51,9 +51,18 @@ const CalcMortgage = ({currency, setCurrency}: Props) => {
                 </div>
                 <CustomWhiteSelectTitle
                     value={years}
-                    setValue={setYears}
+                    // setValue={setYears}
                     title={'Срок в годах'}
-                    options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']}
+                    options={[
+                        {
+                            text: '1',
+                            value: 1
+                        },
+                        {
+                            text: '2',
+                            value: 2
+                        }
+                    ]}
                 />
                 <div className={s.stavka}>
                     <span>Экономия в месяц:</span>
@@ -61,7 +70,7 @@ const CalcMortgage = ({currency, setCurrency}: Props) => {
                 </div>
             </div>
             <Link href={'/ipoteka'}>
-                <BlueBtn text={'Подобрать кредит'} width={840}/>
+                <BlueBtn text={'Подобрать кредит'} width={840} />
             </Link>
         </div>
     );

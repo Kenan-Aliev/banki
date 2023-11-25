@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './CalcCredits.module.scss';
 import MoneySelect from '@/UI/MoneySelect/MoneySelect';
 import CustomWhiteSelectTitle from '@/UI/CustomWhiteSelectTitle/CustomWhiteSelectTitle';
@@ -13,7 +13,7 @@ type Props = {
     setCurrency?: React.Dispatch<string>;
 }
 
-const CalcCredits = ({currency, setCurrency}: Props) => {
+const CalcCredits = ({ currency, setCurrency }: Props) => {
 
 
     const [money, setMoney] = useState<number>(12000);
@@ -40,16 +40,25 @@ const CalcCredits = ({currency, setCurrency}: Props) => {
     return (
         <div className={s.calc_i}>
             <div className={s.calc_inps}>
-                <MoneySelect currency={currency} setCurrency={setCurrency} value={money} setValue={setMoney}/>
+                <MoneySelect currency_id={+currency} amount={money} />
                 <div className={s.stavka}>
                     <span>Ставка:</span>
                     <span>{stavka}%</span>
                 </div>
                 <CustomWhiteSelectTitle
                     value={years}
-                    setValue={setYears}
+                    // setValue={setYears}
                     title={'Срок в годах'}
-                    options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']}
+                    options={[
+                        {
+                            text: '1',
+                            value: 1
+                        },
+                        {
+                            text: '2',
+                            value: 2
+                        }
+                    ]}
                 />
                 <div className={s.stavka}>
                     <span>Платеж:</span>
@@ -57,7 +66,7 @@ const CalcCredits = ({currency, setCurrency}: Props) => {
                 </div>
             </div>
             <Link href={'/credits'}>
-                <BlueBtn text={'Подобрать кредит'} width={840}/>
+                <BlueBtn text={'Подобрать кредит'} width={840} />
             </Link>
         </div>
     );

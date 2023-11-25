@@ -26,7 +26,7 @@ const IntroAuto = () => {
           <div className={s.title}>Подобрать кредит на автомобиль</div>
           <p>Мастер персонального подбора кредитов на покупку автомобиля.</p>
           <div className={s.calc}>
-            <MoneySelect width={385} setValue={(e) => setMany(e)} />
+            <MoneySelect width={385} />
             <CustomInputTitle title={'Ставка'} width={188} value={12} setValue={(e) => setBid(e)} />
             <CustomInputTitle
               title={'Ежемесячный платеж'}
@@ -44,7 +44,7 @@ const IntroAuto = () => {
             <CustomInput place='Имя' width={385} />
             <CustomInput place='Фамилия' width={385} />
             <CustomInput place='Номер телефона' width={385} />
-            <MoneySelect width={385} value={many} />
+            <MoneySelect width={385} amount={many} />
             <CustomInputTitle title={'Ставка'} width={385} value={bid} />
             <CustomInputTitle title={'Ежемесячный платеж'} width={385} value={monthlyPayment} />
             <CustomInputTitle title={'Срок в годах'} width={385} value={durationInYars} />

@@ -39,15 +39,21 @@ const IntroRefinancing = () => {
               <CustomWhiteSelectTitle
                 width={385}
                 title={'Цель'}
-                options={['Рефинансирование кредита']}
-                setValue={(e) => setTarget(e)}
+                options={[{
+                  text: 'Рефинансирование кредита',
+                  value: 1
+                }]}
+              // setValue={(e) => setTarget(e)}
               />
-              <MoneySelect width={385} setValue={(e) => setMany(e)} />
+              <MoneySelect width={385} />
               <CustomWhiteSelectTitle
                 width={385}
                 title={'Сумма выплат в месяц'}
-                options={['10 000']}
-                setValue={(e) => setManнSet(e)}
+                options={[{
+                  text: '10 000',
+                  value: 10000
+                }]}
+              // setValue={(e) => setManнSet(e)}
               />
               <CustomInputTitle title={'Срок в годах'} width={385} setValue={(e) => setDurationInYars(e)} />
             </div>
@@ -71,14 +77,20 @@ const IntroRefinancing = () => {
               <CustomWhiteSelectTitle
                 width={385}
                 title={'Цель'}
-                options={['Рефинансирование кредита']}
+                options={[{
+                  text: "Рефинансирование кредита",
+                  value: 1
+                }]}
                 value={target}
               />
-              <MoneySelect width={385} value={many} />
+              <MoneySelect width={385} amount={many} />
               <CustomWhiteSelectTitle
                 width={385}
                 title={'Сумма выплат в месяц'}
-                options={['10 000']}
+                options={[{
+                  text: '10 000',
+                  value: 10000
+                }]}
                 value={manySet}
               />
               <CustomInputTitle title={'Срок в годах'} width={385} value={durationInYars} />

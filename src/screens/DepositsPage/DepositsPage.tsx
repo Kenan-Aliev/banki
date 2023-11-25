@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+
+import React, { useEffect, useState, useRef } from 'react';
 import PageWrapper from '@/containers/PageWrapper';
 import IntroDeposits from '@/screens/DepositsPage/components/IntroDeposits/IntroDeposits';
 import Bonus from '@/components/Bonus/Bonus';
@@ -15,95 +16,79 @@ import Communicate from '@/components/Communicate/Communicate';
 import Feedback from '@/components/FeedBacks/Feedback/Feedback';
 import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions';
 import TopBanks from '@/components/TopBanks/TopBanks';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { getDeposits } from '@/core/store/deposits/deposits-actions';
+import { getDepositsI } from '@/models/Services';
+import { selectGetDepositsStatus } from '@/core/store/deposits/deposits-selectors';
+import { getBanks } from '@/core/store/banks/banks-actions';
 
-export type offerT = {
-  bank_id: number | string;
-  description?: string;
-  id: number;
-  max_amount?: number;
-  min_amount?: number;
-  name: string;
-  rate?: number;
-  rating?: number;
-  timeframe_max?: number;
-  timeframe_min?: number;
-};
-type OfferItem = {
-  active: boolean;
-  img: StaticImageData;
-  title: string;
-  sub: string;
-  id: number;
-};
-type OfferMoths = {
-  img: StaticImageData;
-  name: string;
-  subtitle: string;
-  time?: number | undefined;
-  year_money?: number | undefined;
-  title_1?: string | undefined;
-  title1_key?: string | undefined;
-  title2?: string | undefined;
-  title2_key?: string | undefined;
-};
-type offerI = {
-  name: string;
-  img: StaticImageData;
-  bankImg: StaticImageData;
-  bonus: string;
-  bet: number;
-  days: string;
-};
-type quesT = {
-  title: string;
-  text: string;
-};
-type banksT = {
-  title: string;
-  sub: string;
-  stavka: number;
-  time: number | string;
-  money: string;
-  osob?: string;
-};
 
-interface DepositsPageProps {
-  staticData: {
-    offersBanks: offerT[];
-    PopularOffers: OfferItem[];
-    offersMoth: OfferMoths[];
-    questData: quesT[];
-    specialOffers: offerI[];
-    Topbanks: banksT[];
-  };
-}
 
-const DepositsPage = (props: DepositsPageProps) => {
-  const { staticData } = props;
-
-  useEffect(() => {}, []);
+const DepositsPage = () => {
+  const dispatch = useAppDispatch()
+  const ref = useRef<HTMLDivElement>(null)
 
   const [currentOffer, setCurrentOffer] = useState<number>(1);
+  const [filterData, setFilterData] = useState<getDepositsI>({
+    limit: 10,
+    page: 1,
+  })
+
+
+  const handleScrollToDeposits = () => {
+    ref.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+
+  const handleChangeFilter = (prop: string, value: any) => {
+    setFilterData({ ...filterData, [prop]: value })
+  }
+
+  const fetchDeposits = (params: getDepositsI) => {
+    dispatch(getDeposits(params))
+  }
+
+  const fetchBanks = () => {
+    dispatch(getBanks({ page: 1, limit: 100 }))
+  }
+
+
+  useEffect(() => {
+    fetchBanks()
+    fetchDeposits(filterData)
+  }, [])
+
+
 
   return (
     <PageWrapper>
-      <IntroDeposits />
-      <Bonus img={absolut} />
-      <OffersBanks
-        isSelect={true}
-        deposits={staticData.offersBanks}
-        title={`${staticData.offersBanks.length} вклада`}
-        sub={' подобрано'}
-        options={['По процентной ставке', 'По рейтингу банка', 'По максимальному взносу']}
+      <IntroDeposits
+        handleChangeFilter={handleChangeFilter}
+        filterData={filterData}
+        handleScrollToDeposits={handleScrollToDeposits}
+        fetchDeposits={fetchDeposits}
       />
-      <PopularOffers setActive={setCurrentOffer} active={currentOffer} data={staticData.PopularOffers} />
+      <Bonus img={absolut} />
+      <div
+        ref={ref}
+      >
+        <OffersBanks
+          options={['По процентной ставке', 'По рейтингу банка', 'По максимальному взносу']}
+          fetchDeposits={fetchDeposits}
+          filterData={filterData}
+          handleChangeFilter={handleChangeFilter}
+        />
+      </div>
+
+      {/* <PopularOffers setActive={setCurrentOffer} active={currentOffer} data={staticData.PopularOffers} /> */}
       <OfferMonth offers={[]} />
       <Mailing />
       <LatestNews />
       <SpecialOffersDeposit deposits={[]} />
       <Communicate />
       <Feedback title={'Отзывы '} sub={'о вкладах'} />
-      <FrequentQuestions title={'Частые вопросы'} items={staticData.questData} />
+      {/* <FrequentQuestions title={'Частые вопросы'} items={staticData.questData} /> */}
       <TopBanks banks={[]} />
     </PageWrapper>
   );

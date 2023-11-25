@@ -71,10 +71,16 @@ const IntroInsuranceMort = () => {
               </div>
             </div>
             <div className={s.inps_cont}>
-              <CustomWhiteSelectTitle width={385} title={'Банк, где у меня ипотека'} options={['Сбербанк']} />
+              <CustomWhiteSelectTitle width={385} title={'Банк, где у меня ипотека'} options={[{
+                text: "Сбребанк",
+                value: 1
+              }]} />
               <BlueBtn text={'Показать цены'} width={173} />
               <CustomInputTitle title={'Остаток кредита'} width={385} />
-              <CustomWhiteSelectTitle width={385} title={'Пол'} options={['Мужской']} />
+              <CustomWhiteSelectTitle width={385} title={'Пол'} options={[{
+                text: 'Мужской',
+                value: 1
+              }]} />
               <CustomInput place={'Дата рождения'} width={385} />
             </div>
           </div>

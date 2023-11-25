@@ -26,8 +26,14 @@ const IntroTravel = () => {
           проживания за границей
         </div>
         <div className={s.calc}>
-          <CustomWhiteSelectTitle title={'Куда'} width={295.5} options={['Все страны Шенгена']} />
-          <CustomWhiteSelectTitle title={'Туристы'} width={295.5} options={['30 лет']} />
+          <CustomWhiteSelectTitle title={'Куда'} width={295.5} options={[{
+            text: 'Все страны Шенгена',
+            value: 1
+          }]} />
+          <CustomWhiteSelectTitle title={'Туристы'} width={295.5} options={[{
+            text: '30 лет',
+            value: 30
+          }]} />
           <CustomInputDateTitle value={dateOne} setValue={setDateOne} title={'Когда'} width={295.5} />
           <BlueBtn text={'Найти нужный вариант'} width={295.5} />
           <CustomInputDateTitle value={dateTwo} setValue={setDateTwo} title={'Выбрано дней'} width={295.5} />

@@ -20,7 +20,10 @@ const Personal = () => {
           <CustomInputTitle title={'Имя'} width={148} />
           <CustomInputTitle title={'Фамилия'} width={148} />
           <CustomInputTitle title={'Отчество'} width={304} />
-          <CustomWhiteSelectTitle options={['Мужской']} title={'Пол'} width={148} />
+          <CustomWhiteSelectTitle options={[{
+            text: 'Мужской',
+            value: 1
+          }]} title={'Пол'} width={148} />
           <div className={s.inpDate}>
             <span>Дата рождения</span>
             <input type='date' />

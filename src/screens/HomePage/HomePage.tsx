@@ -12,9 +12,9 @@ import Banks from '@/screens/HomePage/components/Banks/Banks';
 import Calculate from './components/Calculate/Calculate';
 import axios from 'axios';
 import { useDispatch } from "react-redux";
-import { getBanksThunk, getPromotionsThunk } from "@/core/store/home/home-slice";
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import s from './HomePage.module.scss';
+import { getBanks } from '@/core/store/banks/banks-actions';
 
 
 type SearchItem = {
@@ -39,8 +39,8 @@ const HomePage = ({ data }: Props) => {
 
 
     useEffect(() => {
-        dispatch(getBanksThunk({ limit: 10, page: 1, sort: 'id', sort_type: 1 }))
-        dispatch(getPromotionsThunk());
+        dispatch(getBanks({ limit: 10, page: 1, sort: 'id', sort_type: 1 }))
+        // dispatch(getPromotionsThunk());
     }, []);
 
 

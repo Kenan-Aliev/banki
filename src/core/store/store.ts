@@ -7,6 +7,7 @@ import InvestingSlice from '@/core/store/investing/investing-slice';
 import homeSlice from '@/core/store/home/home-slice';
 import MortgageSlice from '@/core/store/mortgages/mortgage-slice';
 import NewsSlice from '@/core/store/news/news-slice';
+import BanksSlice from '@/core/store/banks/banks-slice'
 import { TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
@@ -19,6 +20,7 @@ const reducers = {
     home: homeSlice,
     mortgage: MortgageSlice,
     news: NewsSlice,
+    banks: BanksSlice
 }
 
 const combinedReducer = combineReducers(reducers);

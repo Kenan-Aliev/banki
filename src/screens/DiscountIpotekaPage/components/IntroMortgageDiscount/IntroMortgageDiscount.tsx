@@ -84,9 +84,19 @@ const IntroMortgageDiscount = ({ items }: Props) => {
             <BlueBtn text={'Подобрать'} width={173} />
             <CustomWhiteSelectTitle
               value={years}
-              setValue={setYears}
+              // setValue={setYears}
               title={'Срок в годах'}
-              options={['10', '15', '20']}
+              options={[{
+                text: '10',
+                value: 10
+              },
+              {
+                text: '15',
+                value: 15
+              }, {
+                text: '20',
+                value: 20
+              }]}
               width={385}
             />
           </div>

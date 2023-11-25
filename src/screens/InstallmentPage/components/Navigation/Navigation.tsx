@@ -36,7 +36,10 @@ const Navigation = () => {
             <p className={styles.text}>800 000</p>
             <input type='range' />
           </div>
-          <CustomWhiteSelectTitle width={385} options={['Любой']} title={'Льготный период'} />
+          <CustomWhiteSelectTitle width={385} options={[{
+            text: 'Любой',
+            value: 1
+          }]} title={'Льготный период'} />
         </div>
         <div className={styles.right_container}>
           <button className={styles.button}>

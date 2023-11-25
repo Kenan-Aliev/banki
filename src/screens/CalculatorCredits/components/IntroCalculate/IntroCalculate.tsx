@@ -24,7 +24,7 @@ const IntroCalculate = () => {
             <Image alt={'opt'} src={opt} />
             График платежей
           </div>
-          <CustomWhiteSelectTitle title={'Срок'} options={['1 год']} width={385} />
+          <CustomWhiteSelectTitle title={'Срок'} options={[{ text: '1 год', value: 1 }]} width={385} />
           <BlueBtn text={'Подобрать'} width={241} />
         </div>
       </div>

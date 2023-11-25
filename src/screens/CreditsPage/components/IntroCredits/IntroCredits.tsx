@@ -33,18 +33,18 @@ const IntroCredits = () => {
             Получите онлайн-решение за 5 минут
           </div>
           <div className={s.calculate}>
-            <MoneySelect width={385} setValue={(e) => setMany(e)} />
+            <MoneySelect width={385} />
             <CustomWhiteSelectTitle
               title={'Срок в годах'}
-              options={['3']}
+              options={[{ text: '3', value: 3 }]}
               width={385}
-              setValue={(e) => setDurationInYars(e)}
+            // setValue={(e) => setDurationInYars(e)}
             />
             <CustomWhiteSelectTitle
               title={'Цель'}
-              options={['Просто деньги']}
+              options={[{ text: 'Просто деньги', value: 1 }]}
               width={385}
-              setValue={(e) => setTarget(e)}
+            // setValue={(e) => setTarget(e)}
             />
             <BlueBtn text={'Продолжить'} width={385} height={60} onClick={() => setModalIsOpen(true)} />
           </div>
@@ -56,16 +56,44 @@ const IntroCredits = () => {
             <CustomInput place='Имя' />
             <CustomInput place='Фамилия' />
             <CustomInput place='Номер телефона' />
-            <MoneySelect width={385} value={many} />
+            <MoneySelect width={385} amount={many} />
             <CustomWhiteSelectTitle
               title={'Срок в годах'}
-              options={['1', '2', '3', '4', '5']}
+              options={[{
+                value: 1,
+                text: '1'
+              },
+              {
+                value: 2,
+                text: '2'
+              },
+              {
+                value: 3,
+                text: '3'
+              },
+              {
+                value: 4,
+                text: '4'
+              },
+              {
+                value: 5,
+                text: '5'
+              }
+              ]}
               width={385}
               value={durationInYars}
             />
             <CustomWhiteSelectTitle
               title={'Цель'}
-              options={['Просто деньги', 'Не просто деньги']}
+              options={[{
+                text: "Просто деньги",
+                value: 1
+              },
+              {
+                text: "Не просто деньги",
+                value: 2
+              }
+              ]}
               width={385}
               value={target}
             />

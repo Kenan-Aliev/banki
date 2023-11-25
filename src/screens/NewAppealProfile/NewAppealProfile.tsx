@@ -19,7 +19,10 @@ const NewAppealProfile = () => {
         </Link>
         <h1 className={s.title}>Новое обращение</h1>
         <div className={s.inp_ont}>
-          <CustomWhiteSelectTitle options={['Выберите категорию...']} title={'Категория'} width={321} />
+          <CustomWhiteSelectTitle options={[{
+            text: 'Выберите категорию...',
+            value: 1
+          }]} title={'Категория'} width={321} />
           <CustomInputTitle
             title={'Тема'}
             place={'Напишите тему обращения'}

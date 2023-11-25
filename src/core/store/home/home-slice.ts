@@ -48,13 +48,13 @@ const initialState: InitialStateI = {
 };
 
 
-export const getBanksThunk = createAsyncThunk(
-    'getBanks',
-    async ({page = 1, limit = 100, sort_type = 1, sort = 'id'}: getAllBanksT) => {
-        const response = await BanksApi.getBanks(page, limit, sort_type, sort)
-        return response.data.banks;
-    }
-)
+// export const getBanksThunk = createAsyncThunk(
+//     'getBanks',
+//     async ({page = 1, limit = 100, sort_type = 1, sort = 'id'}: getAllBanksT) => {
+//         const response = await BanksApi.getBanks(page, limit, sort_type, sort)
+//         return response.data.banks;
+//     }
+// )
 
 export const getPromotionsThunk = createAsyncThunk(
     'getPromotions',
@@ -72,13 +72,13 @@ export const HomeSlice = createSlice({
     extraReducers: builder => {
 
         builder
-            .addCase(getBanksThunk.fulfilled, (state, action: PayloadAction<BankT[]>) => {
-                state.banksItems = [...action.payload];
-            })
+            // .addCase(getBanksThunk.fulfilled, (state, action: PayloadAction<BankT[]>) => {
+            //     state.banksItems = [...action.payload];
+            // })
 
-            .addCase(getBanksThunk.rejected, (state, action) => {
-                state.error = action.payload as string;
-            })
+            // .addCase(getBanksThunk.rejected, (state, action) => {
+            //     state.error = action.payload as string;
+            // })
 
             .addCase(getPromotionsThunk.fulfilled, (state, action) => {
                 state.promotions = [...action.payload];

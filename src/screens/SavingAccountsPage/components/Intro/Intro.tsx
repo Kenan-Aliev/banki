@@ -22,7 +22,10 @@ const Intro = () => {
         <div className={s.calculate}>
           <MoneySelect width={385} />
           <CustomBtnChange title={'Фильтр'} />
-          <CustomWhiteSelectTitle title={'Банк'} options={['Любой']} width={385} />
+          <CustomWhiteSelectTitle title={'Банк'} options={[{
+            text: 'Любой',
+            value: 1
+          }]} width={385} />
           <BlueBtn text={'Показать'} count={245} width={173} />
         </div>
       </div>

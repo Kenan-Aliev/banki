@@ -20,7 +20,7 @@ const BlueBtn = ({ text, width, height, fSize, count, onClick }: Props) => {
         fontSize: fSize ? `${fSize}px` : '',
       }}
     >
-      {text}
+      {text} {" "}
       {count && <span>{count}</span>}
     </button>
   );

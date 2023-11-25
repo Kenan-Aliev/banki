@@ -29,7 +29,7 @@ export type DepositItemT = {
 };
 
 export type DepositsResponseT = {
-  cards: DepositItemT[];
+  deposits: DepositItemT[];
   result: boolean;
   len: number;
 };
