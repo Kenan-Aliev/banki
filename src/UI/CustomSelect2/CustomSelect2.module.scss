@@ -1,0 +1,30 @@
+.select {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #121212;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 86.4%; /* 20.736px */
+  select {
+    background: transparent;
+    outline: 0;
+    color: #121212;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 86.4%; /* 20.736px */
+    padding-right: 10px;
+    option {
+      color: #121212;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 86.4%; /* 20.736px */
+    }
+  }
+}

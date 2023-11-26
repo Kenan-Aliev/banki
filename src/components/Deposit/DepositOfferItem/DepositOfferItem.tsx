@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useState } from 'react';
 import s from './DepositOfferItem.module.scss';
 import Image from 'next/image';
 import ques_I from '@/assets/icons/banki_icon/Question_i.svg';
@@ -8,6 +8,7 @@ import arr_d from '@/assets/icons/Arrow_d.svg';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import mockBankImage from '@/assets/icons/banki_icon/loco.svg';
 import { DepositCardInterface } from '@/models/Deposit/Deposit';
+import Application from '@/components/Application/Application';
 
 interface DepositOfferItemProps {
   item: DepositCardInterface;
@@ -24,8 +25,15 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
     child,
   } = props;
 
+  const [openApplicationForm, setOpenApplicationForm] = useState(false)
+
+  const handleChangeApplicationForm = () => {
+    setOpenApplicationForm(!openApplicationForm)
+  }
+
   return (
     <div className={s.item}>
+      <Application open={openApplicationForm} handleClose={handleChangeApplicationForm} />
       <div className={s.up}>
         <div className={s.info}>
           <Image src={mockBankImage} alt={'иконка банка'} />
@@ -71,7 +79,7 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
             if (el !== '') return <BlueBtn key={index} text={el} width={147} height={36} fSize={14} />;
           })}
         </div>
-        <BlueBtn text={'Открыть вклад'} width={222} fSize={20} />
+        <BlueBtn text={'Открыть вклад'} width={222} fSize={20} onClick={handleChangeApplicationForm} />
       </div>
     </div>
   );

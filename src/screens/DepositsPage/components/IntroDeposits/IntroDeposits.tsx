@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import s from './IntroDeposits.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import MoneySelect from '@/UI/MoneySelect/MoneySelect';
@@ -11,17 +11,17 @@ import { getDepositsI } from '@/models/Services';
 import { useAppSelector } from '@/hooks/redux';
 import { selectBanks } from '@/core/store/banks/banks-selectors';
 import { selectDeposits } from '@/core/store/deposits/deposits-selectors';
+import FilterModal from '../FilterModal/FilterModal';
 
 interface Props {
   handleChangeFilter: (prop: string, value: any) => void
   filterData: getDepositsI,
   handleScrollToDeposits: () => void
-  fetchDeposits: (params: getDepositsI) => void
-
 }
 
 const IntroDeposits = (props: Props) => {
-  const { handleChangeFilter, filterData, handleScrollToDeposits, fetchDeposits } = props
+  const { handleChangeFilter, filterData, handleScrollToDeposits } = props
+  const [openFilterModal, setOpenFilterModal] = useState(false)
 
   const depositsCount = useAppSelector(selectDeposits)?.len
   const banks = useAppSelector(selectBanks)?.banks?.map((bank) => {
@@ -31,6 +31,9 @@ const IntroDeposits = (props: Props) => {
     }
   })
 
+  const handleChangeFilterModal = () => {
+    setOpenFilterModal(!openFilterModal)
+  }
   return (
     <div className={s.intro}>
       <div className={s.info}>
@@ -56,7 +59,7 @@ const IntroDeposits = (props: Props) => {
             amount={filterData.amount}
             handleChange={handleChangeFilter}
             title='Сумма' />
-          <div className={s.btnChange}>
+          <div className={s.btnChange} onClick={handleChangeFilterModal}>
             <Image alt={'иконка настройки'} src={cust} />
             Фильтр
           </div>
@@ -73,6 +76,11 @@ const IntroDeposits = (props: Props) => {
             onClick={() => handleScrollToDeposits()} />
         </div>
       </div>
+
+      <FilterModal
+        open={openFilterModal}
+        handleClose={handleChangeFilterModal}
+      />
     </div>
   );
 };

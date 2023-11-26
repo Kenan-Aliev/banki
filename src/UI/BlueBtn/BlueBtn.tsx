@@ -3,7 +3,7 @@ import s from './BlueBtn.module.scss';
 
 interface Props extends React.ComponentPropsWithoutRef<'button'> {
   text: string;
-  width: number;
+  width?: number;
   height?: number;
   fSize?: number;
   count?: number;
@@ -15,7 +15,7 @@ const BlueBtn = ({ text, width, height, fSize, count, onClick }: Props) => {
       onClick={onClick}
       className={s.btn}
       style={{
-        width: `${width}px`,
+        width: `${width ? width + 'px' : '100%'}`,
         height: height ? `${height}px` : '',
         fontSize: fSize ? `${fSize}px` : '',
       }}

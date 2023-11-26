@@ -51,7 +51,15 @@ const SavingAccountsPage = ({ staticData }: SavingAccountsPageProps) => {
       <Bonus title={`Бонус до 1000 рублей за открытие вклада!`} />
 
       <OffersBanks
-        options={['По процентной ставке', 'По рейтингу банка', 'По максимальному взносу']}
+        options={[{
+          text: 'По процентной ставке',
+          value: ''
+        },
+        {
+          text: 'По максимальному взносу',
+          value: 'max_amount'
+        }
+        ]}
         filterData={filterData}
         handleChangeFilter={handleChangeFilter}
       />

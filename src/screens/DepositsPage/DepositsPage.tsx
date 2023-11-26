@@ -33,6 +33,7 @@ const DepositsPage = () => {
   const [filterData, setFilterData] = useState<getDepositsI>({
     limit: 10,
     page: 1,
+    sort_type:-1
   })
 
 
@@ -77,7 +78,6 @@ const DepositsPage = () => {
         handleChangeFilter={handleChangeFilter}
         filterData={filterData}
         handleScrollToDeposits={handleScrollToDeposits}
-        fetchDeposits={fetchDeposits}
       />
       <Bonus
         img={'https://leasing.express/wp-content/themes/leasinge/assets/images/logo.svg'}
@@ -88,7 +88,15 @@ const DepositsPage = () => {
         ref={ref}
       >
         <OffersBanks
-          options={['По процентной ставке', 'По рейтингу банка', 'По максимальному взносу']}
+          options={[{
+            text: 'По процентной ставке',
+            value: ''
+          },
+          {
+            text: 'По максимальному взносу',
+            value: 'max_amount'
+          }
+          ]}
           filterData={filterData}
           handleChangeFilter={handleChangeFilter}
         />

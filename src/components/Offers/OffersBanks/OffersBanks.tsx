@@ -10,9 +10,13 @@ import { useAppSelector } from '@/hooks/redux';
 import { selectDeposits, selectGetDepositsStatus } from '@/core/store/deposits/deposits-selectors';
 import Loading from '@/app/loading';
 import { getDepositsI } from '@/models/Services';
+import CustomSelect2 from '@/UI/CustomSelect2/CustomSelect2';
 
 interface OfferBanksProps {
-  options: string[];
+  options: {
+    text: string
+    value: string | number
+  }[];
   filterData: getDepositsI
   handleChangeFilter: (prop: string, value: any) => void
 }
@@ -56,7 +60,7 @@ const OffersBanks = (props: OfferBanksProps) => {
           <mark>{len ?? 0} вкладов {" "}</mark>
           подобрано
         </span>
-        <CustomSelect img={lines} options={options} handleSort={(e) => sortOffers(e)} />
+        <CustomSelect2 img={lines} options={options} handleChange={handleChangeFilter} />
       </div>
       <ul className={s.deposit_offers}>
         {
