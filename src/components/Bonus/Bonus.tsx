@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './Bonus.module.scss';
 import arr_r from '@/assets/icons/banki_icon/Стрелка_right.svg';
 import Image, { StaticImageData } from 'next/image';
+import Application from '../Application/Application';
+import { Box } from '@mui/material';
 
 interface BonusProps {
   title?: string;
@@ -18,15 +20,34 @@ const Bonus = (props: BonusProps) => {
     height,
   } = props;
 
+  const [openApplicationForm, setOpenApplicationForm] = useState(false)
+
+  const handleChangeApplicationForm = () => {
+    setOpenApplicationForm(!openApplicationForm)
+  }
+
   return (
-    <div className={s.bonus} style={{ height: `${height}px` }}>
+    <Box className={s.bonus}
+      sx={{
+        height: `${height}px`,
+        "& img:hover": {
+          cursor: 'pointer'
+        }
+      }}
+    >
+      <Application
+        open={openApplicationForm}
+        handleClose={handleChangeApplicationForm}
+        productId={1}
+        productType='deposit' />
       {img ? <Image src={img} alt={'logo bank'} width={300} height={300} /> : <div className={s.logo}>Логотип</div>}
-      <div className={s.info}>
+      <div className={s.info}
+      >
         <div className={s.title}>{title}</div>
         <p>{text}</p>
       </div>
-      <Image src={arr_r} alt={'иконка стрелки вправо'} />
-    </div>
+      <Image src={arr_r} alt={'иконка стрелки вправо'} onClick={handleChangeApplicationForm} />
+    </Box >
   );
 };
 

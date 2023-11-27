@@ -30,6 +30,10 @@ export type DepositItemT = {
   rating: number;
   promotion_of_month: boolean
   special_condition: string
+  bank: {
+    bank_logo: string
+    bank_name: string
+  },
 };
 
 export interface DepositsResponseT<T> {

@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import s from './OffersBanks.module.scss';
-import CustomSelect from '@/UI/CustomSelect/CustomSelect';
 import lines from '@/assets/icons/banki_icon/3-line.svg';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import DepositOfferItem from '@/components/Deposit/DepositOfferItem/DepositOfferItem';
@@ -11,6 +10,8 @@ import { selectDeposits, selectGetDepositsStatus } from '@/core/store/deposits/d
 import Loading from '@/app/loading';
 import { getDepositsI } from '@/models/Services';
 import CustomSelect2 from '@/UI/CustomSelect2/CustomSelect2';
+import { DepositItemT } from '@/models/Deposit/Deposit';
+import ExpandedDeposits from '../ExpandedOffers/ExpandedOffers';
 
 interface OfferBanksProps {
   options: {
@@ -26,31 +27,38 @@ const OffersBanks = (props: OfferBanksProps) => {
   const { deposits, len } = useAppSelector(selectDeposits)
   const getDepositsStatus = useAppSelector(selectGetDepositsStatus)
 
-  const [sortValue, setSortValue] = useState('По процентной ставке');
-
-  const sortOffers = (e: React.MouseEvent<HTMLSelectElement, MouseEvent>) => {
-    if (sortValue === e.currentTarget.value) return;
-    setSortValue(e.currentTarget.value);
-  };
-
-  function sortOffer(criterion: 'rate' | 'rating' | 'min_amount') {
-
-  }
+  const [expandedBankIds, setExpandedBankIds] = useState<number[]>([]);
+  const [bankIdCounts, setBankIdCounts] = useState<{ [key: number]: number }>({});
 
   useEffect(() => {
-    if (sortValue === '') return;
-    switch (sortValue) {
-      case 'По процентной ставке':
-        sortOffer('rate');
-        break;
-      case 'По рейтингу банка':
-        sortOffer('rating');
-        break;
-      case 'По максимальному взносу':
-        sortOffer('min_amount');
-        break;
+    const countIds: { [key: number]: number } = {};
+
+    deposits?.forEach((item) => {
+      countIds[item.bank_id] = countIds[item.bank_id] ? countIds[item.bank_id] + 1 : 1;
+    });
+
+    setBankIdCounts(countIds);
+  }, [deposits]);
+
+  const handleOpenChildren = (bankId: number) => {
+    if (expandedBankIds.includes(bankId)) {
+      setExpandedBankIds(expandedBankIds.filter((id) => id !== bankId));
+    } else {
+      setExpandedBankIds([...expandedBankIds, bankId]);
     }
-  }, [sortValue]);
+  };
+
+  const uniqueDeposits: DepositItemT[] = [];
+  const addedBankIds: number[] = [];
+
+
+  deposits?.forEach((item) => {
+    if (!addedBankIds.includes(item.bank_id)) {
+      uniqueDeposits.push(item);
+      addedBankIds.push(item.bank_id);
+    }
+  });
+
 
 
   return (
@@ -67,13 +75,25 @@ const OffersBanks = (props: OfferBanksProps) => {
           getDepositsStatus === 'loading' ?
             <Loading />
             :
-            deposits?.map((item) => {
+            uniqueDeposits?.map((item) => {
+              const { id, bank_id } = item;
+              const isExpanded = expandedBankIds.includes(bank_id);
               return (
-                <li key={item.id}>
-                  <DepositOfferItem
-                    item={item}
-                  />
-                </li>
+                <>
+                  <li key={item.id}>
+                    <DepositOfferItem
+                      item={item}
+                      openChildren={handleOpenChildren}
+                      child={isExpanded}
+                      count={bankIdCounts[bank_id] - 1}
+                    />
+                  </li>
+                  {
+                    isExpanded && (
+                      <ExpandedDeposits bankId={bank_id} deposits={deposits} primaryDepositId={id} />
+                    )
+                  }
+                </>
               )
             })
         }
