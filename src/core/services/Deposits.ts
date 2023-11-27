@@ -1,10 +1,10 @@
 import instance from '@/core/services/index';
 import { getDepositsI } from '@/models/Services';
-import { DepositItemResponseT, DepositsResponseT } from '@/models/Deposit/Deposit';
+import { DepositItemResponseT, DepositsResponseT, DepositItemT } from '@/models/Deposit/Deposit';
 
 const DepositsApi = {
   getDeposits(params: getDepositsI) {
-    return instance.get<DepositsResponseT>('/deposits', {
+    return instance.get<DepositsResponseT<DepositItemT>>('/deposits', {
       params
     });
   },

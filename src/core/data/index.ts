@@ -5284,6 +5284,8 @@ const data = {
         timeframe_min: 10,
         name: 'Жадный',
         rating: 0,
+        special_condition: 'ekmwgoj',
+        promotion_of_month: false
       },
     ],
     questData: [

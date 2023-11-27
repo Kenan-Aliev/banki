@@ -14,7 +14,7 @@ const SpecialOffersDeposit = ({ deposits }: SpecialOffersDepositProps) => {
         предложения
       </div>
       <div className={s.itemsCont}>
-        {deposits.map((item) => (
+        {deposits?.map((item) => (
           <SpecialOfferItem item={item} key={item.id} />
         ))}
       </div>

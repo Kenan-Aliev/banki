@@ -12,7 +12,7 @@ interface SpecialOfferItemProps {
 
 const SpecialOfferItem = (props: SpecialOfferItemProps) => {
   const {
-    item: { name, rate, timeframe_min, timeframe_max, count2, count1, title_2, title_1 },
+    item: { name, rate, timeframe_min, timeframe_max, count2, count1, title_2, title_1, special_condition },
   } = props;
 
   return (
@@ -22,8 +22,8 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
         <Image alt={'icon'} src={mockBankImage} />
         <div className={s.name}>{name}</div>
         {/*TODO wait for api bonus*/}
-        <div className={s.bonus} style={{ height: '12px' }}>
-          Бонус 500 ₽ за вклад
+        <div className={s.bonus}>
+          {special_condition}
         </div>
         <div className={s.line} />
         <div className={s.info_more}>

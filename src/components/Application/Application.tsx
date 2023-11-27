@@ -1,17 +1,22 @@
 import React, { } from 'react';
-import { Box, Button, Typography, Modal, Grid, Stack, FormGroup, Checkbox, FormControlLabel, TextField } from '@mui/material'
+import { Box, Typography, Modal, Grid, Stack, FormGroup, Checkbox, FormControlLabel, TextField, InputAdornment } from '@mui/material'
 import { TripOrigin, RadioButtonUnchecked } from '@mui/icons-material';
 import img from '@/assets/icons/application_form_image.svg';
 import wave from '@/assets/icons/application_form_wave.svg'
 import Image from 'next/image';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useAppDispatch } from '@/hooks/redux';
+import { sendApplication } from '@/core/store/users/users-actions';
 
 
 
 interface Props {
 	open: boolean
 	handleClose: () => void
+	productId: number
+	productType: string
 }
 
 const waveBoxStyle = {
@@ -78,11 +83,44 @@ const style = {
 	}
 };
 
-function Application({ handleClose, open }: Props) {
+function Application({ handleClose, open, productId, productType }: Props) {
+	const dispatch = useAppDispatch()
 
-	const handleSubmit = (e: any) => {
-		e.preventDefault()
-	}
+	const operators: string[] = ["70", "77", "75", "55", "50", "99", "22"];
+	const operatorRegex = operators.join('|');
+	const phoneRegex = new RegExp(`^(?:${operatorRegex})\\d{7}$`);
+
+	const validationSchema = Yup.object().shape({
+		phone: Yup.string().required('Введите номер телефона')
+			.matches(phoneRegex, 'Некорректный номер телефона'),
+		name: Yup.string()
+			.required('Введите ФИО')
+	});
+
+	const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const { value } = event.target;
+		if (value.length <= 9) { // Ограничиваем максимальную длину
+			handleChange(event);
+		}
+	};
+
+	const { values, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
+		initialValues: {
+			phone: '',
+			name: ''
+		},
+		validationSchema: validationSchema,
+		onSubmit: (values) => {
+			const req = {
+				...values,
+				phone: Number('996' + values.phone),
+				product_id: productId,
+				product: productType
+			}
+			dispatch(sendApplication(req))
+			resetForm();
+		}
+	});
 
 	return (
 		<div>
@@ -139,7 +177,29 @@ function Application({ handleClose, open }: Props) {
 								<TextField
 									fullWidth
 									variant='outlined'
+									name='phone'
+									onChange={handlePhoneChange}
+									value={values.phone}
+									onBlur={handleBlur}
+									error={touched.phone && Boolean(errors.phone)}
+									helperText={touched.phone && errors.phone}
+									type='number'
 									placeholder='Номер телефона'
+									InputProps={{
+										startAdornment: <InputAdornment
+											position="start"
+										>
+											+996
+										</InputAdornment>
+									}}
+									sx={{
+										"& p": {
+											color: 'black',
+										},
+										"& input": {
+											pl: '10px'
+										}
+									}}
 								/>
 							</Grid>
 
@@ -148,13 +208,18 @@ function Application({ handleClose, open }: Props) {
 									fullWidth
 									variant='outlined'
 									placeholder='ФИО'
+									name='name'
+									onChange={handleChange}
+									value={values.name}
+									onBlur={handleBlur}
+									error={touched.name && Boolean(errors.name)}
+									helperText={touched.name && errors.name}
 								/>
 							</Grid>
 							<Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
 								<BlueBtn
 									text='Отправить'
 									type='submit'
-
 								/>
 							</Grid>
 							<FormGroup>

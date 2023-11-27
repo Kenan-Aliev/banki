@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import s from './OfferMoth.module.scss';
-import arr_l from '@/assets/icons/banki_icon/Стрелка_left.svg';
-import arr_r from '@/assets/icons/banki_icon/Стрелка_right.svg';
-import Image from 'next/image';
 import ChoiceItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
 import OfferItem from '@/components/Offers/OfferItem/OfferItem';
 import { DepositCardInterface } from '@/models/Deposit/Deposit';
+import Slider from '@/components/Slider/Slider';
 
 type ItemT = {
   name: string;
@@ -22,6 +20,16 @@ const OfferMonth = (props: OfferMonthProps) => {
   const [currentChoise, setCurrentChoise] = useState('Вклады');
 
   const { choiceItems, offers } = props;
+
+  const slides = useMemo(() => {
+    if (offers && offers.length > 0) {
+      return offers.filter(offer => offer.promotion_of_month).map((offer) => {
+        return {
+          node: <OfferItem item={offer} key={offer.id} />
+        }
+      })
+    }
+  }, [offers])
 
   return (
     <div className={s.offer_month}>
@@ -38,11 +46,11 @@ const OfferMonth = (props: OfferMonthProps) => {
         </div>
       )}
       <div className={s.offer_cont}>
-        <Image className={s.arr} alt={'icon'} src={arr_l} />
-        {offers.map((item) => (
-          <OfferItem item={item} key={item.id} />
-        ))}
-        <Image className={s.arr} alt={'icon'} src={arr_r} />
+        <Slider
+          data={slides}
+          perView={slides ? slides.length >= 4 ? 4 : slides.length : 0}
+          infinite={false}
+        />
       </div>
     </div>
   );

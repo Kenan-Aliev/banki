@@ -100,4 +100,11 @@ export interface getBanksOfficesT {
     sort_type?: number
 }
 
+export interface sendApplicationData {
+    name: string,
+    phone: number,
+    product: string,
+    product_id: number
+}
+
 export type RequestStatus = 'initial' | 'loading' | 'success' | 'error'

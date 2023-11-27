@@ -13,6 +13,8 @@ export interface DepositCardInterface {
   count1?: string;
   title_2?: string;
   count2?: string;
+  promotion_of_month: boolean
+  special_condition?: string
 }
 
 export type DepositItemT = {
@@ -26,10 +28,12 @@ export type DepositItemT = {
   timeframe_max: number;
   description: string;
   rating: number;
+  promotion_of_month: boolean
+  special_condition: string
 };
 
-export type DepositsResponseT = {
-  deposits: DepositItemT[];
+export interface DepositsResponseT<T> {
+  deposits: T[];
   result: boolean;
   len: number;
 };

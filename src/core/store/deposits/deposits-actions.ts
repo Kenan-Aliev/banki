@@ -12,3 +12,25 @@ export const getDeposits = createAsyncThunk(
 			return rejectWithValue(err.response.data.message)
 		}
 	})
+
+export const getMonthOffers = createAsyncThunk(
+	'deposits/getMonthOffers',
+	async (params: getDepositsI, { rejectWithValue }) => {
+		try {
+			const response = await DepositsApi.getDeposits(params)
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})
+
+export const getSpecialOffers = createAsyncThunk(
+	'deposits/getSpecialOffers',
+	async (params: getDepositsI, { rejectWithValue }) => {
+		try {
+			const response = await DepositsApi.getDeposits(params)
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})

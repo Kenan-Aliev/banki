@@ -1,19 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getDeposits } from './deposits-actions';
+import { getDeposits, getMonthOffers, getSpecialOffers } from './deposits-actions';
 import { RequestStatus } from '@/models/Services';
-import { DepositsResponseT } from '@/models/Deposit/Deposit';
+import { DepositItemT, DepositsResponseT } from '@/models/Deposit/Deposit';
 
 interface InitialStateI {
   deposits: {
     status: RequestStatus,
-    data: DepositsResponseT,
+    data: DepositsResponseT<DepositItemT>,
+  },
+  monthOffers: {
+    status: RequestStatus,
+    data: DepositsResponseT<DepositItemT>
+  },
+  specialOffers: {
+    status: RequestStatus,
+    data: DepositsResponseT<DepositItemT>
   }
 }
 
 const initialState: InitialStateI = {
   deposits: {
     status: 'initial',
-    data: {} as DepositsResponseT
+    data: {} as DepositsResponseT<DepositItemT>
+  },
+  monthOffers: {
+    status: 'initial',
+    data: {} as DepositsResponseT<DepositItemT>
+  },
+  specialOffers: {
+    status: 'initial',
+    data: {} as DepositsResponseT<DepositItemT>
   }
 };
 
@@ -22,7 +38,7 @@ export const depositsSlice = createSlice({
   initialState,
   reducers: {
     resetDeposits: (state) => {
-      state.deposits.data = {} as DepositsResponseT
+      state.deposits.data = {} as DepositsResponseT<DepositItemT>
     }
   },
   extraReducers: (builder) => {
@@ -41,7 +57,37 @@ export const depositsSlice = createSlice({
       })
       .addCase(getDeposits.rejected, (state) => {
         state.deposits.status = 'error'
-      })
+      }),
+      builder
+        .addCase(getMonthOffers.pending, (state) => {
+          state.monthOffers.status = 'loading'
+        })
+        .addCase(getMonthOffers.fulfilled, (state, action) => {
+          state.monthOffers = {
+            status: 'success',
+            data: {
+              ...action.payload
+            }
+          }
+        })
+        .addCase(getMonthOffers.rejected, (state, action) => {
+          state.monthOffers.status = 'error'
+        }),
+      builder
+        .addCase(getSpecialOffers.pending, (state) => {
+          state.specialOffers.status = 'loading'
+        })
+        .addCase(getSpecialOffers.fulfilled, (state, action) => {
+          state.specialOffers = {
+            status: 'success',
+            data: {
+              ...action.payload
+            }
+          }
+        })
+        .addCase(getSpecialOffers.rejected, (state) => {
+          state.specialOffers.status = 'error'
+        })
   }
 });
 

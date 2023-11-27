@@ -19,7 +19,7 @@ interface DepositOfferItemProps {
 
 const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
   const {
-    item: { name, rate, min_amount, max_amount, timeframe_min, timeframe_max, description },
+    item: { name, rate, min_amount, max_amount, timeframe_min, timeframe_max, description, id },
     arrChildren,
     openChildren,
     child,
@@ -33,7 +33,11 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
 
   return (
     <div className={s.item}>
-      <Application open={openApplicationForm} handleClose={handleChangeApplicationForm} />
+      <Application
+        open={openApplicationForm}
+        handleClose={handleChangeApplicationForm}
+        productId={id}
+        productType='deposit' />
       <div className={s.up}>
         <div className={s.info}>
           <Image src={mockBankImage} alt={'иконка банка'} />

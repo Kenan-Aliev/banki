@@ -8,8 +8,7 @@ import homeSlice from '@/core/store/home/home-slice';
 import MortgageSlice from '@/core/store/mortgages/mortgage-slice';
 import NewsSlice from '@/core/store/news/news-slice';
 import BanksSlice from '@/core/store/banks/banks-slice'
-import { TypedUseSelectorHook, useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import UsersSlice from '@/core/store/users/users-slice'
 
 const reducers = {
     business: BusinessSlice,
@@ -20,7 +19,8 @@ const reducers = {
     home: homeSlice,
     mortgage: MortgageSlice,
     news: NewsSlice,
-    banks: BanksSlice
+    banks: BanksSlice,
+    users: UsersSlice
 }
 
 const combinedReducer = combineReducers(reducers);

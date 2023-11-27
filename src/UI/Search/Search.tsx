@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './Search.module.scss';
 import Image from 'next/image';
 import lupa from '@/assets/icons/search.svg';
@@ -42,21 +42,21 @@ const Search = (props: Props) => {
 
     {
         itemsSearch &&
-        useEffect(() => {
-            if (value?.length === 0) {
-                setSearchVis(false);
-            } else {
-                setSearchVis(true);
-            }
-            const result = filterArr(itemsSearch);
-            setFilteredArr(result);
-        }, [value]);
+            useEffect(() => {
+                if (value?.length === 0) {
+                    setSearchVis(false);
+                } else {
+                    setSearchVis(true);
+                }
+                const result = filterArr(itemsSearch);
+                setFilteredArr(result);
+            }, [value]);
     }
 
     return (
-        <div className={s.search} style={{margin: `${margin}px`, height: `${height}px`, width: `${width}px`}}>
-            <Image alt={'lupa'} src={lupa} height={40} width={40}/>
-            <input type='text' value={value} onChange={onChangeInp} placeholder={placeholder}/>
+        <div className={s.search} style={{ margin: `${margin}px`, height: `${height}px`, width: `${width}px` }}>
+            <Image alt={'lupa'} src={lupa} height={40} width={40} />
+            <input type='text' value={value} onChange={onChangeInp} placeholder={placeholder} />
 
             {btnHidden ? '' : <button>Найти</button>}
 
@@ -79,9 +79,10 @@ const Search = (props: Props) => {
                             );
                         } else {
                             return (
-                                <Link href={`/banks/${el.id}`}>
+                                <Link href={`/banks/${el.id}`}
+                                    key={index}
+                                >
                                     <div
-                                        key={index}
                                         style={{
                                             width: '100%',
                                             display: 'flex',
