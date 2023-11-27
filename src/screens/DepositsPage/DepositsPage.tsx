@@ -39,8 +39,6 @@ const DepositsPage = () => {
   const monthOffers = useAppSelector(selectMonthOffers)
   const specialOffers = useAppSelector(selectSpecialOffers)
 
-
-
   const handleScrollToDeposits = () => {
     ref.current.scrollIntoView({
       behavior: 'smooth'

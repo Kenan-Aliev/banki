@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import s from './Bonus.module.scss';
 import arr_r from '@/assets/icons/banki_icon/Стрелка_right.svg';
