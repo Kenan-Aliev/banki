@@ -6,21 +6,23 @@ import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import MoneySelect from '@/UI/MoneySelect/MoneySelect';
 import Image from 'next/image';
 import cust from '@/assets/icons/Tuning_icon.svg';
-import CustomWhiteSelectTitle from '@/UI/CustomWhiteSelectTitle/CustomWhiteSelectTitle';
 import { getDepositsI } from '@/models/Services';
 import { useAppSelector } from '@/hooks/redux';
 import { selectBanks } from '@/core/store/banks/banks-selectors';
 import { selectDeposits } from '@/core/store/deposits/deposits-selectors';
 import FilterModal from '../FilterModal/FilterModal';
+import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
+import { Stack } from '@mui/material';
 
 interface Props {
   handleChangeFilter: (prop: string, value: any) => void
   filterData: getDepositsI,
   handleScrollToDeposits: () => void
+  cleanFilter: () => void
 }
 
 const IntroDeposits = (props: Props) => {
-  const { handleChangeFilter, filterData, handleScrollToDeposits } = props
+  const { handleChangeFilter, filterData, handleScrollToDeposits, cleanFilter } = props
   const [openFilterModal, setOpenFilterModal] = useState(false)
 
   const depositsCount = useAppSelector(selectDeposits)?.len
@@ -64,25 +66,37 @@ const IntroDeposits = (props: Props) => {
             <Image alt={'иконка настройки'} src={cust} />
             Фильтр
           </div>
-          <CustomWhiteSelectTitle
-            title={'Банк'}
-            options={banks}
-            width={385}
-            handleChange={handleChangeFilter}
-            value={filterData.bank}
-          />
-          <BlueBtn text={'Показать'}
-            count={depositsCount ?? 0}
-            width={173}
-            onClick={() => handleScrollToDeposits()} />
+          <Stack direction='row' columnGap='10px' width='100%' alignItems='center'>
+            <CustomWhiteSelectTitle2
+              value={filterData.bank}
+              items={banks}
+              multiple={true}
+              isAllExist={false}
+              defaultValue={filterData.bank}
+              name='bank'
+              onChange={handleChangeFilter}
+              prop='bank'
+              labelName='Банки'
+            />
+            <BlueBtn text={'Показать'}
+              count={depositsCount ?? 0}
+              width={173}
+              onClick={() => handleScrollToDeposits()} />
+          </Stack>
         </div>
       </div>
 
       <FilterModal
         open={openFilterModal}
         handleClose={handleChangeFilterModal}
+        filter={filterData}
+        handleChangeFilter={handleChangeFilter}
+        banks={banks}
+        count={depositsCount}
+        handleScrollToDeposits={handleScrollToDeposits}
+        cleanFilter={cleanFilter}
       />
-    </div>
+    </div >
   );
 };
 

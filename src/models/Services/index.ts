@@ -25,8 +25,8 @@ export interface getCardsI {
 
 export interface getDepositsI {
     amount?: number;
-    bank?: string;
-    timeframe?: number;
+    bank?: string[] | string;
+    timeframe?: string;
     page?: number;
     limit?: number;
     sort?: string;
@@ -34,6 +34,11 @@ export interface getDepositsI {
     currency?: number
     special?: boolean
     promotion_of_month?: boolean
+    type?: string
+    withdrawal?: boolean
+    adding?: boolean
+    monthly_payments?: boolean
+    capitalisation?: boolean
 }
 
 export interface getInvestNewsI {

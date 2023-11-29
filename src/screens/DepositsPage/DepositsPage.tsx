@@ -35,7 +35,14 @@ const DepositsPage = () => {
     page: 1,
     sort_type: -1,
     sort: 'rate',
-    currency: 2
+    currency: 2,
+    bank: [],
+    timeframe: '',
+    type: 'all',
+    withdrawal: false,
+    adding: false,
+    monthly_payments: false,
+    capitalisation: false
   })
   const monthOffers = useAppSelector(selectMonthOffers)
   const specialOffers = useAppSelector(selectSpecialOffers)
@@ -50,6 +57,9 @@ const DepositsPage = () => {
     if (prop === 'page') {
       setFilterData({ ...filterData, [prop]: value })
     }
+    else if (prop === 'type' && value === '') {
+      setFilterData({ ...filterData, [prop]: 'all' })
+    }
     else {
       dispatch(resetDeposits())
       setFilterData({ ...filterData, [prop]: value, page: 1 })
@@ -58,6 +68,23 @@ const DepositsPage = () => {
 
   const fetchDeposits = (params: getDepositsI) => {
     dispatch(getDeposits(params))
+  }
+
+  const cleanFilter = () => {
+    setFilterData({
+      limit: 10,
+      page: 1,
+      sort_type: -1,
+      sort: filterData.sort,
+      currency: filterData.currency,
+      bank: [],
+      timeframe: '',
+      type: 'all',
+      withdrawal: false,
+      adding: false,
+      monthly_payments: false,
+      capitalisation: false
+    })
   }
 
   const fetchMonthOffers = () => {
@@ -87,7 +114,11 @@ const DepositsPage = () => {
   }, [])
 
   useEffect(() => {
-    fetchDeposits(filterData)
+    const filter = {
+      ...filterData,
+      bank: typeof filterData.bank !== 'string' && filterData.bank.length > 0 ? filterData.bank.join() : ''
+    }
+    fetchDeposits(filter)
   }, [filterData])
 
 
@@ -98,6 +129,7 @@ const DepositsPage = () => {
         handleChangeFilter={handleChangeFilter}
         filterData={filterData}
         handleScrollToDeposits={handleScrollToDeposits}
+        cleanFilter={cleanFilter}
       />
       <Bonus
         img={'https://leasing.express/wp-content/themes/leasinge/assets/images/logo.svg'}

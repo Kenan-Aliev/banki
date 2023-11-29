@@ -1,4 +1,4 @@
-import { toastError, toastSuccess } from '@/core/config/toastify';
+import { toastError, toastSuccess } from '@/core/libs/utils/toastify';
 import UsersApi from '@/core/services/Users';
 import { sendApplicationData } from '@/models/Services';
 import { createAsyncThunk } from '@reduxjs/toolkit';

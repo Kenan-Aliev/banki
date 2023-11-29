@@ -68,7 +68,7 @@ const OffersBanks = (props: OfferBanksProps) => {
           <mark>{len ?? 0} вкладов {" "}</mark>
           подобрано
         </span>
-        <CustomSelect2 img={lines} options={options} handleChange={handleChangeFilter} />
+        <CustomSelect2 img={lines} options={options} handleChange={handleChangeFilter} prop={'sort'} />
       </div>
       <ul className={s.deposit_offers}>
         {

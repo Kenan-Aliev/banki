@@ -11,9 +11,10 @@ type Props = {
 		value: string | number
 	}[];
 	handleChange: (prop: string, value: any) => void
+	prop: string
 };
 
-const CustomSelect2 = ({ img, options, handleChange }: Props) => {
+const CustomSelect2 = ({ img, options, handleChange, prop }: Props) => {
 	const optionItems = options.map((el, index) => (
 		<option key={index} value={el.value}>
 			{el.text}
@@ -23,7 +24,7 @@ const CustomSelect2 = ({ img, options, handleChange }: Props) => {
 	return (
 		<div className={s.select}>
 			{img && <Image src={img} alt='' />}
-			<select onChange={(e) => handleChange('sort', e.target.value)}>
+			<select onChange={(e) => handleChange(prop, e.target.value)}>
 				{optionItems}
 			</select>
 		</div>
