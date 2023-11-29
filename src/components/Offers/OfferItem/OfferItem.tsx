@@ -18,7 +18,7 @@ const OfferItem = (props: OfferItemProps) => {
       <div className={s.inf}>
         <Image alt={'icon'} src={mockBankIcon} />
         <div className={s.info}>
-          <div className={s.name}>{bank.bank_name}</div>
+          <div className={s.name}>{bank?.bank_name}</div>
           <div className={s.subtitle}>{name}</div>
         </div>
       </div>
