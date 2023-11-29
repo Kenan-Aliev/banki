@@ -15,6 +15,10 @@ export interface DepositCardInterface {
   count2?: string;
   promotion_of_month: boolean
   special_condition?: string
+  bank?: {
+    bank_logo: string
+    bank_name: string
+  },
 }
 
 export type DepositItemT = {

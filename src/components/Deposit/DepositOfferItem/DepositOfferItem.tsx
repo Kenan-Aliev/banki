@@ -11,6 +11,7 @@ import Application from '@/components/Application/Application';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { currencies } from '@/core/data/currency';
+import { Box } from '@mui/material';
 
 interface DepositOfferItemProps {
   item: DepositItemT;
@@ -86,11 +87,12 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
             </div>
           )
           : null}
-        <div className={s.blue_charc}>
+        {/* <div className={s.blue_charc}>
           {['Партнер раздела'].map((el, index) => {
             if (el !== '') return <BlueBtn key={index} text={el} width={147} height={36} fSize={14} />;
           })}
-        </div>
+        </div> */}
+
         <BlueBtn text={'Открыть вклад'} width={222} fSize={20} onClick={handleChangeApplicationForm} />
       </div>
     </div>

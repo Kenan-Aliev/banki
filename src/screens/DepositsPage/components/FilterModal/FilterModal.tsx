@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import { Box, Button, Typography, Modal, Grid, Stack, FormGroup, Checkbox, FormControlLabel } from '@mui/material'
 import { TripOrigin, RadioButtonUnchecked } from '@mui/icons-material';
@@ -60,7 +62,6 @@ const style = {
 	p: 4,
 	"@media(max-width:900px)": {
 		width: "85%",
-		top: "75%"
 	}
 };
 
@@ -74,8 +75,8 @@ function FilterModal({ handleClose, open, filter, handleChangeFilter, banks,
 	}
 
 	const handleShow = () => {
-		handleClose()
 		handleScrollToDeposits()
+		handleClose()
 	}
 
 	return (

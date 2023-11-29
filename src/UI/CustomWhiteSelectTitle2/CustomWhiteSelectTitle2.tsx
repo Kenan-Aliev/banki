@@ -1,3 +1,5 @@
+'use client'
+
 import {
 	FormControl,
 	FormHelperText,
@@ -60,7 +62,7 @@ const CustomWhiteSelectTitle2: React.FC<ISelect> = ({
 					background: '#F5F5F5'
 				}}
 			>
-				{isAllExist && <MenuItem value=''>--</MenuItem>}
+				{isAllExist && <MenuItem value=''>Все</MenuItem>}
 				{items?.map((selectObj, index) => (
 					<MenuItem key={index} value={selectObj.value}>
 						{selectObj.text}

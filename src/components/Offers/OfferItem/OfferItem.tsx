@@ -10,7 +10,7 @@ interface OfferItemProps {
 
 const OfferItem = (props: OfferItemProps) => {
   const {
-    item: { name, rate, timeframe_min, description },
+    item: { name, rate, timeframe_min, description, bank },
   } = props;
 
   return (
@@ -18,8 +18,8 @@ const OfferItem = (props: OfferItemProps) => {
       <div className={s.inf}>
         <Image alt={'icon'} src={mockBankIcon} />
         <div className={s.info}>
-          <div className={s.name}>{name}</div>
-          <div className={s.subtitle}>{description}</div>
+          <div className={s.name}>{bank.bank_name}</div>
+          <div className={s.subtitle}>{name}</div>
         </div>
       </div>
       <div className={s.line}></div>

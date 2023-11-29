@@ -4,15 +4,15 @@
   display: flex;
   justify-content: space-between;
   border-radius: 9px;
-  border: 1px solid #D9DBDF;
+  border: 1px solid #d9dbdf;
   overflow: hidden;
-  background: #F5F5F5;
+  background: #f5f5f5;
   backdrop-filter: blur(8px);
 
   .select {
     width: 100px;
     padding: 0 12px;
-    border-left: 1px solid #D9DBDF;
+    border-left: 1px solid #d9dbdf;
 
     select {
       display: flex;
@@ -41,7 +41,7 @@
     margin-left: 20px;
 
     div {
-      color: #A3A3A3;
+      color: #a3a3a3;
       font-size: 14px;
       font-style: normal;
       font-weight: 500;
@@ -61,5 +61,11 @@
       font-weight: 500;
       line-height: 86.4%; /* 13.824px */
     }
+  }
+}
+
+@media (max-width: 480px) {
+  .select {
+    width: 20% !important;
   }
 }

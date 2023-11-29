@@ -66,7 +66,17 @@ const IntroDeposits = (props: Props) => {
             <Image alt={'иконка настройки'} src={cust} />
             Фильтр
           </div>
-          <Stack direction='row' columnGap='10px' width='100%' alignItems='center'>
+          <Stack
+            direction='row'
+            sx={{
+              gap: '10px',
+              width: '100%',
+              alignItems: 'center',
+              "@media(max-width:640px)": {
+                flexWrap: 'wrap'
+              }
+            }}
+          >
             <CustomWhiteSelectTitle2
               value={filterData.bank}
               items={banks}
