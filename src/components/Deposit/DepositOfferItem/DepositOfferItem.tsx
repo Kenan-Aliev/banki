@@ -6,16 +6,18 @@ import ques_I from '@/assets/icons/banki_icon/Question_i.svg';
 import dang_i from '@/assets/icons/banki_icon/Danger_i.svg';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import mockBankImage from '@/assets/icons/banki_icon/loco.svg';
-import { DepositCardInterface, DepositItemT } from '@/models/Deposit/Deposit';
+import { DepositItemT } from '@/models/Deposit/Deposit';
 import Application from '@/components/Application/Application';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { currencies } from '@/core/data/currency';
 
 interface DepositOfferItemProps {
   item: DepositItemT;
   openChildren?: (bankId: number) => void;
   child?: boolean;
   count?: number
+  activeCurrency: number
 }
 
 const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
@@ -23,10 +25,13 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
     item: { name, rate, min_amount, max_amount, timeframe_min, timeframe_max, description, id, bank, bank_id },
     openChildren,
     child,
-    count
+    count,
+    activeCurrency
   } = props;
 
   const [openApplicationForm, setOpenApplicationForm] = useState(false)
+
+  const currency = currencies.find((c) => c.id == activeCurrency)?.text
 
   const handleChangeApplicationForm = () => {
     setOpenApplicationForm(!openApplicationForm)
@@ -63,7 +68,7 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
             <div className={s.info_item}>
               <div className={s.title}>Сумма</div>
               <span>
-                {min_amount} — {max_amount} ₽
+                {min_amount} — {max_amount} {currency}
               </span>
             </div>
           </div>

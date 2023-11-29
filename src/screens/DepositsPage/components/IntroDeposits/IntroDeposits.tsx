@@ -57,6 +57,7 @@ const IntroDeposits = (props: Props) => {
           <MoneySelect
             width={385}
             amount={filterData.amount}
+            currency={filterData.currency}
             handleChange={handleChangeFilter}
             title='Сумма' />
           <div className={s.btnChange} onClick={handleChangeFilterModal}>

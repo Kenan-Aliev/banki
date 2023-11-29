@@ -6,17 +6,19 @@ const ExpandedDeposits = ({
 	bankId,
 	deposits,
 	primaryDepositId,
+	activeCurrency
 }: {
 	bankId: number;
 	deposits: DepositItemT[];
 	primaryDepositId: number;
+	activeCurrency: number
 }) => {
 	const filteredDeposits = deposits.filter((item) => item.bank_id === bankId && item.id !== primaryDepositId);
 	return (
 		<ul>
 			{filteredDeposits.map((deposit) => (
 				<li key={deposit.id}>
-					<DepositOfferItem item={deposit} />
+					<DepositOfferItem item={deposit} activeCurrency={activeCurrency} />
 				</li>
 			))}
 		</ul>

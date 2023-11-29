@@ -35,14 +35,14 @@ const CalcMortgage = ({ currency, setCurrency }: Props) => {
     return (
         <div className={s.calc_i}>
             <div className={s.calc_inps}>
-                <MoneySelect currency_id={+currency} amount={money}
+                <MoneySelect currency={+currency} amount={money}
                     title={'Стоимость недвижимости'}
                 />
                 <div className={s.stavka}>
                     <span>Ставка:</span>
                     <span>От {stavka}%</span>
                 </div>
-                <MoneySelect currency_id={+currency} amount={moneytow}
+                <MoneySelect currency={+currency} amount={moneytow}
                     title={'Первоначальный взнос'}
                 />
                 <div className={s.stavka}>

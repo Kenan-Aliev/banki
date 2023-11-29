@@ -23,7 +23,7 @@ const OfferMonth = (props: OfferMonthProps) => {
 
   const slides = useMemo(() => {
     if (offers && offers.length > 0) {
-      return offers.filter(offer => offer.promotion_of_month).map((offer) => {
+      return offers.map((offer) => {
         return {
           node: <OfferItem item={offer} key={offer.id} />
         }

@@ -83,6 +83,7 @@ const OffersBanks = (props: OfferBanksProps) => {
                   <li key={item.id}>
                     <DepositOfferItem
                       item={item}
+                      activeCurrency={filterData.currency}
                       openChildren={handleOpenChildren}
                       child={isExpanded}
                       count={bankIdCounts[bank_id] - 1}
@@ -90,7 +91,12 @@ const OffersBanks = (props: OfferBanksProps) => {
                   </li>
                   {
                     isExpanded && (
-                      <ExpandedDeposits bankId={bank_id} deposits={deposits} primaryDepositId={id} />
+                      <ExpandedDeposits
+                        bankId={bank_id}
+                        deposits={deposits}
+                        primaryDepositId={id}
+                        activeCurrency={filterData.currency}
+                      />
                     )
                   }
                 </>

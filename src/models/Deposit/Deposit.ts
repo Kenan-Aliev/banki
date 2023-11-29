@@ -30,6 +30,11 @@ export type DepositItemT = {
   rating: number;
   promotion_of_month: boolean
   special_condition: string
+  monthly_payments: boolean
+  capitalisation: boolean,
+  deposit_type: string
+  withdrawal: boolean
+  adding_money: boolean
   bank: {
     bank_logo: string
     bank_name: string

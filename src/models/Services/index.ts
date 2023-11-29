@@ -31,7 +31,9 @@ export interface getDepositsI {
     limit?: number;
     sort?: string;
     sort_type?: number;
-    currency_id?: number
+    currency?: number
+    special?: boolean
+    promotion_of_month?: boolean
 }
 
 export interface getInvestNewsI {

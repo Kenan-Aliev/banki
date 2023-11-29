@@ -35,6 +35,7 @@ const DepositsPage = () => {
     page: 1,
     sort_type: -1,
     sort: 'rate',
+    currency: 2
   })
   const monthOffers = useAppSelector(selectMonthOffers)
   const specialOffers = useAppSelector(selectSpecialOffers)
@@ -63,8 +64,7 @@ const DepositsPage = () => {
     dispatch(getMonthOffers({
       page: 1,
       limit: 10,
-      sort: 'promotion_of_month',
-      sort_type: -1
+      promotion_of_month: true
     }))
   }
 
@@ -72,8 +72,7 @@ const DepositsPage = () => {
     dispatch(getSpecialOffers({
       page: 1,
       limit: 4,
-      sort: 'special_condition',
-      sort_type: 1
+      special: true
     }))
   }
   const fetchBanks = () => {
