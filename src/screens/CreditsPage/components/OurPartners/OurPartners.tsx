@@ -14,7 +14,7 @@ const OurPartners = ({ items }: Props) => {
   const slides = useMemo(() => {
     return items.map((el, index) => (
       {
-        link: '',
+        link: '/banks/' + el.id,
         node: <BankImgItemSlide img={el.image} key={el.id} />
       }
 

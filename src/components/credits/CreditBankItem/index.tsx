@@ -59,12 +59,12 @@ const CreditBankItem = (props: CreditBankItemProps) => {
         </button>
       </div>
       <div className={s.down}>
-        {!child && (
+        {/* {!child && (
           <div className={s.count} onClick={(e) => openChildren(e)}>
             {arrChildren.length - 2 > 0 && `Ещё ${arrChildren.length - 1} предложений`}
             <Image src={arr_d} alt={'иконка стрелочки вниз'} />
           </div>
-        )}
+        )} */}
         <div className={s.blue_charc}>
           {['Партнер раздела'].map((el, index) => {
             if (el !== '') return <BlueBtn key={index} text={el} width={147} height={36} fSize={14} />;

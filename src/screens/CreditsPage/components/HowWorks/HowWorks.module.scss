@@ -56,6 +56,20 @@
             cursor: pointer;
           }
         }
+        .list {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px 30px;
+          margin-top: 10px;
+          list-style-type: disc;
+          li {
+            font-size: 14px;
+          }
+          li:hover {
+            color: #4da7ff;
+          }
+        }
       }
 
       .info {

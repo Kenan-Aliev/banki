@@ -6,6 +6,7 @@ import Image from 'next/image';
 import o1 from '@/assets/icons/serv_o.svg';
 import o2 from '@/assets/icons/serv_d.png';
 import Application from '@/components/Application/Application';
+import Link from 'next/link';
 
 const HowWorks = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -47,6 +48,28 @@ const HowWorks = () => {
             <div className={s.text}>
               Ознакомьтесь с различными типами кредитов на нашем сайте.
             </div>
+            <ul className={s.list}>
+              <li>
+                <Link href='/credits/consumer-credits'>
+                  Потребительские кредиты
+                </Link>
+              </li>
+              <li>
+                <Link href='/ipoteka/credits'>
+                  Ипотечные кредиты
+                </Link>
+              </li>
+              <li>
+                <Link href='/credits/autocredit'>
+                  Автокредиты
+                </Link>
+              </li>
+              <li>
+                <Link href='/credits/microloans'>
+                  Микрозаймы
+                </Link>
+              </li>
+            </ul>
           </div>
           <div className={s.info}>
             Пример расчета:При сумме кредита 25 000 руб. сроком на 3 года по ставке 11.5% годовых ежемесячный

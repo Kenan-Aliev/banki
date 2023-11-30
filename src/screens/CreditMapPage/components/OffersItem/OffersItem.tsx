@@ -22,7 +22,7 @@ const OffersItem = (props: OffersItemProps) => {
     <div className={styles.main_container}>
       <div>
         <Image src={cart} alt='Карта' />
-        {!child && arrChildren.length > 0 && (
+        {!child && arrChildren?.length > 0 && (
           <div className={styles.count_cart} onClick={(e) => openChildren(e)}>
             <p>Еще {arrChildren ? arrChildren.length : 0} карты</p>
             <Arrow />
