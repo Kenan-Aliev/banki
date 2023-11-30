@@ -7,13 +7,13 @@ import Image from 'next/image';
 const ForWhat = () => {
   return (
     <div className={s.forWhat}>
-      <div className={s.title}>
+      <h2 className={s.title}>
         Для чего нужен <mark>кредитный рейтинг?</mark>
-      </div>
+      </h2>
       <div className={s.items_cont}>
         <div className={s.item}>
           <Image alt={'icon'} src={for_what} style={{ marginBottom: '10px', marginTop: '20px' }} />
-          <div className={s.title}>Оцените свои шансы на получение кредита</div>
+          <h3 className={s.title}>Оцените свои шансы на получение кредита</h3>
           <p className={s.sub}>
             Кредитный рейтинг - это балл, рассчитанный на основе кредитной истории заемщика. Чем выше балл,
             тем выше вероятность получить кредит.

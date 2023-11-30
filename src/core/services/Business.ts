@@ -20,16 +20,6 @@ const BusinessApi = {
         return instance.get<BusinessCardItemResponseT>(`business-card?=${card}`);
     },
 
-
-    getCredits({amount, timeframe, page, limit, sort, sort_type}: getBusinessCreditsI) {
-        return instance.get<BusinessCreditsResponseT>(
-            `/business-credits?amount=${amount}&timeframe=${timeframe}&page=${page}&limit=${limit}&sort=${sort}&sort_type=${sort_type}`,
-        );
-    },
-
-    getCredit({credit}: { credit: number }) {
-        return instance.get<BusinessCreditItemResponseT>(`business-credit?credit=${credit}`);
-    },
 };
 
 export default BusinessApi;

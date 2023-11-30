@@ -1,10 +1,10 @@
+'use client'
+
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import s from './Slider.module.scss';
 import arr_l from '@/assets/icons/banki_icon/Стрелка_left.svg';
 import arr_r from '@/assets/icons/banki_icon/Стрелка_right.svg';
-import arr from '@/assets/icons/white_arr.svg';
-import SlideItem from '@/components/SlideItem/SlideItem';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 

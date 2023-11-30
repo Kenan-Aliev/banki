@@ -21,6 +21,8 @@ const OfferMonth = (props: OfferMonthProps) => {
 
   const { choiceItems, offers } = props;
 
+  console.log(offers)
+
   const slides = useMemo(() => {
     if (offers && offers.length > 0) {
       return offers.map((offer) => {

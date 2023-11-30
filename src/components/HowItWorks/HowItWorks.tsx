@@ -20,10 +20,10 @@ type Props = {
 const HowItWorks = ({ title, sub, items }: Props) => {
   return (
     <div className={s.howWorks}>
-      <div className={s.title}>
+      <h3 className={s.title}>
         <mark>{title}</mark>
         {sub}
-      </div>
+      </h3>
       <div className={s.work_items}>
         <HowItWorksItemsMap items={items} />
       </div>

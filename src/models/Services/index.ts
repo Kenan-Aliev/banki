@@ -95,6 +95,8 @@ export interface getNews {
 export interface getAllBanksT {
     page: number,
     limit: number,
+    type?: string
+    search?: string
     sort?: string,
     sort_type?: number
 }

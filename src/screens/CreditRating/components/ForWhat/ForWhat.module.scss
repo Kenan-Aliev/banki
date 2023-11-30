@@ -10,7 +10,7 @@
     line-height: 86.4%; /* 39.744px */
     mark {
       background: transparent;
-      color: #4DA7FF;
+      color: #4da7ff;
     }
   }
 
@@ -23,21 +23,21 @@
     margin-bottom: 2rem;
 
     .item {
-      width: 570px;
-      height: 310px;
+      width: 48%;
+      height: 50vh;
       border-radius: 14px;
-      border: 1px solid #D9DBDF;
-      background: #FFF;
+      border: 1px solid #d9dbdf;
+      background: #fff;
       padding: 0 20px 20px 20px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-
+     
       .title {
         color: #121212;
         font-variant-numeric: lining-nums proportional-nums;
-        font-size: 18px;
+        font-size: 24px;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
@@ -48,7 +48,7 @@
         text-align: center;
         color: #121212;
         font-variant-numeric: lining-nums proportional-nums;
-        font-size: 14px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -56,14 +56,14 @@
     }
   }
 }
-@media (max-width: 480px){
-  .forWhat{
-    .title{
+@media (max-width: 480px) {
+  .forWhat {
+    .title {
       font-size: 25px;
     }
-    .items_cont{
+    .items_cont {
       flex-wrap: wrap;
-      .item{
+      .item {
         width: 100%;
         padding: 20px;
         height: auto;

@@ -4,17 +4,16 @@ import IntroCredits from '@/screens/CreditsPage/components/IntroCredits/IntroCre
 import { StaticImageData } from 'next/image';
 import OurPartners from '@/screens/CreditsPage/components/OurPartners/OurPartners';
 import HowWorks from '@/screens/CreditsPage/components/HowWorks/HowWorks';
+import { BankT } from '@/models/Banks/banks';
 
 type Props = {
-  data: {
-    sliderItems: StaticImageData[];
-  };
+  sliderItems: BankT[];
 };
-const CreditsPage = ({ data }: Props) => {
+const CreditsPage = ({ sliderItems }: Props) => {
   return (
     <PageWrapper>
       <IntroCredits />
-      <OurPartners items={data.sliderItems} />
+      <OurPartners items={sliderItems} />
       <HowWorks />
     </PageWrapper>
   );

@@ -20,14 +20,11 @@ const QuestionItem = ({ item }: Props) => {
   return (
     <div className={open ? s.item_active : s.item} onClick={toggleOpen}>
       <div className={s.info}>
-        <div className={s.title}>{item.title}</div>
+        <h4 className={s.title}>{item.title}</h4>
         <Image className={open ? s.plus_a : s.plus} src={plus} alt='' />
       </div>
       <p className={s.text}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed sapien vitae tortor
-        vestibulum mollis nec non orci. Phasellus fringilla, odio nec suscipit varius, purus libero bibendum
-        lacus, non vulputate urna tortor eget libero. Etiam efficitur lacus libero, eget blandit libero
-        molestie ut.
+        {item.text}
       </p>
     </div>
   );

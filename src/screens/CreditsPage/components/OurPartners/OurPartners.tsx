@@ -1,20 +1,35 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import s from './OurPartners.module.scss';
-import SliderBanksCons from '@/screens/ConsumerCreditsPage/Components/SliderBanksCons/SliderBanksCons';
-import { StaticImageData } from 'next/image';
+import { BankT } from '@/models/Banks/banks';
+import BankImgItemSlide from '@/components/Banki/BankiImg/BankImgItemSlide/BankImgItemSlide';
+import Slider from '@/components/Slider/Slider';
 
 type Props = {
-  items: StaticImageData[];
+  items: BankT[];
 };
 const OurPartners = ({ items }: Props) => {
+
+  const slides = useMemo(() => {
+    return items.map((el, index) => (
+      {
+        link: '',
+        node: <BankImgItemSlide img={el.image} key={el.id} />
+      }
+
+    ));
+  }, [])
   return (
     <div className={s.wrapp}>
       <div className={s.title}>
-        Наши партнеры больше <mark>50 банков</mark>
+        Наши партнеры больше <mark>{slides?.length} банков</mark>
       </div>
-      <SliderBanksCons data={items} />
+      <Slider
+        data={slides}
+        infinite={false}
+        perView={slides ? slides.length >= 4 ? 4 : slides.length : 0}
+      />
     </div>
   );
 };

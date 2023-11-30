@@ -10,15 +10,16 @@ type Props = {
   colorTitle?: string;
   setValue?: React.Dispatch<number>;
   value?: number;
+  type?: string
 };
 
-const CustomInputTitle = ({ title, width, place, colorTitle, setValue, value }: Props) => {
+const CustomInputTitle = ({ title, width, place, colorTitle, setValue, value, type = 'text' }: Props) => {
   const handleChange = (e) => setValue && setValue(e.target.value);
 
   return (
     <div className={s.years} style={{ width: `${width}px` }}>
       <div style={{ color: `${colorTitle}` }}>{title}</div>
-      <input type='text' placeholder={place} onChange={handleChange} defaultValue={value} />
+      <input type={type} placeholder={place} onChange={handleChange} defaultValue={value} />
     </div>
   );
 };

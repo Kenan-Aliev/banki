@@ -11,7 +11,7 @@
 
     mark {
       background: transparent;
-      color: #4DA7FF;
+      color: #4da7ff;
     }
   }
 
@@ -23,14 +23,14 @@
 
     .item {
       margin-top: 2rem;
-      br{
+      br {
         display: none;
       }
 
       .main {
         border-radius: 14px;
-        border: 1px solid #D9DBDF;
-        background: #FFF;
+        border: 1px solid #d9dbdf;
+        background: #fff;
         width: 571px;
         height: 313px;
         padding: 11px 22px 44px 22px;
@@ -50,7 +50,10 @@
 
           mark {
             background: transparent;
-            color: #4DA7FF;
+            color: #4da7ff;
+          }
+          mark:hover {
+            cursor: pointer;
           }
         }
       }
@@ -61,8 +64,8 @@
         height: 78px;
         padding: 10px 30px;
         border-radius: 9px;
-        border: 0.915px solid var(--stroke-1, #D9DBDF);
-        background: #FFF;
+        border: 0.915px solid var(--stroke-1, #d9dbdf);
+        background: #fff;
         backdrop-filter: blur(8.695621490478516px);
         color: #424242;
         font-size: 12px;

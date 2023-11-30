@@ -1,22 +1,35 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import s from './HowWorks.module.scss';
 import Image from 'next/image';
 import o1 from '@/assets/icons/serv_o.svg';
 import o2 from '@/assets/icons/serv_d.png';
+import Application from '@/components/Application/Application';
 
 const HowWorks = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const handleChangeOpenModal = () => {
+    setIsModalOpen(!isModalOpen)
+  }
   return (
     <div className={s.wrapper}>
-      <div className={s.title}>
+      <Application
+        handleClose={handleChangeOpenModal}
+        open={isModalOpen}
+        productId={1}
+        productType='credit-master'
+      />
+      <h3 className={s.title}>
         <mark>Как работает </mark>
         наш сервис
-      </div>
+      </h3>
       <div className={s.cont}>
         <div className={s.item}>
           <div className={s.main}>
             <Image src={o1} alt={''} />
             <div className={s.text}>
-              Нажмите <mark>«Продолжить»</mark> и заполните анкету на Банки.ру.
+              Нажмите <mark onClick={handleChangeOpenModal}>«Продолжить»</mark> и заполните анкету на vsebanki.kg.
               <br />
               На основе вашей анкеты мы найдем банки, которые одобрят
               <br /> кредит. <mark>Это займет не более пяти минут.</mark>
@@ -32,7 +45,7 @@ const HowWorks = () => {
           <div className={s.main}>
             <Image src={o2} alt={''} />
             <div className={s.text}>
-              Выберите предложение, которое вас устроит и обратитесь <br />в банк для получения кредита.
+              Ознакомьтесь с различными типами кредитов на нашем сайте.
             </div>
           </div>
           <div className={s.info}>
