@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Кредиты',
 };
 const Page = async () => {
-  const banks = (await BanksApi.getBanks({ page: 1, limit: 50 })).data.banks
+  const banks = (await BanksApi.getBanks({ page: 1, limit: 50, type: 'bank' })).data.banks
 
   return <CreditsPage sliderItems={banks} />;
 }

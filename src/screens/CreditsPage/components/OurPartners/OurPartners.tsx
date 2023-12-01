@@ -32,7 +32,7 @@ const OurPartners = ({ items }: Props) => {
           "320": 2,
           "480": 3,
           "640": 3,
-          "768": 3,
+          "768": 4,
           "1500": slides ? slides.length >= 4 ? 4 : slides.length : 0
         }}
       />

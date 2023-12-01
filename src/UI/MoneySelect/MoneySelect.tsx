@@ -23,7 +23,7 @@ const MoneySelect = ({ width, amount, currency, handleChange, title }: Props) =>
                 <select
                     value={currency}
                     onChange={(e) => handleChange('currency', e.target.value)}>
-                    <option value='2'>С</option>
+                    <option value='2'>&#8384;</option>
                     <option value='1'>₽</option>
                     <option value='3'>$</option>
                 </select>

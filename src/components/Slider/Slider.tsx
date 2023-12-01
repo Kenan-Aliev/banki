@@ -20,7 +20,7 @@ type Props = {
 	infinite: boolean
 	responsive: {
 		320: number
-		480:number
+		480: number
 		640: number
 		768: number
 		1500: number
@@ -33,7 +33,7 @@ const Slider = ({ data, infinite, responsive }: Props) => {
 	useEffect(() => {
 		if (data && data.length > 0) {
 			const slides = data.map((el, index) => (
-				<SwiperSlide key={index}>
+				<SwiperSlide key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 					{el.link
 						? <>
 							<Link href={el.link}>
@@ -72,13 +72,13 @@ const Slider = ({ data, infinite, responsive }: Props) => {
 				onSlideChange={() => console.log('slide change')}
 				onSwiper={(swiper) => console.log(swiper)}
 				breakpoints={{
-					320:{
+					320: {
 						slidesPerView: responsive[320]
 					},
 					480: {
 						slidesPerView: responsive[480],
 					},
-					640:{
+					640: {
 						slidesPerView: responsive[640]
 					},
 					768: {

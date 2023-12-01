@@ -32,10 +32,10 @@ const IntroCredits = () => {
         <div className={s.breadCrumbs}>
           Главная / <mark>Кредиты</mark>
         </div>
-        <div className={s.title}>
+        <h1 className={s.title}>
           Найдем банк, где вам одобрят
           <br /> кредит по выгодной ставке
-        </div>
+        </h1>
         <h1 className={s.sub}>
           <Image src={clock} alt={''} />
           Получите онлайн-решение за 5 минут
