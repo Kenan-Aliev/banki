@@ -1,21 +1,26 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { Theme, SxProps, Table, TableBody, TableCell, TableRow, TableContainer } from '@mui/material';
+
+const rowStyles: SxProps<Theme> = {
+	'&:last-child td, &:last-child th': {
+		border: 0
+	},
+	"& td": {
+		padding: '30px',
+		fontFamily: 'inherit'
+	}
+}
 
 
 export default function Contacts() {
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer>
 			<Table>
 				<TableBody>
 					<TableRow
-						sx={{ '&:last-child td, &:last-child th': { border: 0 }, "& td": { padding: '30px 0' } }}
+						sx={rowStyles}
 					>
-						<TableCell component="th" scope="row">
+						<TableCell>
 							На рынке с 1993 года
 						</TableCell>
 						<TableCell align="left">лицензия № 2272ОГРН </TableCell>
@@ -24,9 +29,9 @@ export default function Contacts() {
 					</TableRow>
 
 					<TableRow
-						sx={{ '&:last-child td, &:last-child th': { border: 0 }, "& td": { padding: '30px 0' } }}
+						sx={rowStyles}
 					>
-						<TableCell component="th" scope="row">
+						<TableCell>
 							Адрес
 						</TableCell>
 						<TableCell align="left">107078, г. Москва, ул. Маши Порываевой, д. 34</TableCell>
@@ -35,9 +40,9 @@ export default function Contacts() {
 					</TableRow>
 
 					<TableRow
-						sx={{ '&:last-child td, &:last-child th': { border: 0 }, "& td": { padding: '30px 0' } }}
+						sx={rowStyles}
 					>
-						<TableCell component="th" scope="row">
+						<TableCell>
 							Ссылки на соцсети
 						</TableCell>
 						<TableCell align="left">107078, г. Москва, ул. Маши Порываевой, д. 34</TableCell>
@@ -47,5 +52,6 @@ export default function Contacts() {
 				</TableBody>
 			</Table>
 		</TableContainer>
+
 	);
 }

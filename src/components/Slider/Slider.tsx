@@ -19,6 +19,8 @@ type Props = {
 	data: SlideT[];
 	infinite: boolean
 	responsive: {
+		320: number
+		480:number
 		640: number
 		768: number
 		1500: number
@@ -70,8 +72,14 @@ const Slider = ({ data, infinite, responsive }: Props) => {
 				onSlideChange={() => console.log('slide change')}
 				onSwiper={(swiper) => console.log(swiper)}
 				breakpoints={{
-					640: {
-						slidesPerView: responsive[640],
+					320:{
+						slidesPerView: responsive[320]
+					},
+					480: {
+						slidesPerView: responsive[480],
+					},
+					640:{
+						slidesPerView: responsive[640]
 					},
 					768: {
 						slidesPerView: responsive[768],

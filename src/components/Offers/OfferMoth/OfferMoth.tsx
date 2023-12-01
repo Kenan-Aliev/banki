@@ -52,8 +52,10 @@ const OfferMonth = (props: OfferMonthProps) => {
           data={slides}
           infinite={false}
           responsive={{
-            "640": 2,
-            "768": 2,
+            "320": 1,
+            "480": 2,
+            "640": 3,
+            "768": 3,
             "1500": slides ? slides.length >= 4 ? 4 : slides.length : 0
           }}
         />

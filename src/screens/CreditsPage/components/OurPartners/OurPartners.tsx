@@ -29,8 +29,10 @@ const OurPartners = ({ items }: Props) => {
         data={slides}
         infinite={false}
         responsive={{
-          "640": 2,
-          "768": 2,
+          "320": 2,
+          "480": 3,
+          "640": 3,
+          "768": 3,
           "1500": slides ? slides.length >= 4 ? 4 : slides.length : 0
         }}
       />

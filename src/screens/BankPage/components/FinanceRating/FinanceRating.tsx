@@ -1,27 +1,28 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Typography } from '@mui/material';
+import { Theme, SxProps, Table, TableBody, TableCell, TableRow, Typography, TableContainer } from '@mui/material';
 
+const rowStyles: SxProps<Theme> = {
+	'&:last-child td, &:last-child th': {
+		border: 0
+	},
+	"& td": {
+		padding: '30px',
+		fontFamily: 'inherit',
+	},
+	"& p": {
+		fontFamily: 'inherit',
+	}
+}
 
 export default function FinanceRating() {
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer>
 			<Table>
 				<TableBody>
 					<TableRow
-						sx={{
-							'&:last-child td, &:last-child th': { border: 0 },
-							"& td": {
-								padding: '30px 0',
-							}
-						}}
+						sx={rowStyles}
 					>
-						<TableCell component="th" scope="row">
+						<TableCell>
 							Активы нетто
 						</TableCell>
 						<TableCell align="left">
@@ -31,9 +32,9 @@ export default function FinanceRating() {
 					</TableRow>
 
 					<TableRow
-						sx={{ '&:last-child td, &:last-child th': { border: 0 }, "& td": { padding: '30px 0' } }}
+						sx={rowStyles}
 					>
-						<TableCell component="th" scope="row">
+						<TableCell>
 							Активы нетто
 						</TableCell>
 						<TableCell align="left">
@@ -44,5 +45,6 @@ export default function FinanceRating() {
 				</TableBody>
 			</Table>
 		</TableContainer>
+
 	);
 }
