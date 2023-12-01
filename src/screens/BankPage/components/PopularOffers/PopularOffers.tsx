@@ -94,7 +94,7 @@ function PopularOffers() {
 	}, [currentChoise])
 	return (
 		<Box mt='70px'>
-			<Typography component='h2' textAlign='center' fontSize='40px'>
+			<Typography component='h2' textAlign='center' fontSize='40px' fontFamily='inherit'>
 				Популярные предложения от (НАЗВАНИЕ БАНКА)
 			</Typography>
 			<Box

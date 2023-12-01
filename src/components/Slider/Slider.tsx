@@ -17,11 +17,15 @@ type SlideT = {
 };
 type Props = {
 	data: SlideT[];
-	perView: number
 	infinite: boolean
+	responsive: {
+		640: number
+		768: number
+		1500: number
+	}
 };
 
-const Slider = ({ data, perView, infinite }: Props) => {
+const Slider = ({ data, infinite, responsive }: Props) => {
 	const sliderRef = useRef(null);
 	const [slideItems, setSlideItems] = useState<React.JSX.Element[]>();
 	useEffect(() => {
@@ -62,10 +66,20 @@ const Slider = ({ data, perView, infinite }: Props) => {
 				id='swiper'
 				ref={sliderRef}
 				spaceBetween={10}
-				slidesPerView={perView}
 				loop={infinite}
 				onSlideChange={() => console.log('slide change')}
 				onSwiper={(swiper) => console.log(swiper)}
+				breakpoints={{
+					640: {
+						slidesPerView: responsive[640],
+					},
+					768: {
+						slidesPerView: responsive[768],
+					},
+					1500: {
+						slidesPerView: responsive[1500]
+					}
+				}}
 			>
 				{slideItems}
 			</Swiper>

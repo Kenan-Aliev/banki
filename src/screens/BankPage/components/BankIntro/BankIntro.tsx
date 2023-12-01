@@ -15,17 +15,25 @@ const gridStyles: SxProps<Theme> = {
 	justifyContent: 'center',
 	padding: '10px 0',
 	gap: '15px',
-	background: 'white'
+	background: 'white',
+	"& h3": {
+		fontFamily: 'inherit',
+	},
+	"& p": {
+		fontFamily: 'inherit',
+	}
 }
 
 const titleStyles: SxProps<Theme> = {
 	fontSize: '46px',
+	fontFamily: 'inherit',
 	"@media(max-width:640px)": {
 		fontSize: '23px'
 	}
 }
 
 const subtitleStyles: SxProps<Theme> = {
+	fontFamily: 'inherit',
 	fontSize: '18px',
 	"@media(max-width:640px)": {
 		fontSize: '14px'

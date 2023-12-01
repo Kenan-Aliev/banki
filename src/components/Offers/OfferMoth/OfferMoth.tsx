@@ -50,8 +50,12 @@ const OfferMonth = (props: OfferMonthProps) => {
       <div className={s.offer_cont}>
         <Slider
           data={slides}
-          perView={slides ? slides.length >= 4 ? 4 : slides.length : 0}
           infinite={false}
+          responsive={{
+            "640": 2,
+            "768": 2,
+            "1500": slides ? slides.length >= 4 ? 4 : slides.length : 0
+          }}
         />
       </div>
     </div>

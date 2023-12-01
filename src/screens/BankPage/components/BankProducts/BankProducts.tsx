@@ -16,11 +16,19 @@ function BankProducts() {
 	}, [])
 	return (
 		<Box mt='50px'>
-			<Typography component='h2' textAlign='center' fontSize='40px'>Продукты банка</Typography>
+			<Typography component='h2' textAlign='center' fontSize='40px' fontFamily='inherit'>
+				Продукты банка
+			</Typography>
 			<Slider
 				data={slides}
 				infinite={false}
-				perView={slides ? slides.length >= 6 ? 6 : slides.length : 0}
+				responsive={
+					{
+						"640": 2,
+						"768": 2,
+						"1500": slides ? slides.length >= 6 ? 6 : slides.length : 0
+					}
+				}
 			/>
 		</Box>
 	)

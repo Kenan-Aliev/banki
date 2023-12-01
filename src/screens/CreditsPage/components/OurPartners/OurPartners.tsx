@@ -28,7 +28,11 @@ const OurPartners = ({ items }: Props) => {
       <Slider
         data={slides}
         infinite={false}
-        perView={slides ? slides.length >= 4 ? 4 : slides.length : 0}
+        responsive={{
+          "640": 2,
+          "768": 2,
+          "1500": slides ? slides.length >= 4 ? 4 : slides.length : 0
+        }}
       />
     </div>
   );
