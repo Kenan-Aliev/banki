@@ -31,7 +31,7 @@ const CalcDeposit = ({ currency, setCurrency }: Props) => {
     return (
         <div className={s.calc_i}>
             <div className={s.calc_inps}>
-                <MoneySelect currency={+currency} amount={money} />
+                <MoneySelect currency={currency} amount={money} />
                 <div className={s.stavka}>
                     <span>Ставка :</span>
                     <span>От {stavka}%</span>

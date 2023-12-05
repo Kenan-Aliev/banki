@@ -4,7 +4,7 @@ import { DepositItemResponseT, DepositsResponseT, DepositItemT } from '@/models/
 
 const DepositsApi = {
   getDeposits(params: getDepositsI) {
-    return instance.get<DepositsResponseT<DepositItemT>>('/deposits', {
+    return instance.get<DepositsResponseT<DepositItemT>>('/vklad', {
       params
     });
   },

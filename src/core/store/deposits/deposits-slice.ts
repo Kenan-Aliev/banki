@@ -48,7 +48,7 @@ export const depositsSlice = createSlice({
           status: 'success',
           data: {
             ...action.payload,
-            deposits: [...state.deposits.data.deposits ?? [], ...action.payload.deposits ?? []]
+            results: [...state.deposits.data.results ?? [], ...action.payload.results ?? []]
           }
         }
       })

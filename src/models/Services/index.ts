@@ -24,21 +24,21 @@ export interface getCardsI {
 }
 
 export interface getDepositsI {
-    amount?: number;
-    bank?: string[] | string;
-    timeframe?: string;
-    page?: number;
-    limit?: number;
-    sort?: string;
-    sort_type?: number;
-    currency?: number
-    special?: boolean
-    promotion_of_month?: boolean
-    type?: string
-    withdrawal?: boolean
-    adding?: boolean
-    monthly_payments?: boolean
-    capitalisation?: boolean
+    amount_range?: number;
+    bank_id?: string[] | string;
+    term_range?: string;
+    limit: number;
+    offset: number
+    interest_rate?: string
+    currency?: string
+    special_offer?: boolean
+    offer_of_the_month?: boolean
+    ordering?: string
+    deposit_type?: string
+    withdrawal_option?: boolean
+    replenishment_option?: boolean
+    monthly_interest_payment?: boolean
+    capitalization?: boolean
 }
 
 export interface getInvestNewsI {
@@ -93,12 +93,12 @@ export interface getNews {
 }
 
 export interface getAllBanksT {
-    page: number,
+    offset: number,
     limit: number,
     type?: string
-    search?: string
-    sort?: string,
-    sort_type?: number
+    financial_rating?:string
+    name?:string
+    assets?:string
 }
 
 

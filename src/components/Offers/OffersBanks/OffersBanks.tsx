@@ -24,7 +24,7 @@ interface OfferBanksProps {
 
 const OffersBanks = (props: OfferBanksProps) => {
   const { options, filterData, handleChangeFilter } = props;
-  const { deposits, len } = useAppSelector(selectDeposits)
+  const { results: deposits, count } = useAppSelector(selectDeposits)
   const getDepositsStatus = useAppSelector(selectGetDepositsStatus)
 
   const [expandedBankIds, setExpandedBankIds] = useState<number[]>([]);
@@ -65,10 +65,10 @@ const OffersBanks = (props: OfferBanksProps) => {
     <div className={s.deposits}>
       <div className={s.title}>
         <span>
-          <mark>{len ?? 0} вкладов {" "}</mark>
+          <mark>{count ?? 0} вкладов {" "}</mark>
           подобрано
         </span>
-        <CustomSelect2 img={lines} options={options} handleChange={handleChangeFilter} prop={'sort'} />
+        <CustomSelect2 img={lines} options={options} handleChange={handleChangeFilter} prop={'ordering'} />
       </div>
       <ul className={s.deposit_offers}>
         {
@@ -76,11 +76,11 @@ const OffersBanks = (props: OfferBanksProps) => {
             <Loading />
             :
             uniqueDeposits?.map((item) => {
-              const { id, bank_id } = item;
+              const { deposit_id, bank_id } = item;
               const isExpanded = expandedBankIds.includes(bank_id);
               return (
                 <>
-                  <li key={item.id}>
+                  <li key={item.deposit_id}>
                     <DepositOfferItem
                       item={item}
                       activeCurrency={filterData.currency}
@@ -94,7 +94,7 @@ const OffersBanks = (props: OfferBanksProps) => {
                       <ExpandedDeposits
                         bankId={bank_id}
                         deposits={deposits}
-                        primaryDepositId={id}
+                        primaryDepositId={deposit_id}
                         activeCurrency={filterData.currency}
                       />
                     )
@@ -104,12 +104,14 @@ const OffersBanks = (props: OfferBanksProps) => {
             })
         }
       </ul>
-      {len && len > filterData.page * filterData.limit &&
+      {count && count > filterData.offset + filterData.limit
+        ?
         <div className={s.btn_cont}>
           <BlueBtn text={'Показать еще'} width={235}
-            onClick={() => handleChangeFilter('page', filterData.page + 1)}
+            onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
           />
-        </div>}
+        </div>
+        : null}
 
     </div>
   );

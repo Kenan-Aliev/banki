@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { baseUrl } from '../const/baseUrl';
 
 const instance = axios.create({
-    baseURL: 'https://api.vsebanki.kg/api',
+    baseURL: baseUrl + '/api/v1'
     // withCredentials: true,
     // headers: {
     //   'Access-Control-Allow-Origin': '*',

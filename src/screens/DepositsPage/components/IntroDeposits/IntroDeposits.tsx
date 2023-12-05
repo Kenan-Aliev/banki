@@ -25,8 +25,8 @@ const IntroDeposits = (props: Props) => {
   const { handleChangeFilter, filterData, handleScrollToDeposits, cleanFilter } = props
   const [openFilterModal, setOpenFilterModal] = useState(false)
 
-  const depositsCount = useAppSelector(selectDeposits)?.len
-  const banks = useAppSelector(selectBanks)?.banks?.map((bank) => {
+  const depositsCount = useAppSelector(selectDeposits)?.count
+  const banks = useAppSelector(selectBanks)?.results?.map((bank) => {
     return {
       text: bank.name,
       value: bank.id
@@ -58,7 +58,7 @@ const IntroDeposits = (props: Props) => {
         <div className={s.calculate}>
           <MoneySelect
             width={385}
-            amount={filterData.amount}
+            amount={filterData.amount_range}
             currency={filterData.currency}
             handleChange={handleChangeFilter}
             title='Сумма' />
@@ -78,14 +78,14 @@ const IntroDeposits = (props: Props) => {
             }}
           >
             <CustomWhiteSelectTitle2
-              value={filterData.bank}
+              value={filterData.bank_id}
               items={banks}
               multiple={true}
               isAllExist={false}
-              defaultValue={filterData.bank}
-              name='bank'
+              defaultValue={filterData.bank_id}
+              name='bank_id'
               onChange={handleChangeFilter}
-              prop='bank'
+              prop='bank_id'
               labelName='Банки'
             />
             <BlueBtn text={'Показать'}

@@ -12,18 +12,19 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { currencies } from '@/core/data/currency';
 import { Box } from '@mui/material';
+import { baseUrl } from '@/core/const/baseUrl';
 
 interface DepositOfferItemProps {
   item: DepositItemT;
   openChildren?: (bankId: number) => void;
   child?: boolean;
   count?: number
-  activeCurrency: number
+  activeCurrency: string
 }
 
 const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
   const {
-    item: { name, rate, min_amount, max_amount, timeframe_min, timeframe_max, description, id, bank, bank_id },
+    item: { deposit_name, interest_rate, amount_range, term_range, deposit_id, bank_id, bank_logo, bank_title },
     openChildren,
     child,
     count,
@@ -32,7 +33,7 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
 
   const [openApplicationForm, setOpenApplicationForm] = useState(false)
 
-  const currency = currencies.find((c) => c.id == activeCurrency)?.text
+  const currency = currencies.find((c) => c.value == activeCurrency)?.text
 
   const handleChangeApplicationForm = () => {
     setOpenApplicationForm(!openApplicationForm)
@@ -43,14 +44,14 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
       <Application
         open={openApplicationForm}
         handleClose={handleChangeApplicationForm}
-        productId={id}
+        productId={deposit_id}
         productType='deposit' />
       <div className={s.up}>
         <div className={s.info}>
-          <Image src={bank.bank_logo ?? mockBankImage} alt={'иконка банка'} width={50} height={50} />
+          <Image src={bank_logo ? `${baseUrl + bank_logo}` : mockBankImage} alt={'иконка банка'} width={50} height={50} />
           <div className={s.name}>
-            <div>{bank.bank_name}</div>
-            <p>{name}</p>
+            <div>{bank_title}</div>
+            <p>{deposit_name}</p>
           </div>
           <div className={s.about_b}>
             <div className={s.info_item}>
@@ -58,18 +59,18 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
                 Ставка
                 <Image src={ques_I} alt={'иконка вопроса'} />
               </div>
-              <span>{rate}%</span>
+              <span>{interest_rate}%</span>
             </div>
             <div className={s.info_item}>
               <div className={s.title}>Срок</div>
               <span>
-                {timeframe_min} — {timeframe_max} мес.
+                {term_range.min} — {term_range.max} мес.
               </span>
             </div>
             <div className={s.info_item}>
               <div className={s.title}>Сумма</div>
               <span>
-                {min_amount} — {max_amount} {currency}
+                {amount_range.max ? `${amount_range.min} — ${amount_range.max}` : `от ${amount_range.min}`} {currency}
               </span>
             </div>
           </div>

@@ -39,7 +39,7 @@ const HomePage = ({ data }: Props) => {
 
 
     useEffect(() => {
-        dispatch(getBanks({ limit: 10, page: 1, sort: 'id', sort_type: 1 }))
+        dispatch(getBanks({ limit: 10, offset: 0, type: 'bank' }))
         // dispatch(getPromotionsThunk());
     }, []);
 

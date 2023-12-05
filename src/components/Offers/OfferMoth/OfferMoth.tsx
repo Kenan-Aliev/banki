@@ -4,7 +4,7 @@ import React, { useMemo, useState } from 'react';
 import s from './OfferMoth.module.scss';
 import ChoiceItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
 import OfferItem from '@/components/Offers/OfferItem/OfferItem';
-import { DepositCardInterface } from '@/models/Deposit/Deposit';
+import { DepositItemT } from '@/models/Deposit/Deposit';
 import Slider from '@/components/Slider/Slider';
 
 type ItemT = {
@@ -13,7 +13,7 @@ type ItemT = {
 };
 type OfferMonthProps = {
   choiceItems?: ItemT[];
-  offers: DepositCardInterface[];
+  offers: DepositItemT[];
 };
 
 const OfferMonth = (props: OfferMonthProps) => {
@@ -21,13 +21,11 @@ const OfferMonth = (props: OfferMonthProps) => {
 
   const { choiceItems, offers } = props;
 
-  console.log(offers)
-
   const slides = useMemo(() => {
     if (offers && offers.length > 0) {
       return offers.map((offer) => {
         return {
-          node: <OfferItem item={offer} key={offer.id} />
+          node: <OfferItem item={offer} key={offer.deposit_id} />
         }
       })
     }
@@ -56,7 +54,7 @@ const OfferMonth = (props: OfferMonthProps) => {
             "480": 2,
             "640": 3,
             "768": 3,
-            "1500": slides ? slides.length >= 4 ? 4 : slides.length : 0
+            "1500": 4
           }}
         />
       </div>

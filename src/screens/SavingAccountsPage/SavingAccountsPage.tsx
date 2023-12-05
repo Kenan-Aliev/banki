@@ -23,16 +23,16 @@ const SavingAccountsPage = ({ staticData }: SavingAccountsPageProps) => {
 
   const [filterData, setFilterData] = useState<getDepositsI>({
     limit: 10,
-    page: 1,
+    offset: 0,
   })
 
   const handleChangeFilter = (prop: string, value: any) => {
-    if (prop === 'page') {
+    if (prop === 'offset') {
       setFilterData({ ...filterData, [prop]: value })
     }
     else {
       dispatch(resetDeposits())
-      setFilterData({ ...filterData, [prop]: value, page: 1 })
+      setFilterData({ ...filterData, [prop]: value, offset: 0 })
     }
   }
 
@@ -53,11 +53,15 @@ const SavingAccountsPage = ({ staticData }: SavingAccountsPageProps) => {
       <OffersBanks
         options={[{
           text: 'По процентной ставке',
-          value: ''
+          value: 'interest_rate'
+        },
+        {
+          text: 'По минимальному взносу',
+          value: 'min_sum'
         },
         {
           text: 'По максимальному взносу',
-          value: 'max_amount'
+          value: 'max_sum'
         }
         ]}
         filterData={filterData}

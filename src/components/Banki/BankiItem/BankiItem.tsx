@@ -5,7 +5,7 @@ import Image, { StaticImageData } from 'next/image';
 type bankiPropsT = {
   img: string;
   name: string;
-  rating: number;
+  rating?: number;
 };
 
 const BankiItem = ({ img, name, rating }: bankiPropsT) => {

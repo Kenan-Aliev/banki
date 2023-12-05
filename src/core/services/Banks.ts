@@ -6,7 +6,7 @@ import { getBanksOfficesT, getAllBanksT } from "@/models/Services";
 const BanksApi = {
 
     getBanks(params: getAllBanksT) {
-        return instance.get<BanksResponseT>(`/banks`, {
+        return instance.get<BanksResponseT>(`/banks/list/`, {
             params
         })
     },

@@ -15,7 +15,7 @@ const Banks = ({data}: Props) => {
 
     const bankiMap = viewBanks.map((el, index) => (
         <Link href={`/banks/${el.id}`} key={el.id}>
-            <BankiItem key={index} img={el.image} name={el.name} rating={el.rating}/>
+            <BankiItem key={index} img={el.logo} name={el.name} />
         </Link>
     ));
 

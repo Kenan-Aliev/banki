@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './SpecialOffersDeposit.module.scss';
 import SpecialOfferItem from '@/components/Offers/SpecialOfferItem/SpecialOfferItem';
-import { DepositCardInterface } from '@/models/Deposit/Deposit';
+import { DepositItemT } from '@/models/Deposit/Deposit';
 
 interface SpecialOffersDepositProps {
-  deposits: DepositCardInterface[];
+  deposits: DepositItemT[];
 }
 const SpecialOffersDeposit = ({ deposits }: SpecialOffersDepositProps) => {
   return (
@@ -15,7 +15,7 @@ const SpecialOffersDeposit = ({ deposits }: SpecialOffersDepositProps) => {
       </div>
       <div className={s.itemsCont}>
         {deposits?.map((item) => (
-          <SpecialOfferItem item={item} key={item.id} />
+          <SpecialOfferItem item={item} key={item.deposit_id} />
         ))}
       </div>
     </div>

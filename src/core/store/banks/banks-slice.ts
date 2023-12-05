@@ -28,7 +28,7 @@ export const banksSlice = createSlice({
 					status: 'success',
 					data: {
 						...action.payload,
-						banks: [...state.banks.data.banks ?? [], ...action.payload.banks ?? []]
+						results: [...state.banks.data.results ?? [], ...action.payload.results ?? []]
 					}
 				}
 			})

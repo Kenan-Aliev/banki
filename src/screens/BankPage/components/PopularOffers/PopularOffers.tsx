@@ -20,30 +20,33 @@ const mockFilterItems = [
 
 const data = {
 	depositItem: {
-		"max_amount": 1000000,
-		"currency_id": 1,
-		"rate": 10,
-		"payments": "monthly",
-		"special_rate": 5,
-		"promotion_of_month": true,
-		"special_condition": "Если человек хороший",
-		"withdrawal": false,
-		"timeframe_min": 365,
-		"adding_money": false,
-		"bank_id": 11,
-		"timeframe_max": 3650,
-		"monthly_payments": false,
-		"id": 1,
-		"name": "Щедрый",
-		"capitalisation": false,
-		"min_amount": 10000,
-		"description": "<p>Вклад</p>",
-		"deposit_type": "Обычный",
-		"bank": {
-			"bank_logo": "https://api.vsebanki.kg/static/1.png",
-			"bank_name": "ЗАО «Банк Азии» "
+		"deposit_id": 72,
+		"deposit_name": "Стандарт",
+		"amount_range": {
+			"min": 0,
+			"max": 5000000
 		},
-		"rating": 0
+		"term_range": {
+			"min": 3,
+			"max": 24
+		},
+		"interest_rate": 12,
+		"special_interest_rate": null,
+		"bank_id": 16,
+		"bank_title": "ФинансКредитБанк",
+		"bank_logo": "/media/products/financakreditbanklogo.png",
+		"currency": "KGS",
+		"withdrawal_option": false,
+		"replenishment_option": false,
+		"monthly_interest_payment": true,
+		"capitalization": false,
+		"deposit_type": "Обычный",
+		"special_offer": false,
+		"special_offer_details": null,
+		"offer_of_the_month": false,
+		"interest_payment_frequency": "ежемесячно",
+		"description": "",
+		"additional_fields": []
 	},
 	creditItem: {
 		"max_amount": 0,
@@ -82,7 +85,7 @@ function PopularOffers() {
 	const items = useMemo(() => {
 		switch (currentChoise) {
 			case "Вклады":
-				return <DepositOfferItem activeCurrency={1} item={data.depositItem} />
+				return <DepositOfferItem activeCurrency={'kgs'} item={data.depositItem} />
 			case "Потребительские кредиты":
 			case "Ипотека":
 			case "РКО":

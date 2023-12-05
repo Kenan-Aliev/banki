@@ -32,17 +32,17 @@ const DepositsPage = () => {
   const [currentOffer, setCurrentOffer] = useState<number>(1);
   const [filterData, setFilterData] = useState<getDepositsI>({
     limit: 10,
-    page: 1,
-    sort_type: -1,
-    sort: 'rate',
-    currency: 2,
-    bank: [],
-    timeframe: '',
-    type: 'all',
-    withdrawal: false,
-    adding: false,
-    monthly_payments: false,
-    capitalisation: false
+    offset: 0,
+    ordering: 'interest_rate',
+    currency: 'kgs',
+    term_range: '',
+    bank_id: [],
+    amount_range: 0,
+    withdrawal_option: false,
+    replenishment_option: false,
+    monthly_interest_payment: false,
+    capitalization: false,
+    deposit_type: ''
   })
   const monthOffers = useAppSelector(selectMonthOffers)
   const specialOffers = useAppSelector(selectSpecialOffers)
@@ -54,15 +54,15 @@ const DepositsPage = () => {
   }
 
   const handleChangeFilter = (prop: string, value: any) => {
-    if (prop === 'page') {
+    if (prop === 'offset') {
       setFilterData({ ...filterData, [prop]: value })
     }
-    else if (prop === 'type' && value === '') {
-      setFilterData({ ...filterData, [prop]: 'all' })
-    }
+    // else if (prop === 'deposit_type' && value === '') {
+    //   setFilterData({ ...filterData, [prop]: 'all' })
+    // }
     else {
       dispatch(resetDeposits())
-      setFilterData({ ...filterData, [prop]: value, page: 1 })
+      setFilterData({ ...filterData, [prop]: value, offset: 0 })
     }
   }
 
@@ -71,39 +71,40 @@ const DepositsPage = () => {
   }
 
   const cleanFilter = () => {
+    dispatch(resetDeposits())
     setFilterData({
       limit: 10,
-      page: 1,
-      sort_type: -1,
-      sort: filterData.sort,
+      offset: 0,
+      ordering: filterData.ordering,
       currency: filterData.currency,
-      bank: [],
-      timeframe: '',
-      type: 'all',
-      withdrawal: false,
-      adding: false,
-      monthly_payments: false,
-      capitalisation: false
+      bank_id: [],
+      term_range: '',
+      amount_range: 0,
+      deposit_type: '',
+      withdrawal_option: false,
+      replenishment_option: false,
+      monthly_interest_payment: false,
+      capitalization: false
     })
   }
 
   const fetchMonthOffers = () => {
     dispatch(getMonthOffers({
-      page: 1,
+      offset: 0,
       limit: 10,
-      promotion_of_month: true
+      offer_of_the_month: true
     }))
   }
 
   const fetchSpecialOffers = () => {
     dispatch(getSpecialOffers({
-      page: 1,
+      offset: 0,
       limit: 4,
-      special: true
+      special_offer: true
     }))
   }
   const fetchBanks = () => {
-    dispatch(getBanks({ page: 1, limit: 100 }))
+    dispatch(getBanks({ offset: 0, limit: 100 }))
   }
 
 
@@ -116,7 +117,7 @@ const DepositsPage = () => {
   useEffect(() => {
     const filter = {
       ...filterData,
-      bank: typeof filterData.bank !== 'string' && filterData.bank.length > 0 ? filterData.bank.join() : ''
+      bank_id: typeof filterData.bank_id !== 'string' && filterData.bank_id.length > 0 ? filterData.bank_id.join() : ''
     }
     fetchDeposits(filter)
   }, [filterData])
@@ -142,11 +143,15 @@ const DepositsPage = () => {
         <OffersBanks
           options={[{
             text: 'По процентной ставке',
-            value: 'rate'
+            value: 'interest_rate'
+          },
+          {
+            text: 'По минимальному взносу',
+            value: 'min_sum'
           },
           {
             text: 'По максимальному взносу',
-            value: 'max_amount'
+            value: 'max_sum'
           }
           ]}
           filterData={filterData}
@@ -155,10 +160,10 @@ const DepositsPage = () => {
       </div>
 
       {/* <PopularOffers setActive={setCurrentOffer} active={currentOffer} data={staticData.PopularOffers} /> */}
-      <OfferMonth offers={monthOffers.deposits} />
+      <OfferMonth offers={monthOffers.results} />
       <Mailing />
       <LatestNews />
-      <SpecialOffersDeposit deposits={specialOffers.deposits} />
+      <SpecialOffersDeposit deposits={specialOffers.results} />
       <Communicate />
       <Feedback title={'Отзывы '} sub={'о вкладах'} />
       {/* <FrequentQuestions title={'Частые вопросы'} items={staticData.questData} /> */}

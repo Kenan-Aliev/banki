@@ -6,7 +6,7 @@ type Props = {
     width?: number;
     handleChange?: (prop: string, value: any) => void
     amount?: number
-    currency?: number,
+    currency?: string,
     title?: string
 };
 
@@ -17,15 +17,15 @@ const MoneySelect = ({ width, amount, currency, handleChange, title }: Props) =>
                 <div>{title}</div>
                 <input type='number'
                     value={amount}
-                    onChange={(e) => handleChange('amount', e.target.value)} />
+                    onChange={(e) => handleChange('amount_range', e.target.value)} />
             </div>
             <div className={s.select}>
                 <select
                     value={currency}
                     onChange={(e) => handleChange('currency', e.target.value)}>
-                    <option value='2'>&#8384;</option>
-                    <option value='1'>₽</option>
-                    <option value='3'>$</option>
+                    <option value='kgs'>&#8384;</option>
+                    <option value='rub'>₽</option>
+                    <option value='dol'>$</option>
                 </select>
             </div>
         </div>

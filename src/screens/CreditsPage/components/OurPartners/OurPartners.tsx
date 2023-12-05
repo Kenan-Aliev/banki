@@ -15,11 +15,12 @@ const OurPartners = ({ items }: Props) => {
     return items.map((el, index) => (
       {
         link: '/banks/' + el.id,
-        node: <BankImgItemSlide img={el.image} key={el.id} />
+        node: <BankImgItemSlide img={el.logo} key={el.id} />
       }
 
     ));
-  }, [])
+  }, [items])
+
   return (
     <div className={s.wrapp}>
       <div className={s.title}>
@@ -33,7 +34,7 @@ const OurPartners = ({ items }: Props) => {
           "480": 3,
           "640": 3,
           "768": 4,
-          "1500": slides ? slides.length >= 4 ? 4 : slides.length : 0
+          "1500": 4
         }}
       />
     </div>

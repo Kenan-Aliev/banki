@@ -21,34 +21,45 @@ export interface DepositCardInterface {
   },
 }
 
+interface AmountRange {
+  min: number;
+  max: number;
+}
+
+interface TermRange {
+  min: number;
+  max: number;
+}
+
 export type DepositItemT = {
-  max_amount: number;
-  id: number;
-  timeframe_min: number;
-  name: string;
-  min_amount: number;
-  rate: number;
+  deposit_id: number;
+  deposit_name: string;
+  amount_range: AmountRange;
+  term_range: TermRange;
+  interest_rate: number;
+  special_interest_rate: number;
   bank_id: number;
-  timeframe_max: number;
+  bank_title: string
+  bank_logo: string
+  currency: string;
+  withdrawal_option: boolean;
+  replenishment_option: boolean;
+  monthly_interest_payment: boolean;
+  capitalization: boolean;
+  deposit_type: string;
+  special_offer: boolean;
+  special_offer_details: string | null;
+  offer_of_the_month: boolean;
+  interest_payment_frequency: string;
   description: string;
-  rating: number;
-  promotion_of_month: boolean
-  special_condition: string
-  monthly_payments: boolean
-  capitalisation: boolean,
-  deposit_type: string
-  withdrawal: boolean
-  adding_money: boolean
-  bank: {
-    bank_logo: string
-    bank_name: string
-  },
+  additional_fields: any[];
 };
 
 export interface DepositsResponseT<T> {
-  deposits: T[];
-  result: boolean;
-  len: number;
+  results: T[];
+  count: number;
+  next: string | null
+  previous: string | null
 };
 
 export interface DepositItemResponseT {

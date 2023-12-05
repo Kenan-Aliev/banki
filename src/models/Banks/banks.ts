@@ -1,20 +1,19 @@
 export interface BanksResponseT {
-    banks: BankT[];
-    result: boolean;
-    len: number;
+    results: BankT[];
+    count: number;
+    next: string | null
+    previous: string | null
 }
 
 export interface BankT {
-    license?: number;
-    id: number;
-    form?: any;
-    name: string;
-    phones: string;
-    image: string;
-    region: string;
-    since?: any;
-    address: string;
-    rating: number;
+    id: number,
+    name: string,
+    legal_name: string
+    type: string,
+    fiancial_rating: number,
+    assets: number,
+    organizationInfo?: string
+    logo: string
 }
 
 export interface BankOfficesResponseT {
@@ -32,8 +31,8 @@ export interface OfficeBanksT {
     region: number | string;
     lon?: number;
     bank: {
-        bank_logo:string
-        bank_name:string
+        bank_logo: string
+        bank_name: string
     }
 }
 

@@ -10,7 +10,7 @@ const nextConfig = (phase, { defaultConfig }) => {
         NEXT_PUBLIC_API_URL: 'http://83.220.174.249:5345',
       },
       images: {
-        domains: ['83.220.174.249', '127.0.0.1','api.vsebanki.kg'],
+        domains: ['83.220.174.249', '127.0.0.1','api.vsebanki.kg','82.97.240.53'],
         remotePatterns: [
           {
             protocol: 'https',

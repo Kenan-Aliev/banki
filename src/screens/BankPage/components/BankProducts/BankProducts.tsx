@@ -28,7 +28,7 @@ function BankProducts() {
 						"480": 2,
 						"640": 3,
 						"768": 3,
-						"1500": slides ? slides.length >= 6 ? 6 : slides.length : 0
+						"1500": 6
 					}
 				}
 			/>

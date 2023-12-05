@@ -103,22 +103,22 @@ function FilterModal({ handleClose, open, filter, handleChangeFilter, banks,
 								items={timeframe}
 								labelName='Срок'
 								isAllExist={true}
-								name='timeframe'
-								prop='timeframe'
+								name='term_range'
+								prop='term_range'
 								onChange={handleChangeFilter}
-								defaultValue={filter.timeframe}
-								value={filter.timeframe}
+								defaultValue={filter.term_range}
+								value={filter.term_range}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
 							<CustomWhiteSelectTitle2
 								items={banks}
 								multiple={true}
-								defaultValue={filter.bank}
-								value={filter.bank}
+								defaultValue={filter.bank_id}
+								value={filter.bank_id}
 								isAllExist={false}
-								name='bank'
-								prop='bank'
+								name='bank_id'
+								prop='bank_id'
 								labelName='Банки'
 								onChange={handleChangeFilter}
 							/>
@@ -126,12 +126,12 @@ function FilterModal({ handleClose, open, filter, handleChangeFilter, banks,
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
 							<CustomWhiteSelectTitle2
 								items={depositTypes}
-								defaultValue={filter.type}
+								defaultValue={filter.deposit_type}
 								isAllExist={true}
-								name='type'
-								prop='type'
+								name='deposit_type'
+								prop='deposit_type'
 								labelName='Тип вклада'
-								value={filter.type}
+								value={filter.deposit_type}
 								onChange={handleChangeFilter}
 							/>
 						</Grid>
@@ -175,8 +175,8 @@ function FilterModal({ handleClose, open, filter, handleChangeFilter, banks,
 										<Checkbox
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
-											checked={filter.withdrawal}
-											onChange={e => handleChangeFilter('withdrawal', e.target.checked)}
+											checked={filter.withdrawal_option}
+											onChange={e => handleChangeFilter('withdrawal_option', e.target.checked)}
 										/>
 									}
 									label="Со снятием"
@@ -190,8 +190,8 @@ function FilterModal({ handleClose, open, filter, handleChangeFilter, banks,
 										<Checkbox
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
-											checked={filter.adding}
-											onChange={e => handleChangeFilter('adding', e.target.checked)}
+											checked={filter.replenishment_option}
+											onChange={e => handleChangeFilter('replenishment_option', e.target.checked)}
 										/>
 									}
 									label="С пополнением"
@@ -204,8 +204,8 @@ function FilterModal({ handleClose, open, filter, handleChangeFilter, banks,
 										<Checkbox
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
-											checked={filter.monthly_payments}
-											onChange={e => handleChangeFilter('monthly_payments', e.target.checked)}
+											checked={filter.monthly_interest_payment}
+											onChange={e => handleChangeFilter('monthly_interest_payment', e.target.checked)}
 										/>
 									}
 									label="С выплатой процентов ежемесячно" />
@@ -217,8 +217,8 @@ function FilterModal({ handleClose, open, filter, handleChangeFilter, banks,
 										<Checkbox
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
-											checked={filter.capitalisation}
-											onChange={e => handleChangeFilter('capitalisation', e.target.checked)}
+											checked={filter.capitalization}
+											onChange={e => handleChangeFilter('capitalization', e.target.checked)}
 										/>
 									}
 									label="С капитализацией" />
