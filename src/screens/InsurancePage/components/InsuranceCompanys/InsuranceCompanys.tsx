@@ -17,16 +17,19 @@ const InsuranceCompanys = ({ data, title, isTitle, searchItems }: Props) => {
   const filterArr = (items) => {
     return items.filter((i) => i.name.toLowerCase().includes(search.toLowerCase()));
   };
+
+  const handleChangeSearchValue = (e: any) => {
+    setSearch(e.targte.value)
+  }
   return (
     <div className={s.wrapper}>
       {isTitle ? <div className={s.title}>{title || 'Страховые компании'}</div> : ''}
       <Search
         placeholder={'Введите название компании'}
-        filterArr={filterArr}
         btnHidden={true}
         value={search}
-        setValue={setSearch}
-        itemsSearch={searchItems}
+        filteredArr={[]}
+        onChange={handleChangeSearchValue}
       />
       <SliderBanksCons data={data} />
     </div>

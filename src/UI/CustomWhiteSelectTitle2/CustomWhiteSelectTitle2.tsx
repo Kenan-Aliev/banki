@@ -45,7 +45,7 @@ const CustomWhiteSelectTitle2: React.FC<ISelect> = ({
 	multiple = false,
 }) => {
 	return (
-		<FormControl sx={{ width: "100%" }}>
+		<FormControl sx={{ width: "100%", background: '#F5F5F5' }}>
 			<InputLabel id={labelName}>{labelName}</InputLabel>
 			<Select
 				id={labelName}
@@ -58,9 +58,7 @@ const CustomWhiteSelectTitle2: React.FC<ISelect> = ({
 				defaultValue={defaultValue}
 				multiple={multiple}
 				label={labelName}
-				sx={{
-					background: '#F5F5F5'
-				}}
+
 			>
 				{isAllExist && <MenuItem value=''>Все</MenuItem>}
 				{items?.map((selectObj, index) => (

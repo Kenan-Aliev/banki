@@ -22,6 +22,8 @@ function BankProducts() {
 			<Slider
 				data={slides}
 				infinite={false}
+				leftArr={true}
+				rightArr={true}
 				responsive={
 					{
 						"320": 2,

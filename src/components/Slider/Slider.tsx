@@ -1,48 +1,53 @@
-'use client'
+'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
 import s from './Slider.module.scss';
 import arr_l from '@/assets/icons/banki_icon/Стрелка_left.svg';
 import arr_r from '@/assets/icons/banki_icon/Стрелка_right.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 
 type SlideT = {
 	link?: string;
-	node: React.JSX.Element
+	node: React.ReactNode;
 };
 type Props = {
 	data: SlideT[];
-	infinite: boolean
+	infinite: boolean;
+	leftArr: boolean;
+	rightArr: boolean;
 	responsive: {
-		320: number
-		480: number
-		640: number
-		768: number
-		1500: number
-	}
+		320: number;
+		480: number;
+		640: number;
+		768: number;
+		1500: number;
+	};
+	centered?: boolean
 };
 
-const Slider = ({ data, infinite, responsive }: Props) => {
-	const sliderRef = useRef(null);
-	const [slideItems, setSlideItems] = useState<React.JSX.Element[]>();
+const Slider = React.forwardRef(({ data, infinite, responsive, leftArr, rightArr, centered = true }: Props, ref: MutableRefObject<any>) => {
+	const sliderRef = useRef<any>(null);
+	const [slideItems, setSlideItems] = useState<React.ReactNode[]>();
+
 	useEffect(() => {
 		if (data && data.length > 0) {
 			const slides = data.map((el, index) => (
-				<SwiperSlide key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-					{el.link
-						? <>
-							<Link href={el.link}>
-								{el.node}
-							</Link></>
-						:
+				<SwiperSlide key={index}
+					style={{
+						display: 'flex',
+						justifyContent: centered ? 'center' : 'initial',
+						alignItems: 'center'
+					}}>
+					{el.link ? (
+						<Link href={el.link}>
+							{el.node}
+						</Link>
+					) : (
 						el.node
-					}
-
+					)}
 				</SwiperSlide>
 			));
 			setSlideItems(slides);
@@ -61,41 +66,45 @@ const Slider = ({ data, infinite, responsive }: Props) => {
 
 	return (
 		<div className={s.slide}>
-			<div onClick={handlePrevious} className={s.arr}>
-				<Image className={s.arr} alt={'icon'} src={arr_l} />
-			</div>
+			{leftArr && (
+				<div onClick={handlePrevious} className={s.arr}>
+					<Image className={s.arr} alt={'icon'} src={arr_l} />
+				</div>
+			)}
 			<Swiper
 				id='swiper'
-				ref={sliderRef}
+				ref={ref ?? sliderRef}
 				spaceBetween={10}
 				loop={infinite}
 				onSlideChange={() => console.log('slide change')}
 				onSwiper={(swiper) => console.log(swiper)}
 				breakpoints={{
 					320: {
-						slidesPerView: responsive[320]
+						slidesPerView: responsive[320],
 					},
 					480: {
 						slidesPerView: responsive[480],
 					},
 					640: {
-						slidesPerView: responsive[640]
+						slidesPerView: responsive[640],
 					},
 					768: {
 						slidesPerView: responsive[768],
 					},
 					1500: {
-						slidesPerView: responsive[1500]
-					}
+						slidesPerView: responsive[1500],
+					},
 				}}
 			>
 				{slideItems}
 			</Swiper>
-			<div onClick={handleNext} className={s.arr}>
-				<Image src={arr_r} alt={'arr-right'} />
-			</div>
+			{rightArr && (
+				<div onClick={handleNext} className={s.arr}>
+					<Image src={arr_r} alt={'arr-right'} />
+				</div>
+			)}
 		</div>
 	);
-};
+});
 
 export default Slider;

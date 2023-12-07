@@ -49,6 +49,8 @@ const OfferMonth = (props: OfferMonthProps) => {
         <Slider
           data={slides}
           infinite={false}
+          leftArr={true}
+          rightArr={true}
           responsive={{
             "320": 1,
             "480": 2,

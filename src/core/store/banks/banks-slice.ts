@@ -20,7 +20,11 @@ const initialState: InitialStateI = {
 export const banksSlice = createSlice({
 	name: 'banks',
 	initialState,
-	reducers: {},
+	reducers: {
+		resetBanks: (state) => {
+			state.banks.data = {} as BanksResponseT
+		}
+	},
 	extraReducers: (builder) => {
 		builder.
 			addCase(getBanks.fulfilled, (state, action) => {
@@ -40,5 +44,7 @@ export const banksSlice = createSlice({
 			})
 	}
 });
+
+export const { resetBanks } = banksSlice.actions
 
 export default banksSlice.reducer;

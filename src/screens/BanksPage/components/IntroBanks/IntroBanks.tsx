@@ -54,11 +54,15 @@ const IntroBanks = ({ banksItems }: Props) => {
     'Ю',
     'Я',
   ];
-  const [searchWords, setSearchWords] = useState<string>('');
-  const [currentCheckbox, setCurrentCheckbox] = useState<string>('name');
+  const [searchWords, setSearchWords] = useState('');
+  const [currentCheckbox, setCurrentCheckbox] = useState('name');
   const filterFunc = (items: banksT[]) => {
     return items.filter((i) => i.title.toLowerCase().includes(searchWords.toLowerCase()));
   };
+
+  const handleChangeSearchWords = (e: any) => {
+    setSearchWords(e.target.value)
+  }
   return (
     <div className={s.wrapper}>
       <div className={s.info}>
@@ -72,10 +76,9 @@ const IntroBanks = ({ banksItems }: Props) => {
         <div className={s.find}>
           <Search
             value={searchWords}
-            filterArr={filterFunc}
-            setValue={setSearchWords}
-            itemsSearch={banksItems}
             placeholder={'Введите название или номер лицензии банка..'}
+            filteredArr={[]}
+            onChange={handleChangeSearchWords}
             margin={0}
           />
           <div className={s.inps}>

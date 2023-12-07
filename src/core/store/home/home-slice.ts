@@ -1,7 +1,9 @@
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {BankT} from "@/models/Banks/banks";
-import {getAllBanksT} from "@/models/Services";
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { BankT } from "@/models/Banks/banks";
+import { getAllBanksT } from "@/models/Services";
+import { Promotion } from '@/models/Promotions/Promotions';
 import BanksApi from "@/core/services/Banks";
+
 
 type serviceCompanysT = {
     text: string;
@@ -12,39 +14,54 @@ interface InitialStateI {
     serviceItems: serviceCompanysT[];
     error: string,
     banksItems: BankT[]
-    promotions: any[]
+    promotions: Promotion[]
 }
 
 
 const initialState: InitialStateI = {
     serviceItems: [
-        {text: 'Вклады', link: '/deposits'},
-        {text: 'Микрозаймы', link: '/credits/microloans'},
-        {text: 'Накопительные счета', link: '/deposits/saving-accounts'},
-        {text: 'Потребительские кредиты', link: '/credits/consumer-credits'},
-        {text: 'Кредитные карты', link: '/cards/credit-cards'},
-        {text: 'Карты рассрочки', link: '/cards/installment'},
-        {text: 'Дебетовые карты', link: '/cards/debit-cards'},
-        {text: 'Ипотечное страхование', link: '/insurance'},
-        {text: 'ОСАГО', link: '/insurance/osago'},
-        {text: 'КАСКО', link: '/insurance/kasco'},
-        {text: 'Путешествие', link: '/insurance/travel'},
-        {text: 'Жизнь и здоровье', link: '/insurance/health'},
-        {text: 'ДМС', link: '/insurance/dms'},
-        {text: 'Акции', link: '/investment/stocks'},
-        {text: 'Подбор брокера', link: '/investment/select-broker'},
-        {text: 'Криптовалюта', link: '/investment/crypto'},
-        {text: 'Фонды', link: '/investment/fonds'},
-        {text: 'Облигации', link: '/investment/obligations'},
-        {text: 'Аналитика', link: '/investment/analytics'},
-        {text: 'Расчётно-кассовое обслуживание', link: '/business/service'},
-        {text: 'Бизнес-карты', link: '/business/slips'},
-        {text: 'Кредиты для ИП', link: '/business/payments'},
-        {text: 'Страхование бизнеса', link: '/business/assurance'},
+        { text: 'Вклады', link: '/deposits' },
+        { text: 'Микрозаймы', link: '/credits/microloans' },
+        { text: 'Накопительные счета', link: '/deposits/saving-accounts' },
+        { text: 'Потребительские кредиты', link: '/credits/consumer-credits' },
+        { text: 'Кредитные карты', link: '/cards/credit-cards' },
+        { text: 'Карты рассрочки', link: '/cards/installment' },
+        { text: 'Дебетовые карты', link: '/cards/debit-cards' },
+        { text: 'Ипотечное страхование', link: '/insurance' },
+        { text: 'ОСАГО', link: '/insurance/osago' },
+        { text: 'КАСКО', link: '/insurance/kasco' },
+        { text: 'Путешествие', link: '/insurance/travel' },
+        { text: 'Жизнь и здоровье', link: '/insurance/health' },
+        { text: 'ДМС', link: '/insurance/dms' },
+        { text: 'Акции', link: '/investment/stocks' },
+        { text: 'Подбор брокера', link: '/investment/select-broker' },
+        { text: 'Криптовалюта', link: '/investment/crypto' },
+        { text: 'Фонды', link: '/investment/fonds' },
+        { text: 'Облигации', link: '/investment/obligations' },
+        { text: 'Аналитика', link: '/investment/analytics' },
+        { text: 'Расчётно-кассовое обслуживание', link: '/business/service' },
+        { text: 'Бизнес-карты', link: '/business/slips' },
+        { text: 'Кредиты для ИП', link: '/business/payments' },
+        { text: 'Страхование бизнеса', link: '/business/assurance' },
     ],
     error: '',
     banksItems: [],
-    promotions: []
+    promotions: [{
+        title: 'Выберите Лучший Кредит',
+        subtitle: 'Быстрое оформление кредита с высокой вероятностью одобрения.'
+    },
+    {
+        title: 'Увеличьте Сбережения',
+        subtitle: 'Подберите вклады с повышенной ставкой для роста сбережений.'
+    },
+    {
+        title: 'Легкий Путь к Собственному Жилью',
+        subtitle: "Найдите идеальную ипотеку для своего нового дома"
+    },
+    {
+        title: 'Кредитные и Дебетовые Карты',
+        subtitle: 'Выберите карту для ежедневных покупок и платежей.'
+    }]
 };
 
 

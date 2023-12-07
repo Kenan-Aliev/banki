@@ -1,13 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useMemo } from 'react';
 import s from './Slide.module.scss';
-import arr from '@/assets/icons/white_arr.svg';
 import SlideItem from '@/components/SlideItem/SlideItem';
-import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
+import { StaticImageData } from 'next/image';
+import Slider from '@/components/Slider/Slider';
 
 type iconsSlideT = {
   img: StaticImageData;
@@ -20,39 +15,30 @@ type Props = {
 };
 
 const Slide = ({ data }: Props) => {
-  const sliderRef = useRef(null);
-  const [slideItems, setSlideItems] = useState<React.JSX.Element[]>();
-  useEffect(() => {
-    const slides = data.map((el, index) => (
-      <SwiperSlide key={index}>
-        <Link href={el.link}>
-          <SlideItem width={el.w} key={index} img={el.img} name={el.name} />
-        </Link>
-      </SwiperSlide>
-    ));
-    setSlideItems(slides);
-  }, []);
-  const handleNext = useCallback(() => {
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slideNext();
-  }, []);
+  const slides = useMemo(() => {
+    return data.map((el, index) => {
+      return {
+        node: <SlideItem width={el.w} key={index} img={el.img} name={el.name} />,
+        link: el.link
+      }
+    })
+  }, [data]);
+
 
   return (
     <div className={s.slide}>
-      <Swiper
-        id='swiper'
-        ref={sliderRef}
-        spaceBetween={10}
-        slidesPerView={5}
-        loop={true}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
-        {slideItems}
-      </Swiper>
-      <div onClick={handleNext} className={s.arr}>
-        <Image src={arr} alt={'arr'} />
-      </div>
+      <Slider
+        data={slides}
+        infinite={false}
+        leftArr={true}
+        rightArr={true}
+        responsive={{
+          "320": 1,
+          "480": 2,
+          "640": 3,
+          "768": 4,
+          "1500": 5
+        }} />
     </div>
   );
 };

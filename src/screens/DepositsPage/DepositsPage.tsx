@@ -22,6 +22,7 @@ import { getDepositsI } from '@/models/Services';
 import { selectGetDepositsStatus, selectMonthOffers, selectSpecialOffers } from '@/core/store/deposits/deposits-selectors';
 import { getBanks } from '@/core/store/banks/banks-actions';
 import { resetDeposits } from '@/core/store/deposits/deposits-slice';
+import { resetBanks } from '@/core/store/banks/banks-slice';
 
 
 
@@ -112,6 +113,10 @@ const DepositsPage = () => {
     fetchBanks()
     fetchMonthOffers()
     fetchSpecialOffers()
+
+    return () => {
+      dispatch(resetBanks())
+    }
   }, [])
 
   useEffect(() => {

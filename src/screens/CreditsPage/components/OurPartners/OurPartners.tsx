@@ -29,6 +29,8 @@ const OurPartners = ({ items }: Props) => {
       <Slider
         data={slides}
         infinite={false}
+        leftArr={true}
+        rightArr={true}
         responsive={{
           "320": 2,
           "480": 3,

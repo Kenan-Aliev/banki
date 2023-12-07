@@ -6,15 +6,14 @@ import OfferMoth from '@/components/Offers/OfferMoth/OfferMoth';
 import LatestNews from '@/components/LatestNews/LatestNews';
 import Feedback from '@/components/FeedBacks/Feedback/Feedback';
 import PageWrapper from '@/containers/PageWrapper';
-import Stock, { ItemsActionT } from '@/screens/HomePage/components/Stock/Stock';
+import Stock from '@/screens/HomePage/components/Stock/Stock';
 import Slide from '@/screens/HomePage/components/Slide/Slide';
 import Banks from '@/screens/HomePage/components/Banks/Banks';
 import Calculate from './components/Calculate/Calculate';
-import axios from 'axios';
-import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import s from './HomePage.module.scss';
-import { getBanks } from '@/core/store/banks/banks-actions';
+import { resetBanks } from '@/core/store/banks/banks-slice';
+import { BankT } from '@/models/Banks/banks';
 
 
 type SearchItem = {
@@ -24,26 +23,29 @@ type SearchItem = {
 
 type Props = {
     data: any;
+    banks: BankT[]
 };
 
-const HomePage = ({ data }: Props) => {
+const HomePage = ({ data, banks }: Props) => {
     const dispatch = useAppDispatch();
 
     const { serviceItems } = useAppSelector((state) => state.home);
     const [searchVal, setSearchVal] = useState<string>('');
 
-    const { banksItems } = useAppSelector(state => state.home)
+    const handleChangeSearchVal = (e: any) => {
+        setSearchVal(e.target.value)
+    }
+
     const { promotions } = useAppSelector(state => state.home);
     const filterArr = (items: SearchItem[]) =>
         items.filter((i) => i.text.toLowerCase().includes(searchVal.toLowerCase()));
 
 
     useEffect(() => {
-        dispatch(getBanks({ limit: 10, offset: 0, type: 'bank' }))
-        // dispatch(getPromotionsThunk());
+        return () => {
+            dispatch(resetBanks())
+        }
     }, []);
-
-
 
     return (
         <PageWrapper>
@@ -51,13 +53,12 @@ const HomePage = ({ data }: Props) => {
             {promotions && <Stock promotions={promotions} />}
             <Slide data={data.iconsSlide} />
             <Search
-                setValue={setSearchVal}
+                onChange={handleChangeSearchVal}
                 value={searchVal}
-                filterArr={filterArr}
-                itemsSearch={serviceItems}
                 placeholder={'Найти необходимую услугу...'}
+                filteredArr={[]}
             />
-            <Banks data={banksItems} />
+            <Banks data={banks} />
             <Calculate />
             <OfferMoth offers={data.offersMoth} choiceItems={data.choiseOffer} />
             <LatestNews />

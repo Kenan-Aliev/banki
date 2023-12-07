@@ -6,12 +6,19 @@
   align-items: center;
   gap: 11px;
   border-radius: 16px;
-  border: 1px solid #D9DBDF;
-  background: #FFF;
-  img{
-    width: 57px;
-    height: 36px;
+  border: 1px solid #d9dbdf;
+  background: #fff;
+
+  .bank_img {
+    width: 15%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   }
+
   .info {
     div {
       width: 230px;
@@ -27,7 +34,7 @@
     }
 
     span {
-      color: #ADADAD;
+      color: #adadad;
       font-variant-numeric: lining-nums proportional-nums;
       font-size: 15px;
       font-style: normal;

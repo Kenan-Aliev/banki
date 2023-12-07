@@ -1,4 +1,6 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import ProfileContainer from '@/containers/ProfileContainer';
 import s from './HelpProfile.module.scss';
 import Search from '@/UI/Search/Search';
@@ -8,13 +10,27 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const HelpProfile = () => {
+  const [searchValue, setSearchValue] = useState('')
+
+  const handleChangeSearchValue = (e: any) => {
+    setSearchValue(e.target.value)
+  }
+
   return (
     <ProfileContainer>
       <div className={s.wrapper}>
         <div className={s.freq_quests}>
           <h1 className={s.title}>Популярные вопросы</h1>
           <div className={s.inp_cont}>
-            <Search margin={0} height={60} btnHidden={true} placeholder={'Поиск по частым вопросам'} />
+            <Search
+              margin={0}
+              height={60}
+              btnHidden={true}
+              placeholder={'Поиск по частым вопросам'}
+              filteredArr={[]}
+              onChange={handleChangeSearchValue}
+              value={searchValue}
+            />
             <div className={s.write_our}>
               <span>Не нашли ответ на свой вопрос?</span>
               <Link href={'/profile/help/new-appeal'}>
