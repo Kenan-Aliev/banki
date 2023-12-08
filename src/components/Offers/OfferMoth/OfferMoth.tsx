@@ -3,9 +3,14 @@
 import React, { useMemo, useState } from 'react';
 import s from './OfferMoth.module.scss';
 import ChoiceItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
-import OfferItem from '@/components/Offers/OfferItem/OfferItem';
-import { DepositItemT } from '@/models/Deposit/Deposit';
 import Slider from '@/components/Slider/Slider';
+import CreditOfferItem from './CreditOfferItem/CreditOfferItem';
+import DepositOfferItem from './DepositOfferItem/DepositOfferItem';
+import { DepositItemT } from '@/models/Deposit/Deposit';
+import { CreditItemT } from '@/models/Credits/Credits';
+import CardsOfferItem from './CardsOfferItem/CardsOfferItem';
+import { CreditCardT } from '@/models/Cards/Cards';
+import IpotekaOfferItem from './IpotekaOfferItem/IpotekaOfferItem';
 
 type ItemT = {
   name: string;
@@ -13,7 +18,7 @@ type ItemT = {
 };
 type OfferMonthProps = {
   choiceItems?: ItemT[];
-  offers: DepositItemT[];
+  offers: any[];
 };
 
 const OfferMonth = (props: OfferMonthProps) => {
@@ -21,15 +26,55 @@ const OfferMonth = (props: OfferMonthProps) => {
 
   const { choiceItems, offers } = props;
 
+
+
   const slides = useMemo(() => {
-    if (offers && offers.length > 0) {
+    if (offers && offers.length > 0 && currentChoise && choiceItems && choiceItems.length > 0) {
+      switch (currentChoise) {
+        case "Вклады":
+          return Array(5).fill(0).map((offer, index) => {
+            // const of = { ...offer } as DepositItemT
+            return {
+              node: <DepositOfferItem item={{} as DepositItemT} key={index} />
+            }
+          })
+        case "Кредиты":
+        case "Автокредиты":
+        case "Микрозаймы":
+          return Array(5).fill(0).map((offer, index) => {
+            // const of = { ...offer } as CreditItemT
+            return {
+              node: <CreditOfferItem item={{} as CreditItemT} key={index} />
+            }
+          })
+
+        case "Дебетовые карты":
+        case "Кредитные карты":
+          return Array(5).fill(0).map((offer, index) => {
+            // const of = { ...offer } as CreditItemT
+            return {
+              node: <CardsOfferItem item={{} as CreditCardT} key={index} />
+            }
+          })
+
+        case "Ипотека":
+          return Array(5).fill(0).map((offer, index) => {
+            // const of = { ...offer } as CreditItemT
+            return {
+              node: <IpotekaOfferItem item={{}} key={index} />
+            }
+          })
+      }
+    }
+    else if (offers && offers.length > 0 && !choiceItems) {
       return offers.map((offer) => {
+        const of = { ...offer } as DepositItemT
         return {
-          node: <OfferItem item={offer} key={offer.deposit_id} />
+          node: <DepositOfferItem item={of} key={of.deposit_id} />
         }
       })
     }
-  }, [offers])
+  }, [currentChoise, offers, choiceItems])
 
   return (
     <div className={s.offer_month}>

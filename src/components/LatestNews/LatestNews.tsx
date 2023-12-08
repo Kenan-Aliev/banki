@@ -12,17 +12,15 @@ interface ChoicesInterface {
 }
 
 const mockFilterItems: ChoicesInterface[] = [
-  { name: 'Все', active: true },
-  { name: 'Накопления', active: false },
-  { name: 'Займы', active: false },
-  { name: 'Страхование', active: false },
-  { name: 'Безопасность', active: false },
+  { name: 'Банки', active: true },
+  { name: 'МФО', active: false },
+  { name: 'Микрокредитные компании', active: false },
 ];
 
 const LatestNews = () => {
   const { list, saveList, loansList, insuranceList, safeList } = useAppSelector((state) => state.news);
 
-  const [currentChoise, setCurrentChoise] = useState('Все');
+  const [currentChoise, setCurrentChoise] = useState('Банки');
 
   return (
     <div className={s.news}>
@@ -37,12 +35,9 @@ const LatestNews = () => {
         />
       </div>
       <div className={s.news_cont}>
-        {currentChoise === 'Все' && list.map((item) => <NewsItem key={item.id} item={item} />)}
-        {currentChoise === 'Накопления' && saveList.map((item) => <NewsItem key={item.id} item={item} />)}
-        {currentChoise === 'Займы' && loansList.map((item) => <NewsItem key={item.id} item={item} />)}
-        {currentChoise === 'Страхование' &&
-          insuranceList.map((item) => <NewsItem key={item.id} item={item} />)}
-        {currentChoise === 'Безопасность' && safeList.map((item) => <NewsItem key={item.id} item={item} />)}
+        {currentChoise === 'Банки' && list.map((item) => <NewsItem key={item.id} item={item} />)}
+        {currentChoise === 'МФО' && saveList.map((item) => <NewsItem key={item.id} item={item} />)}
+        {currentChoise === 'Микрокредитные компании' && loansList.map((item) => <NewsItem key={item.id} item={item} />)}
       </div>
       <div className={s.btn_cont}>
         <BlueBtn text={'Смотреть все новости'} width={300} />

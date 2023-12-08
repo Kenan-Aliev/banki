@@ -1,21 +1,15 @@
+import { NewsInterface } from '@/models/News/News';
 import { createSlice } from '@reduxjs/toolkit';
 import { StaticImageData } from 'next/image';
 
-type NewsItemT = {
-  title: string;
-  text: string;
-  id: number;
-  image?: StaticImageData;
-  subtitle: string;
-};
 
 interface InitialStateI {
-  list: NewsItemT[];
-  investingList: NewsItemT[];
-  saveList: NewsItemT[];
-  loansList: NewsItemT[];
-  insuranceList: NewsItemT[];
-  safeList: NewsItemT[];
+  list: NewsInterface[];
+  investingList: NewsInterface[];
+  saveList: NewsInterface[];
+  loansList: NewsInterface[];
+  insuranceList: NewsInterface[];
+  safeList: NewsInterface[];
 }
 
 const initialState: InitialStateI = {

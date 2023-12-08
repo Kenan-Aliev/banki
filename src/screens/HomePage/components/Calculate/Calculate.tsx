@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import s from './Calculate.module.scss';
 import ChoiseItem from '@/components/Choise/ChoiseItem/ChoiseItem';
-import CalcCredits from '@/screens/HomePage/components/Calculate/CalcCredits/CalcCredits';
-import CalcDeposit from '@/screens/HomePage/components/Calculate/CalcDeposit/CalcDeposit';
-import CalcMortgage from '@/screens/HomePage/components/Calculate/CalcMortgage/CalcMortgage';
-import CalcAutoCredits from './CalcAutoCredits/CalcAutoCredits';
+import CalcCredits from '@/screens/HomePage/components/Calculate/CalcCredits';
+import CalcDeposit from '@/screens/HomePage/components/Calculate/CalcDeposit';
+import CalcMortgage from '@/screens/HomePage/components/Calculate/CalcMortgage';
+import CalcAutoCredits from './CalcAutoCredits';
 
 type choiseItemsT = {
     name: string;

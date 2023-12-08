@@ -1,28 +1,23 @@
 import { StaticImageData } from 'next/image';
 
 export interface NewsInterface {
+  id: number;
   title: string;
   text: string;
-  id: number;
+  summary?: string
+  content?: string
   image?: StaticImageData;
   subtitle: string;
 }
 
-export interface NewsItemT {
-  subtitle: string;
-  id: number;
-  image: string;
-  title: string;
-  text: string;
-}
 
 export interface NewsResponseT {
-  cards: NewsItemT[];
+  cards: NewsInterface[];
   result: boolean;
   len: number;
 }
 
 export interface NewItemReponseT {
-  card: NewsItemT;
+  card: NewsInterface;
   result: boolean;
 }

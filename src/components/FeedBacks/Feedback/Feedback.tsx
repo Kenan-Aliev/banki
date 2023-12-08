@@ -40,7 +40,6 @@ const Feedback = ({ title, sub, chois }: Props) => {
         <FeedbackItem />
       </div>
       <div className={s.btn_cont}>
-        <button className={s.blueTrBtn}>Оставить отзыв</button>
         <BlueBtn text={'Смотреть все отзывы'} width={300} />
       </div>
     </div>

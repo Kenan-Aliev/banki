@@ -141,14 +141,12 @@ const data = {
     ],
     choiseOffer: [
       { name: 'Вклады', active: true },
-      { name: 'Накопительные счета', active: false },
       { name: 'Кредиты', active: false },
-      { name: 'Дебетовые карты', active: false },
-      { name: 'Ипотека', active: false },
       { name: 'Микрозаймы', active: false },
-      { name: 'РКО', active: false },
-      { name: 'Инвестиции', active: false },
-      { name: 'Ипотека от ПИК', active: false },
+      { name: 'Автокредиты', active: false },
+      { name: 'Дебетовые карты', active: false },
+      { name: 'Кредитные карты', active: false },
+      { name: 'Ипотека', active: false },
     ],
     offersMoth: [
       {
@@ -6320,6 +6318,172 @@ const data = {
     { name: 'Арсеналъ Кыргызстан', a: 'http://www.arsins.kg/' },
     { name: 'Ингосстрах', a: 'https://www.ingo.kg/' },
   ],
+
+  Footer: {
+    "Product-1": [
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      }
+    ],
+
+    "Product-2": [
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      }
+    ],
+
+    "Product-3": [
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      }
+    ],
+
+    "Product-4": [
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      }
+    ],
+
+
+    "Product-5": [
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      }
+    ],
+
+
+    "Product-6": [
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      }
+    ],
+
+
+    "Product-7": [
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      },
+      {
+        name: 'Product Name',
+        link: ''
+      }
+    ]
+  }
 };
 
 export default data;

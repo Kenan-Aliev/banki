@@ -35,24 +35,22 @@ function Reference() {
 			>
 				<AccordionSummary
 					sx={{
-						width: '15%',
+						width: 'fit-content',
 						color: '#4DA7FF',
-						"@media(max-width:640px)": {
-							width: '80%'
-						}
+						padding: 0
 					}}
-					expandIcon={<ExpandMoreIcon sx={{ color: '#4DA7FF' }} />}
+				expandIcon={<ExpandMoreIcon sx={{ color: '#4DA7FF' }} />}
 				>
-					<Typography>Показать еще</Typography>
-				</AccordionSummary>
-				<AccordionDetails>
-					<Typography>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-						malesuada lacus ex, sit amet blandit leo lobortis eget.
-					</Typography>
-				</AccordionDetails>
-			</Accordion>
-		</Stack>
+				<Typography>Показать еще</Typography>
+			</AccordionSummary>
+			<AccordionDetails>
+				<Typography>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+					malesuada lacus ex, sit amet blandit leo lobortis eget.
+				</Typography>
+			</AccordionDetails>
+		</Accordion>
+		</Stack >
 	)
 }
 

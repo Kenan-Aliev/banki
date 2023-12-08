@@ -5,6 +5,7 @@ import MobileHeader from '@/components/MobileHeader/MobileHeader';
 import { StoreProvider } from '@/core/store/provider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/ReactToastify.min.css'
+import Footer from '@/components/Footer/Footer';
 
 // export const metadata: Metadata = {
 //     title: "Главная",
@@ -19,6 +20,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           <Header />
           <MobileHeader />
           {children}
+          <Footer />
           <ToastContainer />
         </StoreProvider>
       </body>

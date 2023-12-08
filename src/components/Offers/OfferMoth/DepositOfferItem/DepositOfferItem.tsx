@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './OfferItem.module.scss';
+import s from './DepositOfferItem.module.scss';
 import Image from 'next/image';
 import mockBankIcon from '@/assets/icons/banki_icon/loco.svg';
 import { DepositItemT } from '@/models/Deposit/Deposit';
@@ -8,7 +8,7 @@ interface OfferItemProps {
   item: DepositItemT;
 }
 
-const OfferItem = (props: OfferItemProps) => {
+const DepositOfferItem = (props: OfferItemProps) => {
   const {
     item: { deposit_name, interest_rate, term_range, description },
   } = props;
@@ -37,4 +37,4 @@ const OfferItem = (props: OfferItemProps) => {
   );
 };
 
-export default OfferItem;
+export default DepositOfferItem;
