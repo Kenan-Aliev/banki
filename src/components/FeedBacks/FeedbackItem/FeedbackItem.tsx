@@ -2,25 +2,30 @@ import React from 'react';
 import s from './FeedbackItem.module.scss';
 import Image from 'next/image';
 import star from '@/assets/icons/Star.svg';
+import { Review } from '@/models/Reviews/Reviews';
 
-const FeedbackItem = () => {
+interface Props {
+  review: Review
+}
+
+
+const FeedbackItem = ({ review }: Props) => {
+  const { content, id, product_type, title, verified, rating } = review
+  console.log(rating)
   return (
     <div className={s.feedback_item}>
       <div className={s.date}>29.07.2023</div>
-      <div className={s.title}>Отличное обслуживание</div>
+      <div className={s.title}>{title}</div>
       <div className={s.stars}>
-        <Image alt={'star icon'} src={star} />
-        <Image alt={'star icon'} src={star} />
-        <Image alt={'star icon'} src={star} />
-        <Image alt={'star icon'} src={star} />
+        {new Array(rating).fill(0).map((num, index) => {
+          return <Image alt={'star icon'} src={star} key={index} />
+        })}
       </div>
       <div className={s.text}>
-        Прежде всего, современная методология разработки однозначно определяет каждого участника как
-        способного. Прежде всего, современная методология разработки однозначно определяет каждого участника
-        как способного...
+        {content}
       </div>
-      <div className={s.more}>Читать полностью</div>
-      <div className={s.feed}>ОТЗЫВЫ О ПОТРЕБИТЕЛЬСКИХ КРЕДИТАХ</div>
+      {/* <div className={s.more}>Читать полностью</div> */}
+      {/* <div className={s.feed}>ОТЗЫВЫ О ПОТРЕБИТЕЛЬСКИХ КРЕДИТАХ</div> */}
     </div>
   );
 };

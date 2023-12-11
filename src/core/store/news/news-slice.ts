@@ -1,9 +1,14 @@
 import { NewsInterface } from '@/models/News/News';
+import { RequestStatus } from '@/models/Services';
 import { createSlice } from '@reduxjs/toolkit';
-import { StaticImageData } from 'next/image';
+import { getNews } from './news-actions';
 
 
 interface InitialStateI {
+  news: {
+    status: RequestStatus,
+    data: NewsInterface[]
+  }
   list: NewsInterface[];
   investingList: NewsInterface[];
   saveList: NewsInterface[];
@@ -13,6 +18,10 @@ interface InitialStateI {
 }
 
 const initialState: InitialStateI = {
+  news: {
+    data: [],
+    status: 'initial'
+  },
   list: [
     {
       title: 'Приходите в СперБанк',
@@ -162,6 +171,20 @@ export const newsSlice = createSlice({
   name: 'news',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getNews.pending, (state) => {
+      state.news.status = 'loading'
+    })
+      .addCase(getNews.fulfilled, (state, action) => {
+        state.news = {
+          status: 'success',
+          data: action.payload
+        }
+      })
+      .addCase(getNews.rejected, (state) => {
+        state.news.status = 'error'
+      })
+  }
 });
 
 export default newsSlice.reducer;

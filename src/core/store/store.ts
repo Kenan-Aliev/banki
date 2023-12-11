@@ -9,6 +9,7 @@ import MortgageSlice from '@/core/store/mortgages/mortgage-slice';
 import NewsSlice from '@/core/store/news/news-slice';
 import BanksSlice from '@/core/store/banks/banks-slice'
 import UsersSlice from '@/core/store/users/users-slice'
+import ReviewsSlice from '@/core/store/reviews/reviews-slice'
 
 const reducers = {
     business: BusinessSlice,
@@ -20,7 +21,8 @@ const reducers = {
     mortgage: MortgageSlice,
     news: NewsSlice,
     banks: BanksSlice,
-    users: UsersSlice
+    users: UsersSlice,
+    reviews: ReviewsSlice
 }
 
 const combinedReducer = combineReducers(reducers);

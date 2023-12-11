@@ -1,10 +1,14 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './LatestNews.module.scss';
 import NewsItem from '@/components/NewsItem/NewsItem';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
-import { useAppSelector } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { getNews } from '@/core/store/news/news-actions';
+import { selectGetNewsStatus, selectNews } from '@/core/store/news/news-selectors';
+import Loading from '@/app/loading';
+import Link from 'next/link';
 
 interface ChoicesInterface {
   name: string;
@@ -13,14 +17,23 @@ interface ChoicesInterface {
 
 const mockFilterItems: ChoicesInterface[] = [
   { name: 'Банки', active: true },
-  { name: 'МФО', active: false },
-  { name: 'Микрокредитные компании', active: false },
+  { name: 'Занять', active: false },
+  { name: 'Накопить', active: false },
+  { name: 'Застраховать', active: false },
+  { name: 'Обезопасить', active: false },
 ];
 
 const LatestNews = () => {
-  const { list, saveList, loansList, insuranceList, safeList } = useAppSelector((state) => state.news);
+  const news = useAppSelector(selectNews)
+  const getNewsStatus = useAppSelector(selectGetNewsStatus)
 
   const [currentChoise, setCurrentChoise] = useState('Банки');
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getNews({ news_type: currentChoise }))
+  }, [currentChoise])
 
   return (
     <div className={s.news}>
@@ -34,14 +47,16 @@ const LatestNews = () => {
           choiseItems={mockFilterItems}
         />
       </div>
-      <div className={s.news_cont}>
-        {currentChoise === 'Банки' && list.map((item) => <NewsItem key={item.id} item={item} />)}
-        {currentChoise === 'МФО' && saveList.map((item) => <NewsItem key={item.id} item={item} />)}
-        {currentChoise === 'Микрокредитные компании' && loansList.map((item) => <NewsItem key={item.id} item={item} />)}
-      </div>
-      <div className={s.btn_cont}>
+      {
+        getNewsStatus === 'loading'
+          ? <Loading />
+          : <div className={s.news_cont}>
+            {news?.map((item) => <NewsItem key={item.id} item={item} />)}
+          </div>
+      }
+      <Link className={s.btn_cont} href='/news'>
         <BlueBtn text={'Смотреть все новости'} width={300} />
-      </div>
+      </Link>
     </div>
   );
 };

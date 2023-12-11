@@ -6,12 +6,12 @@ import { InvestmentNewsItemT } from '@/models/Investment/Investment';
 import { NewsInterface } from '@/models/News/News';
 
 interface NewsItemProps {
-  item: NewsInterface | InvestmentNewsItemT;
+  item: NewsInterface;
 }
 
 const NewsItem = (props: NewsItemProps) => {
   const {
-    item: { title, text, subtitle },
+    item: { title, summary, publish_date },
   } = props;
 
   return (
@@ -26,27 +26,17 @@ const NewsItem = (props: NewsItemProps) => {
         />
       )} */}
       <div className={s.info}>
-        <div className={s.date}>30.06.2023</div>
+        <div className={s.date}>{new Date(publish_date).toLocaleDateString()}</div>
         <span>
           <Image src={smile} alt={'smile'} width={14} height={14} />
           <div>{124242}</div>
         </span>
       </div>
       <div className={s.text}>
-        <mark>{title}:</mark> {subtitle}
+        {title}
       </div>
-      <div className={s.subtitle}>{text}</div>
+      <div className={s.subtitle}>{summary}</div>
       <div className={s.line} />
-      <div className={s.info} style={{ marginTop: '1rem' }}>
-        <div className={s.date}>30.06.2023</div>
-        <span>
-          <Image src={smile} alt={'smile'} width={14} height={14} />
-          <div>{124242}</div>
-        </span>
-      </div>
-      <div className={s.text}>
-        <mark>{title}:</mark> {text}
-      </div>
     </div>
   );
 };

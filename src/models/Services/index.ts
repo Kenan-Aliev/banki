@@ -84,21 +84,24 @@ export interface getMortgage {
     timeframe?: number;
 }
 
-export interface getNews {
-    search?: string;
-    page?: number;
-    limit?: number;
-    sort?: string;
-    sort_type?: number;
+export interface getNewsT {
+    date?: string
+    now_date?: string
+    tags?: string
+    contenttype?: string
+    news_type?: string
+    newsofday?: boolean
+    search?: string
+    ordering?: string
 }
 
 export interface getAllBanksT {
     offset: number,
     limit: number,
     type?: string
-    financial_rating?:string
-    name?:string
-    assets?:string
+    financial_rating?: string
+    name?: string
+    assets?: string
 }
 
 
@@ -114,6 +117,18 @@ export interface sendApplicationData {
     phone: number,
     product: string,
     product_id: number
+}
+
+export interface getReviewsListData {
+    product_type?: string
+    rate?: string
+    date?: string
+    verified?: boolean
+    search?: string
+    ordering?: string
+    limit: number
+    offset: number
+
 }
 
 export type RequestStatus = 'initial' | 'loading' | 'success' | 'error'

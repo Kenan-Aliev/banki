@@ -3,11 +3,15 @@ import { StaticImageData } from 'next/image';
 export interface NewsInterface {
   id: number;
   title: string;
-  text: string;
+  text: string;   // надо потом убрать
   summary?: string
   content?: string
-  image?: StaticImageData;
-  subtitle: string;
+  image?: StaticImageData;  // убрать потом
+  subtitle?: string;        // убрать
+  news_type?: {
+    title: string
+  }
+  publish_date?: string
 }
 
 

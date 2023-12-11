@@ -166,7 +166,9 @@ const data = {
       { name: 'Банки', active: true },
       { name: 'МФО', active: false },
       { name: 'Страховые компании', active: false },
-      { name: 'Инвестиции', active: false },
+      { name: 'Вклады', active: false },
+      { name: 'Кредиты', active: false },
+      { name: 'Займы', active: false },
     ],
   },
   SpecialOffer: {

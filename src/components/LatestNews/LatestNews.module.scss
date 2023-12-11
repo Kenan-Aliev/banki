@@ -12,7 +12,7 @@
     font-weight: 500;
     line-height: 86.4%; /* 39.744px */
     span {
-      color: #4DA7FF;
+      color: #4da7ff;
     }
   }
 
@@ -29,21 +29,23 @@
     display: flex;
     justify-content: space-between;
     padding: 30px;
+    flex-wrap: wrap;
+    gap: 10px;
     border-radius: 14px;
-    border: 1px solid #D9DBDF;
-    background: #FFF;
+    border: 1px solid #d9dbdf;
+    background: #fff;
     margin-bottom: 1rem;
   }
-  .btn_cont{
+  .btn_cont {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
   }
 }
-@media (max-width: 1220px){
-  .news{
-    .news_cont{
+@media (max-width: 1220px) {
+  .news {
+    .news_cont {
       width: auto;
       flex-direction: column;
       justify-content: center;
