@@ -89,7 +89,7 @@ export interface getNewsT {
     now_date?: string
     tags?: string
     contenttype?: string
-    news_type?: string
+    news_type?: number
     newsofday?: boolean
     search?: string
     ordering?: string
@@ -129,6 +129,12 @@ export interface getReviewsListData {
     limit: number
     offset: number
 
+}
+
+export interface getReviewsCategoriesData {
+    search?: string
+    limit: number
+    offset: number
 }
 
 export type RequestStatus = 'initial' | 'loading' | 'success' | 'error'

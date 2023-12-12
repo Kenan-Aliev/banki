@@ -1,5 +1,5 @@
 import instance from '@/core/services/index';
-import { NewsInterface } from '@/models/News/News';
+import { NewsCategory, NewsInterface } from '@/models/News/News';
 import { getNewsT } from '@/models/Services';
 
 const NewsApi = {
@@ -9,6 +9,10 @@ const NewsApi = {
       params
     }
     );
+  },
+
+  getNewsCategories() {
+    return instance.get<NewsCategory[]>('/news/type/list/');
   },
 };
 

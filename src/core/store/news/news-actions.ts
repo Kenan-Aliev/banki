@@ -13,3 +13,14 @@ export const getNews = createAsyncThunk(
 			return rejectWithValue(err.response.data.message)
 		}
 	})
+
+export const getNewsCategories = createAsyncThunk(
+	'news/getCategories',
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await NewsApi.getNewsCategories()
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})

@@ -5,8 +5,8 @@ import NewsItem from '@/components/NewsItem/NewsItem';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { getNews } from '@/core/store/news/news-actions';
-import { selectGetNewsStatus, selectNews } from '@/core/store/news/news-selectors';
+import { getNews, getNewsCategories } from '@/core/store/news/news-actions';
+import { selectGetNewsStatus, selectNews, selectNewsCategories } from '@/core/store/news/news-selectors';
 import Loading from '@/app/loading';
 import Link from 'next/link';
 
@@ -26,14 +26,39 @@ const mockFilterItems: ChoicesInterface[] = [
 const LatestNews = () => {
   const news = useAppSelector(selectNews)
   const getNewsStatus = useAppSelector(selectGetNewsStatus)
+  const newsCategories = useAppSelector(selectNewsCategories)
 
-  const [currentChoise, setCurrentChoise] = useState('Банки');
+  const items = newsCategories?.
+    map((category) => {
+      return {
+        id: category.id,
+        name: category.title,
+        active: false
+      }
+    }).filter((category) => {
+      const cat = mockFilterItems.find((i) => category.name.toLowerCase().includes(i.name.toLowerCase()))
+      return cat
+    })
+
+  const [currentChoise, setCurrentChoise] = useState(0);
 
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getNews({ news_type: currentChoise }))
+    if (currentChoise !== 0) {
+      dispatch(getNews({ news_type: currentChoise }))
+    }
   }, [currentChoise])
+
+  useEffect(() => {
+    dispatch(getNewsCategories())
+  }, [])
+
+  useEffect(() => {
+    if (newsCategories && newsCategories.length > 0) {
+      setCurrentChoise(newsCategories[1].id)
+    }
+  }, [newsCategories])
 
   return (
     <div className={s.news}>
@@ -44,7 +69,7 @@ const LatestNews = () => {
         <ChoiseItemsMap
           currentChoise={currentChoise}
           setActive={setCurrentChoise}
-          choiseItems={mockFilterItems}
+          choiseItems={items}
         />
       </div>
       {

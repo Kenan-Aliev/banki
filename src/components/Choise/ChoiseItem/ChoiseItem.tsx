@@ -6,14 +6,20 @@ import Link from 'next/link';
 
 type Props = {
   name: string;
-  active: boolean;
-  setActive?: React.Dispatch<React.SetStateAction<string>>;
+  active?: boolean;
+  setActive?: React.Dispatch<React.SetStateAction<string | number>>;
   href?: string;
+  id?: number
 };
 
-const ChoiseItem = ({ name, active, setActive, href }: Props) => {
+const ChoiseItem = ({ name, active, setActive, href,id }: Props) => {
   const setCurrentActive = () => {
-    setActive && setActive(name);
+    if(id){
+      setActive(id)
+    }
+    else{
+      setActive(name)
+    }
   };
   if (href) {
     return (

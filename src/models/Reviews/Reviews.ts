@@ -7,10 +7,22 @@ export interface Review {
 	rating: number
 }
 
+export interface ReviewsCategory {
+	id: number
+	title: string
+}
+
 
 export interface ReviewsListResponse {
 	count: number
 	next: string | null
 	previous: string | null
 	results: Review[]
+}
+
+export interface ReviewsCategoriesResponse {
+	count: number
+	next: string | null
+	previous: string | null
+	results: ReviewsCategory[]
 }

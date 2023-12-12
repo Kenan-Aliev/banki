@@ -14,6 +14,11 @@ export interface NewsInterface {
   publish_date?: string
 }
 
+export interface NewsCategory {
+  id: number
+  title: string
+}
+
 
 export interface NewsResponseT {
   cards: NewsInterface[];

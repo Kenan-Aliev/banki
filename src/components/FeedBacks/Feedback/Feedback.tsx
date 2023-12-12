@@ -6,8 +6,8 @@ import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import TitleMarkLast from '@/components/TitleMarkLast/TitleMarkLast';
 import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { getReviews } from '@/core/store/reviews/reviews-actions';
-import { selectGetReviewsStatus, selectReviews } from '@/core/store/reviews/reviews-selectors';
+import { getReviews, getReviewsCategories } from '@/core/store/reviews/reviews-actions';
+import { selectGetReviewsStatus, selectReviews, selectReviewsCategories } from '@/core/store/reviews/reviews-selectors';
 import { resetReviews } from '@/core/store/reviews/reviews-slice';
 import Loading from '@/app/loading';
 
@@ -22,22 +22,50 @@ type ItemT = {
 };
 
 const Feedback = ({ title, sub, chois }: Props) => {
+  const dispatch = useAppDispatch()
+
   const reviews = useAppSelector(selectReviews)
   const getReviewsStatus = useAppSelector(selectGetReviewsStatus)
+  const categories = useAppSelector(selectReviewsCategories)?.results
 
-  const [currentChoise, setCurrentChoise] = useState('Банки');
+  const items = categories?.
+    map((category) => {
+      return {
+        id: category.id,
+        name: category.title,
+        active: false
+      }
+    }).filter((category) => {
+      const cat = chois.find((i) => category.name.toLowerCase().includes(i.name.toLowerCase()))
+      return cat
+    })
 
-  const dispatch = useAppDispatch()
+  const [currentChoise, setCurrentChoise] = useState(0);
 
   const fetchReviews = () => {
     dispatch(resetReviews())
-    dispatch(getReviews({ limit: 3, offset: 0, product_type: currentChoise }))
+    dispatch(getReviews({ limit: 3, offset: 0, product_type: String(currentChoise) }))
+  }
+
+  const fetchReviewsCategories = () => {
+    dispatch(getReviewsCategories({ limit: 20, offset: 0 }))
   }
 
   useEffect(() => {
     fetchReviews()
   }, [currentChoise])
 
+  useEffect(() => {
+    if (chois && chois.length > 0) {
+      fetchReviewsCategories()
+    }
+  }, [chois])
+
+  useEffect(() => {
+    if (categories) {
+      setCurrentChoise(categories[0].id)
+    }
+  }, [categories])
 
   return (
     <div className={s.feedback}>
@@ -51,7 +79,7 @@ const Feedback = ({ title, sub, chois }: Props) => {
       )}
       {chois && chois.length !== 0 && (
         <div className={s.choise_items}>
-          <ChoiseItemsMap setActive={setCurrentChoise} currentChoise={currentChoise} choiseItems={chois} />
+          <ChoiseItemsMap setActive={setCurrentChoise} currentChoise={currentChoise} choiseItems={items} />
         </div>
       )}
       {getReviewsStatus === 'loading' ?

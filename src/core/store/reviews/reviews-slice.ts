@@ -1,14 +1,18 @@
 import { NewsInterface } from '@/models/News/News';
 import { RequestStatus } from '@/models/Services';
 import { createSlice } from '@reduxjs/toolkit';
-import { getReviews } from './reviews-actions';
-import { ReviewsListResponse } from '@/models/Reviews/Reviews';
+import { getReviews, getReviewsCategories } from './reviews-actions';
+import { ReviewsCategoriesResponse, ReviewsListResponse } from '@/models/Reviews/Reviews';
 
 
 interface InitialStateI {
   reviews: {
     status: RequestStatus,
     data: ReviewsListResponse
+  }
+  categories: {
+    status: RequestStatus
+    data: ReviewsCategoriesResponse
   }
 }
 
@@ -17,6 +21,10 @@ const initialState: InitialStateI = {
     data: {} as ReviewsListResponse,
     status: 'initial'
   },
+  categories: {
+    status: 'initial',
+    data: {} as ReviewsCategoriesResponse
+  }
 };
 
 export const reviewsSlice = createSlice({
@@ -45,7 +53,24 @@ export const reviewsSlice = createSlice({
       })
       .addCase(getReviews.rejected, (state) => {
         state.reviews.status = 'error'
-      })
+      }),
+
+      builder
+        .addCase(getReviewsCategories.pending, (state) => {
+          state.categories.status = 'loading'
+        })
+        .addCase(getReviewsCategories.fulfilled, (state, action) => {
+          state.categories = {
+            status: 'success',
+            data: {
+              ...action.payload,
+              results: [...state.categories.data.results ?? [], ...action.payload.results ?? []]
+            }
+          }
+        })
+        .addCase(getReviewsCategories.rejected, (state) => {
+          state.categories.status = 'error'
+        })
   }
 });
 

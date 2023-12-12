@@ -1,13 +1,17 @@
-import { NewsInterface } from '@/models/News/News';
+import { NewsCategory, NewsInterface } from '@/models/News/News';
 import { RequestStatus } from '@/models/Services';
 import { createSlice } from '@reduxjs/toolkit';
-import { getNews } from './news-actions';
+import { getNews, getNewsCategories } from './news-actions';
 
 
 interface InitialStateI {
   news: {
     status: RequestStatus,
     data: NewsInterface[]
+  },
+  newsCategories: {
+    status: RequestStatus,
+    data: NewsCategory[]
   }
   list: NewsInterface[];
   investingList: NewsInterface[];
@@ -21,6 +25,10 @@ const initialState: InitialStateI = {
   news: {
     data: [],
     status: 'initial'
+  },
+  newsCategories: {
+    status: 'initial',
+    data: []
   },
   list: [
     {
@@ -183,7 +191,19 @@ export const newsSlice = createSlice({
       })
       .addCase(getNews.rejected, (state) => {
         state.news.status = 'error'
+      }),
+      builder.addCase(getNewsCategories.pending, (state) => {
+        state.newsCategories.status = 'loading'
       })
+        .addCase(getNewsCategories.fulfilled, (state, action) => {
+          state.newsCategories = {
+            status: 'success',
+            data: action.payload
+          }
+        })
+        .addCase(getNewsCategories.rejected, (state) => {
+          state.newsCategories.status = 'error'
+        })
   }
 });
 
