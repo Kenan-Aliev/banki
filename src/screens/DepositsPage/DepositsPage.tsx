@@ -58,9 +58,6 @@ const DepositsPage = () => {
     if (prop === 'offset') {
       setFilterData({ ...filterData, [prop]: value })
     }
-    // else if (prop === 'deposit_type' && value === '') {
-    //   setFilterData({ ...filterData, [prop]: 'all' })
-    // }
     else {
       dispatch(resetDeposits())
       setFilterData({ ...filterData, [prop]: value, offset: 0 })
@@ -170,7 +167,7 @@ const DepositsPage = () => {
       <LatestNews />
       <SpecialOffersDeposit deposits={specialOffers.results} />
       <Communicate />
-      <Feedback title={'Отзывы '} sub={'о вкладах'} />
+      <Feedback title={'Отзывы '} sub={'о вкладах'} category='Вклады' />
       {/* <FrequentQuestions title={'Частые вопросы'} items={staticData.questData} /> */}
       <TopBanks banks={[]} />
     </PageWrapper>

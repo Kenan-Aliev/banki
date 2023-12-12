@@ -9,6 +9,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAppDispatch } from '@/hooks/redux';
 import { sendApplication } from '@/core/store/users/users-actions';
+import InputMask from 'react-input-mask';
 
 
 
@@ -97,11 +98,16 @@ function Application({ handleClose, open, productId, productType }: Props) {
 			.required('Введите ФИО')
 	});
 
-	const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const { value } = event.target;
-		if (value.length <= 9) { // Ограничиваем максимальную длину
-			handleChange(event);
-		}
+	const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { value } = e.target;
+		const formattedValue = value.replace(/\D/g, ''); // Очищаем от всего, кроме цифр
+
+		handleChange({
+			target: {
+				name: 'phone',
+				value: formattedValue,
+			},
+		} as React.ChangeEvent<HTMLInputElement>);
 	};
 
 	const { values, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
@@ -174,33 +180,38 @@ function Application({ handleClose, open, productId, productType }: Props) {
 							sx={formStyles}
 						>
 							<Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-								<TextField
-									fullWidth
-									variant='outlined'
-									name='phone'
-									onChange={handlePhoneChange}
-									value={values.phone}
+								<InputMask
+									mask="(999)-99-99-99"
+									maskChar="_"
+									onChange={(e) => handlePhoneChange(e)}
 									onBlur={handleBlur}
-									error={touched.phone && Boolean(errors.phone)}
-									helperText={touched.phone && errors.phone}
-									type='number'
-									placeholder='Номер телефона'
-									InputProps={{
-										startAdornment: <InputAdornment
-											position="start"
-										>
-											+996
-										</InputAdornment>
-									}}
-									sx={{
-										"& p": {
-											color: 'black',
-										},
-										"& input": {
-											pl: '10px'
-										}
-									}}
-								/>
+									value={values.phone}
+								>
+									{() => <TextField
+										fullWidth
+										variant='outlined'
+										name='phone'
+										error={touched.phone && Boolean(errors.phone)}
+										helperText={touched.phone && errors.phone}
+										placeholder='Номер телефона'
+										InputProps={{
+											startAdornment: <InputAdornment
+												position="start"
+											>
+												+996
+											</InputAdornment>
+										}}
+										sx={{
+											"& p": {
+												color: 'black',
+											},
+											"& input": {
+												pl: '10px'
+											}
+										}}
+									/>}
+								</InputMask>
+
 							</Grid>
 
 							<Grid item xs={12} sm={12} md={6} lg={6} xl={6}>

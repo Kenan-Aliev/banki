@@ -15,13 +15,14 @@ type Props = {
   title?: string;
   sub?: string;
   chois?: ItemT[];
+  category?: string
 };
 type ItemT = {
   name: string;
   active: boolean;
 };
 
-const Feedback = ({ title, sub, chois }: Props) => {
+const Feedback = ({ title, sub, chois, category }: Props) => {
   const dispatch = useAppDispatch()
 
   const reviews = useAppSelector(selectReviews)
@@ -36,7 +37,7 @@ const Feedback = ({ title, sub, chois }: Props) => {
         active: false
       }
     }).filter((category) => {
-      const cat = chois.find((i) => category.name.toLowerCase().includes(i.name.toLowerCase()))
+      const cat = chois?.find((i) => category.name.toLowerCase().includes(i.name.toLowerCase()))
       return cat
     })
 
@@ -52,20 +53,26 @@ const Feedback = ({ title, sub, chois }: Props) => {
   }
 
   useEffect(() => {
-    fetchReviews()
+    if (currentChoise !== 0) {
+      fetchReviews()
+    }
   }, [currentChoise])
 
   useEffect(() => {
-    if (chois && chois.length > 0) {
+    if ((chois && chois.length > 0) || category) {
       fetchReviewsCategories()
     }
-  }, [chois])
+  }, [chois, category])
 
   useEffect(() => {
-    if (categories) {
+    if (categories && !category) {
       setCurrentChoise(categories[0].id)
     }
-  }, [categories])
+    else if (categories && category) {
+      const c = categories.find((cat) => cat.title.includes(category))
+      setCurrentChoise(c.id)
+    }
+  }, [categories, category])
 
   return (
     <div className={s.feedback}>
