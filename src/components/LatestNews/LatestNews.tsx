@@ -36,8 +36,7 @@ const LatestNews = () => {
         active: false
       }
     }).filter((category) => {
-      const cat = mockFilterItems.find((i) => category.name.toLowerCase().includes(i.name.toLowerCase()))
-      return cat
+      return mockFilterItems.find((i) => category.name.toLowerCase().includes(i.name.toLowerCase()))
     })
 
   const [currentChoise, setCurrentChoise] = useState(0);
@@ -45,14 +44,14 @@ const LatestNews = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
+    dispatch(getNewsCategories())
+  }, [])
+
+  useEffect(() => {
     if (currentChoise !== 0) {
       dispatch(getNews({ news_type: currentChoise }))
     }
   }, [currentChoise])
-
-  useEffect(() => {
-    dispatch(getNewsCategories())
-  }, [])
 
   useEffect(() => {
     if (newsCategories && newsCategories.length > 0) {

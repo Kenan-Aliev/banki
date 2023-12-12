@@ -36,6 +36,12 @@ export const reviewsSlice = createSlice({
         data: {} as ReviewsListResponse,
         status: 'initial'
       }
+    },
+    resetCategories: (state) => {
+      state.categories = {
+        data: {} as ReviewsCategoriesResponse,
+        status: 'initial'
+      }
     }
   },
   extraReducers: (builder) => {
@@ -75,5 +81,5 @@ export const reviewsSlice = createSlice({
 });
 
 
-export const { resetReviews } = reviewsSlice.actions
+export const { resetReviews, resetCategories } = reviewsSlice.actions
 export default reviewsSlice.reducer;
