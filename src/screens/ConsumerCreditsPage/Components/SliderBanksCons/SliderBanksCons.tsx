@@ -1,50 +1,42 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useMemo } from 'react';
 import s from './SliderBanksCons.module.scss';
-import arr_r from '@/assets/icons/banki_icon/Стрелка_right.svg';
-import Image, { StaticImageData } from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import BankImgItemSlide from '@/components/Banki/BankiImg/BankImgItemSlide/BankImgItemSlide';
-import { nanoid } from 'nanoid';
+import { BankT } from '@/models/Banks/banks';
+import Slider from '@/components/Slider/Slider';
 
 type Props = {
-  data: StaticImageData[];
+  data: BankT[];
 };
 
 const SliderBanksCons = ({ data }: Props) => {
-  const sliderRef = useRef(null);
-  const [slideItems, setSlideItems] = useState([<div key={nanoid()}></div>]);
+  const slides = useMemo(() => {
+    return data.map((el, index) => (
+      {
+        link: '/banks/' + el.id,
+        node: <BankImgItemSlide img={el.logo} key={el.id} />
+      }
 
-  useEffect(() => {
-    const slides = data.map((el, index) => (
-      <SwiperSlide style={{ zIndex: '-1' }} key={index}>
-        <BankImgItemSlide img={el} />
-      </SwiperSlide>
     ));
-    setSlideItems(slides);
-  }, []);
-
-  const handleNext = () => {
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slideNext();
-  };
+  }, [data])
 
   return (
     <div className={s.slider}>
-      <Swiper
-        id='swiperBanksCons'
-        ref={sliderRef}
-        spaceBetween={5}
-        slidesPerView={6}
-        loop={true}
-        style={{ zIndex: '-1' }}
-      >
-        {slideItems}
-      </Swiper>
-
-      <Image src={arr_r} className={s.arr} alt={'стрелка вправо'} onClick={handleNext} />
+      <Slider
+        data={slides}
+        infinite={false}
+        leftArr={true}
+        rightArr={true}
+        responsive={{
+          "320": 2,
+          "480": 3,
+          "640": 3,
+          "768": 4,
+          "1500": 5
+        }}
+      />
     </div>
   );
 };

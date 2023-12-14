@@ -52,6 +52,7 @@ const Feedback = ({ title, sub, chois, category }: Props) => {
   }
 
   useEffect(() => {
+    fetchReviewsCategories()
     return () => {
       dispatch(resetReviews())
       dispatch(resetCategories())
@@ -65,11 +66,6 @@ const Feedback = ({ title, sub, chois, category }: Props) => {
 
   }, [currentChoise])
 
-  useEffect(() => {
-    if ((chois && chois.length > 0) || category) {
-      fetchReviewsCategories()
-    }
-  }, [chois, category])
 
   useEffect(() => {
     if (categories && !category) {

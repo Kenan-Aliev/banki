@@ -1,4 +1,4 @@
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = (phase, { defaultConfig }) => {
@@ -10,7 +10,13 @@ const nextConfig = (phase, { defaultConfig }) => {
         NEXT_PUBLIC_API_URL: 'http://83.220.174.249:5345',
       },
       images: {
-        domains: ['83.220.174.249', '127.0.0.1','api.vsebanki.kg','82.97.240.53'],
+        domains: [
+          '83.220.174.249',
+          '127.0.0.1',
+          'api.vsebanki.kg',
+          '82.97.240.53',
+          'btbonline.baitushum.kg',
+        ],
         remotePatterns: [
           {
             protocol: 'https',
@@ -18,7 +24,7 @@ const nextConfig = (phase, { defaultConfig }) => {
           },
         ],
       },
-    }
+    };
   }
 
   return {
@@ -31,7 +37,7 @@ const nextConfig = (phase, { defaultConfig }) => {
     images: {
       domains: ['83.220.174.249', '127.0.0.1'],
     },
-  }
-}
+  };
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

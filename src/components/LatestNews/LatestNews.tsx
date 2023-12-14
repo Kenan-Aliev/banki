@@ -23,7 +23,11 @@ const mockFilterItems: ChoicesInterface[] = [
   { name: 'Обезопасить', active: false },
 ];
 
-const LatestNews = () => {
+interface Props {
+  category?: string
+}
+
+const LatestNews = ({ category }: Props) => {
   const news = useAppSelector(selectNews)
   const getNewsStatus = useAppSelector(selectGetNewsStatus)
   const newsCategories = useAppSelector(selectNewsCategories)
@@ -54,23 +58,32 @@ const LatestNews = () => {
   }, [currentChoise])
 
   useEffect(() => {
-    if (newsCategories && newsCategories.length > 0) {
+    if ((newsCategories && newsCategories.length > 0) && !category) {
       setCurrentChoise(newsCategories[1].id)
     }
+    else if (newsCategories && newsCategories.length > 0 && category) {
+      const c = newsCategories.find((cat) => cat.title.includes(category))
+      setCurrentChoise(c.id)
+    }
   }, [newsCategories])
+
+
 
   return (
     <div className={s.news}>
       <div className={s.title}>
         Свежие <span>новости</span>
       </div>
-      <div className={s.choises_cont}>
-        <ChoiseItemsMap
-          currentChoise={currentChoise}
-          setActive={setCurrentChoise}
-          choiseItems={items}
-        />
-      </div>
+      {!category &&
+        <div className={s.choises_cont}>
+          <ChoiseItemsMap
+            currentChoise={currentChoise}
+            setActive={setCurrentChoise}
+            choiseItems={items}
+          />
+        </div>
+      }
+
       {
         getNewsStatus === 'loading'
           ? <Loading />

@@ -2,11 +2,14 @@ import React from 'react';
 import ConsumerCreditsPage from '@/screens/ConsumerCreditsPage/ConsumerCreditsPage';
 import { Metadata } from 'next';
 import data from '@/core/data/index';
+import BanksApi from '@/core/services/Banks';
 
 export const metadata: Metadata = {
   title: 'Потребительские кредиты',
 };
 
 export default async function ConsumerCredits() {
-  return <ConsumerCreditsPage staticData={data.ConsumerCredits} />;
+  const banks = (await BanksApi.getBanks({ offset: 0, limit: 50, type: 'bank' })).data.results
+
+  return <ConsumerCreditsPage staticData={data.ConsumerCredits} sliderBanks={banks}/>;
 }

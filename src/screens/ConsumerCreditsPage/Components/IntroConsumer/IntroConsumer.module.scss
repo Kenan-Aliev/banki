@@ -1,12 +1,13 @@
 .intro {
-  height: 415px;
   width: 100%;
   border-radius: 14px;
-  border: 1px solid #D9DBDF;
-  background: #FFF;
-  background-image: url("../../../../assets/icons/consumer_cr_back.png");
+  border: 1px solid #d9dbdf;
+  background: #fff;
+  background-image: url('../../../../assets/icons/consumer_cr_back.png');
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: right bottom;
+  background-size: auto 85%;
+  padding: 20px 0;
 
   .info_cont {
     margin-top: 2rem;
@@ -15,7 +16,7 @@
     .breadCrumbs {
       mark {
         background: transparent;
-        color: #B4B4B4;
+        color: #b4b4b4;
       }
 
       color: #121212;
@@ -44,14 +45,47 @@
       font-weight: 400;
       line-height: normal;
 
-
       mark {
         background: transparent;
-        color: #4DA7FF;
+        color: #4da7ff;
+      }
+    }
+
+    .calculate {
+      padding: 26px 23px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 2rem;
+      height: 190px;
+      width: 620px;
+      border-radius: 14px;
+      border: 1px solid #4da7ff;
+      background: rgba(217, 231, 250, 0.4);
+      backdrop-filter: blur(10px);
+
+      .btnChange {
+        border-radius: 7px;
+        border: 1px solid #e0eaff;
+        background: #fff;
+        display: flex;
+        width: 173px;
+        height: 60px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        color: #121212;
+        leading-trim: both;
+        text-edge: cap;
+        font-family: Raleway;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        cursor: pointer;
+        line-height: 86.4%; /* 17.28px */
       }
     }
   }
-
 }
 @media (max-width: 480px) {
   .intro {
@@ -61,15 +95,15 @@
 
     .info_cont {
       margin: 0;
-     button{
-       margin-right: auto !important;
-       margin-left: auto !important;
-     }
-      .title{
+      button {
+        margin-right: auto !important;
+        margin-left: auto !important;
+      }
+      .title {
         font-size: 20px;
         text-align: center;
       }
-      .breadCrumbs{
+      .breadCrumbs {
         text-align: center;
       }
       p {
@@ -92,13 +126,11 @@
           backdrop-filter: none;
           input {
             width: 100% !important;
-
           }
 
           div {
             width: 20% !important;
           }
-
         }
 
         button {
@@ -106,6 +138,5 @@
         }
       }
     }
-
   }
 }

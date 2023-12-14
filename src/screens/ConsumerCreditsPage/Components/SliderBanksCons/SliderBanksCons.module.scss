@@ -4,18 +4,11 @@
   justify-content: space-between;
   align-items: center;
 }
-.arr {
-  cursor: pointer;
-}
 
 @media (max-width: 480px) {
   .slider {
     width: 100%;
     gap: 5px;
     overflow: auto;
-
-    .arr {
-      display: none;
-    }
   }
 }

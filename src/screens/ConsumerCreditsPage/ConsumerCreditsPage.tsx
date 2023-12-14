@@ -15,6 +15,7 @@ import CreditBankList from '@/components/credits/CreditBankList';
 import CreditOfferList from '@/components/credits/CreditOfferList';
 import CreditTopBankList from '@/components/credits/CreditTopBankList';
 import { creditsData } from '@/core/data/credits/all-credits';
+import { BankT } from '@/models/Banks/banks';
 
 export type oneOfferConsumerCreditsT = {
   bank_name: string;
@@ -39,23 +40,27 @@ type ItemT = {
 
 interface ConsumerCreditsPageProps {
   staticData: {
-    sliderBanks: StaticImageData[];
     catalogData: catalogT[];
     questData: ItemT[];
     creditsAll: oneOfferConsumerCreditsT[];
   };
+  sliderBanks: BankT[];
+
 }
 
 const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
-  const { staticData } = props;
+  const { staticData, sliderBanks } = props;
 
   const consumerCredits = staticData.creditsAll.filter((credit) => credit.type === 'Потребительский');
 
   return (
     <PageWrapper>
       <IntroConsumer />
-      <Bonus />
-      <SliderBanksCons data={staticData.sliderBanks} />
+      <Bonus title='Акция «Воплоти мечту!'
+        text='Оформите кредит до 500 000 сомов и дайте волю своему воображению. Приобретайте то, что так давно откладывали!'
+        img='https://btbonline.baitushum.kg/static_django/landing/images/BTB-NEW-LOGO.png'
+      />
+      <SliderBanksCons data={sliderBanks} />
       <CreditBankList
         credits={consumerCredits}
         isSelect={true}
@@ -65,10 +70,10 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
       />
       <CreditOfferList credits={[]} />
       <CatalogItems title={'Каталог кредитов'} items={staticData.catalogData} />
-      <LatestNews />
+      <LatestNews category='Занять' />
       <Mailing />
       <Communicate />
-      <Feedback title={'Отзывы '} sub={'о кредитах'} />
+      <Feedback title={'Отзывы '} sub={'о кредитах'} category='Кредиты' />
       <CreditTopBankList credits={creditsData} />
       <FrequentQuestions title={'Важные вопросы'} items={staticData.questData} />
     </PageWrapper>
