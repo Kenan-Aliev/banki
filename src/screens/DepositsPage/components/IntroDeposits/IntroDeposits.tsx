@@ -78,7 +78,7 @@ const IntroDeposits = (props: Props) => {
             }}
           >
             <CustomWhiteSelectTitle2
-              value={filterData.bank_id}
+              value={filterData.bank_id ?? []}
               items={banks}
               multiple={true}
               isAllExist={false}

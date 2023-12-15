@@ -1,37 +1,40 @@
 export interface CreditItemT {
-  id?: number;
-  bank_name: string;
-  name: string;
-  type: string;
-  min_procent: number;
-  max_procent: number;
-  min_amount: number;
-  max_amount: number;
-  timeframe_min: number;
-  timeframe_max: number;
+  id: number
+  rating: {
+    min: number
+    max: number
+  }
+  bank: number
+  bank_title: string
+  bank_logo: string
+  specialInterestRate: boolean
+  currency: string
+  loanName: string
+  loanType: string
+  offerOfTheMonth: boolean
+  collateralFree: boolean
+  noDocumentsRequired: boolean
+  specialOffer: boolean
+  loan_amount: {
+    min: number
+    max: number
+  }
+  loan_term: {
+    min: number
+    max: number
+  }
+  without_reference: boolean
+  link: string
+  pakege?: string
+  security?: string
+  specialOfferText?: string
+  description?: string
 }
 
 export interface CreditsResponseT {
-  cards: CreditItemType[];
-  result: boolean;
-  len: number;
+  count: number
+  next: string | null
+  previous: string | null
+  results: CreditItemT[];
 }
 
-export type CreditItemType = {
-  id: number;
-  bank_id: number;
-  min_amount: number;
-  rate: number;
-  timeframe_max: number;
-  description: string;
-  type: string;
-  max_amount: number;
-  timeframe_min: number;
-  name: string;
-  rating: number;
-};
-
-export interface CreditResponseT {
-  card: CreditItemType;
-  result: boolean;
-}

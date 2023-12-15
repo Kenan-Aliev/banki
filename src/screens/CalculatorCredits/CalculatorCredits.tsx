@@ -5,6 +5,7 @@ import IntroCalculate from '@/screens/CalculatorCredits/components/IntroCalculat
 import Feedback from '@/components/FeedBacks/Feedback/Feedback';
 import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions';
 import CreditBankList from '@/components/credits/CreditBankList';
+import { getCreditsI } from '@/models/Services';
 
 type ItemT = {
   title: string;
@@ -19,17 +20,28 @@ interface CalculatorCreditsProps {
 
 const CalculatorCredits = (props: CalculatorCreditsProps) => {
   const { staticData, allOffers } = props;
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   return (
     <PageWrapper>
       <IntroCalculate />
       <CreditBankList
-        credits={allOffers}
-        isSelect={true}
-        sub={' предложений'}
-        title={allOffers.length}
-        options={['По процентной ставке', 'По максимальной сумме', 'По максимальному сроку']}
+        options={[
+          {
+            text: 'По процентной ставке',
+            value: ''
+          },
+          {
+            text: 'По максимальной сумме',
+            value: ''
+          },
+          {
+            text: 'По максимальному сроку',
+            value: ''
+          }
+        ]}
+        filterData={{} as getCreditsI}
+        handleChangeFilter={() => { }}
       />
       <Feedback title={'Отзывы'} sub={' о кредитах'} />
       <FrequentQuestions title={'Важная информация'} items={staticData.questData} />

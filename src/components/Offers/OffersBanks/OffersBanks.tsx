@@ -11,7 +11,7 @@ import Loading from '@/app/loading';
 import { getDepositsI } from '@/models/Services';
 import CustomSelect2 from '@/UI/CustomSelect2/CustomSelect2';
 import { DepositItemT } from '@/models/Deposit/Deposit';
-import ExpandedDeposits from '../ExpandedOffers/ExpandedOffers';
+import ExpandedDeposits from '../ExpandedDepositOffers';
 
 interface OfferBanksProps {
   options: {
@@ -80,7 +80,7 @@ const OffersBanks = (props: OfferBanksProps) => {
               const isExpanded = expandedBankIds.includes(bank_id);
               return (
                 <>
-                  <li key={item.deposit_id}>
+                  <li key={deposit_id}>
                     <DepositOfferItem
                       item={item}
                       activeCurrency={filterData.currency}

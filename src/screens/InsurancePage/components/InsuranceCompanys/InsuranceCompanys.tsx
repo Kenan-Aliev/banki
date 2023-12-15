@@ -31,7 +31,7 @@ const InsuranceCompanys = ({ data, title, isTitle, searchItems }: Props) => {
         filteredArr={[]}
         onChange={handleChangeSearchValue}
       />
-      <SliderBanksCons data={data} />
+      <SliderBanksCons data={[]} />
     </div>
   );
 };

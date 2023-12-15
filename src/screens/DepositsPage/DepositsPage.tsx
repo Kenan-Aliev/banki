@@ -36,14 +36,6 @@ const DepositsPage = () => {
     offset: 0,
     ordering: 'interest_rate',
     currency: 'kgs',
-    term_range: '',
-    bank_id: [],
-    amount_range: 0,
-    withdrawal_option: false,
-    replenishment_option: false,
-    monthly_interest_payment: false,
-    capitalization: false,
-    deposit_type: ''
   })
   const monthOffers = useAppSelector(selectMonthOffers)
   const specialOffers = useAppSelector(selectSpecialOffers)
@@ -74,16 +66,8 @@ const DepositsPage = () => {
     setFilterData({
       limit: 10,
       offset: 0,
-      ordering: filterData.ordering,
-      currency: filterData.currency,
-      bank_id: [],
-      term_range: '',
-      amount_range: 0,
-      deposit_type: '',
-      withdrawal_option: false,
-      replenishment_option: false,
-      monthly_interest_payment: false,
-      capitalization: false
+      ordering: 'interest_rate',
+      currency: 'kgs',
     })
   }
 
@@ -120,7 +104,7 @@ const DepositsPage = () => {
   useEffect(() => {
     const filter = {
       ...filterData,
-      bank_id: typeof filterData.bank_id !== 'string' && filterData.bank_id.length > 0 ? filterData.bank_id.join() : ''
+      bank_id: filterData.bank_id && typeof filterData.bank_id !== 'string' && filterData.bank_id.length > 0 ? filterData.bank_id.join() : ''
     }
     fetchDeposits(filter)
   }, [filterData])

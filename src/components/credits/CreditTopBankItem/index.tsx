@@ -8,14 +8,14 @@ interface CreditTopBankItemProps {
 
 const CreditTopBankItem = (props: CreditTopBankItemProps) => {
   const {
-    item: { name, min_amount, max_amount, timeframe_min, timeframe_max },
+    item: { loanName, loan_amount, loan_term },
   } = props;
 
   return (
     <div className={s.item}>
       <div className={s.title}>
         {/* TODO bank name instead deposit name*/}
-        <div>{name}</div>
+        <div>{loanName}</div>
         <span>{'description'}</span>
       </div>
       <div className={s.info}>
@@ -25,13 +25,13 @@ const CreditTopBankItem = (props: CreditTopBankItemProps) => {
       <div className={s.info}>
         <div>Срок</div>
         <span>
-          {timeframe_min} - {timeframe_max} дней
+          {loan_term.min} - {loan_term.max} мес.
         </span>
       </div>
       <div className={s.info}>
         <div>Сумма</div>
         <span>
-          {min_amount} — {max_amount} ₽
+          {loan_amount.min} — {loan_amount.max} ₽
         </span>
       </div>
     </div>

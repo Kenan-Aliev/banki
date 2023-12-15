@@ -12,6 +12,7 @@ import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions'
 import HaveQues from '@/components/HaveQues/HaveQues';
 import { creditsData } from '@/core/data/credits/all-credits';
 import CreditBankList from '@/components/credits/CreditBankList';
+import { getCreditsI } from '@/models/Services';
 
 const PaymentBusiness = () => {
   const credits = creditsData.filter((el) => el.type.toLowerCase() === 'бизнес');
@@ -25,7 +26,23 @@ const PaymentBusiness = () => {
         text={'Полгода со скидкой 50% на пакет услуг “Самое важное” и “Все включено” для новых клиентов'}
         height={166}
       />
-      <CreditBankList credits={credits} sub={' предложений'} title={credits.length} />
+      <CreditBankList
+        options={[
+          {
+            text: 'По процентной ставке',
+            value: ''
+          },
+          {
+            text: 'По максимальной сумме',
+            value: ''
+          },
+          {
+            text: 'По максимальному сроку',
+            value: ''
+          }
+        ]}
+        filterData={{} as getCreditsI}
+        handleChangeFilter={() => { }} />
 
       {/* <OffersBanks isSelect={false} options={['']} sub={''} title={''} deposits={credits} /> */}
       <OffersInvest items={data.PaymentBusinessPage.offersMoth} />

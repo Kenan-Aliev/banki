@@ -14,7 +14,7 @@ interface WebLoanItemProps {
 
 const WebLoanItem = (props: WebLoanItemProps) => {
   const {
-    item: { name, min_amount, max_amount, timeframe_min, timeframe_max },
+    item: { loanName, loan_amount, loan_term},
   } = props;
 
   return (
@@ -22,7 +22,7 @@ const WebLoanItem = (props: WebLoanItemProps) => {
       <div className={s.header}>
         <Image alt={''} src={sq} />
         <div className={s.info}>
-          <div className={s.title}>{name}</div>
+          <div className={s.title}>{loanName}</div>
           <div className={s.sub}>{'description'}</div>
           <div className={s.star}>
             <Image alt={'star'} src={star} />
@@ -35,13 +35,13 @@ const WebLoanItem = (props: WebLoanItemProps) => {
         <div>
           <span>Сумма</span>
           <span>
-            {min_amount} - {max_amount} ₽
+            {loan_amount?.min} - {loan_amount?.max} ₽
           </span>
         </div>
         <div>
           <span>Срок</span>
           <span>
-            {timeframe_min} - {timeframe_max} день
+            {loan_term?.min} - {loan_term?.max} день
           </span>
         </div>
         <div>

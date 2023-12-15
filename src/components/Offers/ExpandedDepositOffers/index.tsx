@@ -1,6 +1,7 @@
 import React from 'react';
 import { DepositItemT } from '@/models/Deposit/Deposit';
 import DepositOfferItem from '@/components/Deposit/DepositOfferItem/DepositOfferItem';
+import { Stack } from '@mui/material';
 
 const ExpandedDeposits = ({
 	bankId,
@@ -15,13 +16,11 @@ const ExpandedDeposits = ({
 }) => {
 	const filteredDeposits = deposits.filter((item) => item.bank_id === bankId && item.deposit_id !== primaryDepositId);
 	return (
-		<ul>
+		<Stack spacing={1}>
 			{filteredDeposits.map((deposit) => (
-				<li key={deposit.deposit_id}>
-					<DepositOfferItem item={deposit} activeCurrency={activeCurrency} />
-				</li>
+				<DepositOfferItem item={deposit} activeCurrency={activeCurrency} key={deposit.deposit_id} />
 			))}
-		</ul>
+		</Stack>
 
 	);
 };

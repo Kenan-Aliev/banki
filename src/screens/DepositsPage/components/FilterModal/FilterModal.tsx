@@ -114,8 +114,8 @@ function FilterModal({ handleClose, open, filter, handleChangeFilter, banks,
 							<CustomWhiteSelectTitle2
 								items={banks}
 								multiple={true}
-								defaultValue={filter.bank_id}
-								value={filter.bank_id}
+								defaultValue={filter.bank_id ?? []}
+								value={filter.bank_id ?? []}
 								isAllExist={false}
 								name='bank_id'
 								prop='bank_id'

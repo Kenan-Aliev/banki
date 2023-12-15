@@ -137,4 +137,19 @@ export interface getReviewsCategoriesData {
     offset: number
 }
 
+
+export interface getCreditsI {
+    max_rating?: string
+    min_rating?: string
+    offerOfTheMonth?: boolean
+    bank?: string | string[]
+    specialOffer?: boolean
+    summa?: number
+    credit?: string // срок кредита
+    search?: string
+    ordering?: string
+    limit: number
+    offset: number
+}
+
 export type RequestStatus = 'initial' | 'loading' | 'success' | 'error'

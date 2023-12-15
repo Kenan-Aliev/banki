@@ -49,19 +49,36 @@ const data = {
 		"additional_fields": []
 	},
 	creditItem: {
-		"max_amount": 0,
-		"id": 0,
-		"timeframe_min": 0,
-		"name": "string",
-		"min_amount": 0,
-		"rate": 0,
-		"timeframe_max": 0,
-		"bank_name": "Bank",
-		"description": "string",
-		"rating": 0,
-		type: "type",
-		min_procent: 0,
-		max_procent: 0,
+		"id": 26,
+		"rating": {
+			"min": 26,
+			"max": 29.02
+		},
+		"bank": 4,
+		"bank_title": "ОАО «Оптима Банк»",
+		"bank_logo": "/media/products/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0_%D0%B1%D0%B0%D0%BD%D0%BA.png",
+		"specialInterestRate": null,
+		"currency": "KGS",
+		"loanName": "ТЕЗ кредит",
+		"loanType": "Потребительский",
+		"offerOfTheMonth": false,
+		"collateralFree": true,
+		"noDocumentsRequired": true,
+		"description": "",
+		"specialOffer": false,
+		"specialOfferText": null,
+		"loan_amount": {
+			"min": 3000,
+			"max": 250000
+		},
+		"loan_term": {
+			"min": 2,
+			"max": 24
+		},
+		"pakege": "",
+		"security": "",
+		"without_reference": true,
+		"link": "https://www.optimabank.kg/index.php?option=com_content&view=article&id=3773&Itemid=140&lang=ru"
 	},
 	cardItem: {
 		id: 0,

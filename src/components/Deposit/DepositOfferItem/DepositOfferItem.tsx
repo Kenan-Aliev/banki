@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React, { useState } from 'react';
 import s from './DepositOfferItem.module.scss';
 import Image from 'next/image';
@@ -11,7 +10,6 @@ import Application from '@/components/Application/Application';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { currencies } from '@/core/data/currency';
-import { Box } from '@mui/material';
 import { baseUrl } from '@/core/const/baseUrl';
 
 interface DepositOfferItemProps {

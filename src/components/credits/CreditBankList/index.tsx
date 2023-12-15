@@ -2,131 +2,119 @@
 
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import s from './index.module.scss';
-import CustomSelect from '@/UI/CustomSelect/CustomSelect';
 import lines from '@/assets/icons/banki_icon/3-line.svg';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-// import CreditBankItem from '@/components/credits/CreditBankItem';
-import { oneOfferConsumerCreditsT } from '@/screens/ConsumerCreditsPage/ConsumerCreditsPage';
-import { nanoid } from 'nanoid';
-import ItemAndChildren from '../ItemAndChildren';
+import CustomSelect2 from '@/UI/CustomSelect2/CustomSelect2';
+import { getCreditsI } from '@/models/Services';
+import { useAppSelector } from '@/hooks/redux';
+import { selectCredits, selectGetCreditsStatus } from '@/core/store/credits/credits-selectors';
+import { CreditItemT } from '@/models/Credits/Credits';
+import Loading from '@/app/loading';
+import CreditBankItem from '../CreditBankItem';
+import ExpandedCredits from '@/components/Offers/ExpandedCreditOffers';
 
 interface CreditBankListProps {
-  credits: oneOfferConsumerCreditsT[];
-  title: string | number;
-  sub: string;
-  options?: string[];
-  isSelect?: boolean;
+  options?: {
+    text: string
+    value: string | number
+  }[];
+  filterData: getCreditsI
+  handleChangeFilter: (prop: string, value: any) => void
 }
 
 const CreditBankList = (props: CreditBankListProps) => {
-  const { credits, options, title, sub, isSelect } = props;
-  const [loansLength, setLoansLenth] = useState([]);
-  const titleScroll = useRef<HTMLUListElement>(null);
-  const [sortValue, setSortValue] = useState('По процентной ставке');
+  const { options, filterData, handleChangeFilter } = props;
+  const { results: credits, count } = useAppSelector(selectCredits)
+  const getCreditsStatus = useAppSelector(selectGetCreditsStatus)
 
-  const loansCurtailedByBanks = useMemo(() => {
-    const _loansCurtailedByBanks = credits.reduce((arr, el) => {
-      const avilable = arr.find((bank) => bank[0].bank_name === el.bank_name);
-      if (avilable) {
-        avilable.push(el);
-      } else {
-        const nevArr = [el];
-        arr.push(nevArr);
-      }
-      return arr;
-    }, []);
+  const [expandedBankIds, setExpandedBankIds] = useState<number[]>([]);
+  const [bankIdCounts, setBankIdCounts] = useState<{ [key: number]: number }>({});
 
-    _loansCurtailedByBanks.map((el) => {
-      return el.map((elem) => {
-        return { ...elem, length: el.length };
-      });
+  useEffect(() => {
+    const countIds: { [key: number]: number } = {};
+
+    credits?.forEach((item) => {
+      countIds[item.bank] = countIds[item.bank] ? countIds[item.bank] + 1 : 1;
     });
 
-    return _loansCurtailedByBanks;
+    setBankIdCounts(countIds);
   }, [credits]);
 
-  const leaderBanks = useMemo(() => {
-    const _leaderBanks = loansCurtailedByBanks.reduce((arr, el) => {
-      arr.push(el[0]);
-      return arr;
-    }, []);
-
-    return _leaderBanks;
-  }, [loansCurtailedByBanks]);
-
-  useEffect(() => {
-    if (!leaderBanks) return;
-    setLoansLenth(leaderBanks.slice(0, 4));
-  }, []);
-
-  const handleClick = () => {
-    titleScroll.current.scrollIntoView({
-      behavior: 'smooth',
-    });
-    setLoansLenth((prevState) => (prevState.length === 4 ? leaderBanks : leaderBanks.slice(0, 4)));
-  };
-
-  const sortOffers = (e: React.MouseEvent<HTMLSelectElement, MouseEvent>) => {
-    if (sortValue === e.currentTarget.value) return;
-    setSortValue(e.currentTarget.value);
-  };
-
-  function sortOffer(criterion: 'max_procent' | 'max_amount' | 'timeframe_max') {
-    loansCurtailedByBanks.map((bankOf: oneOfferConsumerCreditsT[]) => {
-      return bankOf.sort((x, y) => {
-        return y[criterion] - x[criterion];
-      });
-    });
-
-    leaderBanks.sort((x, y) => {
-      return y[criterion] - x[criterion];
-    });
-
-    setLoansLenth(leaderBanks.slice(0, 4));
-  }
-
-  useEffect(() => {
-    if (sortValue === '') return;
-    switch (sortValue) {
-      case 'По процентной ставке':
-        sortOffer('max_procent');
-        break;
-      case 'По максимальной сумме':
-        sortOffer('max_amount');
-        break;
-      case 'По максимальному сроку':
-        sortOffer('timeframe_max');
-        break;
+  const handleOpenChildren = (bankId: number) => {
+    if (expandedBankIds.includes(bankId)) {
+      setExpandedBankIds(expandedBankIds.filter((id) => id !== bankId));
+    } else {
+      setExpandedBankIds([...expandedBankIds, bankId]);
     }
-  }, [sortValue]);
+  };
+
+  const uniqueCredits: CreditItemT[] = [];
+  const addedBankIds: number[] = [];
+
+
+  credits?.forEach((item) => {
+    if (!addedBankIds.includes(item.bank)) {
+      uniqueCredits.push(item);
+      addedBankIds.push(item.bank);
+    }
+  });
+
 
   return (
     <div className={s.deposits}>
       <div className={s.title}>
         <span>
-          <mark>{title}</mark>
-          {sub}
+          <mark>{count ?? 0} кредитов {" "}</mark>
+          подобрано
         </span>
-        {isSelect && <CustomSelect img={lines} options={options} handleSort={(e) => sortOffers(e)} />}
+        <CustomSelect2
+          img={lines}
+          options={options}
+          handleChange={handleChangeFilter}
+          prop={'ordering'}
+        />
       </div>
-      <ul className={s.deposit_offers} ref={titleScroll}>
-        {loansLength.map((item) => {
-          const arrChildren = loansCurtailedByBanks.find(
-            (el: oneOfferConsumerCreditsT[]) => el[0].bank_name === item.bank_name,
-          );
-
-          return (
-            <li key={nanoid()}>
-              <ItemAndChildren item={item} arr={arrChildren} />
-            </li>
-          );
-        })}
+      <ul className={s.deposit_offers}>
+        {
+          getCreditsStatus === 'loading' ?
+            <Loading />
+            : uniqueCredits?.map((item) => {
+              const { id, bank } = item
+              const isExpanded = expandedBankIds.includes(bank)
+              return (
+                <>
+                  <li key={id}>
+                    <CreditBankItem
+                      item={item}
+                      child={isExpanded}
+                      count={bankIdCounts[bank] - 1}
+                      openChildren={handleOpenChildren}
+                    />
+                  </li>
+                  {
+                    isExpanded && (
+                      <ExpandedCredits
+                        bankId={bank}
+                        credits={credits}
+                        primaryCreditId={id}
+                      />
+                    )
+                  }
+                </>
+              )
+            })
+        }
       </ul>
-      <div className={s.btn_cont}>
-        <BlueBtn text={'Смотреть все'} width={235} onClick={() => handleClick()} />
-      </div>
+      {count && count > filterData.offset + filterData.limit
+        ?
+        <div className={s.btn_cont}>
+          <BlueBtn text={'Показать еще'} width={235}
+            onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
+          />
+        </div>
+        : null}
     </div>
   );
 };
 
-export default React.memo(CreditBankList);
+export default CreditBankList;

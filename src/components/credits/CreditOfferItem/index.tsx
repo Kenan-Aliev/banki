@@ -10,7 +10,7 @@ interface CreditOfferItemProps {
 
 const CreditOfferItem = (props: CreditOfferItemProps) => {
   const {
-    item: { name, max_amount },
+    item: { loanName, loan_amount },
   } = props;
 
   return (
@@ -18,7 +18,7 @@ const CreditOfferItem = (props: CreditOfferItemProps) => {
       <div className={s.inf}>
         <Image alt={'icon'} src={mockBankIcon} />
         <div className={s.info}>
-          <div className={s.name}>{name}</div>
+          <div className={s.name}>{loanName}</div>
           <div className={s.subtitle}>{''}</div>
         </div>
       </div>
@@ -30,7 +30,7 @@ const CreditOfferItem = (props: CreditOfferItemProps) => {
         </div>
         <div className={s.years}>
           <div className={s.title}>Годовых</div>
-          <span>до {(max_amount + (max_amount / 100) * 10) / 1000000} млн ₽</span>
+          <span>до {(loan_amount.max + (loan_amount.max / 100) * 10) / 1000000} млн ₽</span>
         </div>
       </div>
     </div>

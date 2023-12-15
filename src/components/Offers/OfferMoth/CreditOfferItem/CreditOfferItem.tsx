@@ -10,7 +10,7 @@ interface OfferItemProps {
 
 const CreditOfferItem = (props: OfferItemProps) => {
 	const {
-		item: { bank_name, name, min_procent, max_procent, timeframe_min, timeframe_max, max_amount, min_amount },
+		item,
 	} = props;
 
 	return (

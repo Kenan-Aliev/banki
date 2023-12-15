@@ -10,11 +10,31 @@ import cust from '@/assets/icons/Tuning_icon.svg';
 import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
 import { Stack } from '@mui/material';
 import Filters from '../Filters/Filters';
+import { getCreditsI } from '@/models/Services';
+import { BankT } from '@/models/Banks/banks';
+import { useAppSelector } from '@/hooks/redux';
+import { selectCredits } from '@/core/store/credits/credits-selectors';
 
 
-const IntroConsumer = () => {
+interface Props {
+  banks: BankT[]
+  handleChangeFilter: (prop: string, value: any) => void
+  filterData: getCreditsI
+  handleScrollToCredits: () => void
+  cleanFilter: () => void
+}
+
+const IntroConsumer = (props: Props) => {
+  const { cleanFilter, filterData, handleChangeFilter, handleScrollToCredits, banks } = props
+
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false)
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+
+  const creditsCount = useAppSelector(selectCredits)?.count
+  const banksData = banks.map((bank) => ({
+    text: bank.name,
+    value: bank.id
+  }))
 
   const handleChangeApplicationModal = () => {
     setIsApplicationModalOpen(!isApplicationModalOpen)
@@ -32,7 +52,16 @@ const IntroConsumer = () => {
         productId={0}
         productType='credit' />
 
-      <Filters open={isFilterModalOpen} handleClose={handleChangeFilterModal} />
+      <Filters
+        open={isFilterModalOpen}
+        handleClose={handleChangeFilterModal}
+        filter={filterData}
+        handleChangeFilter={handleChangeFilter}
+        banks={banksData}
+        count={creditsCount}
+        handleScrollToCredits={handleScrollToCredits}
+        cleanFilter={cleanFilter}
+      />
       <div className={s.info_cont}>
         <div className={s.breadCrumbs}>
           Главная / Кредиты / <mark>Потребительские кредиты</mark>
@@ -52,9 +81,11 @@ const IntroConsumer = () => {
         <div className={s.calculate}>
           <MoneySelect
             width={385}
-            amount={0}
+            amount={filterData.summa}
             currency={''}
-            handleChange={() => { }}
+            handleChange={handleChangeFilter}
+            currencyProp=''
+            moneyProp='summa'
             title='Сумма' />
           <div className={s.btnChange} onClick={handleChangeFilterModal}>
             <Image alt={'иконка настройки'} src={cust} />
@@ -72,20 +103,20 @@ const IntroConsumer = () => {
             }}
           >
             <CustomWhiteSelectTitle2
-              value={0}
-              items={[]}
+              value={filterData.bank ?? []}
+              items={banksData}
               multiple={true}
               isAllExist={false}
-              defaultValue={0}
-              name='bank_id'
-              onChange={() => { }}
-              prop='bank_id'
+              defaultValue={filterData.bank ?? []}
+              name='bank'
+              onChange={handleChangeFilter}
+              prop='bank'
               labelName='Банки'
             />
             <BlueBtn text={'Показать'}
-              count={0}
+              count={creditsCount ?? 0}
               width={173}
-              onClick={() => { }} />
+              onClick={() => handleScrollToCredits()} />
           </Stack>
         </div>
       </div>

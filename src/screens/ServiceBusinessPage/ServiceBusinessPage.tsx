@@ -11,6 +11,7 @@ import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions'
 import CreditBankList from '@/components/credits/CreditBankList';
 import { creditsData } from '@/core/data/credits/all-credits';
 import OffersInvest from '../InvestmentPage/components/OffersInvest/OffersInvest';
+import { getCreditsI } from '@/models/Services';
 
 const ServiceBusinessPage = () => {
   const credits = creditsData.filter((el) => el.type.toLowerCase() === 'бизнес');
@@ -24,7 +25,23 @@ const ServiceBusinessPage = () => {
         height={166}
         text={'Полгода со скидкой 50% на пакет услуг “Самое важное” и “Все включено” для новых клиентов'}
       />
-      <CreditBankList credits={credits} sub={' предложений'} title={credits.length} />
+      <CreditBankList
+        options={[
+          {
+            text: 'По процентной ставке',
+            value: ''
+          },
+          {
+            text: 'По максимальной сумме',
+            value: ''
+          },
+          {
+            text: 'По максимальному сроку',
+            value: ''
+          }
+        ]}
+        filterData={{} as getCreditsI}
+        handleChangeFilter={() => { }} />
 
       <OffersInvest items={data.BusinessServicePage.offersMoth} />
       <Feedback title={'Отзывы '} sub={'об РКО '} />

@@ -15,6 +15,7 @@ import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions'
 // import MortgageOfferList from '@/components/mortgages/MortgageOfferList';
 import CreditBankList from '@/components/credits/CreditBankList';
 import { creditsData } from '@/core/data/credits/all-credits';
+import { getCreditsI } from '@/models/Services';
 
 type creditT = {
   bank_name: string;
@@ -55,11 +56,22 @@ const MortgagePage = (props: MortgagePageProps) => {
       <IntroMortgage setActive={setCurrent} current={current} items={staticData.choices} />
       <Bonus title={'Мастер подбора ипотеки'} />
       <CreditBankList
-        credits={credits}
-        isSelect={true}
-        sub={' предложений'}
-        title={credits.length}
-        options={['По процентной ставке', 'По максимальной сумме', 'По максимальному сроку']}
+        options={[
+          {
+            text: 'По процентной ставке',
+            value: ''
+          },
+          {
+            text: 'По максимальной сумме',
+            value: ''
+          },
+          {
+            text: 'По максимальному сроку',
+            value: ''
+          }
+        ]}
+        filterData={{} as getCreditsI}
+        handleChangeFilter={() => { }}
       />
       <Mailing />
       <Compilations />

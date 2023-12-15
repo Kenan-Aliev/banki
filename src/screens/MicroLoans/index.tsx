@@ -27,7 +27,7 @@ const MicroloansPage = (props: MicroloansPageProps) => {
     <PageWrapper>
       <IntroMicroloans setActive={setCurrent} current={current} items={staticData.chooseIntro} />
       <Bonus title={'0% Первый займ бесплатно!'} />
-      <SliderBanksCons data={staticData.slideItems} />
+      <SliderBanksCons data={[]} />
       <WebLoans credits={staticData.microLoansBanks} />
       <CreditOfferList credits={[]} />
       <BrokerList title={'Микрокредитные организации'} brokers={staticData.microLoansBanks} />

@@ -13,7 +13,7 @@ interface CreditCalculatorBankItemProps {
 
 const CreditCalculatorBankItem = (props: CreditCalculatorBankItemProps) => {
   const {
-    item: { name, min_amount },
+    item: { loanName, loan_amount },
   } = props;
 
   return (
@@ -22,7 +22,7 @@ const CreditCalculatorBankItem = (props: CreditCalculatorBankItemProps) => {
         <div className={s.info}>
           <Image src={mockBankImage} alt={'иконка банка'} />
           <div className={s.name}>
-            <div>{name}</div>
+            <div>{loanName}</div>
             <span>{'description'}</span>
           </div>
           <div className={s.about_b}>
@@ -32,7 +32,7 @@ const CreditCalculatorBankItem = (props: CreditCalculatorBankItemProps) => {
             </div>
             <div className={s.info_item}>
               <div className={s.title}>Платеж</div>
-              <span>от {(min_amount / 100) * 10} ₽</span>
+              <span>от {(loan_amount.min / 100) * 10} ₽</span>
             </div>
           </div>
         </div>

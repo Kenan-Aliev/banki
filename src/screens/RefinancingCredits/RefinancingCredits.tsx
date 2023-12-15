@@ -29,7 +29,7 @@ const RefinancingCredits = ({ data }: Props) => {
   return (
     <PageWrapper>
       <IntroRefinancing />
-      <SliderBanksCons data={data.sliderItems} />
+      <SliderBanksCons data={[]} />
       <OurStrongs />
       <HowItWorks title={'Как работает '} sub={'сервис'} items={data.ourData} />
       <FrequentQuestions title={'Важные вопросы'} items={data.questData} />

@@ -1,15 +1,12 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Box, Button, Typography, Modal, Grid, Stack, FormGroup, Checkbox, FormControlLabel, TextField } from '@mui/material'
+import { Box, Button, Typography, Modal, Grid, FormGroup, Checkbox, FormControlLabel, TextField } from '@mui/material'
 import { TripOrigin, RadioButtonUnchecked } from '@mui/icons-material';
-import dang_i from '@/assets/icons/banki_icon/Danger_i.svg';
-import Image from 'next/image';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
 import { timeframe, depositTypes } from '@/core/data/filters';
-import { getDepositsI } from '@/models/Services';
-import CustomInputTitle from '@/UI/CustomInputTitle/CustomInputTitle';
+import { getCreditsI } from '@/models/Services';
 
 const cleanFilterBtnStyles = {
 	height: "60px",
@@ -39,15 +36,15 @@ const checkboxGridStyles = {
 interface Props {
 	open: boolean
 	handleClose: () => void
-	// filter: getDepositsI
-	// handleChangeFilter: (prop: string, value: any) => void
-	// banks: {
-	// 	text: string
-	// 	value: string | number
-	// }[]
-	// count: number
-	// handleScrollToDeposits: () => void
-	// cleanFilter: () => void
+	filter: getCreditsI
+	handleChangeFilter: (prop: string, value: any) => void
+	banks: {
+		text: string
+		value: string | number
+	}[]
+	count: number
+	handleScrollToCredits: () => void
+	cleanFilter: () => void
 }
 
 const style = {
@@ -67,19 +64,20 @@ const style = {
 };
 
 function Filters(props: Props) {
+	const { banks, cleanFilter, count, filter, handleChangeFilter,
+		handleClose, handleScrollToCredits, open
+	} = props
 
 	const [activeBtn, setActiveBtn] = useState('')
-
-	const { handleClose, open } = props
 
 	const handleChangeActiveBtn = (value: string) => {
 		setActiveBtn(value)
 	}
 
-	// const handleShow = () => {
-	// 	handleScrollToDeposits()
-	// 	handleClose()
-	// }
+	const handleShow = () => {
+		handleScrollToCredits()
+		handleClose()
+	}
 
 	return (
 		<div>
@@ -105,6 +103,8 @@ function Filters(props: Props) {
 							<TextField
 								fullWidth
 								label='Сумма'
+								value={filter.summa}
+								onChange={(e) => handleChangeFilter('summa', e.target.value)}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
@@ -112,27 +112,24 @@ function Filters(props: Props) {
 								items={timeframe}
 								labelName='Срок'
 								isAllExist={true}
-								name='term_range'
-								prop='term_range'
-								onChange={() => { }}
-								defaultValue={0}
-								value={0}
-							// onChange={handleChangeFilter}
-							// defaultValue={filter.term_range}
-							// value={filter.term_range}
+								name='credit'
+								prop='credit'
+								onChange={handleChangeFilter}
+								defaultValue={filter.credit}
+								value={filter.credit}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
 							<CustomWhiteSelectTitle2
-								items={[]}
+								items={banks}
 								multiple={true}
-								defaultValue={0}
-								value={0}
+								defaultValue={filter.bank ?? []}
+								value={filter.bank ?? []}
 								isAllExist={false}
-								name='bank_id'
-								prop='bank_id'
+								name='bank'
+								prop='bank'
 								labelName='Банки'
-								onChange={() => { }}
+								onChange={handleChangeFilter}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
@@ -201,8 +198,8 @@ function Filters(props: Props) {
 						<Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
 							<BlueBtn
 								text='Показать'
-							// count={count}
-							// onClick={handleShow}
+								count={count}
+								onClick={handleShow}
 							/>
 						</Grid>
 
@@ -211,7 +208,7 @@ function Filters(props: Props) {
 								variant='contained'
 								fullWidth
 								sx={cleanFilterBtnStyles}
-							// onClick={cleanFilter}
+								onClick={cleanFilter}
 							>
 								Очистить фильтр
 							</Button>
