@@ -31,6 +31,11 @@ export interface CreditItemT {
   description?: string
 }
 
+export interface CreditType {
+  id: number
+  title: string
+}
+
 export interface CreditsResponseT {
   count: number
   next: string | null

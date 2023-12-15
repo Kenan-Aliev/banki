@@ -147,7 +147,7 @@ const DepositsPage = () => {
       </div>
 
       {/* <PopularOffers setActive={setCurrentOffer} active={currentOffer} data={staticData.PopularOffers} /> */}
-      <OfferMonth offers={monthOffers.results} />
+      <OfferMonth offers={monthOffers.results} category='Вклады' />
       <Mailing />
       <LatestNews />
       <SpecialOffersDeposit deposits={specialOffers.results} />

@@ -58,7 +58,7 @@ const IntroDeposits = (props: Props) => {
         <div className={s.calculate}>
           <MoneySelect
             width={385}
-            amount={filterData.amount_range}
+            amount={filterData.amount_range ?? 0}
             currency={filterData.currency}
             handleChange={handleChangeFilter}
             title='Сумма' />

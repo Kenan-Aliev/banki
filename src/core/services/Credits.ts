@@ -1,5 +1,5 @@
 import instance from '@/core/services/index';
-import { CreditsResponseT } from '@/models/Credits/Credits';
+import { CreditType, CreditsResponseT } from '@/models/Credits/Credits';
 import { getCreditsI } from '@/models/Services';
 
 const CreditsApi = {
@@ -7,6 +7,10 @@ const CreditsApi = {
     return instance.get<CreditsResponseT>('/credit/list/', {
       params
     });
+  },
+
+  getCreditTypes() {
+    return instance.get<CreditType[]>('/credit/type/list/');
   },
 };
 

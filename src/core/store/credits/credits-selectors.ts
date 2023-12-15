@@ -4,4 +4,6 @@ export const selectCredits = (state: RootState) => state.credits.credits.data
 
 export const selectGetCreditsStatus = (state: RootState) => state.credits.credits.status
 
-// export const selectNewsCategories = (state: RootState) => state.news.newsCategories.data
+export const selectCreditTypes = (state: RootState) => state.credits.creditTypes.data
+
+export const selectMonthOffers = (state: RootState) => state.credits.monthOffers.data

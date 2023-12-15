@@ -12,26 +12,15 @@ import Feedback from '@/components/FeedBacks/Feedback/Feedback';
 import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions';
 import { StaticImageData } from 'next/image';
 import CreditBankList from '@/components/credits/CreditBankList';
-import CreditOfferList from '@/components/credits/CreditOfferList';
 import CreditTopBankList from '@/components/credits/CreditTopBankList';
 import { creditsData } from '@/core/data/credits/all-credits';
 import { BankT } from '@/models/Banks/banks';
 import { getCreditsI } from '@/models/Services';
-import { useAppDispatch } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { resetCredits } from '@/core/store/credits/credits-slice';
-import { getCredits } from '@/core/store/credits/credits-actions';
-
-export type oneOfferConsumerCreditsT = {
-  bank_name: string;
-  name: string;
-  type: string;
-  min_procent: number;
-  max_procent: number;
-  min_amount: number;
-  max_amount: number;
-  timeframe_min: number;
-  timeframe_max: number;
-};
+import { getCreditTypes, getCredits, getMonthOffers } from '@/core/store/credits/credits-actions';
+import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
+import { selectMonthOffers } from '@/core/store/credits/credits-selectors';
 
 type catalogT = {
   img: StaticImageData;
@@ -46,13 +35,13 @@ interface ConsumerCreditsPageProps {
   staticData: {
     catalogData: catalogT[];
     questData: ItemT[];
-    creditsAll: oneOfferConsumerCreditsT[];
   };
   sliderBanks: BankT[];
 }
 
 const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
   const { staticData, sliderBanks } = props;
+  const monthOffers = useAppSelector(selectMonthOffers)
 
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
@@ -61,13 +50,8 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
     limit: 10,
     offset: 0,
   })
-  const consumerCredits = staticData.creditsAll.filter((credit) => credit.type === 'Потребительский');
 
-  const handleScrollToCredits = () => {
-    ref.current.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }
+
 
   const handleChangeFilter = (prop: string, value: any) => {
     if (prop === 'offset') {
@@ -79,11 +63,6 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
     }
   }
 
-
-  const fetchCredits = (params: getCreditsI) => {
-    dispatch(getCredits(params))
-  }
-
   const cleanFilter = () => {
     dispatch(resetCredits())
     setFilterData({
@@ -92,10 +71,29 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
     })
   }
 
-  // useEffect(() => {
-  //   fetchMonthOffers()
+  const handleScrollToCredits = () => {
+    ref.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
 
-  // }, [])
+
+  const fetchCredits = (params: getCreditsI) => {
+    dispatch(getCredits(params))
+  }
+
+  const fetchMonthOffers = () => {
+    dispatch(getMonthOffers({ offerOfTheMonth: true, limit: 10, offset: 0 }))
+  }
+
+  const fetchCreditTypes = () => {
+    dispatch(getCreditTypes())
+  }
+
+  useEffect(() => {
+    fetchMonthOffers()
+    fetchCreditTypes()
+  }, [])
 
   useEffect(() => {
     const filter = {
@@ -139,7 +137,7 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
           handleChangeFilter={handleChangeFilter}
         />
       </div>
-      <CreditOfferList credits={[]} />
+      <OfferMonth offers={monthOffers.results} category='Кредиты' />
       <CatalogItems title={'Каталог кредитов'} items={staticData.catalogData} />
       <LatestNews category='Занять' />
       <Mailing />

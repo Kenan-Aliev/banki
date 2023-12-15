@@ -143,7 +143,11 @@ export interface getCreditsI {
     min_rating?: string
     offerOfTheMonth?: boolean
     bank?: string | string[]
+    loanType?: string
     specialOffer?: boolean
+    noDocumentsRequired?: boolean
+    collateralFree?: boolean
+    without_reference?: boolean
     summa?: number
     credit?: string // срок кредита
     search?: string

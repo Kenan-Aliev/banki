@@ -5,8 +5,10 @@ import { Box, Button, Typography, Modal, Grid, FormGroup, Checkbox, FormControlL
 import { TripOrigin, RadioButtonUnchecked } from '@mui/icons-material';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
-import { timeframe, depositTypes } from '@/core/data/filters';
+import { timeframe } from '@/core/data/filters';
 import { getCreditsI } from '@/models/Services';
+import { useAppSelector } from '@/hooks/redux';
+import { selectCreditTypes } from '@/core/store/credits/credits-selectors';
 
 const cleanFilterBtnStyles = {
 	height: "60px",
@@ -68,6 +70,13 @@ function Filters(props: Props) {
 		handleClose, handleScrollToCredits, open
 	} = props
 
+	const creditTypes = useAppSelector(selectCreditTypes)?.map((type) => {
+		return {
+			text: type.title,
+			value: type.id
+		}
+	})
+
 	const [activeBtn, setActiveBtn] = useState('')
 
 	const handleChangeActiveBtn = (value: string) => {
@@ -103,7 +112,7 @@ function Filters(props: Props) {
 							<TextField
 								fullWidth
 								label='Сумма'
-								value={filter.summa}
+								value={filter.summa ?? 0}
 								onChange={(e) => handleChangeFilter('summa', e.target.value)}
 							/>
 						</Grid>
@@ -115,8 +124,8 @@ function Filters(props: Props) {
 								name='credit'
 								prop='credit'
 								onChange={handleChangeFilter}
-								defaultValue={filter.credit}
-								value={filter.credit}
+								defaultValue={filter.credit ?? ''}
+								value={filter.credit ?? ''}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
@@ -134,14 +143,14 @@ function Filters(props: Props) {
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
 							<CustomWhiteSelectTitle2
-								items={depositTypes}
+								items={creditTypes}
 								isAllExist={true}
-								name='deposit_type'
-								prop='deposit_type'
+								name='loanType'
+								prop='loanType'
 								labelName='Тип кредита'
-								onChange={() => { }}
-								defaultValue={0}
-								value={0}
+								onChange={handleChangeFilter}
+								defaultValue={filter.loanType ?? ''}
+								value={filter.loanType ?? ''}
 							/>
 						</Grid>
 					</Grid>
@@ -156,8 +165,8 @@ function Filters(props: Props) {
 										<Checkbox
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
-											checked={false}
-											onChange={() => { }}
+											checked={filter.collateralFree ?? false}
+											onChange={(e) => { handleChangeFilter('collateralFree', e.target.value) }}
 										/>
 									}
 									label="Без залога"
@@ -171,8 +180,8 @@ function Filters(props: Props) {
 										<Checkbox
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
-											checked={false}
-											onChange={() => { }}
+											checked={filter.noDocumentsRequired ?? false}
+											onChange={(e) => { handleChangeFilter('noDocumentsRequired', e.target.value) }}
 										/>
 									}
 									label="Без справок о доходах"
@@ -185,8 +194,8 @@ function Filters(props: Props) {
 										<Checkbox
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
-											checked={false}
-											onChange={() => { }}
+											checked={filter.without_reference ?? false}
+											onChange={(e) => { handleChangeFilter('without_reference', e.target.value) }}
 										/>
 									}
 									label="Без поручительства" />

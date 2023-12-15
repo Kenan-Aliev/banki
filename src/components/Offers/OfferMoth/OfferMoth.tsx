@@ -19,62 +19,63 @@ type ItemT = {
 type OfferMonthProps = {
   choiceItems?: ItemT[];
   offers: any[];
+  category?: string
 };
 
 const OfferMonth = (props: OfferMonthProps) => {
   const [currentChoise, setCurrentChoise] = useState('Вклады');
 
-  const { choiceItems, offers } = props;
+  const { choiceItems, offers, category } = props;
 
 
 
   const slides = useMemo(() => {
-    if (offers && offers.length > 0 && currentChoise && choiceItems && choiceItems.length > 0) {
-      switch (currentChoise) {
-        case "Вклады":
-          return Array(5).fill(0).map((offer, index) => {
-            // const of = { ...offer } as DepositItemT
-            return {
-              node: <DepositOfferItem item={{} as DepositItemT} key={index} />
-            }
-          })
-        case "Кредиты":
-        case "Автокредиты":
-        case "Микрозаймы":
-          return Array(5).fill(0).map((offer, index) => {
-            // const of = { ...offer } as CreditItemT
-            return {
-              node: <CreditOfferItem item={{} as CreditItemT} key={index} />
-            }
-          })
+    if (!offers || offers.length === 0) return;
 
-        case "Дебетовые карты":
-        case "Кредитные карты":
-          return Array(5).fill(0).map((offer, index) => {
-            // const of = { ...offer } as CreditItemT
-            return {
-              node: <CardsOfferItem item={{} as CreditCardT} key={index} />
-            }
-          })
+    const mapOffer = (item: any, Component: any, key: number) => ({
+      node: <Component item={item} key={key} />,
+    });
 
-        case "Ипотека":
-          return Array(5).fill(0).map((offer, index) => {
-            // const of = { ...offer } as CreditItemT
-            return {
-              node: <IpotekaOfferItem item={{}} key={index} />
-            }
-          })
-      }
+    if (!category && currentChoise && choiceItems && choiceItems.length > 0) {
+      const offerTypeMap = {
+        Вклады: Array(5).fill(0).map((_, index) =>
+          mapOffer({} as DepositItemT, DepositOfferItem, index)
+        ),
+        Кредиты: Array(5).fill(0).map((_, index) =>
+          mapOffer({} as CreditItemT, CreditOfferItem, index)
+        ),
+        Автокредиты: Array(5).fill(0).map((_, index) =>
+          mapOffer({} as CreditItemT, CreditOfferItem, index)
+        ),
+        Микрозаймы: Array(5).fill(0).map((_, index) =>
+          mapOffer({} as CreditItemT, CreditOfferItem, index)
+        ),
+        'Дебетовые карты': Array(5).fill(0).map((_, index) =>
+          mapOffer({} as CreditCardT, CardsOfferItem, index)
+        ),
+        'Кредитные карты': Array(5).fill(0).map((_, index) =>
+          mapOffer({} as CreditCardT, CardsOfferItem, index)
+        ),
+        Ипотека: Array(5).fill(0).map((_, index) =>
+          mapOffer({}, IpotekaOfferItem, index)
+        ),
+      };
+
+      return offerTypeMap[currentChoise];
     }
-    else if (offers && offers.length > 0 && !choiceItems) {
+    else if (category && offers) {
       return offers.map((offer) => {
-        const of = { ...offer } as DepositItemT
-        return {
-          node: <DepositOfferItem item={of} key={of.deposit_id} />
+        if (category === 'Вклады') {
+          const of = { ...offer } as DepositItemT;
+          return mapOffer(of, DepositOfferItem, of.deposit_id);
+        } else if (category === 'Кредиты') {
+          const of = { ...offer } as CreditItemT;
+          return mapOffer(of, CreditOfferItem, of.id);
         }
-      })
+      });
     }
-  }, [currentChoise, offers, choiceItems])
+  }, [currentChoise, offers, choiceItems, category]);
+
 
   return (
     <div className={s.offer_month}>
