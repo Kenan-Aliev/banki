@@ -6,19 +6,21 @@ import { StaticImageData } from 'next/image';
 type catalogT = {
   name: string;
   img: StaticImageData;
+  link?: string
 };
 type Props = {
   title: string;
   items: catalogT[];
   width?: string;
+  handleShowCatalogItems?: (item: string) => void
 };
 
-const CatalogItems = ({ title, items, width }: Props) => {
+const CatalogItems = ({ title, items, width, handleShowCatalogItems }: Props) => {
   return (
     <div className={s.catalog_items}>
       <div className={s.title}>{title}</div>
       <div className={s.items_cont} style={{ width: `${width}` }}>
-        <CatalogItemsMap items={items} />
+        <CatalogItemsMap items={items} handleShowCatalogItems={handleShowCatalogItems} />
       </div>
     </div>
   );

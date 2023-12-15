@@ -20,11 +20,12 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { resetCredits } from '@/core/store/credits/credits-slice';
 import { getCreditTypes, getCredits, getMonthOffers } from '@/core/store/credits/credits-actions';
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
-import { selectMonthOffers } from '@/core/store/credits/credits-selectors';
+import { selectCreditTypes, selectMonthOffers } from '@/core/store/credits/credits-selectors';
 
 type catalogT = {
   img: StaticImageData;
   name: string;
+  link?: string
 };
 type ItemT = {
   title: string;
@@ -42,6 +43,7 @@ interface ConsumerCreditsPageProps {
 const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
   const { staticData, sliderBanks } = props;
   const monthOffers = useAppSelector(selectMonthOffers)
+  const creditTypes = useAppSelector(selectCreditTypes)
 
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
@@ -76,6 +78,40 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
       behavior: 'smooth'
     })
   }
+
+  const handleShowCatalogItems = (item: string) => {
+    const handleCreditType = (creditType: string) => {
+      const credit = creditTypes.find((type) => type.title === creditType)
+      dispatch(resetCredits())
+      setFilterData({
+        limit: 10,
+        offset: 0,
+        loanType: String(credit?.id || "")
+      })
+      handleScrollToCredits()
+    }
+
+    switch (item) {
+      case "Потребительский":
+      case "Зеленый кредит":
+        handleCreditType(item)
+        break
+
+      case "Без справок":
+        dispatch(resetCredits())
+        setFilterData({
+          limit: 10,
+          offset: 0,
+          noDocumentsRequired: true
+        })
+        handleScrollToCredits()
+        break
+
+      default:
+        break
+    }
+  }
+
 
 
   const fetchCredits = (params: getCreditsI) => {
@@ -138,7 +174,11 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
         />
       </div>
       <OfferMonth offers={monthOffers.results} category='Кредиты' />
-      <CatalogItems title={'Каталог кредитов'} items={staticData.catalogData} />
+      <CatalogItems
+        title={'Каталог кредитов'}
+        items={staticData.catalogData}
+        handleShowCatalogItems={handleShowCatalogItems}
+      />
       <LatestNews category='Занять' />
       <Mailing />
       <Communicate />
