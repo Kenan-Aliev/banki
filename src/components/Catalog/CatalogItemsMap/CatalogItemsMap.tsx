@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import CatalogItem from '@/components/Catalog/CatalogItem/CatalogItem';
 import { StaticImageData } from 'next/image';

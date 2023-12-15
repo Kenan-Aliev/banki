@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import s from './CatalogItems.module.scss';
 import CatalogItemsMap from '@/components/Catalog/CatalogItemsMap/CatalogItemsMap';
