@@ -14,6 +14,10 @@ export interface BankT {
     assets: number,
     organizationInfo?: string
     logo: string
+    contacts: {
+        phones: string
+        address: string
+    }[]
 }
 
 export interface BankOfficesResponseT {

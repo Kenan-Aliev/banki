@@ -7,3 +7,7 @@ export const selectGetCreditsStatus = (state: RootState) => state.credits.credit
 export const selectCreditTypes = (state: RootState) => state.credits.creditTypes.data
 
 export const selectMonthOffers = (state: RootState) => state.credits.monthOffers.data
+
+export const selectCreditDetail = (state: RootState) => state.credits.creditDetails.data
+
+export const selectGetCreditDetailsStatus = (state: RootState) => state.credits.creditDetails.status

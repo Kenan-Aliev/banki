@@ -1,5 +1,5 @@
 import instance from "@/core/services/index";
-import { BanksResponseT } from '@/models/Banks/banks';
+import { BankT, BanksResponseT } from '@/models/Banks/banks';
 import { getBanksOfficesT, getAllBanksT } from "@/models/Services";
 
 
@@ -11,8 +11,8 @@ const BanksApi = {
         })
     },
 
-    getBank({ bankId }: { bankId: number }) {
-        return instance.get(`bank?bank=${bankId}`)
+    getBank(id: number) {
+        return instance.get<BankT>(`/banks/detail/${id}`)
     },
 
     getBankOffices({ page, limit, sort, sort_type }: getBanksOfficesT) {

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './IntroConsumer.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import Application from '@/components/Application/Application';
@@ -29,6 +29,8 @@ const IntroConsumer = (props: Props) => {
 
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false)
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  const [availableCreditsCount, setAvailableCreditsCount] = useState<number>(null)
+
 
   const creditsCount = useAppSelector(selectCredits)?.count
   const banksData = banks.map((bank) => ({
@@ -43,6 +45,13 @@ const IntroConsumer = (props: Props) => {
   const handleChangeFilterModal = () => {
     setIsFilterModalOpen(!isFilterModalOpen)
   }
+
+  useEffect(() => {
+    if (creditsCount && availableCreditsCount === null) {
+      setAvailableCreditsCount(creditsCount)
+    }
+  }, [creditsCount])
+
 
   return (
     <div className={s.intro}>
@@ -72,7 +81,7 @@ const IntroConsumer = (props: Props) => {
           придется думать, как и где взять кредит с низкой ставкой.
         </p>
         <p style={{ marginBottom: '2rem' }}>
-          На 17.07.2023 доступно более 498 кредитов с минимальной для физических лиц на сайте vsebanki.kg.
+          На {new Date().toLocaleDateString()} доступно более {availableCreditsCount} кредитов с минимальной для физических лиц на сайте vsebanki.kg.
           Вам остается только сравнить, выбрать самый выгодный вариант и оформить{' '}
           <mark>онлайн-заявку.</mark>
         </p>

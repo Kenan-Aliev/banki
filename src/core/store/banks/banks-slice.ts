@@ -1,12 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RequestStatus } from '@/models/Services';
-import { BanksResponseT } from '@/models/Banks/banks';
-import { getBanks } from './banks-actions';
+import { BankT, BanksResponseT } from '@/models/Banks/banks';
+import { getBanks, getBankDetails } from './banks-actions';
 
 interface InitialStateI {
 	banks: {
 		status: RequestStatus,
 		data: BanksResponseT,
+	},
+	bankDetails: {
+		status: RequestStatus
+		data: BankT
 	}
 }
 
@@ -14,6 +18,10 @@ const initialState: InitialStateI = {
 	banks: {
 		status: 'initial',
 		data: {} as BanksResponseT
+	},
+	bankDetails: {
+		status: 'initial',
+		data: {} as BankT
 	}
 };
 
@@ -41,7 +49,21 @@ export const banksSlice = createSlice({
 			})
 			.addCase(getBanks.rejected, (state) => {
 				state.banks.status = 'error'
-			})
+			}),
+
+			builder.
+				addCase(getBankDetails.fulfilled, (state, action) => {
+					state.bankDetails = {
+						status: 'success',
+						data: action.payload
+					}
+				})
+				.addCase(getBankDetails.pending, (state) => {
+					state.bankDetails.status = 'loading'
+				})
+				.addCase(getBankDetails.rejected, (state) => {
+					state.bankDetails.status = 'error'
+				})
 	}
 });
 

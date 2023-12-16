@@ -36,3 +36,15 @@ export const getMonthOffers = createAsyncThunk(
 		}
 	})
 
+
+export const getCreditDetails = createAsyncThunk(
+	'credits/getDetails',
+	async (creditId: number, { rejectWithValue }) => {
+		try {
+			const response = await CreditsApi.getCreditDetails(creditId)
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})
+

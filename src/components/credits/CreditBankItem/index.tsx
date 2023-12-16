@@ -1,4 +1,6 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import s from './index.module.scss';
 import Image from 'next/image';
 import ques_I from '@/assets/icons/banki_icon/Question_i.svg';
@@ -8,6 +10,7 @@ import mockBankImage from '@/assets/icons/banki_icon/loco.svg';
 import { CreditItemT } from '@/models/Credits/Credits';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import CreditInfoModal from '../CreditInfoModal';
 
 interface CreditBankItemProps {
   item: CreditItemT;
@@ -18,14 +21,34 @@ interface CreditBankItemProps {
 
 const CreditBankItem = (props: CreditBankItemProps) => {
   const {
-    item: { bank, bank_title, loanName, loan_term, loan_amount },
+    item: { bank, bank_title, loanName, loan_term, loan_amount, id },
     openChildren,
     child,
     count
   } = props;
 
+  const [infoModal, setInfoModal] = useState(false)
+
+  const handleChangeInfoModal = () => {
+    setInfoModal(!infoModal)
+  }
+
   return (
     <div className={s.item}>
+      {
+        infoModal && <CreditInfoModal
+          open={infoModal}
+          handleClose={handleChangeInfoModal}
+          bank={{
+            id: bank,
+            name: bank_title
+          }}
+          loan={{
+            id,
+            name: loanName
+          }}
+        />
+      }
       <div className={s.up}>
         <div className={s.info}>
           <Image src={mockBankImage} alt={'иконка банка'} />
@@ -55,7 +78,7 @@ const CreditBankItem = (props: CreditBankItemProps) => {
             </div>
           </div>
         </div>
-        <button className={s.btn_dung}>
+        <button className={s.btn_dung} onClick={handleChangeInfoModal}>
           <Image src={dang_i} alt='иконка опасности' />
         </button>
       </div>

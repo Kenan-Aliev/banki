@@ -13,3 +13,15 @@ export const getBanks = createAsyncThunk(
 			return rejectWithValue(err.response.data.message)
 		}
 	})
+
+
+export const getBankDetails = createAsyncThunk(
+	'banks/getDetails',
+	async (bankID: number, { rejectWithValue }) => {
+		try {
+			const response = await BanksApi.getBank(bankID)
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})
