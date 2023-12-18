@@ -12,6 +12,6 @@ export const currencies = [
 	{
 		id: 3,
 		text: '$',
-		value: ''
+		value: 'usd'
 	}
 ]

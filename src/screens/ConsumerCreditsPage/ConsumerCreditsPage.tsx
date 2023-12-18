@@ -18,9 +18,9 @@ import { BankT } from '@/models/Banks/banks';
 import { getCreditsI } from '@/models/Services';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { resetCredits } from '@/core/store/credits/credits-slice';
-import { getCreditTypes, getCredits, getMonthOffers } from '@/core/store/credits/credits-actions';
+import { getCreditTypes, getCredits, getMonthOffers, getTopCredits } from '@/core/store/credits/credits-actions';
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
-import { selectCreditTypes, selectMonthOffers } from '@/core/store/credits/credits-selectors';
+import { selectCreditTypes, selectMonthOffers, selectTopCredits } from '@/core/store/credits/credits-selectors';
 
 type catalogT = {
   img: StaticImageData;
@@ -44,6 +44,7 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
   const { staticData, sliderBanks } = props;
   const monthOffers = useAppSelector(selectMonthOffers)
   const creditTypes = useAppSelector(selectCreditTypes)
+  const topCredits = useAppSelector(selectTopCredits)
 
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
@@ -51,6 +52,8 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
   const [filterData, setFilterData] = useState<getCreditsI>({
     limit: 10,
     offset: 0,
+    currency: 'kgs',
+    ordering: 'min_summ'
   })
 
 
@@ -70,6 +73,8 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
     setFilterData({
       limit: 10,
       offset: 0,
+      currency: 'kgs',
+      ordering: filterData.ordering
     })
   }
 
@@ -86,7 +91,9 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
       setFilterData({
         limit: 10,
         offset: 0,
-        loanType: String(credit?.id || "")
+        loanType: String(credit?.id || ""),
+        currency: 'kgs',
+        ordering: filterData.ordering
       })
       handleScrollToCredits()
     }
@@ -102,7 +109,9 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
         setFilterData({
           limit: 10,
           offset: 0,
-          noDocumentsRequired: true
+          noDocumentsRequired: true,
+          currency: 'kgs',
+          ordering: filterData.ordering
         })
         handleScrollToCredits()
         break
@@ -126,9 +135,14 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
     dispatch(getCreditTypes())
   }
 
+  const fetchTopCredits = () => {
+    dispatch(getTopCredits())
+  }
+
   useEffect(() => {
     fetchMonthOffers()
     fetchCreditTypes()
+    fetchTopCredits()
   }, [])
 
   useEffect(() => {
@@ -157,16 +171,16 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
         <CreditBankList
           options={[
             {
-              text: 'По процентной ставке',
-              value: ''
+              text: 'По минимальной сумме',
+              value: 'min_summ'
             },
             {
               text: 'По максимальной сумме',
-              value: ''
+              value: 'max_summ'
             },
             {
-              text: 'По максимальному сроку',
-              value: ''
+              text: 'По минимальной процентной ставке',
+              value: 'min_rating'
             }
           ]}
           filterData={filterData}
@@ -183,7 +197,7 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
       <Mailing />
       <Communicate />
       <Feedback title={'Отзывы '} sub={'о кредитах'} category='Кредиты' />
-      <CreditTopBankList credits={[]} />
+      <CreditTopBankList credits={topCredits} />
       <FrequentQuestions title={'Важные вопросы'} items={staticData.questData} />
     </PageWrapper>
   );

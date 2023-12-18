@@ -166,7 +166,7 @@ function Filters(props: Props) {
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
 											checked={filter.collateralFree ?? false}
-											onChange={(e) => { handleChangeFilter('collateralFree', e.target.value) }}
+											onChange={(e) => { handleChangeFilter('collateralFree', e.target.checked) }}
 										/>
 									}
 									label="Без залога"
@@ -181,7 +181,7 @@ function Filters(props: Props) {
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
 											checked={filter.noDocumentsRequired ?? false}
-											onChange={(e) => { handleChangeFilter('noDocumentsRequired', e.target.value) }}
+											onChange={(e) => { handleChangeFilter('noDocumentsRequired', e.target.checked) }}
 										/>
 									}
 									label="Без справок о доходах"
@@ -195,7 +195,7 @@ function Filters(props: Props) {
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
 											checked={filter.without_reference ?? false}
-											onChange={(e) => { handleChangeFilter('without_reference', e.target.value) }}
+											onChange={(e) => { handleChangeFilter('without_reference', e.target.checked) }}
 										/>
 									}
 									label="Без поручительства" />

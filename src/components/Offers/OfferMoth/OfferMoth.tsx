@@ -102,7 +102,7 @@ const OfferMonth = (props: OfferMonthProps) => {
             "480": 2,
             "640": 3,
             "768": 3,
-            "1500": 4
+            "1500": 3
           }}
         />
       </div>

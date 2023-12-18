@@ -23,7 +23,7 @@ const CreditTopBankList = (props: CreditTopBankListProps) => {
         {subtitle}
       </div>
       <div className={s.banks_items}>
-        {credits.map((item, index) => (
+        {credits?.map((item, index) => (
           <CreditTopBankItem key={index} item={item} />
         ))}
       </div>

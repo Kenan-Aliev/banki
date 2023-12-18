@@ -50,10 +50,8 @@ const data = {
 	},
 	creditItem: {
 		"id": 26,
-		"rating": {
-			"min": 26,
-			"max": 29.02
-		},
+		"min_rating": 26,
+		"max_rating": 29.02,
 		"bank": 4,
 		"bank_title": "ОАО «Оптима Банк»",
 		"bank_logo": "/media/products/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0_%D0%B1%D0%B0%D0%BD%D0%BA.png",

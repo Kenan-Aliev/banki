@@ -27,7 +27,7 @@ const MoneySelect = ({ width, amount, currency, handleChange, title, currencyPro
                     onChange={(e) => handleChange(currencyProp ?? 'currency', e.target.value)}>
                     <option value='kgs'>&#8384;</option>
                     <option value='rub'>₽</option>
-                    <option value='dol'>$</option>
+                    <option value='usd'>$</option>
                 </select>
             </div>
         </div>

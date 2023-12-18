@@ -48,3 +48,14 @@ export const getCreditDetails = createAsyncThunk(
 		}
 	})
 
+export const getTopCredits = createAsyncThunk(
+	'credits/getTopCredits',
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await CreditsApi.getTopCredits()
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})
+

@@ -91,9 +91,9 @@ const IntroConsumer = (props: Props) => {
           <MoneySelect
             width={385}
             amount={filterData.summa}
-            currency={''}
+            currency={filterData.currency}
             handleChange={handleChangeFilter}
-            currencyProp=''
+            currencyProp='currency'
             moneyProp='summa'
             title='Сумма' />
           <div className={s.btnChange} onClick={handleChangeFilterModal}>

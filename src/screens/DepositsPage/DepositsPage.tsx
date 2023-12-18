@@ -66,7 +66,7 @@ const DepositsPage = () => {
     setFilterData({
       limit: 10,
       offset: 0,
-      ordering: 'interest_rate',
+      ordering: filterData.ordering,
       currency: 'kgs',
     })
   }

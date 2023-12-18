@@ -11,24 +11,29 @@ import { CreditItemT } from '@/models/Credits/Credits';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import CreditInfoModal from '../CreditInfoModal';
+import { currencies } from '@/core/data/currency';
+import { baseUrl } from '@/core/const/baseUrl';
 
 interface CreditBankItemProps {
   item: CreditItemT;
   openChildren?: (bankId: number) => void;
   child?: boolean;
   count?: number
+  activeCurrency?: string
 }
 
 const CreditBankItem = (props: CreditBankItemProps) => {
   const {
-    item: { bank, bank_title, loanName, loan_term, loan_amount, id },
+    item: { currency: creditCurrency, bank, bank_title, loanName, loan_term, loan_amount, id, min_rating, max_rating, bank_logo },
     openChildren,
     child,
-    count
+    count,
+    activeCurrency
   } = props;
 
   const [infoModal, setInfoModal] = useState(false)
 
+  const currency = currencies.find((c) => c.value == activeCurrency)?.text
   const handleChangeInfoModal = () => {
     setInfoModal(!infoModal)
   }
@@ -51,7 +56,7 @@ const CreditBankItem = (props: CreditBankItemProps) => {
       }
       <div className={s.up}>
         <div className={s.info}>
-          <Image src={mockBankImage} alt={'иконка банка'} />
+          <Image src={baseUrl + bank_logo} alt={'иконка банка'} width={50} height={50} />
           <div className={s.name}>
             <div>{bank_title}</div>
             <span>{loanName}</span>
@@ -62,18 +67,18 @@ const CreditBankItem = (props: CreditBankItemProps) => {
                 Ставка
                 <Image src={ques_I} alt={'иконка вопроса'} />
               </div>
-              <span>10%</span>
+              <span>{min_rating === max_rating ? min_rating : `${min_rating} - ${max_rating}`} %</span>
             </div>
             <div className={s.info_item}>
               <div className={s.title}>Срок</div>
               <span>
-                {loan_term.min} — {loan_term.max} мес.
+                {loan_term.min === 0 ? `до ${loan_term.max}` : `${loan_term.min} — ${loan_term.max} `} мес.
               </span>
             </div>
             <div className={s.info_item}>
               <div className={s.title}>Сумма</div>
               <span>
-                {loan_amount.min} — {loan_amount.max} ₽
+                {loan_amount.min} — {loan_amount.max} {activeCurrency ? currency : creditCurrency}
               </span>
             </div>
           </div>
@@ -86,7 +91,7 @@ const CreditBankItem = (props: CreditBankItemProps) => {
         {count && count > 0
           ? (
             <div className={s.count} onClick={(e) => openChildren(bank)}>
-              Ещё {count} вкладов
+              Ещё {count} кредитов
               {child ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </div>
           )
@@ -97,7 +102,7 @@ const CreditBankItem = (props: CreditBankItemProps) => {
             if (el !== '') return <BlueBtn key={index} text={el} width={147} height={36} fSize={14} />;
           })}
         </div> */}
-        <BlueBtn text={'Открыть вклад'} width={222} fSize={20} />
+        <BlueBtn text={'Онлайн заявка'} width={222} fSize={20} />
       </div>
     </div>
   );

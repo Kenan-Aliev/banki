@@ -1,12 +1,10 @@
 export interface CreditItemT {
   id: number
-  rating: {
-    min: number
-    max: number
-  }
   bank: number
   bank_title: string
   bank_logo: string
+  min_rating: number
+  max_rating: number
   specialInterestRate: boolean
   currency: string
   loanName: string
@@ -41,5 +39,16 @@ export interface CreditsResponseT {
   next: string | null
   previous: string | null
   results: CreditItemT[];
+}
+
+
+export interface TopCreditsResponse {
+  count: number
+  next: string | null
+  previous: string | null
+  results: {
+    id: number
+    credit: CreditItemT
+  }[]
 }
 

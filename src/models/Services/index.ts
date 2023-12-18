@@ -152,8 +152,11 @@ export interface getCreditsI {
     credit?: string // срок кредита
     search?: string
     ordering?: string
+    currency?: string
     limit: number
     offset: number
 }
+
+
 
 export type RequestStatus = 'initial' | 'loading' | 'success' | 'error'

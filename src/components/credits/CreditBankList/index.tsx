@@ -89,6 +89,7 @@ const CreditBankList = (props: CreditBankListProps) => {
                       child={isExpanded}
                       count={bankIdCounts[bank] - 1}
                       openChildren={handleOpenChildren}
+                      activeCurrency={filterData.currency}
                     />
                   </li>
                   {
@@ -97,6 +98,7 @@ const CreditBankList = (props: CreditBankListProps) => {
                         bankId={bank}
                         credits={credits}
                         primaryCreditId={id}
+                        activeCurrency={filterData.currency}
                       />
                     )
                   }

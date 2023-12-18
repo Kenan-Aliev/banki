@@ -1,7 +1,7 @@
-import { CreditItemT, CreditType, CreditsResponseT } from '@/models/Credits/Credits';
+import { CreditItemT, CreditType, CreditsResponseT, TopCreditsResponse } from '@/models/Credits/Credits';
 import { RequestStatus } from '@/models/Services';
 import { createSlice } from '@reduxjs/toolkit';
-import { getCredits, getCreditTypes, getMonthOffers, getCreditDetails } from './credits-actions';
+import { getCredits, getCreditTypes, getMonthOffers, getCreditDetails, getTopCredits } from './credits-actions';
 
 interface initialStateI {
   credits: {
@@ -19,6 +19,10 @@ interface initialStateI {
   creditDetails: {
     status: RequestStatus
     data: CreditItemT
+  },
+  topCredits: {
+    status: RequestStatus
+    data: TopCreditsResponse
   }
 }
 
@@ -38,6 +42,10 @@ const initialState: initialStateI = {
   creditDetails: {
     status: 'initial',
     data: {} as CreditItemT
+  },
+  topCredits: {
+    status: 'initial',
+    data: {} as TopCreditsResponse
   }
 };
 
@@ -98,7 +106,6 @@ export const creditsSlice = createSlice({
           state.monthOffers.status = 'error'
         }),
 
-
       builder
         .addCase(getCreditDetails.pending, (state) => {
           state.creditDetails.status = 'loading'
@@ -111,8 +118,21 @@ export const creditsSlice = createSlice({
         })
         .addCase(getCreditDetails.rejected, (state) => {
           state.creditDetails.status = 'error'
-        })
+        }),
 
+      builder
+        .addCase(getTopCredits.pending, (state) => {
+          state.topCredits.status = 'loading'
+        })
+        .addCase(getTopCredits.fulfilled, (state, action) => {
+          state.topCredits = {
+            status: 'success',
+            data: action.payload
+          }
+        })
+        .addCase(getTopCredits.rejected, (state) => {
+          state.topCredits.status = 'error'
+        })
   }
 });
 
