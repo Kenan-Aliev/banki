@@ -1,1 +1,1 @@
-export const baseUrl = 'http://82.97.240.53:8000'
+export const baseUrl = 'https://api.vsebanki.kg'

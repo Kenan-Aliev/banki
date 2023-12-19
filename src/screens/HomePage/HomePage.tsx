@@ -60,7 +60,7 @@ const HomePage = ({ data, banks }: Props) => {
             />
             <Banks data={banks} />
             <Calculate />
-            <OfferMoth offers={data.offersMoth} choiceItems={data.choiseOffer} />
+            {/* <OfferMoth offers={data.offersMoth} choiceItems={data.choiseOffer} /> */}
             <LatestNews />
             <Feedback chois={data.choiseFeedback} />
         </PageWrapper>

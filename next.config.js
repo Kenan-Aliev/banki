@@ -10,13 +10,7 @@ const nextConfig = (phase, { defaultConfig }) => {
         NEXT_PUBLIC_API_URL: 'http://83.220.174.249:5345',
       },
       images: {
-        domains: [
-          '83.220.174.249',
-          '127.0.0.1',
-          'api.vsebanki.kg',
-          '82.97.240.53',
-          'btbonline.baitushum.kg',
-        ],
+        domains: ['83.220.174.249', '127.0.0.1', 'api.vsebanki.kg', 'btbonline.baitushum.kg'],
         remotePatterns: [
           {
             protocol: 'https',
@@ -35,7 +29,13 @@ const nextConfig = (phase, { defaultConfig }) => {
       SKIP_BUILD_STATIC_GENERATION: false,
     },
     images: {
-      domains: ['83.220.174.249', '127.0.0.1'],
+      domains: ['83.220.174.249', '127.0.0.1', 'api.vsebanki.kg', 'btbonline.baitushum.kg'],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'vsebanki.kg',
+        },
+      ],
     },
   };
 };
