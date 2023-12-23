@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import s from './DepositOfferItem.module.scss';
 import Image from 'next/image';
 import ques_I from '@/assets/icons/banki_icon/Question_i.svg';
 import dang_i from '@/assets/icons/banki_icon/Danger_i.svg';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-import mockBankImage from '@/assets/icons/banki_icon/loco.svg';
 import { DepositItemT } from '@/models/Deposit/Deposit';
 import Application from '@/components/Application/Application';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
