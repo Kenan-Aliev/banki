@@ -170,7 +170,7 @@ const CreditBankItem = (props: CreditBankItemProps) => {
         </Grid>
         <Grid
           item
-          xs={12} lg={1} xl={0.8}
+          xs={12} lg={0.8} xl={0.8}
           sx={dangerBtnGridStyles}>
           <Button onClick={handleChangeInfoModal} fullWidth>
             <Image src={dang_i} alt='иконка опасности' />
