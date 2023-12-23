@@ -13,8 +13,8 @@ type Props = {
     onChange: (e: any) => void
     value: string;
     filteredArr: {
-        id: number
-        name: string
+        text: string
+        link: string
     }[]
     margin?: number;
     lupaSee?: boolean;
@@ -60,7 +60,7 @@ const Search = (props: Props) => {
                 <div className={s.drop_down}>
                     {filteredArr?.map((el, index) => {
                         return (
-                            <Link href={`/banks/${el.id}`}
+                            <Link href={el.link}
                                 key={index}
                             >
                                 <div
@@ -74,7 +74,7 @@ const Search = (props: Props) => {
                                         fontSize: '14px',
                                     }}
                                 >
-                                    <span>{el.name}</span>
+                                    <span>{el.text}</span>
                                 </div>
                             </Link>
                         );

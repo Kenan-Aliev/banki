@@ -16,11 +16,6 @@ import { resetBanks } from '@/core/store/banks/banks-slice';
 import { BankT } from '@/models/Banks/banks';
 
 
-type SearchItem = {
-    text: string;
-    link: string;
-};
-
 type Props = {
     data: any;
     banks: BankT[]
@@ -37,8 +32,8 @@ const HomePage = ({ data, banks }: Props) => {
     }
 
     const { promotions } = useAppSelector(state => state.home);
-    const filterArr = (items: SearchItem[]) =>
-        items.filter((i) => i.text.toLowerCase().includes(searchVal.toLowerCase()));
+    const filteredArr =
+        serviceItems.filter((i) => i.text.toLowerCase().includes(searchVal.toLowerCase()));
 
 
     useEffect(() => {
@@ -56,7 +51,7 @@ const HomePage = ({ data, banks }: Props) => {
                 onChange={handleChangeSearchVal}
                 value={searchVal}
                 placeholder={'Найти необходимую услугу...'}
-                filteredArr={[]}
+                filteredArr={filteredArr}
             />
             <Banks data={banks} />
             <Calculate />

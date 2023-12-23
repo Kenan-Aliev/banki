@@ -22,7 +22,12 @@ const Banks = ({ data }: Props) => {
     const [searchValue, setSearchValue] = useState('')
     const [timer, setTimer] = useState(null);
 
-    const filteredBanks = useAppSelector(selectBanks).results
+    const filteredBanks = useAppSelector(selectBanks).results?.map((bank) => {
+        return {
+            link: `/banks/${bank.id}`,
+            text: bank.name
+        }
+    })
 
     const dispatch = useAppDispatch()
 
@@ -71,7 +76,7 @@ const Banks = ({ data }: Props) => {
                         </Link>
                         <Search
                             placeholder={'Введите название банка...'}
-                            width={431}
+                            // width={431}
                             height={60}
                             margin={0}
                             btnHidden={true}

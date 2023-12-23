@@ -3,6 +3,7 @@
   border-radius: 11px;
   border: 1px solid #d9dbdf;
   background: #fff;
+  height: 30vh;
   padding: 20px;
   flex-shrink: 0;
   .inf {
@@ -66,5 +67,11 @@
 
     .time {
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .offer_item {
+    height: 35vh;
   }
 }

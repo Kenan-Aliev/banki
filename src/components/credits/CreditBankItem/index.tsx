@@ -1,18 +1,83 @@
 'use client'
 
 import React, { useState } from 'react';
-import s from './index.module.scss';
 import Image from 'next/image';
 import ques_I from '@/assets/icons/banki_icon/Question_i.svg';
 import dang_i from '@/assets/icons/banki_icon/Danger_i.svg';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-import mockBankImage from '@/assets/icons/banki_icon/loco.svg';
 import { CreditItemT } from '@/models/Credits/Credits';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import CreditInfoModal from '../CreditInfoModal';
 import { currencies } from '@/core/data/currency';
 import { baseUrl } from '@/core/const/baseUrl';
+import { Grid, Box, Typography, Button, SxProps, Theme } from '@mui/material';
+
+
+const rootBoxStyles: SxProps<Theme> = {
+  width: '100%',
+  borderRadius: '14px',
+  border: '1px solid #d9dbdf',
+  background: '#fff',
+  padding: '25px 20px',
+  "& h2,p": {
+    fontFamily: 'inherit'
+  }
+}
+
+const bankTitleStyles: SxProps<Theme> = {
+  color: '#000',
+  fontSize: '24px',
+  fontFamily: 'inherit',
+  fontWeight: 'bold',
+  "@media(max-width:600px)": {
+    fontSize: '18px'
+  }
+}
+
+
+
+const infoItemTitleStyles: SxProps<Theme> = {
+  color: '#4da7ff',
+  fontWeight: 500
+}
+
+const infoItemTextStyles: SxProps<Theme> = {
+  color: '#121212',
+  fontWeight: 500,
+  fontSize: '20px'
+}
+
+const countBtnStyles: SxProps<Theme> = {
+  color: '#4da7ff',
+  fontSize: '16px',
+  fontWeight: 500,
+  display: 'flex',
+  alignItems: 'center',
+  gap: '5px',
+  cursor: 'pointer'
+}
+
+const infoItemGridStyles: SxProps<Theme> = {
+  "@media(max-width:600px)": {
+    display: 'flex',
+    justifyContent: 'space-between',
+    m: '10px 0'
+  }
+}
+
+const dangerBtnGridStyles: SxProps<Theme> = {
+  borderRadius: '5px',
+  border: '1px solid var(--Stroke-3, #4DA7FF)',
+  background: '#FFF',
+  height: '50px',
+  boxShadow: '0px 2.3px 6px 0px rgba(217, 231, 250, 0.40)',
+  backdropFilter: 'blur(7px)',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+}
+
 
 interface CreditBankItemProps {
   item: CreditItemT;
@@ -39,7 +104,7 @@ const CreditBankItem = (props: CreditBankItemProps) => {
   }
 
   return (
-    <div className={s.item}>
+    <Box sx={rootBoxStyles}>
       {
         infoModal && <CreditInfoModal
           open={infoModal}
@@ -54,57 +119,106 @@ const CreditBankItem = (props: CreditBankItemProps) => {
           }}
         />
       }
-      <div className={s.up}>
-        <div className={s.info}>
+      <Grid container mb='10px'>
+        <Grid item xs={3} sm={3} md={3} lg={0.7} xl={0.7}>
           <Image src={baseUrl + bank_logo} alt={'иконка банка'} width={50} height={50} />
-          <div className={s.name}>
-            <div>{bank_title}</div>
-            <span>{loanName}</span>
-          </div>
-          <div className={s.about_b}>
-            <div className={s.info_item}>
-              <div className={s.title}>
-                Ставка
-                <Image src={ques_I} alt={'иконка вопроса'} />
-              </div>
-              <span>{min_rating === max_rating ? min_rating : `${min_rating} - ${max_rating}`} %</span>
-            </div>
-            <div className={s.info_item}>
-              <div className={s.title}>Срок</div>
-              <span>
-                {loan_term.min === 0 ? `до ${loan_term.max}` : `${loan_term.min} — ${loan_term.max} `} мес.
-              </span>
-            </div>
-            <div className={s.info_item}>
-              <div className={s.title}>Сумма</div>
-              <span>
-                {loan_amount.min} — {loan_amount.max} {activeCurrency ? currency : creditCurrency}
-              </span>
-            </div>
-          </div>
-        </div>
-        <button className={s.btn_dung} onClick={handleChangeInfoModal}>
-          <Image src={dang_i} alt='иконка опасности' />
-        </button>
-      </div>
-      <div className={s.down}>
+        </Grid>
+        <Grid item xs={8} sm={8} md={8} lg={4.5} xl={4.5}>
+          <Typography
+            sx={bankTitleStyles}
+            component='h2'
+          >
+            {bank_title}
+          </Typography>
+          <Typography>{loanName}</Typography>
+        </Grid>
+        <Grid item xs={12} lg={2} xl={2} sx={infoItemGridStyles}>
+          <Box sx={{
+            display: 'flex',
+            gap: '5px',
+            alignItems: 'center',
+            marginBottom: '10px'
+          }}>
+            <Typography sx={infoItemTitleStyles}>Ставка</Typography>
+            <Image src={ques_I} alt={'иконка вопроса'} />
+          </Box>
+          <Typography sx={infoItemTextStyles}>
+            {min_rating === max_rating ? min_rating : `${min_rating} - ${max_rating}`} %
+          </Typography>
+        </Grid>
+        <Grid item xs={12} lg={2} xl={2} sx={infoItemGridStyles}>
+          <Typography
+            sx={infoItemTitleStyles}
+            mb='10px'
+          >
+            Срок
+          </Typography>
+          <Typography sx={infoItemTextStyles}>
+            {loan_term.min === 0 ? `до ${loan_term.max}` : `${loan_term.min} — ${loan_term.max} `} мес.
+          </Typography>
+        </Grid>
+        <Grid item xs={12} lg={2} xl={2} sx={infoItemGridStyles}>
+          <Typography
+            sx={infoItemTitleStyles}
+            mb='10px'
+          >
+            Сумма
+          </Typography>
+          <Typography sx={infoItemTextStyles}>
+            {loan_amount.min} — {loan_amount.max} {activeCurrency ? currency : creditCurrency}
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={12} lg={1} xl={0.8}
+          sx={dangerBtnGridStyles}>
+          <Button onClick={handleChangeInfoModal} fullWidth>
+            <Image src={dang_i} alt='иконка опасности' />
+          </Button>
+        </Grid>
+      </Grid>
+
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          "@media(max-width:600px)": {
+            flexDirection: 'column-reverse',
+          }
+        }}
+      >
         {count && count > 0
           ? (
-            <div className={s.count} onClick={(e) => openChildren(bank)}>
-              Ещё {count} кредитов
-              {child ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-            </div>
+            <Box
+              sx={{
+                "@media(max-width:600px)": {
+                  m: '20px auto 0'
+                }
+              }}
+            >
+              <Typography sx={countBtnStyles}
+                onClick={(e) => openChildren(bank)}
+              >
+                Ещё {count} кредитов
+                {child ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              </Typography>
+            </Box>
           )
           : null}
-
-        {/* <div className={s.blue_charc}>
-          {['Партнер раздела'].map((el, index) => {
-            if (el !== '') return <BlueBtn key={index} text={el} width={147} height={36} fSize={14} />;
-          })}
-        </div> */}
-        <BlueBtn text={'Онлайн заявка'} width={222} fSize={20} />
-      </div>
-    </div>
+        <Box
+          sx={{
+            marginLeft: 'auto',
+            width: '20%',
+            "@media(max-width:600px)": {
+              width: '100%',
+              marginLeft: 0
+            }
+          }}>
+          <BlueBtn text={'Онлайн заявка'} fSize={20} />
+        </Box>
+      </Box>
+    </Box >
   );
 };
 

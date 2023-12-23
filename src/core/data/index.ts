@@ -83,11 +83,12 @@ const data = {
     iconsSlide: [
       { name: 'Вклады', img: vklad, w: 0, link: '/deposits' },
       { name: 'Кредиты', img: credit, w: 68, link: '/credits' },
-      { name: 'Подбор карты', img: carta, w: 64, link: '/cards/select-steps' },
-      { name: 'Страхование', img: osago, w: 0, link: '/insurance' },
-      { name: 'Инвестиции', img: invest, w: 0, link: '/investment' },
       { name: 'Ипотека', img: ipoteka, w: 0, link: '/ipoteka' },
-      { name: 'Бизнес', img: zaymi, w: 0, link: '/business' },
+      { name: 'Кредитные карты', img: card, w: 0, link: '/cards/credit-cards' },
+      { name: 'Дебетовые карты', img: card, w: 0, link: '/cards/debit-cards' },
+      { name: 'Рефинансирование', img: swit, w: 0, link: '/credits/refinancing-credits' },
+      { name: 'Автокредиты', img: wheel, w: 0, link: '/credits/autocredit' },
+      { name: 'Микрозаймы ', img: zaymi, w: 0, link: '/credits/microloans' },
     ],
     stock: [
       {

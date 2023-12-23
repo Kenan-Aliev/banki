@@ -1,14 +1,15 @@
 .catalog_item {
+  width: 100%;
   border-radius: 14px;
-  border: 1px solid #D9DBDF;
-  background: #FFF;
+  border: 1px solid #d9dbdf;
+  background: #fff;
   backdrop-filter: blur(9.5px);
   padding: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  span{
+  span {
     color: #000;
     font-family: Raleway;
     font-size: 16px;
@@ -17,3 +18,4 @@
     line-height: 86.4%; /* 13.824px */
   }
 }
+

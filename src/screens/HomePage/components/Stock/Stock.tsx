@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import s from './Stock.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import StockItem from '@/components/StockItem/StockItem';
@@ -60,7 +60,6 @@ const Stock = ({ promotions }: Props) => {
         }
     })
 
-
     return (
         <div>
             <div className={s.stock}>
@@ -72,11 +71,12 @@ const Stock = ({ promotions }: Props) => {
                         "768": 1,
                         "1500": 1
                     }}
-                    infinite={false}
+                    infinite={true}
                     leftArr={false}
                     rightArr={false}
                     ref={sliderRef}
                     centered={false}
+                    autoplay={true}
                 />
                 <div className={s.stock_items}>{stockItems}</div>
             </div>

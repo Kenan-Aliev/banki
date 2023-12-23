@@ -1,6 +1,7 @@
 // .swiper-slide{
 //   width: fit-content;
 //  }
+
 .slide {
   margin-top: 1rem;
   display: flex;
@@ -9,6 +10,10 @@
   justify-content: space-between;
   flex-shrink: 0;
   width: 100%;
+
+  .slideItem {
+    width: auto;
+  }
 
   .arr {
     width: 43px;
@@ -38,10 +43,15 @@
 }
 @media (max-width: 1024px) {
   .slide {
-    // padding-left: 1rem;
     overflow: auto;
     .arr {
       display: none;
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .slideItem {
+    width: 90% !important;
   }
 }

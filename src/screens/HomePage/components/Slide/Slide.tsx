@@ -32,6 +32,7 @@ const Slide = ({ data }: Props) => {
         infinite={false}
         leftArr={true}
         rightArr={true}
+        centered={true}
         responsive={{
           "320": 1,
           "480": 2,

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './index.module.scss';
 import lines from '@/assets/icons/banki_icon/3-line.svg';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
@@ -67,12 +67,7 @@ const CreditBankList = (props: CreditBankListProps) => {
           <mark>{count ?? 0} кредитов {" "}</mark>
           подобрано
         </span>
-        <CustomSelect2
-          img={lines}
-          options={options}
-          handleChange={handleChangeFilter}
-          prop={'ordering'}
-        />
+        <CustomSelect2 img={lines} options={options} handleChange={handleChangeFilter} prop={'ordering'} />
       </div>
       <ul className={s.deposit_offers}>
         {

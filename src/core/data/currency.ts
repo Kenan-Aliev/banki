@@ -1,17 +1,17 @@
 export const currencies = [
 	{
 		id: 2,
-		text: 'С',
+		text: 'сом',
 		value: 'kgs'
 	},
 	{
 		id: 1,
-		text: '₽',
+		text: 'руб.',
 		value: 'rub'
 	},
 	{
 		id: 3,
-		text: '$',
+		text: 'дол.',
 		value: 'usd'
 	}
 ]

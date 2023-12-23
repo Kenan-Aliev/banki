@@ -27,6 +27,20 @@
 
 @media (max-width: 1220px) {
   .stock_item {
-    width: 230px;
+    width: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 86.4%; /* 13.824px */
+  }
+
+  .stock_item {
+    height: 110px !important;
   }
 }

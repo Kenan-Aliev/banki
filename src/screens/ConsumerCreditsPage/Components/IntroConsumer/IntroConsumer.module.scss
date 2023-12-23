@@ -121,16 +121,8 @@
         width: 100%;
         height: auto;
 
-        div {
-          width: 100% !important;
-          backdrop-filter: none;
-          input {
-            width: 100% !important;
-          }
-
-          div {
-            width: 20% !important;
-          }
+        .btnChange {
+          width: 100%;
         }
 
         button {

@@ -7,7 +7,7 @@
   max-height: 80px;
   overflow: hidden;
   border-radius: 14px;
-  background: rgba(217, 231, 250, 0.40);
+  background: rgba(217, 231, 250, 0.4);
 
   .info {
     display: flex;
@@ -24,7 +24,7 @@
       font-weight: 500;
       line-height: 86.4%; /* 27.648px */
       span {
-        color: #4DA7FF;
+        color: #4da7ff;
         font-variant-numeric: lining-nums proportional-nums;
         font-size: 32px;
         font-style: normal;
@@ -45,21 +45,19 @@
     font-weight: 400;
     line-height: normal;
   }
-
 }
 
-
-.image{
-  transition: all .3s;
+.image {
+  transition: all 0.3s;
   transform: rotate(0deg);
 }
 
-.image_a{
-  transition: all .3s;
+.image_a {
+  transition: all 0.3s;
   transform: rotate(180deg);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .acc_item {
     width: 100%;
     padding: 10px;
@@ -72,7 +70,10 @@
           font-size: 20px;
         }
       }
+    }
 
+    .text {
+      margin-top: 60px;
     }
   }
 }

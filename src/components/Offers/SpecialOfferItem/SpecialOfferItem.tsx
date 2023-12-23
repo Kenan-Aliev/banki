@@ -4,7 +4,9 @@ import Image from 'next/image';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import mockOfferImage from '@/assets/icons/offer_img1.png';
 import mockBankImage from '@/assets/icons/banki_icon/dom.svg';
-import { DepositCardInterface, DepositItemT } from '@/models/Deposit/Deposit';
+import { DepositItemT } from '@/models/Deposit/Deposit';
+import { baseUrl } from '@/core/const/baseUrl';
+import { Typography, Box } from '@mui/material';
 
 interface SpecialOfferItemProps {
   item: DepositItemT;
@@ -12,14 +14,32 @@ interface SpecialOfferItemProps {
 
 const SpecialOfferItem = (props: SpecialOfferItemProps) => {
   const {
-    item: { deposit_name, interest_rate, term_range, special_offer_details },
+    item: { deposit_name, interest_rate, term_range, special_offer_details, bank_logo, bank_title },
   } = props;
 
   return (
     <div className={s.item}>
       <Image alt={'icon'} className={s.img} src={mockOfferImage} />
       <div className={s.item_info}>
-        <Image alt={'icon'} src={mockBankImage} />
+        <Box sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+
+        }}>
+          <Box sx={{
+            width: '20%',
+            height: '50px',
+            "& img": {
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain'
+            }
+          }}>
+            <Image alt={'icon'} src={baseUrl + bank_logo} width={50} height={50} />
+          </Box>
+          <Typography component='p'>{bank_title}</Typography>
+        </Box>
         <div className={s.name}>{deposit_name}</div>
         {/*TODO wait for api bonus*/}
         <div className={s.bonus}>

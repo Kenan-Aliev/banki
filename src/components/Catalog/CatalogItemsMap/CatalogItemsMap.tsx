@@ -24,6 +24,9 @@ const CatalogItemsMap = ({ items, handleShowCatalogItems }: Props) => {
           sx={{
             "&:hover": {
               cursor: 'pointer'
+            },
+            "@media(max-width:640px)": {
+              width: '100%'
             }
           }}
         >

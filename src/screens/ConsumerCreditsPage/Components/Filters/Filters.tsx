@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Button, Typography, Modal, Grid, FormGroup, Checkbox, FormControlLabel, TextField } from '@mui/material'
 import { TripOrigin, RadioButtonUnchecked } from '@mui/icons-material';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
@@ -62,6 +62,7 @@ const style = {
 	p: 4,
 	"@media(max-width:900px)": {
 		width: "85%",
+		top: '60%'
 	}
 };
 
@@ -76,12 +77,6 @@ function Filters(props: Props) {
 			value: type.id
 		}
 	})
-
-	const [activeBtn, setActiveBtn] = useState('')
-
-	const handleChangeActiveBtn = (value: string) => {
-		setActiveBtn(value)
-	}
 
 	const handleShow = () => {
 		handleScrollToCredits()

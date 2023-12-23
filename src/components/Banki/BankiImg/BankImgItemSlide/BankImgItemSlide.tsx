@@ -16,6 +16,7 @@ const boxStyles: SxProps<Theme> = {
   "& img": {
     width: '100%',
     height: '100%',
+    objectFit: 'contain'
   }
 }
 

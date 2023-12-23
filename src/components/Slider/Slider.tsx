@@ -7,6 +7,7 @@ import arr_r from '@/assets/icons/banki_icon/Стрелка_right.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css';
 
 type SlideT = {
@@ -26,9 +27,12 @@ type Props = {
 		1500: number;
 	};
 	centered?: boolean
+	autoplay?: boolean
 };
 
-const Slider = React.forwardRef(({ data, infinite, responsive, leftArr, rightArr, centered = true }: Props, ref: MutableRefObject<any>) => {
+const Slider = React.forwardRef((props: Props, ref: MutableRefObject<any>) => {
+	const { data, infinite, responsive, leftArr, rightArr,
+		centered = true, autoplay = false } = props
 	const sliderRef = useRef<any>(null);
 	const [slideItems, setSlideItems] = useState<React.ReactNode[]>();
 
@@ -42,7 +46,7 @@ const Slider = React.forwardRef(({ data, infinite, responsive, leftArr, rightArr
 						alignItems: 'center'
 					}}>
 					{el.link ? (
-						<Link href={el.link}>
+						<Link href={el.link} className={s.slideItem}>
 							{el.node}
 						</Link>
 					) : (
@@ -74,10 +78,16 @@ const Slider = React.forwardRef(({ data, infinite, responsive, leftArr, rightArr
 			<Swiper
 				id='swiper'
 				ref={ref ?? sliderRef}
+				modules={autoplay ? [Autoplay, Pagination] : []}
 				spaceBetween={10}
 				loop={infinite}
-				onSlideChange={() => console.log('slide change')}
-				onSwiper={(swiper) => console.log(swiper)}
+				autoplay={autoplay
+					? {
+						delay: 3000,
+						disableOnInteraction: false,
+						pauseOnMouseEnter: true,
+					} :
+					{}}
 				breakpoints={{
 					320: {
 						slidesPerView: responsive[320],

@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import s from './MoneySelect.module.scss';
+import { currencies } from '@/core/data/currency';
 
 type Props = {
     moneyProp?: string
@@ -25,9 +26,9 @@ const MoneySelect = ({ width, amount, currency, handleChange, title, currencyPro
                 <select
                     value={currency}
                     onChange={(e) => handleChange(currencyProp ?? 'currency', e.target.value)}>
-                    <option value='kgs'>&#8384;</option>
-                    <option value='rub'>₽</option>
-                    <option value='usd'>$</option>
+                    {currencies.map((currency) => {
+                        return <option value={currency.value} key={currency.id}>{currency.text}</option>
+                    })}
                 </select>
             </div>
         </div>
