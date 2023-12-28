@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import s from './IntroMortgage.module.scss';
-import CustomWhiteSelectTitle from '@/UI/CustomWhiteSelectTitle/CustomWhiteSelectTitle';
-import CustomInputTitle from '@/UI/CustomInputTitle/CustomInputTitle';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
-import CustomBtnChange from '@/UI/CustomBtnChange/CustomBtnChange';
-import CustomCheckboxAround from '@/UI/CustomCheckboxAround/CustomCheckboxAround';
+import { Grid, TextField } from '@mui/material';
+import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
+import { timeframe } from '@/core/data/filters';
+import { getMortgages } from '@/models/Services';
+import { useAppSelector } from '@/hooks/redux';
+import { selectMortgages } from '@/core/store/mortgages/mortgage-selectors';
 
 type ItemT = {
   name: string;
@@ -17,13 +19,40 @@ type Props = {
   items: ItemT[];
   setActive?: React.Dispatch<React.SetStateAction<string>>;
   current?: string;
+  handleChangeFilter: (prop: string, value: any) => void
+  filterData: getMortgages
+  handleScrollToMortgages: () => void
 };
 
-const IntroMortgage = ({ items, current, setActive }: Props) => {
-  const [currentCheckbox, setCurrentCheckbox] = useState<string>('Есть 1 ребёнок после 2018 года');
-  const [money, setMoney] = useState<number>(100);
-  const [firstMoney, setFirstMoney] = useState<number>(100);
-  const [years, setYears] = useState<string>('10');
+const IntroMortgage = (props: Props) => {
+  const { items, current, setActive,
+    filterData, handleChangeFilter, handleScrollToMortgages } = props
+
+  const mortgagesCount = useAppSelector(selectMortgages)?.count
+
+  const [timer, setTimer] = useState(null);
+
+  const [summa, setSumma] = useState(0)
+  const [initialPayment, setInitialPayment] = useState(0)
+
+  const handleChangeInputValues = (prop: string, value: any) => {
+    switch (prop) {
+      case "summa":
+        setSumma(value)
+        break
+      case 'initialPayment':
+        setInitialPayment(value)
+        break
+    }
+    if (timer) {
+      clearTimeout(timer);
+    }
+    setTimer(
+      setTimeout(() => {
+        handleChangeFilter(prop, value)
+      }, 1000)
+    );
+  }
 
   return (
     <div className={s.intro}>
@@ -31,13 +60,13 @@ const IntroMortgage = ({ items, current, setActive }: Props) => {
         <div className={s.breadCrumbs}>
           Главная / <mark>Ипотека</mark>
         </div>
-        <div className={s.title}>
+        <h1 className={s.title}>
           Ипотека <mark>в Бишкеке</mark>
-        </div>
+        </h1>
         <div className={s.sub}>
-          На (НАЗВАНИЕ СЕРВИСА) можно с легкостью подобрать ипотечный кредит и оформить онлайн-заявку. Вы
+          На vsebanki.kg можно с легкостью подобрать ипотечный кредит и оформить онлайн-заявку. Вы
           получите ипотеку на самых выгодных условиях*. У нас большая база ипотечных предложений от разных
-          банков. Также на сайте вы найдете отзывы реальных клиентов и заключения экспертов (НАЗВАНИЕ СЕРВИСА)
+          банков. Также на сайте вы найдете отзывы реальных клиентов и заключения экспертов (vsebanki.kg)
           с описанием преимуществ и недостатков каждого предложения. Это позволит найти подходящий ипотечный
           кредит и быть уверенным в своем выборе!
         </div>
@@ -45,54 +74,45 @@ const IntroMortgage = ({ items, current, setActive }: Props) => {
           <ChoiseItemsMap currentChoise={current} setActive={setActive} choiseItems={items} />
         </div>
         <div className={s.info}>
-          <div className={s.radioCont}>
-            <div>
-              <CustomCheckboxAround
-                value={'Есть 1 ребёнок после 2018 года'}
-                setValue={setCurrentCheckbox}
-                current={currentCheckbox}
-                type={'radio'}
+          <Grid container justifyContent='space-between' rowGap='20px' alignItems='center'>
+            <Grid item xs={12} lg={5.5} xl={5.8}>
+              <TextField
+                fullWidth
+                label='Стоимость жилья(в сомах)'
+                value={summa}
+                onChange={(e) => { handleChangeInputValues('summa', e.target.value) }}
               />
-              Есть 1 ребёнок после 2018 года
-            </div>
-            <div>
-              <CustomCheckboxAround
-                type={'radio'}
-                value={'2 ребёнка младше 18 лет'}
-                current={currentCheckbox}
-                setValue={setCurrentCheckbox}
+            </Grid>
+
+            <Grid item xs={12} lg={5.5} xl={5.8} >
+              <TextField
+                fullWidth
+                label='Первоначальный взнос(в сомах)'
+                value={initialPayment}
+                onChange={(e) => handleChangeInputValues('initialPayment', e.target.value)}
               />
-              2 ребёнка младше 18 лет
-            </div>
-          </div>
-          <div className={s.inpCont}>
-            <CustomInputTitle title={'Стоимость жилья, ₽'} value={money} setValue={setMoney} width={385} />
-            <CustomBtnChange title={'Параметры'} />
-            <CustomInputTitle
-              title={'Первоначальный взнос, ₽'}
-              value={firstMoney}
-              setValue={setFirstMoney}
-              width={385}
-            />
-            <BlueBtn text={'Подобрать'} width={173} />
-            <CustomWhiteSelectTitle
-              value={years}
-              // setValue={setYears}
-              title={'Срок в годах'}
-              options={[{
-                text: '10',
-                value: 10
-              },
-              {
-                text: '15',
-                value: 15
-              }, {
-                text: '20',
-                value: 20
-              }]}
-              width={385}
-            />
-          </div>
+            </Grid>
+
+            <Grid item xs={12} lg={8.5} xl={8.5}>
+              <CustomWhiteSelectTitle2
+                items={timeframe}
+                labelName='Срок'
+                isAllExist={true}
+                name='credit'
+                prop='credit'
+                onChange={() => { }}
+                defaultValue={''}
+                value={''}
+              />
+            </Grid>
+
+            <Grid item xs={12} lg={3} xl={3}>
+              <BlueBtn
+                text={'Показать'}
+                count={mortgagesCount}
+                onClick={handleScrollToMortgages} />
+            </Grid>
+          </Grid>
         </div>
       </div>
     </div>

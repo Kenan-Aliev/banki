@@ -17,7 +17,7 @@ export default function CreditsIpotekaPage() {
   const items = data.MortgagePage.choices;
   return (
     <PageWrapper>
-      <IntroMortgage items={items} />
+      {/* <IntroMortgage items={items} /> */}
       <Bonus />
       <Banks />
       <Mailing />

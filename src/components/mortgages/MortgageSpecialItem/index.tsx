@@ -15,7 +15,7 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
     item: {
       name = 'Газпромбанк',
       description = 'Акция «Путешествий с Level.Travel» с картой UnionPay от Газпромбанка',
-      rate,
+      interest_rate
     },
   } = props;
 
@@ -30,11 +30,11 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
         <div className={styles.blue_text_container}>
           <div style={{ width: '88px' }}>
             <p className={styles.blue_text}>Ставка</p>
-            <p className={styles.text}>от {rate}%</p>
+            <p className={styles.text}>от {interest_rate.min}%</p>
           </div>
           <div style={{ width: '112px' }}>
             <p className={styles.blue_text}>Выгода</p>
-            <p className={styles.text}>до {rate}%</p>
+            <p className={styles.text}>до {interest_rate.max}%</p>
           </div>
         </div>
         <BlueBtn text={'Посмотреть'} width={231} height={40} fSize={16} />

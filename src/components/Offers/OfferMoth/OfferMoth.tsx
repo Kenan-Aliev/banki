@@ -11,6 +11,7 @@ import { CreditItemT } from '@/models/Credits/Credits';
 import CardsOfferItem from './CardsOfferItem/CardsOfferItem';
 import { CreditCardT } from '@/models/Cards/Cards';
 import IpotekaOfferItem from './IpotekaOfferItem/IpotekaOfferItem';
+import { MortgageItemT } from '@/models/Mortgages/Mortgages';
 
 type ItemT = {
   name: string;
@@ -71,6 +72,10 @@ const OfferMonth = (props: OfferMonthProps) => {
         } else if (category === 'Кредиты') {
           const of = { ...offer } as CreditItemT;
           return mapOffer(of, CreditOfferItem, of.id);
+        }
+        else if (category === 'Ипотека') {
+          const of = { ...offer } as MortgageItemT;
+          return mapOffer(of, IpotekaOfferItem, of.id);
         }
       });
     }

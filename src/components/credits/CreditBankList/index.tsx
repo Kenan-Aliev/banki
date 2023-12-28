@@ -11,7 +11,7 @@ import { selectCredits, selectGetCreditsStatus } from '@/core/store/credits/cred
 import { CreditItemT } from '@/models/Credits/Credits';
 import Loading from '@/app/loading';
 import CreditBankItem from '../CreditBankItem';
-import ExpandedCredits from '@/components/Offers/ExpandedCreditOffers';
+import ExpandedItems from '@/components/Offers/ExpandedOffers';
 
 interface CreditBankListProps {
   options?: {
@@ -76,6 +76,7 @@ const CreditBankList = (props: CreditBankListProps) => {
             : uniqueCredits?.map((item) => {
               const { id, bank } = item
               const isExpanded = expandedBankIds.includes(bank)
+              const filteredCredits = credits.filter((item) => item.bank === bank && item.id !== id);
               return (
                 <>
                   <li key={id}>
@@ -89,11 +90,10 @@ const CreditBankList = (props: CreditBankListProps) => {
                   </li>
                   {
                     isExpanded && (
-                      <ExpandedCredits
-                        bankId={bank}
-                        credits={credits}
-                        primaryCreditId={id}
+                      <ExpandedItems
+                        items={filteredCredits}
                         activeCurrency={filterData.currency}
+                        itemsName='Кредиты'
                       />
                     )
                   }

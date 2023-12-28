@@ -2,14 +2,15 @@ import React from 'react';
 import s from './IpotekaOfferItem.module.scss';
 import Image from 'next/image';
 import mockBankIcon from '@/assets/icons/banki_icon/loco.svg';
+import { MortgageItemT } from '@/models/Mortgages/Mortgages';
 
 interface OfferItemProps {
-	item: any;
+	item: MortgageItemT;
 }
 
 const IpotekaOfferItem = (props: OfferItemProps) => {
 	const {
-		item: { deposit_name, interest_rate, term_range, description },
+		item: { name, interest_rate, bank_title, bank_logo, loan_amount, currency },
 	} = props;
 
 	return (
@@ -17,19 +18,19 @@ const IpotekaOfferItem = (props: OfferItemProps) => {
 			<div className={s.inf}>
 				<Image alt={'icon'} src={mockBankIcon} />
 				<div className={s.info}>
-					<div className={s.name}>Банк</div>
-					<div className={s.subtitle}>{deposit_name}</div>
+					<div className={s.name}>{bank_title}</div>
+					<div className={s.subtitle}>{name}</div>
 				</div>
 			</div>
 			<div className={s.line}></div>
 			<div className={s.tarifs}>
 				<div className={s.years}>
 					<div className={s.title}>Ставка</div>
-					<span>10,10%</span>
+					<span>{interest_rate?.min} - {interest_rate.max} %</span>
 				</div>
 				<div className={s.years}>
 					<div className={s.title}>Платёж</div>
-					<span>12542 руб</span>
+					<span>{loan_amount?.min} - {loan_amount?.max} {currency}</span>
 				</div>
 			</div>
 		</div>

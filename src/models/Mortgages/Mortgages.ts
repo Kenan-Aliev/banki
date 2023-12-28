@@ -1,25 +1,28 @@
+interface Quantity {
+  min: number
+  max: number
+}
+
 export interface MortgageItemT {
-  bank_id: number;
-  type: string;
-  max_amount: number;
-  timeframe_min: number;
-  name: string;
-  min_amount: number;
-  id: number;
-  rate: number;
-  timeframe_max: number;
-  description: string;
-  rating: number;
-  monthly_payment: number;
+  id: number
+  name: string
+  bank: number;
+  bank_title: string
+  bank_logo: string
+  conditions: string
+  currency: string
+  initialPayment: number
+  offer_of_the_month: boolean
+  link: string
+  description: string
+  interest_rate: Quantity
+  loan_amount: Quantity
+  loan_term: Quantity
+  age_restriction: Quantity
 }
 
 export interface MortgagesResponseT {
-  cards: MortgageItemT[];
-  result: boolean;
-  len: number;
+  results: MortgageItemT[];
+  count: number
 }
 
-export interface MortgageItemResponseT {
-  card: MortgageItemT;
-  result: boolean;
-}

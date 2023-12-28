@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { baseUrl } from '../const/baseUrl';
+import { baseUrl, apiVersion } from '../const/baseUrl';
 
 const instance = axios.create({
-    baseURL: baseUrl + '/api/v1'
+    baseURL: baseUrl + apiVersion
     // withCredentials: true,
     // headers: {
     //   'Access-Control-Allow-Origin': '*',

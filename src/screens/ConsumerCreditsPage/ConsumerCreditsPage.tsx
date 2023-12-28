@@ -143,6 +143,10 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
     fetchMonthOffers()
     fetchCreditTypes()
     fetchTopCredits()
+
+    return () => {
+      dispatch(resetCredits())
+    }
   }, [])
 
   useEffect(() => {

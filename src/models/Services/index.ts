@@ -66,15 +66,17 @@ export interface getBrokers {
 }
 
 export interface getMortgages {
-    amount?: number;
-    first_payment?: number;
-    bank?: string;
-    type?: string;
-    timeframe?: number;
-    page?: number;
-    limit?: number;
-    sort?: string;
-    sort_type?: number;
+    currency?: string
+    summa?: string
+    bank?: string
+    initialPayment?: string;
+    age?: string
+    max_interest_rate?: string
+    min_interest_rate?: string
+    ipoteka_time?: string
+    ordering?: string
+    limit: number
+    offset: number
 }
 
 export interface getMortgage {

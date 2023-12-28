@@ -4625,9 +4625,9 @@ const data = {
   },
   MortgagePage: {
     choices: [
-      { name: 'Ипотека', active: true },
-      { name: 'Рефинансирование', active: false },
-      { name: 'Страхование', active: false },
+      { name: 'Ипотека', active: true, href: '' },
+      { name: 'Рефинансирование', active: false, href: '/ipoteka/refinance' },
+      { name: 'Страхование', active: false,href: '/insurance/ipot-ins' },
     ],
     offersBanks: [
       {

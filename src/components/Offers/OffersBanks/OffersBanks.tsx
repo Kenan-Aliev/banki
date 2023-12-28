@@ -11,7 +11,7 @@ import Loading from '@/app/loading';
 import { getDepositsI } from '@/models/Services';
 import CustomSelect2 from '@/UI/CustomSelect2/CustomSelect2';
 import { DepositItemT } from '@/models/Deposit/Deposit';
-import ExpandedDeposits from '../ExpandedDepositOffers';
+import ExpandedItems from '../ExpandedOffers';
 
 interface OfferBanksProps {
   options: {
@@ -78,6 +78,7 @@ const OffersBanks = (props: OfferBanksProps) => {
             uniqueDeposits?.map((item) => {
               const { deposit_id, bank_id } = item;
               const isExpanded = expandedBankIds.includes(bank_id);
+              const filteredDeposits = deposits.filter((item) => item.bank_id === bank_id && item.deposit_id !== deposit_id);
               return (
                 <>
                   <li key={deposit_id}>
@@ -91,11 +92,10 @@ const OffersBanks = (props: OfferBanksProps) => {
                   </li>
                   {
                     isExpanded && (
-                      <ExpandedDeposits
-                        bankId={bank_id}
-                        deposits={deposits}
-                        primaryDepositId={deposit_id}
+                      <ExpandedItems
+                        items={filteredDeposits}
                         activeCurrency={filterData.currency}
+                        itemsName='Депозиты'
                       />
                     )
                   }
