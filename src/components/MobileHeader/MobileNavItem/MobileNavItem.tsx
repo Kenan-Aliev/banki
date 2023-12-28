@@ -35,7 +35,7 @@ const MobileNavItem = ({ setCurrent, current, name, navs, setVisible }: Props) =
             ))}
         </div>
         <div>
-          {navs &&
+          {navs && navs[1] && navs[1].length > 0 &&
             navs[1].map((el, index) => (
               <Link onClick={onLink} key={index} href={el.link}>
                 {el.text}

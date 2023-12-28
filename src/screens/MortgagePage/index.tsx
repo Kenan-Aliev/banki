@@ -46,7 +46,7 @@ const MortgagePage = (props: MortgagePageProps) => {
     limit: 10,
     offset: 0,
     currency: 'kgs',
-    ordering: 'min_summ'
+    ordering: 'min_interest_rate'
   })
 
   const handleChangeFilter = (prop: string, value: any) => {
@@ -79,9 +79,9 @@ const MortgagePage = (props: MortgagePageProps) => {
     dispatch(getAllMortgages(params))
   }
 
-  // const fetchMonthOffers = () => {
-  //   dispatch(getMonthOffers({ offerOfTheMonth: true, limit: 10, offset: 0 }))
-  // }
+  const fetchMonthOffers = () => {
+    dispatch(getMonthOffers({ offer_of_the_month: true, limit: 10, offset: 0 }))
+  }
 
 
   // const fetchTopCredits = () => {
@@ -89,7 +89,11 @@ const MortgagePage = (props: MortgagePageProps) => {
   // }
 
   useEffect(() => {
-    // fetchMonthOffers()
+    fetchMonthOffers()
+
+    return () => {
+      dispatch(resetMortgages())
+    }
   }, [])
 
   useEffect(() => {
@@ -114,7 +118,7 @@ const MortgagePage = (props: MortgagePageProps) => {
           options={[
             {
               text: 'По процентной ставке',
-              value: ''
+              value: 'min_interest_rate'
             },
             {
               text: 'По платежу',

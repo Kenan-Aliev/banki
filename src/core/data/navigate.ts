@@ -36,17 +36,17 @@ const navigation = {
   ],
   ipoteka: [
     [
-      { text: 'Мастер подбора кредитов', link: '/ipoteka/offers' },
+      { text: 'Мастер подбора ипотеки', link: '/ipoteka/offers' },
       { text: 'Ипотечные кредиты', link: '/ipoteka/credits' },
-      { text: 'Ипотечное страхование', link: '/insurance' },
+      // { text: 'Ипотечное страхование', link: '/insurance' },
       { text: 'Спецпредложения', link: '/ipoteka/special-offers' },
     ],
-    [
-      { text: 'Рефинансирование', link: '/ipoteka/refinance' },
-      { text: 'Вторичное жильё', link: '/ipoteka/secondary' },
-      { text: 'Новостройки', link: '/ipoteka/new-building' },
-      { text: 'Выбрать недвижимость', link: '/ipoteka/discount' },
-    ],
+    // [
+    //   { text: 'Рефинансирование', link: '/ipoteka/refinance' },
+    //   { text: 'Вторичное жильё', link: '/ipoteka/secondary' },
+    //   { text: 'Новостройки', link: '/ipoteka/new-building' },
+    //   { text: 'Выбрать недвижимость', link: '/ipoteka/discount' },
+    // ],
   ],
   insurance: [
     [

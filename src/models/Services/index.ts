@@ -75,6 +75,7 @@ export interface getMortgages {
     min_interest_rate?: string
     ipoteka_time?: string
     ordering?: string
+    offer_of_the_month?: boolean
     limit: number
     offset: number
 }
