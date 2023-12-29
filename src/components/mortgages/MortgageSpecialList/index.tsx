@@ -1,28 +1,48 @@
+'use client'
+
 import React from 'react';
 import styles from './index.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-import Image from 'next/image';
-import image from '@/assets/icons/image.png';
 import MortgageSpecialItem from 'src/components/mortgages/MortgageSpecialItem';
-import { MortgageItemT } from '@/models/Mortgages/Mortgages';
+import { useAppSelector } from '@/hooks/redux';
+import { selectGetSpecialOffersStatus, selectSpecialOffers } from '@/core/store/mortgages/mortgage-selectors';
+import { getMortgages } from '@/models/Services';
+import Loading from '@/app/loading';
 
 interface MortgageSpecialListProps {
-  mortgages: MortgageItemT[];
+  handleChangeParams: (prop: string, value: any) => void
+  params: getMortgages
 }
 
 const MortgageSpecialList = (props: MortgageSpecialListProps) => {
-  const { mortgages } = props;
+  const { handleChangeParams, params } = props;
+
+  const { results: mortgages, count } = useAppSelector(selectSpecialOffers)
+  const getOffersStatus = useAppSelector(selectGetSpecialOffersStatus)
 
   return (
     <div className={styles.container}>
       <div className={styles.map_cont}>
-        {mortgages.map((item) => (
-          <MortgageSpecialItem key={item.id} item={item} />
-        ))}
-        <Image src={image} alt={'asd'} height={307} width={279} className={styles.image} />
-        <Image src={image} alt={'asd'} height={307} width={279} className={styles.image} />
+        {
+          getOffersStatus === 'loading'
+            ?
+            <Loading />
+            :
+            mortgages?.map((item) => (
+              <MortgageSpecialItem key={item.id} item={item} />
+            ))
+        }
       </div>
-      <BlueBtn text={'Показать еще'} width={236} fSize={20} height={60} />
+      {
+        count && count > params.offset + params.limit
+          ?
+          <div className={styles.btn_cont}>
+            <BlueBtn text={'Показать еще'} width={235}
+              onClick={() => handleChangeParams('offset', params.offset + 10)}
+            />
+          </div>
+          : null
+      }
     </div>
   );
 };

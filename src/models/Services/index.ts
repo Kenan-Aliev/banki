@@ -68,6 +68,7 @@ export interface getBrokers {
 export interface getMortgages {
     currency?: string
     summa?: string
+    term?:string
     bank?: string
     initialPayment?: string;
     age?: string
@@ -76,6 +77,7 @@ export interface getMortgages {
     ipoteka_time?: string
     ordering?: string
     offer_of_the_month?: boolean
+    special_offer?: boolean
     limit: number
     offset: number
 }

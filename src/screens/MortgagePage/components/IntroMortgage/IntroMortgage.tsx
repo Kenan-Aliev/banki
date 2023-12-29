@@ -6,7 +6,7 @@ import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
 import { Grid, TextField } from '@mui/material';
 import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
-import { timeframe } from '@/core/data/filters';
+import { mortgageTerms } from '@/core/data/filters';
 import { getMortgages } from '@/models/Services';
 import { useAppSelector } from '@/hooks/redux';
 import { selectMortgages } from '@/core/store/mortgages/mortgage-selectors';
@@ -95,14 +95,14 @@ const IntroMortgage = (props: Props) => {
 
             <Grid item xs={12} lg={8.5} xl={8.5}>
               <CustomWhiteSelectTitle2
-                items={timeframe}
+                items={mortgageTerms}
                 labelName='Срок'
                 isAllExist={true}
-                name='credit'
-                prop='credit'
-                onChange={() => { }}
-                defaultValue={''}
-                value={''}
+                name='term'
+                prop='term'
+                onChange={handleChangeFilter}
+                defaultValue={filterData.term ?? ''}
+                value={filterData.term ?? ''}
               />
             </Grid>
 

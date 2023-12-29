@@ -50,3 +50,34 @@ export const depositTypes = [
 		value: 'Пенсионный'
 	}
 ]
+
+export const mortgageTerms = [
+	{
+		text: '1 год',
+		value: 12
+	},
+	{
+		text: '2 года',
+		value: 24
+	},
+	{
+		text: '3 года',
+		value: 36
+	},
+	{
+		text: '4 года',
+		value: 48
+	},
+	{
+		text: '5 лет',
+		value: 60
+	},
+	{
+		text: '10 лет',
+		value: 120
+	},
+	{
+		text: '15 лет',
+		value: 180
+	}
+]

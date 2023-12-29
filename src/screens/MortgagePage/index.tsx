@@ -112,6 +112,7 @@ const MortgagePage = (props: MortgagePageProps) => {
       />
       <Bonus
         title='Оформи ипотеку в Demirbank онлайн'
+        img='https://demirbank.kg/assets/c207871/img/logo.png'
         text='Теперь у вас есть возможность приобрести недвижимость в ипотеку от 6%!' />
       <div ref={ref}>
         <MortgagesList
