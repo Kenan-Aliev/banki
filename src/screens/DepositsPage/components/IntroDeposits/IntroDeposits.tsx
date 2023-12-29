@@ -24,6 +24,8 @@ interface Props {
 const IntroDeposits = (props: Props) => {
   const { handleChangeFilter, filterData, handleScrollToDeposits, cleanFilter } = props
   const [openFilterModal, setOpenFilterModal] = useState(false)
+  const [timer, setTimer] = useState(null)
+  const [summa, setSumma] = useState(0)
 
   const depositsCount = useAppSelector(selectDeposits)?.count
   const banks = useAppSelector(selectBanks)?.results?.map((bank) => {
@@ -36,6 +38,27 @@ const IntroDeposits = (props: Props) => {
   const handleChangeFilterModal = () => {
     setOpenFilterModal(!openFilterModal)
   }
+
+
+  const handleChangeSumma = (prop: string, value: any) => {
+    switch (prop) {
+      case "amount_range":
+        setSumma(value)
+        if (timer) {
+          clearTimeout(timer);
+        }
+        setTimer(
+          setTimeout(() => {
+            handleChangeFilter(prop, value)
+          }, 1000)
+        );
+        break
+      case 'currency':
+        handleChangeFilter(prop, value)
+        break
+    }
+  }
+
   return (
     <div className={s.intro}>
       <div className={s.info}>
@@ -58,9 +81,9 @@ const IntroDeposits = (props: Props) => {
         <div className={s.calculate}>
           <MoneySelect
             width={385}
-            amount={filterData.amount_range ?? 0}
+            amount={summa}
             currency={filterData.currency}
-            handleChange={handleChangeFilter}
+            handleChange={handleChangeSumma}
             title='Сумма' />
           <div className={s.btnChange} onClick={handleChangeFilterModal}>
             <Image alt={'иконка настройки'} src={cust} />

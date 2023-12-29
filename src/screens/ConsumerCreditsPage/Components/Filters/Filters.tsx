@@ -45,6 +45,8 @@ interface Props {
 		value: string | number
 	}[]
 	count: number
+	summa: number
+	handleChangeSumma: (prop: string, value: any) => void
 	handleScrollToCredits: () => void
 	cleanFilter: () => void
 }
@@ -68,7 +70,7 @@ const style = {
 
 function Filters(props: Props) {
 	const { banks, cleanFilter, count, filter, handleChangeFilter,
-		handleClose, handleScrollToCredits, open
+		handleClose, handleScrollToCredits, open, handleChangeSumma, summa
 	} = props
 
 	const creditTypes = useAppSelector(selectCreditTypes)?.map((type) => {
@@ -107,8 +109,8 @@ function Filters(props: Props) {
 							<TextField
 								fullWidth
 								label='Сумма'
-								value={filter.summa ?? 0}
-								onChange={(e) => handleChangeFilter('summa', e.target.value)}
+								value={summa}
+								onChange={(e) => handleChangeSumma('summa', e.target.value)}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>

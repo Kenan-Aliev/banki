@@ -59,16 +59,6 @@ const MortgagePage = (props: MortgagePageProps) => {
     }
   }
 
-  // const cleanFilter = () => {
-  //   dispatch(resetMortgages())
-  //   setFilterData({
-  //     limit: 10,
-  //     offset: 0,
-  //     currency: 'kgs',
-  //     ordering: filterData.ordering
-  //   })
-  // }
-
   const handleScrollToMortgages = () => {
     ref.current.scrollIntoView({
       behavior: 'smooth'
@@ -82,11 +72,6 @@ const MortgagePage = (props: MortgagePageProps) => {
   const fetchMonthOffers = () => {
     dispatch(getMonthOffers({ offer_of_the_month: true, limit: 10, offset: 0 }))
   }
-
-
-  // const fetchTopCredits = () => {
-  //   dispatch(getTopCredits())
-  // }
 
   useEffect(() => {
     fetchMonthOffers()
@@ -133,7 +118,6 @@ const MortgagePage = (props: MortgagePageProps) => {
       <Mailing />
       {/* <Compilations /> */}
       <OfferMonth offers={monthOffers.results} category='Ипотека' />
-      {/* <OffersMonth /> */}
       <Communicate />
       <Feedback title={'Отзывы '} sub={'об ипотеке'} category='Ипотека' />
       <FrequentQuestions title={''} items={staticData.questData} />

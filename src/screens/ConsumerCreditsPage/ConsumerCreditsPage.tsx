@@ -63,8 +63,14 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
       setFilterData({ ...filterData, [prop]: value })
     }
     else {
+      if (value === false) {
+        delete filterData[prop]
+        setFilterData({ ...filterData })
+      }
+      else {
+        setFilterData({ ...filterData, [prop]: value, offset: 0 })
+      }
       dispatch(resetCredits())
-      setFilterData({ ...filterData, [prop]: value, offset: 0 })
     }
   }
 

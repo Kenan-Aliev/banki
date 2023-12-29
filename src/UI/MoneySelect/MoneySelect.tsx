@@ -20,7 +20,7 @@ const MoneySelect = ({ width, amount, currency, handleChange, title, currencyPro
                 <div>{title}</div>
                 <input type='number'
                     value={amount}
-                    onChange={(e) => handleChange(moneyProp ?? 'amount_tange', e.target.value)} />
+                    onChange={(e) => handleChange(moneyProp ?? 'amount_range', e.target.value)} />
             </div>
             <div className={s.select}>
                 <select

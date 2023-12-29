@@ -52,8 +52,14 @@ const DepositsPage = () => {
     }
 
     else {
+      if (value === false) {
+        delete filterData[prop]
+        setFilterData({...filterData})
+      }
+      else {
+        setFilterData({ ...filterData, [prop]: value, offset: 0 })
+      }
       dispatch(resetDeposits())
-      setFilterData({ ...filterData, [prop]: value, offset: 0 })
     }
   }
 

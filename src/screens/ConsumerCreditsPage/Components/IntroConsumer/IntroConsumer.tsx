@@ -30,7 +30,8 @@ const IntroConsumer = (props: Props) => {
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false)
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
   const [availableCreditsCount, setAvailableCreditsCount] = useState<number>(null)
-
+  const [timer, setTimer] = useState(null)
+  const [summa, setSumma] = useState(0)
 
   const creditsCount = useAppSelector(selectCredits)?.count
   const banksData = banks.map((bank) => ({
@@ -44,6 +45,25 @@ const IntroConsumer = (props: Props) => {
 
   const handleChangeFilterModal = () => {
     setIsFilterModalOpen(!isFilterModalOpen)
+  }
+
+  const handleChangeSumma = (prop: string, value: any) => {
+    switch (prop) {
+      case "summa":
+        setSumma(value)
+        if (timer) {
+          clearTimeout(timer);
+        }
+        setTimer(
+          setTimeout(() => {
+            handleChangeFilter(prop, value)
+          }, 1000)
+        );
+        break
+      case 'currency':
+        handleChangeFilter(prop, value)
+        break
+    }
   }
 
   useEffect(() => {
@@ -68,6 +88,8 @@ const IntroConsumer = (props: Props) => {
         handleChangeFilter={handleChangeFilter}
         banks={banksData}
         count={creditsCount}
+        summa={summa}
+        handleChangeSumma={handleChangeSumma}
         handleScrollToCredits={handleScrollToCredits}
         cleanFilter={cleanFilter}
       />
@@ -90,10 +112,9 @@ const IntroConsumer = (props: Props) => {
         <div className={s.calculate}>
           <MoneySelect
             width={385}
-            amount={filterData.summa}
+            amount={summa}
             currency={filterData.currency}
-            handleChange={handleChangeFilter}
-            currencyProp='currency'
+            handleChange={handleChangeSumma}
             moneyProp='summa'
             title='Сумма' />
           <div className={s.btnChange} onClick={handleChangeFilterModal}>
