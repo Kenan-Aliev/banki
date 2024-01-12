@@ -21,28 +21,37 @@ export type DebitCardT = {
 };
 
 export type CardItemT = {
-  price: number;
-  id: number;
-  cashback: number;
-  max_amount?: any;
-  timeframe_min?: any;
-  name: string;
-  bank_id: number;
-  type: string;
-  max_points: number;
-  min_amount?: any;
-  rate: number;
-  timeframe_max?: any;
-  description: string;
-  rating: number;
+  id: number
+  name: string
+  image: string
+  issuing_bank: number
+  card_type: string
+  credit_limit: number
+  interest_rate: number
+  issuance_fee: number
+  currency: string
+  offer_of_the_month: boolean
+  special_offer: boolean
+  special_offer_text: string
+  card_network: {
+    id: number
+    name: string
+  }
+  service_fee: {
+    free: boolean
+    cost: number
+  },
+  cashback: {
+    available: boolean
+    percentage: number
+  }
+  commission_free_withdrawal: {
+    available: boolean,
+  },
 };
 
 export type CardItemsResponseT = {
-  cards: CardItemT[];
-  result: boolean;
-  len: number;
+  count: number;
+  results: CardItemT[]
 };
-export interface CardItemResposeT {
-  card: CardItemT;
-  result: boolean;
-}
+

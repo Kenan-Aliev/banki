@@ -81,3 +81,14 @@ export const mortgageTerms = [
 		value: 180
 	}
 ]
+
+export const paySystems = [
+	{
+		text: 'MasterCard',
+		value: 'MasterCard'
+	},
+	{
+		text: 'Visa',
+		value: 'Visa'
+	}
+]

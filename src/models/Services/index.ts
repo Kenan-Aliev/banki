@@ -16,11 +16,16 @@ export interface getBusinessCreditsI {
 }
 
 export interface getCardsI {
-    bank?: number;
-    page?: number;
-    limit?: number;
-    sort?: number;
-    sort_type?: number;
+    card_type: string
+    offset: number
+    limit: number
+    issuing_bank?: string[] | string;
+    card_network?: string
+    currency?: string
+    cashback?: boolean
+    commission?: boolean
+    special_offer?: boolean
+    ordering?: string
 }
 
 export interface getDepositsI {
@@ -68,7 +73,7 @@ export interface getBrokers {
 export interface getMortgages {
     currency?: string
     summa?: string
-    term?:string
+    term?: string
     bank?: string
     initialPayment?: string;
     age?: string
