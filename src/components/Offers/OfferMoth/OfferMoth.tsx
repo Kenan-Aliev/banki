@@ -9,7 +9,7 @@ import DepositOfferItem from './DepositOfferItem/DepositOfferItem';
 import { DepositItemT } from '@/models/Deposit/Deposit';
 import { CreditItemT } from '@/models/Credits/Credits';
 import CardsOfferItem from './CardsOfferItem/CardsOfferItem';
-import { CreditCardT } from '@/models/Cards/Cards';
+import { CardItemT, CreditCardT } from '@/models/Cards/Cards';
 import IpotekaOfferItem from './IpotekaOfferItem/IpotekaOfferItem';
 import { MortgageItemT } from '@/models/Mortgages/Mortgages';
 
@@ -76,6 +76,10 @@ const OfferMonth = (props: OfferMonthProps) => {
         else if (category === 'Ипотека') {
           const of = { ...offer } as MortgageItemT;
           return mapOffer(of, IpotekaOfferItem, of.id);
+        }
+        else if (category === 'Кредитные карты') {
+          const of = { ...offer } as CardItemT
+          return mapOffer(of, CardsOfferItem, of.id)
         }
       });
     }

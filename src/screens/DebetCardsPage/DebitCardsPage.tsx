@@ -2,7 +2,7 @@
 import Wrapper from '@/containers/Wrapper';
 import Navigation from '@/screens/DebetCardsPage/components/Navigation/Navigation';
 import Bonus from '@/components/Bonus/Bonus';
-import Offers from '@/screens/CreditMapPage/components/Offers/Offers';
+import Offers from '@/screens/CreditMapPage/components/CardsList/CardsList';
 import OffersMonth from '@/components/OffersMonth/OffersMonth';
 import Mailing from '@/components/Mailing/Mailing';
 import React, { useEffect, useState } from 'react';

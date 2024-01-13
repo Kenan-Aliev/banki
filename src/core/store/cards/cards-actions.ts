@@ -13,6 +13,17 @@ export const getCards = createAsyncThunk(
 		}
 	})
 
+export const getMonthOffers = createAsyncThunk(
+	'cards/getMonthOffers',
+	async (params: getCardsI, { rejectWithValue }) => {
+		try {
+			const response = await CardsApi.getCards(params)
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})
+
 
 
 

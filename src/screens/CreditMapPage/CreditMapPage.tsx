@@ -2,7 +2,6 @@
 import Wrapper from '@/containers/Wrapper';
 import Navigation from './components/Navigation/Navigation';
 import Bonus from '../../components/Bonus/Bonus';
-import Offers from './components/Offers/Offers';
 import OffersMonth from '@/components/OffersMonth/OffersMonth';
 import Mailing from '@/components/Mailing/Mailing';
 import Compilations from '@/screens/CreditMapPage/components/Сompilations/Сompilations';
@@ -17,11 +16,15 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { getCardsI } from '@/models/Services';
 import { resetCards } from '@/core/store/cards/cards-slice';
 import { getBanks } from '@/core/store/banks/banks-actions';
-import { getCards } from '@/core/store/cards/cards-actions';
+import { getCards, getMonthOffers } from '@/core/store/cards/cards-actions';
 import { resetBanks } from '@/core/store/banks/banks-slice';
+import CardsList from './components/CardsList/CardsList';
+import { selectMonthOffers } from '@/core/store/cards/cards-selectors';
+import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 
 export default function CreditMapPage() {
   const staticData = data.CreditCardsPage;
+  const monthOffers = useAppSelector(selectMonthOffers)
 
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
@@ -29,39 +32,47 @@ export default function CreditMapPage() {
   const [filterData, setFilterData] = useState<getCardsI>({
     limit: 10,
     offset: 0,
-    card_type: 'credit'
+    card_type: 'credit',
+    ordering: 'cashback_percentage'
   })
 
+  const fetchMonthOffers = () => {
+    dispatch(getMonthOffers({ card_type: 'credit', limit: 10, offset: 0 }))
+  }
 
   const cleanFilter = () => {
     dispatch(resetCards())
     setFilterData({
       limit: 10,
       offset: 0,
-      card_type: 'credit'
+      card_type: 'credit',
+      ordering: filterData.ordering
     })
   }
 
 
   const handleChangeFilter = (prop: string, value: any, selectOne?: boolean) => {
-    let newFilterData = { ...filterData, offset: 0, limit: 10 };
+    let newFilterData = { ...filterData, offset: 0, limit: 10, ordering: filterData.ordering };
 
     if (selectOne) {
       newFilterData = {
         [prop]: value,
         card_type: filterData.card_type,
         offset: 0,
-        limit: 10
+        limit: 10,
+        ordering: filterData.ordering
       }
+      dispatch(resetCards());
     } else if (prop === 'offset') {
       newFilterData[prop] = value;
     } else if (value === false) {
       delete newFilterData[prop];
+      dispatch(resetCards());
     } else {
       newFilterData[prop] = value;
+      dispatch(resetCards());
     }
     setFilterData(newFilterData);
-    dispatch(resetCards());
   };
 
   const handleScrollToCards = () => {
@@ -81,7 +92,7 @@ export default function CreditMapPage() {
 
   useEffect(() => {
     fetchBanks()
-
+    fetchMonthOffers()
     return () => {
       dispatch(resetBanks())
       dispatch(resetCards())
@@ -107,8 +118,22 @@ export default function CreditMapPage() {
       />
       <Bonus />
       <div ref={ref}>
-        <Offers cards={[]} />
+        <CardsList
+          filterData={filterData}
+          handleChangeFilter={handleChangeFilter}
+          options={[
+            {
+              text: 'По кэшбеку',
+              value: 'cashback_percentage'
+            },
+            {
+              text: 'По кредитному лимиту',
+              value: 'credit_limit'
+            },
+          ]}
+        />
       </div>
+      {/* <OfferMonth offers={monthOffers} category='Кредитные карты' /> */}
       <OffersMonth />
       <Mailing />
       <Compilations />

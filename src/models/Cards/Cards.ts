@@ -25,6 +25,8 @@ export type CardItemT = {
   name: string
   image: string
   issuing_bank: number
+  bank_title: string
+  bank_logo: string
   card_type: string
   credit_limit: number
   interest_rate: number
