@@ -27,7 +27,7 @@ export default function DebitCardsPage() {
     <Wrapper>
       <Navigation setActive={setCurrent} current={current} />
       <Bonus />
-      <Offers cards={staticCards} />
+      {/* <Offers cards={staticCards} /> */}
       <OffersMonth />
       <Mailing />
       <Compilations />
@@ -35,7 +35,7 @@ export default function DebitCardsPage() {
       <Communicate />
       <Feedback title={'Отзывы '} sub={'о дебетовых картах'} />
       <BanksWithButton
-        cards={staticCards}
+        cards={[]}
         text={'Кредитные карты в Бишкеке '}
         sub_value={'- ТОП 10 лучших в 2023 году'}
       />

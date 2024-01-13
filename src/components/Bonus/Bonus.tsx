@@ -42,7 +42,7 @@ const Bonus = (props: BonusProps) => {
         handleClose={handleChangeApplicationForm}
         productId={1}
         productType='deposit' />
-      {img ? <Image src={img} alt={'logo bank'} width={300} height={300} /> : <div className={s.logo}>Логотип</div>}
+      {img ? <Image src={img} alt={'logo bank'} width={200} height={200} /> : <div className={s.logo}>Логотип</div>}
       <div className={s.info}
       >
         <div className={s.title}>{title}</div>

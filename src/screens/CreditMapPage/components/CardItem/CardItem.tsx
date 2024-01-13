@@ -1,14 +1,14 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { currencies } from '@/core/data/currency';
-import { baseUrl } from '@/core/const/baseUrl';
-import { Grid, Box, Typography, Button, SxProps, Theme } from '@mui/material';
+import { Grid, Box, Typography, SxProps, Theme } from '@mui/material';
 import { CardItemT } from '@/models/Cards/Cards';
+import Application from '@/components/Application/Application';
 
 
 const rootBoxStyles: SxProps<Theme> = {
@@ -74,16 +74,25 @@ interface CardItemProps {
 
 const CardItem = (props: CardItemProps) => {
   const {
-    item: { bank_title, issuing_bank, image, name, interest_rate, service_fee, credit_limit, currency },
+    item: { bank_title, issuing_bank, image, name, interest_rate, service_fee, credit_limit, currency, id },
     openChildren,
     child,
     count,
   } = props;
 
-  // const currency = currencies.find((c) => c.value == activeCurrency)?.text
+  const [applicationModal, setApplicationModal] = useState(false)
+  const cur = currencies.find((c) => c.value.toLowerCase() == currency.toLowerCase())?.text
 
+  const handleChangeApplicationForm = () => {
+    setApplicationModal(!applicationModal)
+  }
   return (
     <Box sx={rootBoxStyles}>
+      <Application
+        open={applicationModal}
+        handleClose={handleChangeApplicationForm}
+        productId={id}
+        productType='credit-card' />
       <Grid container mb='10px'>
         <Grid item xs={5} sm={3} md={3} lg={2.5} xl={2.5}>
           <Image src={image} alt={'иконка карты'} width={200} height={100} />
@@ -119,7 +128,7 @@ const CardItem = (props: CardItemProps) => {
             Обслуживание
           </Typography>
           <Typography sx={infoItemTextStyles}>
-            {service_fee.cost}
+            {service_fee.free ? 'Бесплатное' : `${service_fee.cost} ${cur}`}
           </Typography>
         </Grid>
         <Grid item xs={12} lg={2} xl={2} sx={infoItemGridStyles}>
@@ -130,7 +139,7 @@ const CardItem = (props: CardItemProps) => {
             Кредитный лимит
           </Typography>
           <Typography sx={infoItemTextStyles}>
-            {credit_limit} {currency}
+            {credit_limit} {cur}
           </Typography>
         </Grid>
       </Grid>

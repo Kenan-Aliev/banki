@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './BanksWithButton.module.scss';
 import BankCardItem from '@/components/BanksWithButton/BankCardItem/BankCardItem';
-import { nanoid } from 'nanoid';
-import { CreditCardT, DebitCardT } from '@/models/Cards/Cards';
+import { CardItemT } from '@/models/Cards/Cards';
 
 interface BanksWithButtonProps {
   text: string;
   sub_value: string;
-  cards: CreditCardT[] | DebitCardT[];
+  cards: CardItemT[]
 }
 
 const BanksWithButton = (props: BanksWithButtonProps) => {
@@ -18,10 +17,10 @@ const BanksWithButton = (props: BanksWithButtonProps) => {
       <div className={styles.text_container}>
         <mark>{text}</mark> {sub_value}
       </div>
-      {}
+      { }
       <ul className={styles.items_container}>
-        {cards.slice(0, 10).map((item) => (
-          <li key={nanoid()}>
+        {cards?.map((item) => (
+          <li key={item.id}>
             <BankCardItem item={item} />
           </li>
         ))}

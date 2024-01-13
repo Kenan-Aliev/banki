@@ -23,12 +23,12 @@ export default function InstallmentPage() {
       <Navigation />
       <InstallmentPageAdvantages advantages={staticData.advantages} />
       <Bonus />
-      <Offers cards={staticCards} />
+      {/* <Offers cards={staticCards} /> */}
       <OffersMonth />
       <Mailing />
       <Feedback title={'Отзывы '} sub={'о кредитных картах'} />
       <BanksWithButton
-        cards={staticCards}
+        cards={[]}
         text={'Кредитные карты в Бишкеке '}
         sub_value={'- ТОП 10 лучших в 2023 году'}
       />

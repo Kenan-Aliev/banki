@@ -993,6 +993,11 @@ const data = {
       { img: globus, name: 'Для путешествий' },
       { img: w_4, name: 'Бонусные карты' },
       { img: credit, name: 'Бесплатные карты' },
+      { img: card, name: 'Visa' },
+      { img: card, name: 'MasterCard' },
+      { img: credit, name: 'Бесплатное снятие' },
+      { img: credit, name: 'Бесплатное обслуживание' },
+      { img: flame, name: 'С Кэшбеком' }
     ],
   },
   Autocredits: {
@@ -4627,7 +4632,7 @@ const data = {
     choices: [
       { name: 'Ипотека', active: true, href: '' },
       { name: 'Рефинансирование', active: false, href: '/ipoteka/refinance' },
-      { name: 'Страхование', active: false,href: '/insurance/ipot-ins' },
+      { name: 'Страхование', active: false, href: '/insurance/ipot-ins' },
     ],
     offersBanks: [
       {

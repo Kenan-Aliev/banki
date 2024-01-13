@@ -20,10 +20,10 @@ const CatalogItemsMap = ({ items, handleShowCatalogItems }: Props) => {
     <>
       {items.map((el, index) => (
         <Box key={index}
-          onClick={() => el.link ? null : handleShowCatalogItems(el.name)}
+          onClick={handleShowCatalogItems ? () => { handleShowCatalogItems(el.name) } : null}
           sx={{
             "&:hover": {
-              cursor: 'pointer'
+              cursor: handleShowCatalogItems || el.link ? 'pointer' : 'default'
             },
             "@media(max-width:640px)": {
               width: '100%'

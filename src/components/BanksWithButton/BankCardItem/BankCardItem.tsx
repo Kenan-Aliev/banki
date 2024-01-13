@@ -1,21 +1,21 @@
 import React from 'react';
 import styles from './BankCardItem.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-import { CreditCardT } from '@/models/Cards/Cards';
+import { CardItemT } from '@/models/Cards/Cards';
 
 interface BankCardItemProps {
-  item: CreditCardT;
+  item: CardItemT;
 }
 
 const BankCardItem = (props: BankCardItemProps) => {
   const {
-    item: { bank_name, name },
+    item: { bank_title, name },
   } = props;
 
   return (
     <div className={styles.main_container}>
       <div className={styles.text_container}>
-        {bank_name}
+        {bank_title}
         <span>{name}</span>
       </div>
       <div className={styles.period_container}>

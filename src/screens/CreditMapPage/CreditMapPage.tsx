@@ -16,15 +16,17 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { getCardsI } from '@/models/Services';
 import { resetCards } from '@/core/store/cards/cards-slice';
 import { getBanks } from '@/core/store/banks/banks-actions';
-import { getCards, getMonthOffers } from '@/core/store/cards/cards-actions';
+import { getCards, getMonthOffers, getTopCreditCards } from '@/core/store/cards/cards-actions';
 import { resetBanks } from '@/core/store/banks/banks-slice';
 import CardsList from './components/CardsList/CardsList';
-import { selectMonthOffers } from '@/core/store/cards/cards-selectors';
+import { selectMonthOffers, selectTopCreditCards } from '@/core/store/cards/cards-selectors';
+import bonusImg from '@/assets/icons/credit_cards_bonus.jpg'
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 
 export default function CreditMapPage() {
   const staticData = data.CreditCardsPage;
   const monthOffers = useAppSelector(selectMonthOffers)
+  const topCreditCards = useAppSelector(selectTopCreditCards)
 
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
@@ -89,10 +91,15 @@ export default function CreditMapPage() {
     dispatch(getBanks({ limit: 50, offset: 0 }))
   }
 
+  const fetchTopCreditCards = () => {
+    dispatch(getTopCreditCards())
+  }
+
 
   useEffect(() => {
     fetchBanks()
     fetchMonthOffers()
+    fetchTopCreditCards()
     return () => {
       dispatch(resetBanks())
       dispatch(resetCards())
@@ -116,7 +123,12 @@ export default function CreditMapPage() {
         handleScrollToCards={handleScrollToCards}
         cleanFilter={cleanFilter}
       />
-      <Bonus />
+      <Bonus
+        title='Золотая карта для каждого!'
+        text='KKB Gold – это особые возможности для всех.
+         Быстрое онлайн-оформление, бесплатный выпуск карты, кэшбэк, удобный сервис'
+        img={bonusImg}
+      />
       <div ref={ref}>
         <CardsList
           filterData={filterData}
@@ -135,13 +147,13 @@ export default function CreditMapPage() {
       </div>
       {/* <OfferMonth offers={monthOffers} category='Кредитные карты' /> */}
       <OffersMonth />
-      <Mailing />
+      {/* <Mailing /> */}
       <Compilations />
       <LatestNews />
       <Communicate />
       <Feedback title={'Отзывы '} sub={'о кредитных картах'} category='Кредитные карты' />
       <BanksWithButton
-        cards={[]}
+        cards={topCreditCards}
         text={'Кредитные карты в Бишкеке '}
         sub_value={'- ТОП 10 лучших в 2023 году'}
       />

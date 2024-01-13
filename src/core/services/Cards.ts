@@ -10,6 +10,9 @@ const CardsApi = {
     }
     );
   },
+  getTopCreditCards() {
+    return instance.get<CardItemsResponseT>('/card/top-credit/');
+  }
 };
 
 export default CardsApi;

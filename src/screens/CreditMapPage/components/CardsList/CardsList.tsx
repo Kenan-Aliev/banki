@@ -11,7 +11,7 @@ import Loading from '@/app/loading';
 import ExpandedItems from '@/components/Offers/ExpandedOffers';
 import { selectCards, selectCardsStatus } from '@/core/store/cards/cards-selectors';
 import { CardItemT } from '@/models/Cards/Cards';
-import OffersItem from '../CardItem/CardItem';
+import CardItem from '../CardItem/CardItem';
 
 interface CardsListProps {
   options?: {
@@ -26,8 +26,6 @@ const CardsList = (props: CardsListProps) => {
   const { options, filterData, handleChangeFilter } = props;
   const { results: cards, count } = useAppSelector(selectCards)
   const getCardsStatus = useAppSelector(selectCardsStatus)
-
-  console.log(cards)
 
   const [expandedBankIds, setExpandedBankIds] = useState<number[]>([]);
   const [bankIdCounts, setBankIdCounts] = useState<{ [key: number]: number }>({});
@@ -82,7 +80,7 @@ const CardsList = (props: CardsListProps) => {
               return (
                 <>
                   <li key={id}>
-                    <OffersItem
+                    <CardItem
                       item={item}
                       child={isExpanded}
                       count={bankIdCounts[issuing_bank] - 1}
