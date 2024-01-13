@@ -57,3 +57,11 @@ export type CardItemsResponseT = {
   results: CardItemT[]
 };
 
+export type TopCardsResponseT = {
+  count: number
+  results: {
+    id: number
+    card: CardItemT
+  }[]
+}
+

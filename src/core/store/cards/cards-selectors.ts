@@ -7,3 +7,4 @@ export const selectCardsStatus = (state: RootState) => state.cards.cards.status
 export const selectMonthOffers = (state: RootState) => state.cards.monthOffers.data.results
 
 export const selectTopCreditCards = (state: RootState) => state.cards.topCreditCards.data.results
+	?.map((card) => card.card)

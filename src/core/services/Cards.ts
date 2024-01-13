@@ -1,6 +1,6 @@
 import instance from '@/core/services/index';
 import { getCardsI } from '@/models/Services';
-import { CardItemsResponseT } from '@/models/Cards/Cards';
+import { CardItemsResponseT, TopCardsResponseT } from '@/models/Cards/Cards';
 
 const CardsApi = {
   getCards(params: getCardsI) {
@@ -11,7 +11,7 @@ const CardsApi = {
     );
   },
   getTopCreditCards() {
-    return instance.get<CardItemsResponseT>('/card/top-credit/');
+    return instance.get<TopCardsResponseT>('/card/top-credit/');
   }
 };
 

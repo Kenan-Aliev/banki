@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CardItemsResponseT } from '@/models/Cards/Cards';
+import { CardItemsResponseT, TopCardsResponseT } from '@/models/Cards/Cards';
 import { RequestStatus } from '@/models/Services';
 import { getCards, getMonthOffers, getTopCreditCards } from './cards-actions';
 
@@ -14,7 +14,7 @@ interface stateT {
   },
   topCreditCards: {
     status: RequestStatus
-    data: CardItemsResponseT
+    data: TopCardsResponseT
   }
 }
 
@@ -29,7 +29,7 @@ const initialState: stateT = {
   },
   topCreditCards: {
     status: 'initial',
-    data: {} as CardItemsResponseT
+    data: {} as TopCardsResponseT
   }
 };
 
