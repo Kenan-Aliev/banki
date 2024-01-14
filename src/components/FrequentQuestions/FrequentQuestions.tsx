@@ -17,7 +17,7 @@ const FrequentQuestions = ({ title, items }: Props) => {
       <div className={s.title}>{title}</div>
       <div className={s.questItems}>
         {items.map((el, index) => (
-          <QuestionItem key={index} item={el} />
+          <QuestionItem key={index} item={el} isFirst={index === 0} />
         ))}
       </div>
     </div>

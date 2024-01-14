@@ -7,9 +7,10 @@ import CreditBankItem from '@/components/credits/CreditBankItem';
 import { MortgageItemT } from '@/models/Mortgages/Mortgages';
 import MortgageOfferItem from '@/components/mortgages/MortgageOfferItem';
 import { CardItemT } from '@/models/Cards/Cards';
-import CardItem from '@/screens/CreditMapPage/components/CardItem/CardItem';
+import CreditCardItem from '@/components/CreditCardItem/CreditCardItem';
+import DebitCardItem from '@/components/DebitCardItem';
 
-type ItemsTypes = 'Депозиты' | 'Кредиты' | 'Ипотека' | "Кредитные карты"
+type ItemsTypes = 'Депозиты' | 'Кредиты' | 'Ипотека' | 'Кредитные карты' | 'Дебетовые карты'
 
 const ExpandedItems = ({
 	activeCurrency, items, itemsName
@@ -43,7 +44,13 @@ const ExpandedItems = ({
 			case 'Кредитные карты':
 				return items.map((item) => {
 					const card = item as CardItemT
-					return <CardItem item={card} key={card.id} />
+					return <CreditCardItem item={card} key={card.id} />
+				})
+
+			case 'Дебетовые карты':
+				return items.map((item) => {
+					const card = item as CardItemT
+					return <DebitCardItem item={card} key={card.id} />
 				})
 
 			default: return null

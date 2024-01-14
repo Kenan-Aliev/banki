@@ -82,13 +82,32 @@ export const mortgageTerms = [
 	}
 ]
 
-export const paySystems = [
+export const creditCardPaySystems = [
 	{
-		text: 'MasterCard',
-		value: 'MasterCard'
+		text: 'MASTERCARD',
+		value: 'MASTERCARD'
 	},
 	{
-		text: 'Visa',
-		value: 'Visa'
+		text: 'VISA',
+		value: 'VISA'
 	}
+]
+
+export const debitCardPaySystems = [
+	{
+		text: 'VISA',
+		value: 'VISA',
+	},
+	{
+		text: 'MASTERCARD',
+		value: 'MASTERCARD',
+	},
+	{
+		text: 'ЭЛКАРТ',
+		value: 'ЭЛКАРТ',
+	},
+	{
+		text: 'UNIONPAY',
+		value: 'UNIONPAY',
+	},
 ]

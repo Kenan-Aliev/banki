@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { CardItemsResponseT, TopCardsResponseT } from '@/models/Cards/Cards';
 import { RequestStatus } from '@/models/Services';
-import { getCards, getMonthOffers, getTopCreditCards } from './cards-actions';
+import { getCards, getMonthOffers, getTopCreditCards, getTopDebitCards } from './cards-actions';
 
 interface stateT {
   cards: {
@@ -13,6 +13,10 @@ interface stateT {
     data: CardItemsResponseT
   },
   topCreditCards: {
+    status: RequestStatus
+    data: TopCardsResponseT
+  },
+  topDebitCards: {
     status: RequestStatus
     data: TopCardsResponseT
   }
@@ -28,6 +32,10 @@ const initialState: stateT = {
     data: {} as CardItemsResponseT
   },
   topCreditCards: {
+    status: 'initial',
+    data: {} as TopCardsResponseT
+  },
+  topDebitCards: {
     status: 'initial',
     data: {} as TopCardsResponseT
   }
@@ -86,6 +94,19 @@ export const cardsSlice = createSlice({
         })
         .addCase(getTopCreditCards.rejected, (state) => {
           state.topCreditCards.status = 'error'
+        }),
+      builder
+        .addCase(getTopDebitCards.pending, (state) => {
+          state.topDebitCards.status = 'loading'
+        })
+        .addCase(getTopDebitCards.fulfilled, (state, action) => {
+          state.topDebitCards = {
+            status: 'success',
+            data: action.payload
+          }
+        })
+        .addCase(getTopDebitCards.rejected, (state) => {
+          state.topDebitCards.status = 'error'
         })
   }
 });

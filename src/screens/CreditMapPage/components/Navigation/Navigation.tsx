@@ -9,6 +9,56 @@ import { useAppSelector } from '@/hooks/redux';
 import { selectCards } from '@/core/store/cards/cards-selectors';
 import { selectBanks } from '@/core/store/banks/banks-selectors';
 
+const parametersData = [
+  {
+    id: 1,
+    text: 'Все',
+    value: 'all'
+  },
+  {
+    id: 2,
+    text: 'VISA',
+    value: 'VISA',
+    prop: 'card_network'
+  },
+  {
+    id: 3,
+    text: 'MASTERCARD',
+    value: 'MASTERCARD',
+    prop: 'card_network'
+  },
+  {
+    id: 4,
+    text: 'Бесплатное снятие',
+    value: true,
+    prop: 'commission'
+  },
+  {
+    id: 5,
+    text: 'Бесплатное обслуживание',
+    value: true,
+    prop: 'commission'
+  },
+  {
+    id: 6,
+    text: 'Кэшбек',
+    value: true,
+    prop: 'cashback'
+  },
+  {
+    id: 7,
+    text: 'KGS',
+    value: 'kgs',
+    prop: 'currency'
+  },
+  {
+    id: 8,
+    text: 'USD',
+    value: 'usd',
+    prop: 'currency'
+  },
+];
+
 
 interface Props {
   handleChangeFilter: (prop: string, value: any, selectOne?: boolean) => void
@@ -26,7 +76,7 @@ const Navigation = (props: Props) => {
   const [summa, setSumma] = useState(0)
 
   const banks = useAppSelector(selectBanks)?.results
-  const creditsCount = useAppSelector(selectCards)?.count
+  const cardsCount = useAppSelector(selectCards)?.count
   const banksData = banks?.map((bank) => ({
     text: bank.name,
     value: bank.id
@@ -68,6 +118,7 @@ const Navigation = (props: Props) => {
           handleChangeFilter={handleChangeFilter}
           filterData={filterData}
           cleanFilter={cleanFilter}
+          parametersData={parametersData}
         />
         <Filters
           handleClose={handleChangeFilterModal}
@@ -75,7 +126,7 @@ const Navigation = (props: Props) => {
           filter={filterData}
           handleChangeFilter={handleChangeFilter}
           banks={banksData}
-          count={creditsCount}
+          count={cardsCount}
           summa={summa}
           handleChangeSumma={handleChangeSumma}
           handleScrollToCards={handleScrollToCards}

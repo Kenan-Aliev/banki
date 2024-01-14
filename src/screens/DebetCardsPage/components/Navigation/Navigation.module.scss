@@ -5,7 +5,7 @@
   padding-top: 38px;
   margin-top: 32px;
   border-radius: 14px;
-  border: 1px solid #D9DBDF;
+  border: 1px solid #d9dbdf;
   background: url('../../../../assets/icons/debit_cards_img.jpg') no-repeat white right;
   background-size: 750px 376px;
 
@@ -14,7 +14,6 @@
     align-items: center;
     gap: 8px;
 
-
     color: #121212;
     font-family: Raleway, sans-serif;
     font-size: 16px;
@@ -22,10 +21,9 @@
     font-weight: 400;
     line-height: 86.4%;
 
-
     mark {
       background: transparent;
-      color: var(--2, #B4B4B4);
+      color: var(--2, #b4b4b4);
       font-family: Raleway, sans-serif;
       font-size: 16px;
       font-style: normal;
@@ -41,6 +39,9 @@
       width: 673px;
       margin-top: 24px;
 
+      a {
+        color: var(--stroke-3, #4da7ff);
+      }
       p {
         color: #121212;
         font-variant-numeric: lining-nums proportional-nums;
@@ -60,10 +61,9 @@
       font-weight: 500;
       line-height: 86.4%;
 
-
       mark {
         background: transparent;
-        color: var(--stroke-3, #4DA7FF);
+        color: var(--stroke-3, #4da7ff);
         font-family: Raleway, sans-serif;
         font-style: normal;
         font-weight: 500;
@@ -73,7 +73,7 @@
   }
 }
 
-.cont{
+.cont {
   margin-top: 2rem;
   display: flex;
   gap: 8px;
@@ -103,7 +103,7 @@
     font-size: 25px !important;
     text-align: center;
   }
-  .little_text_cont{
+  .little_text_cont {
     width: 100% !important;
   }
 }

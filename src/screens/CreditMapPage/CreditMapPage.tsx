@@ -18,7 +18,7 @@ import { resetCards } from '@/core/store/cards/cards-slice';
 import { getBanks } from '@/core/store/banks/banks-actions';
 import { getCards, getMonthOffers, getTopCreditCards } from '@/core/store/cards/cards-actions';
 import { resetBanks } from '@/core/store/banks/banks-slice';
-import CardsList from './components/CardsList/CardsList';
+import CardsList from '@/components/CardsList/CardsList';
 import { selectMonthOffers, selectTopCreditCards } from '@/core/store/cards/cards-selectors';
 import bonusImg from '@/assets/icons/credit_cards_bonus.jpg'
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
@@ -133,6 +133,7 @@ export default function CreditMapPage() {
         <CardsList
           filterData={filterData}
           handleChangeFilter={handleChangeFilter}
+          cardType='Кредитные карты'
           options={[
             {
               text: 'По кэшбеку',

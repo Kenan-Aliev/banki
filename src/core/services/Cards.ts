@@ -12,6 +12,9 @@ const CardsApi = {
   },
   getTopCreditCards() {
     return instance.get<TopCardsResponseT>('/card/top-credit/');
+  },
+  getTopDebitCards() {
+    return instance.get<TopCardsResponseT>('/card/top-debit/');
   }
 };
 

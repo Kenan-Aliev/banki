@@ -11,7 +11,8 @@ import Loading from '@/app/loading';
 import ExpandedItems from '@/components/Offers/ExpandedOffers';
 import { selectCards, selectCardsStatus } from '@/core/store/cards/cards-selectors';
 import { CardItemT } from '@/models/Cards/Cards';
-import CardItem from '../CardItem/CardItem';
+import CreditCardItem from '../CreditCardItem/CreditCardItem';
+import DebitCardItem from '../DebitCardItem';
 
 interface CardsListProps {
   options?: {
@@ -20,10 +21,11 @@ interface CardsListProps {
   }[];
   filterData: getCardsI
   handleChangeFilter: (prop: string, value: any, selectOne?: boolean) => void
+  cardType: 'Дебетовые карты' | 'Кредитные карты'
 }
 
 const CardsList = (props: CardsListProps) => {
-  const { options, filterData, handleChangeFilter } = props;
+  const { options, filterData, handleChangeFilter, cardType } = props;
   const { results: cards, count } = useAppSelector(selectCards)
   const getCardsStatus = useAppSelector(selectCardsStatus)
 
@@ -80,19 +82,29 @@ const CardsList = (props: CardsListProps) => {
               return (
                 <>
                   <li key={id}>
-                    <CardItem
-                      item={item}
-                      child={isExpanded}
-                      count={bankIdCounts[issuing_bank] - 1}
-                      openChildren={handleOpenChildren}
-                    />
+                    {cardType === 'Кредитные карты' ?
+                      <CreditCardItem
+                        item={item}
+                        child={isExpanded}
+                        count={bankIdCounts[issuing_bank] - 1}
+                        openChildren={handleOpenChildren}
+                      />
+                      :
+                      <DebitCardItem
+                        item={item}
+                        child={isExpanded}
+                        count={bankIdCounts[issuing_bank] - 1}
+                        openChildren={handleOpenChildren}
+                      />
+                    }
+
                   </li>
                   {
                     isExpanded && (
                       <ExpandedItems
                         items={filteredCards}
                         activeCurrency={filterData.currency}
-                        itemsName='Кредитные карты'
+                        itemsName={cardType}
                       />
                     )
                   }

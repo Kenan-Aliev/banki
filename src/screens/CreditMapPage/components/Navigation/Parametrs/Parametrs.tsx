@@ -5,55 +5,7 @@ import styles from './Parametrs.module.scss';
 import ParametrsItem from './ParametrsItem/ParametrsItem';
 import { getCardsI } from '@/models/Services';
 
-const data = [
-  {
-    id: 1,
-    text: 'Все',
-    value: 'all'
-  },
-  {
-    id: 2,
-    text: 'VISA',
-    value: 'Visa',
-    prop: 'card_network'
-  },
-  {
-    id: 3,
-    text: 'MasterCard',
-    value: 'MasterCard',
-    prop: 'card_network'
-  },
-  {
-    id: 4,
-    text: 'Бесплатное снятие',
-    value: true,
-    prop: 'commission'
-  },
-  {
-    id: 5,
-    text: 'Бесплатное обслуживание',
-    value: true,
-    prop: 'commission'
-  },
-  {
-    id: 6,
-    text: 'Кэшбек',
-    value: true,
-    prop: 'cashback'
-  },
-  {
-    id: 7,
-    text: 'KGS',
-    value: 'kgs',
-    prop: 'currency'
-  },
-  {
-    id: 8,
-    text: 'USD',
-    value: 'usd',
-    prop: 'currency'
-  },
-];
+
 
 
 interface Props {
@@ -61,9 +13,15 @@ interface Props {
   handleChangeFilter: (prop: string, value: any, selectOne?: boolean) => void
   filterData: getCardsI
   cleanFilter: () => void
+  parametersData: {
+    id: number
+    text: string
+    value: any
+    prop?: string
+  }[]
 }
 
-const Parametrs = ({ handleChangeFilterModal, handleChangeFilter, filterData, cleanFilter }: Props) => {
+const Parametrs = ({ handleChangeFilterModal, handleChangeFilter, filterData, cleanFilter, parametersData }: Props) => {
   const [activeParametr, setActiveParametr] = useState(1)
 
 
@@ -82,7 +40,7 @@ const Parametrs = ({ handleChangeFilterModal, handleChangeFilter, filterData, cl
     let equalsCount = 0
     let activeParam = 0
     for (const key in filterData) {
-      const candidate = data.find((d) => d.prop === key && d.value === filterData[key])
+      const candidate = parametersData.find((d) => d.prop === key && d.value === filterData[key])
       if (candidate) {
         const isEqual = candidate.value === filterData[key]
         if (isEqual) {
@@ -105,7 +63,7 @@ const Parametrs = ({ handleChangeFilterModal, handleChangeFilter, filterData, cl
   }, [filterData])
   return (
     <div className={styles.main_container}>
-      {data.map((el, index) => (
+      {parametersData.map((el, index) => (
         <ParametrsItem
           key={index}
           id={el.id}

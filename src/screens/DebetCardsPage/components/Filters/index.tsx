@@ -5,9 +5,8 @@ import { Box, Button, Typography, Modal, Grid, FormGroup, Checkbox, FormControlL
 import { TripOrigin, RadioButtonUnchecked } from '@mui/icons-material';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
-import { creditCardPaySystems } from '@/core/data/filters';
+import { debitCardPaySystems } from '@/core/data/filters';
 import { getCardsI } from '@/models/Services';
-import Slider from '@mui/material/Slider';
 import { currencies } from '@/core/data/currency';
 
 const cleanFilterBtnStyles = {
@@ -45,8 +44,6 @@ interface Props {
 		value: string | number
 	}[]
 	count: number
-	summa: number
-	handleChangeSumma: (prop: string, value: any) => void
 	handleScrollToCards: () => void
 }
 
@@ -75,8 +72,6 @@ function Filters(props: Props) {
 		handleClose,
 		handleScrollToCards,
 		open,
-		handleChangeSumma,
-		summa,
 		banks
 	} = props
 
@@ -110,40 +105,6 @@ function Filters(props: Props) {
 					</Typography>
 					<Grid container gap='20px' justifyContent='space-between' width='100%' mt='20px'
 					>
-
-						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
-							<Box sx={{
-								position: 'relative'
-							}}>
-
-								<TextField
-									fullWidth
-									label='Кредитный лимит'
-									value={summa}
-									type='number'
-									onChange={(e) => { handleChangeSumma('summa', e.target.value) }}
-								/>
-								<Slider
-									defaultValue={0}
-									getAriaValueText={valuetext}
-									valueLabelDisplay="auto"
-									step={50000}
-									size='small'
-									min={0}
-									value={summa}
-									onChange={(e, newValue) => handleChangeSumma('summa', newValue)}
-									max={10000000}
-									sx={{
-										position: 'absolute',
-										bottom: 0,
-										left: 0,
-										padding: 0
-									}}
-								/>
-							</Box>
-
-
-						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
 							<CustomWhiteSelectTitle2
 								items={banks}
@@ -160,20 +121,7 @@ function Filters(props: Props) {
 
 						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
 							<CustomWhiteSelectTitle2
-								items={cur}
-								isAllExist={true}
-								name='currency'
-								prop='currency'
-								labelName='Валюта'
-								onChange={handleChangeFilter}
-								defaultValue={filter.currency ?? ''}
-								value={filter.currency ?? ''}
-							/>
-						</Grid>
-
-						<Grid item xs={12} sm={12} md={5} lg={5} xl={5.8}>
-							<CustomWhiteSelectTitle2
-								items={creditCardPaySystems}
+								items={debitCardPaySystems}
 								isAllExist={true}
 								name='card_network'
 								prop='card_network'

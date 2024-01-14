@@ -25,7 +25,7 @@ export const getMonthOffers = createAsyncThunk(
 	})
 
 export const getTopCreditCards = createAsyncThunk(
-	'cards/getTopCredits',
+	'cards/getTopCreditCards',
 	async (_, { rejectWithValue }) => {
 		try {
 			const response = await CardsApi.getTopCreditCards()
@@ -34,6 +34,17 @@ export const getTopCreditCards = createAsyncThunk(
 			return rejectWithValue(err.response.data.message)
 		}
 	})
+
+	export const getTopDebitCards = createAsyncThunk(
+		'cards/getTopDebitCards',
+		async (_, { rejectWithValue }) => {
+			try {
+				const response = await CardsApi.getTopDebitCards()
+				return response.data
+			} catch (err: any) {
+				return rejectWithValue(err.response.data.message)
+			}
+		})
 
 
 

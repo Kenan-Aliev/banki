@@ -65,14 +65,14 @@ const infoItemGridStyles: SxProps<Theme> = {
 
 
 
-interface CardItemProps {
+interface CreditCardItemProps {
   item: CardItemT;
   openChildren?: (bankId: number) => void;
   child?: boolean;
   count?: number
 }
 
-const CardItem = (props: CardItemProps) => {
+const CreditCardItem = (props: CreditCardItemProps) => {
   const {
     item: { bank_title, issuing_bank, image, name, interest_rate, service_fee, credit_limit, currency, id },
     openChildren,
@@ -97,7 +97,7 @@ const CardItem = (props: CardItemProps) => {
         <Grid item xs={5} sm={3} md={3} lg={2.5} xl={2.5}>
           <Image src={image} alt={'иконка карты'} width={200} height={100} />
         </Grid>
-        <Grid item xs={5.5} sm={8} md={8} lg={2} xl={2} sx={{
+        <Grid item xs={5.5} sm={8} md={8} lg={3.5} xl={3.5} sx={{
           "@media(max-width:600px)": {
             ml: '15px'
           }
@@ -181,11 +181,11 @@ const CardItem = (props: CardItemProps) => {
               marginLeft: 0
             }
           }}>
-          <BlueBtn text={'Оформить карту'} fSize={20} />
+          <BlueBtn text={'Оформить карту'} fSize={20} onClick={handleChangeApplicationForm} />
         </Box>
       </Box>
     </Box >
   );
 };
 
-export default CardItem;
+export default CreditCardItem;
