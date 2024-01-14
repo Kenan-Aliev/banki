@@ -3,7 +3,7 @@ import Wrapper from '@/containers/Wrapper';
 import Navigation from '@/screens/InstallmentPage/components/Navigation/Navigation';
 import OffersMonth from '@/components/OffersMonth/OffersMonth';
 import React from 'react';
-import Offers from '@/screens/CreditMapPage/components/CardsList/CardsList';
+import CardsList from '@/components/CardsList/CardsList';
 import Mailing from '@/components/Mailing/Mailing';
 import Feedback from '@/components/FeedBacks/Feedback/Feedback';
 import BanksWithButton from '@/components/BanksWithButton/BanksWithButton';

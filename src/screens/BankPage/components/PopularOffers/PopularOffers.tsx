@@ -3,7 +3,7 @@
 import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap'
 import DepositOfferItem from '@/components/Deposit/DepositOfferItem/DepositOfferItem';
 import CreditBankItem from '@/components/credits/CreditBankItem';
-import OffersItem from '@/screens/CreditMapPage/components/CardItem/CardItem';
+import CreditCardItem from '@/components/CreditCardItem/CreditCardItem';
 import { Box, Typography } from '@mui/material'
 import React, { useMemo, useState } from 'react'
 
@@ -126,7 +126,7 @@ function PopularOffers() {
 				return <CreditBankItem item={data.creditItem} />
 			case "Дебетовые карты":
 			case "Кредитные карты":
-				return <OffersItem item={data.cardItem} />
+				return <CreditCardItem item={data.cardItem} />
 		}
 	}, [currentChoise])
 	return (
