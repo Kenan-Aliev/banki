@@ -45,6 +45,7 @@ interface Props {
 	}[]
 	count: number
 	handleScrollToCards: () => void
+	cleanFilter: () => void
 }
 
 const style = {
@@ -72,7 +73,8 @@ function Filters(props: Props) {
 		handleClose,
 		handleScrollToCards,
 		open,
-		banks
+		banks,
+		cleanFilter
 	} = props
 
 	const handleShow = () => {
@@ -196,7 +198,7 @@ function Filters(props: Props) {
 								variant='contained'
 								fullWidth
 								sx={cleanFilterBtnStyles}
-								onClick={() => { }}
+								onClick={() => { cleanFilter() }}
 							>
 								Очистить фильтр
 							</Button>

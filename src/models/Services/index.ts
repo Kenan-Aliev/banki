@@ -25,6 +25,9 @@ export interface getCardsI {
     cashback?: boolean
     commission?: boolean
     special_offer?: boolean
+    credit_limit?: string
+    service_fee?: boolean
+    offer_of_the_month?: boolean
     ordering?: string
 }
 

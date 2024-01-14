@@ -48,6 +48,7 @@ interface Props {
 	summa: number
 	handleChangeSumma: (prop: string, value: any) => void
 	handleScrollToCards: () => void
+	cleanFilter: () => void
 }
 
 const style = {
@@ -77,7 +78,8 @@ function Filters(props: Props) {
 		open,
 		handleChangeSumma,
 		summa,
-		banks
+		banks,
+		cleanFilter
 	} = props
 
 	const handleShow = () => {
@@ -121,7 +123,7 @@ function Filters(props: Props) {
 									label='Кредитный лимит'
 									value={summa}
 									type='number'
-									onChange={(e) => { handleChangeSumma('summa', e.target.value) }}
+									onChange={(e) => { handleChangeSumma('credit_limit', e.target.value) }}
 								/>
 								<Slider
 									defaultValue={0}
@@ -131,7 +133,7 @@ function Filters(props: Props) {
 									size='small'
 									min={0}
 									value={summa}
-									onChange={(e, newValue) => handleChangeSumma('summa', newValue)}
+									onChange={(e, newValue) => handleChangeSumma('credit_limit', newValue)}
 									max={10000000}
 									sx={{
 										position: 'absolute',
@@ -210,8 +212,8 @@ function Filters(props: Props) {
 										<Checkbox
 											checkedIcon={<TripOrigin />}
 											icon={<RadioButtonUnchecked color='primary' />}
-											checked={false}
-											onChange={(e) => { }}
+											checked={filter.service_fee ?? false}
+											onChange={(e) => { handleChangeFilter('service_fee', e.target.checked) }}
 										/>
 									}
 									label="Бесплатное обслуживание"
@@ -248,7 +250,7 @@ function Filters(props: Props) {
 								variant='contained'
 								fullWidth
 								sx={cleanFilterBtnStyles}
-								onClick={() => { }}
+								onClick={() => cleanFilter()}
 							>
 								Очистить фильтр
 							</Button>

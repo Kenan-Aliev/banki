@@ -3,7 +3,6 @@ import Wrapper from '@/containers/Wrapper';
 import Navigation from '@/screens/DebetCardsPage/components/Navigation/Navigation';
 import Bonus from '@/components/Bonus/Bonus';
 import CardsList from '@/components/CardsList/CardsList';
-import OffersMonth from '@/components/OffersMonth/OffersMonth';
 import Mailing from '@/components/Mailing/Mailing';
 import React, { useEffect, useRef, useState } from 'react';
 import LatestNews from '@/components/LatestNews/LatestNews';
@@ -13,8 +12,6 @@ import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions'
 import data from '@/core/data/index';
 import Compilations from '@/screens/DebetCardsPage/components/Сompilations/Сompilations';
 import BanksWithButton from '@/components/BanksWithButton/BanksWithButton';
-import { debitCards } from '@/core/data/cards/debit_cards';
-import { DebitCardT } from '@/models/Cards/Cards';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { selectMonthOffers, selectTopCreditCards, selectTopDebitCards } from '@/core/store/cards/cards-selectors';
 import { getCardsI } from '@/models/Services';
@@ -22,6 +19,7 @@ import { getCards, getMonthOffers, getTopCreditCards, getTopDebitCards } from '@
 import { resetCards } from '@/core/store/cards/cards-slice';
 import { getBanks } from '@/core/store/banks/banks-actions';
 import { resetBanks } from '@/core/store/banks/banks-slice';
+import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 
 export default function DebitCardsPage() {
   const dataMap = data.DebitCardsPage.questData;
@@ -40,7 +38,7 @@ export default function DebitCardsPage() {
   })
 
   const fetchMonthOffers = () => {
-    dispatch(getMonthOffers({ card_type: 'debit', limit: 10, offset: 0 }))
+    dispatch(getMonthOffers({ card_type: 'debit', limit: 10, offset: 0, offer_of_the_month: true }))
   }
 
   const cleanFilter = () => {
@@ -141,7 +139,7 @@ export default function DebitCardsPage() {
           ]}
         />
       </div>
-      <OffersMonth />
+      <OfferMonth offers={monthOffers} category='Дебетовые карты' />
       {/* <Mailing /> */}
       <Compilations />
       <LatestNews />

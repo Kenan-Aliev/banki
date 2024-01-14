@@ -37,7 +37,7 @@ const parametersData = [
     id: 5,
     text: 'Бесплатное обслуживание',
     value: true,
-    prop: 'commission'
+    prop: 'service_fee'
   },
   {
     id: 6,
@@ -90,14 +90,14 @@ const Navigation = (props: Props) => {
 
   const handleChangeSumma = (prop: string, value: any) => {
     setSumma(value)
-    // if (timer) {
-    //   clearTimeout(timer);
-    // }
-    // setTimer(
-    //   setTimeout(() => {
-    //     handleChangeFilter(prop, value)
-    //   }, 1000)
-    // );
+    if (timer) {
+      clearTimeout(timer);
+    }
+    setTimer(
+      setTimeout(() => {
+        handleChangeFilter(prop, value)
+      }, 1000)
+    );
   }
 
   return (
@@ -130,6 +130,7 @@ const Navigation = (props: Props) => {
           summa={summa}
           handleChangeSumma={handleChangeSumma}
           handleScrollToCards={handleScrollToCards}
+          cleanFilter={cleanFilter}
         />
       </div>
     </div>

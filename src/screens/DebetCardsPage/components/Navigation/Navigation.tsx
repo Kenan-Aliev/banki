@@ -125,6 +125,7 @@ const Navigation = ({ cleanFilter, filterData, handleChangeFilter, handleScrollT
         banks={banksData}
         handleScrollToCards={handleScrollToCards}
         count={cardsCount}
+        cleanFilter={cleanFilter}
       />
     </div>
   );

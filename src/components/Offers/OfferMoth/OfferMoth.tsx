@@ -8,10 +8,11 @@ import CreditOfferItem from './CreditOfferItem/CreditOfferItem';
 import DepositOfferItem from './DepositOfferItem/DepositOfferItem';
 import { DepositItemT } from '@/models/Deposit/Deposit';
 import { CreditItemT } from '@/models/Credits/Credits';
-import CardsOfferItem from './CardsOfferItem/CardsOfferItem';
 import { CardItemT, CreditCardT } from '@/models/Cards/Cards';
 import IpotekaOfferItem from './IpotekaOfferItem/IpotekaOfferItem';
 import { MortgageItemT } from '@/models/Mortgages/Mortgages';
+import CreditCardOfferItem from './CreditCardOfferItem/CreditCardOfferItem';
+import DebitCardOfferItem from './DebitCardOfferItem/DebitCardOfferItem';
 
 type ItemT = {
   name: string;
@@ -52,10 +53,10 @@ const OfferMonth = (props: OfferMonthProps) => {
           mapOffer({} as CreditItemT, CreditOfferItem, index)
         ),
         'Дебетовые карты': Array(5).fill(0).map((_, index) =>
-          mapOffer({} as CreditCardT, CardsOfferItem, index)
+          mapOffer({} as CreditCardT, DebitCardOfferItem, index)
         ),
         'Кредитные карты': Array(5).fill(0).map((_, index) =>
-          mapOffer({} as CreditCardT, CardsOfferItem, index)
+          mapOffer({} as CreditCardT, CreditCardOfferItem, index)
         ),
         Ипотека: Array(5).fill(0).map((_, index) =>
           mapOffer({}, IpotekaOfferItem, index)
@@ -79,7 +80,11 @@ const OfferMonth = (props: OfferMonthProps) => {
         }
         else if (category === 'Кредитные карты') {
           const of = { ...offer } as CardItemT
-          return mapOffer(of, CardsOfferItem, of.id)
+          return mapOffer(of, CreditCardOfferItem, of.id)
+        }
+        else if (category === 'Дебетовые карты') {
+          const of = { ...offer } as CardItemT
+          return mapOffer(of, DebitCardOfferItem, of.id)
         }
       });
     }
@@ -111,7 +116,7 @@ const OfferMonth = (props: OfferMonthProps) => {
             "480": 2,
             "640": 3,
             "768": 3,
-            "1500": 3
+            "1500": 4
           }}
         />
       </div>

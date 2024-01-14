@@ -39,7 +39,7 @@ export default function CreditMapPage() {
   })
 
   const fetchMonthOffers = () => {
-    dispatch(getMonthOffers({ card_type: 'credit', limit: 10, offset: 0 }))
+    dispatch(getMonthOffers({ card_type: 'credit', limit: 10, offset: 0, offer_of_the_month: true }))
   }
 
   const cleanFilter = () => {
@@ -146,8 +146,8 @@ export default function CreditMapPage() {
           ]}
         />
       </div>
-      {/* <OfferMonth offers={monthOffers} category='Кредитные карты' /> */}
-      <OffersMonth />
+      <OfferMonth offers={monthOffers} category='Кредитные карты' />
+      {/* <OffersMonth /> */}
       {/* <Mailing /> */}
       <Compilations />
       <LatestNews />

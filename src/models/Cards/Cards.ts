@@ -35,6 +35,7 @@ export type CardItemT = {
   offer_of_the_month: boolean
   special_offer: boolean
   special_offer_text: string
+  additional_bonuses?: string
   card_network: {
     id: number
     name: string
