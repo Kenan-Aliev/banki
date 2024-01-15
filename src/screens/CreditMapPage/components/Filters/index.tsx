@@ -64,7 +64,6 @@ const style = {
 	p: 4,
 	"@media(max-width:900px)": {
 		width: "85%",
-		top: '60%'
 	}
 };
 
@@ -139,7 +138,7 @@ function Filters(props: Props) {
 										position: 'absolute',
 										bottom: 0,
 										left: 0,
-										padding: 0
+										padding: '0px !important'
 									}}
 								/>
 							</Box>
