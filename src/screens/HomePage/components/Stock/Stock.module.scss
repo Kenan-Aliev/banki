@@ -64,6 +64,9 @@
 }
 
 @media (max-width: 600px) {
+  .stock_items {
+    width: 100% !important;
+  }
   .title {
     font-size: 22px !important;
     text-align: left !important;

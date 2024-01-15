@@ -32,6 +32,9 @@
 }
 
 @media (max-width: 600px) {
+  .stock_item {
+    width: 100% !important;
+  }
   .title {
     color: #000;
     font-size: 14px;

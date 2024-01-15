@@ -33,6 +33,7 @@ const Slide = ({ data }: Props) => {
         leftArr={true}
         rightArr={true}
         centered={true}
+        autoplay={true}
         responsive={{
           "320": 1,
           "480": 2,
