@@ -6,6 +6,7 @@ import Slider from '@/components/Slider/Slider';
 import useDeviceSize from '@/hooks/useDeviceSize';
 import { Grid, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Link from 'next/link';
 
 type iconsSlideT = {
   img: StaticImageData;
@@ -53,7 +54,9 @@ const Slide = ({ data }: Props) => {
           <Grid container justifyContent='space-between' rowGap='15px'>
             {data.slice(0, data.length / 2).map((slide, index) => {
               return <Grid item xs={5.9} key={index}>
-                <SlideItem img={slide.img} name={slide.name} width={slide.w} />
+                <Link href={slide.link}>
+                  <SlideItem img={slide.img} name={slide.name} width={slide.w} />
+                </Link>
               </Grid>
             })}
           </Grid>
@@ -82,7 +85,9 @@ const Slide = ({ data }: Props) => {
               <Grid container justifyContent='space-between' rowGap='15px'>
                 {data.slice(data.length / 2, data.length).map((slide, index) => {
                   return <Grid item xs={5.9} key={index}>
-                    <SlideItem img={slide.img} name={slide.name} width={slide.w} />
+                    <Link href={slide.link}>
+                      <SlideItem img={slide.img} name={slide.name} width={slide.w} />
+                    </Link>
                   </Grid>
                 })}
               </Grid>
