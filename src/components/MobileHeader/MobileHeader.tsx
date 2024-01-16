@@ -23,8 +23,8 @@ const MobileHeader = () => {
           <span></span>
           <span></span>
         </div>
-        <Link href={'/'}>
-          <Image src={logo} className={s.logo} alt={'logo'}/>
+        <Link href={'/'} className={s.logo}>
+          <Image src={logo}  alt={'logo'}/>
         </Link>
         <Image alt={'icon'} priority src={userImg} width={20} height={20} />
       </header>

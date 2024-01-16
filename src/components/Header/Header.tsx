@@ -58,9 +58,8 @@ const Header = () => {
   return (
     <div className='container'>
       <header className={s.header}>
-        <Link href={'/'} onClick={() => setVis(false)}>
-          {/*<div className={s.logo}>Логотип</div>*/}
-          <Image src={logo} className={s.logo} alt={'logo'}/>
+        <Link href={'/'} onClick={() => setVis(false)} className={s.logo}>
+          <Image src={logo} alt={'logo'} />
         </Link>
         <nav className={s.nav}>{navMap}</nav>
         <nav className={s.icons}>

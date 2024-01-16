@@ -3,6 +3,10 @@ import { BankT } from "@/models/Banks/banks";
 import { getAllBanksT } from "@/models/Services";
 import { Promotion } from '@/models/Promotions/Promotions';
 import BanksApi from "@/core/services/Banks";
+import back1 from '@/assets/icons/back1.png'
+import depositBack from '@/assets/icons/deposit_back.png'
+import mortgageBack from '@/assets/icons/portgage_back.png'
+import creditCard from '@/assets/icons/credit_cards_back.png'
 
 
 type serviceCompanysT = {
@@ -48,19 +52,23 @@ const initialState: InitialStateI = {
     banksItems: [],
     promotions: [{
         title: 'Выберите Лучший Кредит',
-        subtitle: 'Быстрое оформление кредита с высокой вероятностью одобрения.'
+        subtitle: 'Быстрое оформление кредита с высокой вероятностью одобрения.',
+        img: back1
     },
     {
         title: 'Увеличьте Сбережения',
-        subtitle: 'Подберите вклады с повышенной ставкой для роста сбережений.'
+        subtitle: 'Подберите вклады с повышенной ставкой для роста сбережений.',
+        img: depositBack
     },
     {
         title: 'Легкий Путь к Собственному Жилью',
-        subtitle: "Найдите идеальную ипотеку для своего нового дома"
+        subtitle: "Найдите идеальную ипотеку для своего нового дома",
+        img: mortgageBack
     },
     {
         title: 'Кредитные и Дебетовые Карты',
-        subtitle: 'Выберите карту для ежедневных покупок и платежей.'
+        subtitle: 'Выберите карту для ежедневных покупок и платежей.',
+        img: creditCard
     }]
 };
 

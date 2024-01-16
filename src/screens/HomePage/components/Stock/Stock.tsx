@@ -1,22 +1,28 @@
-import React, { useEffect, useRef } from 'react';
+'use client'
+
+import React, { useEffect, useRef, useState } from 'react';
 import s from './Stock.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import StockItem from '@/components/StockItem/StockItem';
 import Link from "next/link";
 import { Promotion } from '@/models/Promotions/Promotions';
 import Slider from '@/components/Slider/Slider';
+import useDeviceSize from '@/hooks/useDeviceSize';
 
 interface Props {
     promotions: Promotion[]
 }
 
 const Stock = ({ promotions }: Props) => {
+    const [width] = useDeviceSize()
+
     const sliderRef = useRef(null);
 
     const handle = (index: number) => {
         if (!sliderRef.current) return;
         sliderRef.current.swiper.slideTo(index);
     };
+
 
     const stockItems = promotions?.map((el, index) => (
         <StockItem
@@ -26,6 +32,8 @@ const Stock = ({ promotions }: Props) => {
             key={index}
             title={el.title}
             sup={el.subtitle}
+            img={el.img}
+            isMobile={width <= 480}
         />
     ));
 
@@ -60,24 +68,27 @@ const Stock = ({ promotions }: Props) => {
         }
     })
 
+
     return (
         <div>
             <div className={s.stock}>
-                <Slider data={slides}
-                    responsive={{
-                        "320": 1,
-                        "480": 1,
-                        "640": 1,
-                        "768": 1,
-                        "1500": 1
-                    }}
-                    infinite={true}
-                    leftArr={false}
-                    rightArr={false}
-                    ref={sliderRef}
-                    centered={false}
-                    autoplay={true}
-                />
+                {width > 480 &&
+                    <Slider data={slides}
+                        responsive={{
+                            "320": 1,
+                            "480": 1,
+                            "640": 1,
+                            "768": 1,
+                            "1500": 1
+                        }}
+                        infinite={true}
+                        leftArr={false}
+                        rightArr={false}
+                        ref={sliderRef}
+                        centered={false}
+                        autoplay={true}
+                    />
+                }
                 <div className={s.stock_items}>{stockItems}</div>
             </div>
         </div>
