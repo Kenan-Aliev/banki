@@ -6,11 +6,13 @@ import { StoreProvider } from '@/core/store/provider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/ReactToastify.min.css'
 import Footer from '@/components/Footer/Footer';
+import { Metadata } from 'next';
 
-// export const metadata: Metadata = {
-//     title: "Главная",
-//     description: "Главная страница банков",
-// };
+export const metadata: Metadata = {
+  icons: {
+    icon: "/icon.png",
+  },
+};
 
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
