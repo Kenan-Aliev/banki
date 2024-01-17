@@ -1,4 +1,5 @@
 import { Stack, Typography } from '@mui/material'
+import Link from 'next/link'
 import React from 'react'
 
 interface Props {
@@ -13,17 +14,23 @@ function ProductItems({ items }: Props) {
 		<Stack rowGap='10px'>
 			{
 				items.map((item, index) => {
-					return <Typography
-						key={index}
-						sx={{
-							fontSize: '12px',
-							color: '#000',
-							fontFamily: 'inherit',
-							fontWeight: 600
-						}}
-					>
-						{item.name}
-					</Typography>
+					return (
+						<Link
+							key={index}
+							href={item.link}
+						>
+							<Typography
+								sx={{
+									fontSize: '12px',
+									color: '#000',
+									fontFamily: 'inherit',
+									fontWeight: 600,
+								}}
+							>
+								{item.name}
+							</Typography>
+						</Link>
+					)
 				})
 			}
 		</Stack>

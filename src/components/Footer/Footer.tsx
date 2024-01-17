@@ -28,7 +28,7 @@ function Footer() {
 						Все продукты vsebanki.kg
 					</Typography>
 
-					<Grid container justifyContent='space-between' alignItems='center' mt='30px' rowGap='20px'>
+					<Grid container justifyContent='space-between' alignItems='flex-start' mt='30px' rowGap='20px'>
 						{keys.slice(0, half).map((productName, index) => {
 							const product = Footer[productName]
 							return (
@@ -69,7 +69,7 @@ function Footer() {
 							<Typography>Подробнее</Typography>
 						</AccordionSummary>
 						<AccordionDetails>
-							<Grid container justifyContent='space-between' alignItems='center' rowGap='20px' mt='30px'>
+							<Grid container justifyContent='space-between' alignItems='flex-start' rowGap='20px' mt='30px'>
 								{keys.slice(half, end).map((productName, index) => {
 									const product = Footer[productName]
 									return (

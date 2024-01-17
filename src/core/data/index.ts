@@ -3667,169 +3667,101 @@ const data = {
   ],
 
   Footer: {
-    "Product-1": [
+    "Вклады": [
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Вклады',
+        link: '/deposits'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Специальные предложения',
+        link: '/deposits/special-offers'
       },
       {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
+        name: 'Накопительные счета',
+        link: '/deposits/saving-accounts'
       }
     ],
 
-    "Product-2": [
+    "Кредиты": [
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Мастер подбора кредитов',
+        link: '/credits'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Потребительские кредиты',
+        link: '/credits/consumer-credits'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Рефинансирование',
+        link: '/credits/refinancing-credits'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Кредитный рейтинг',
+        link: '/credits/rating'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Микрозаймы',
+        link: '/credits/microloans'
+      },
+      {
+        name: 'Автокредиты',
+        link: '/credits/autocredit'
+      },
+      {
+        name: 'Кредитный калькулятор',
+        link: '/credits/calculator'
+      },
+      {
+        name: 'Мастер выдачи займов',
+        link: '/credits/get-loan'
       }
     ],
 
-    "Product-3": [
+    "Ипотека": [
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Мастер подбора ипотеки',
+        link: '/ipoteka/offers'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Ипотечные кредиты',
+        link: '/ipoteka/credits'
       },
       {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
+        name: 'Спецпредложения',
+        link: '/ipoteka/special-offers'
       }
     ],
 
-    "Product-4": [
+    "Карты": [
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Кредитные карты',
+        link: '/cards/credit-cards'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Карты рассрочки',
+        link: '/cards/installment'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Дебетовые карты',
+        link: '/cards/debit-cards'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Мастер подбора карт',
+        link: '/cards/select-cards'
       },
       {
-        name: 'Product Name',
-        link: ''
+        name: 'Специальные предложения',
+        link: '/cards/special-offers'
       }
     ],
 
 
-    "Product-5": [
+    "Новости": [
       {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
+        name: 'Все события дня',
+        link: '/news'
       }
     ],
-
-
-    "Product-6": [
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      }
-    ],
-
-
-    "Product-7": [
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      },
-      {
-        name: 'Product Name',
-        link: ''
-      }
-    ]
   }
 };
 
