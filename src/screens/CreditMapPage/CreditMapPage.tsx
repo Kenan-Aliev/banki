@@ -151,7 +151,7 @@ export default function CreditMapPage() {
       {/* <Mailing /> */}
       <Compilations />
       <LatestNews />
-      <Communicate />
+      <Communicate data={[]}/>
       <Feedback title={'Отзывы '} sub={'о кредитных картах'} category='Кредитные карты' />
       <BanksWithButton
         cards={topCreditCards}

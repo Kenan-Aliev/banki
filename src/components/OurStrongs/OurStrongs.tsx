@@ -1,27 +1,31 @@
 import React from 'react';
 import s from './OurStrongs.module.scss';
 
-const OurStrongs = () => {
+interface Props {
+  data: {
+    num: string
+    title: string
+    sub: string
+  }[]
+}
+
+const OurStrongs = (props: Props) => {
+  const { data } = props
   return (
     <div className={s.our_strongs}>
       <div className={s.info}>
         <div className={s.title}>
           В чём наши <mark>преимущества</mark>
         </div>
-        <div className={s.strong_item}>
-          <div className={s.title}>
-            <span>01</span>
-            <span>Снижение финансовой нагрузки</span>
+        {data.map(d => {
+          return <div className={s.strong_item} key={d.num}>
+            <div className={s.title}>
+              <span>{d.num}</span>
+              <span>{d.title}</span>
+            </div>
+            <p>{d.sub}</p>
           </div>
-          <p>Снижаем ежемесячный платеж и ставку по кредиту.</p>
-        </div>
-        <div className={s.strong_item}>
-          <div className={s.title}>
-            <span>02</span>
-            <span>Удобство погашения</span>
-          </div>
-          <p>Объединяем несколько кредитов в один.</p>
-        </div>
+        })}
       </div>
     </div>
   );

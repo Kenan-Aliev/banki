@@ -143,7 +143,7 @@ export default function DebitCardsPage() {
       {/* <Mailing /> */}
       <Compilations />
       <LatestNews />
-      <Communicate />
+      <Communicate data={[]}/>
       <Feedback title={'Отзывы '} sub={'о дебетовых картах'} category='Дебетовые карты' />
       <BanksWithButton
         cards={topDebitCards}

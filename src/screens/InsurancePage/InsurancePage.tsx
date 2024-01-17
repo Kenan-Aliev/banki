@@ -66,7 +66,7 @@ const InsurancePage = ({ data, SearchItems }: Props) => {
       <SpecialOffersInsurance insuranceList={data.specialOffers} />
       <LatestNews />
       <Mailing />
-      <Communicate />
+      <Communicate data={[]}/>
       <Feedback title={'Отзывы '} sub={'о страховых компаниях'} />
       <FrequentQuestions title={''} items={data.questData} />
     </PageWrapper>

@@ -48,10 +48,8 @@ const PaymentBusiness = () => {
       <OffersInvest items={data.PaymentBusinessPage.offersMoth} />
       <Feedback title={'Отзывы'} sub={' о кредитах'} />
       <TopBanks
-        banks={data.PaymentBusinessPage.banks}
         title={'Потребительские кредиты в Бишкеке '}
         sub={'- ТОП 10 банков в 2023 году'}
-        fz={36}
       />
       <FrequentQuestions title={'Частые вопросы'} items={data.PaymentBusinessPage.questData} />
       <HaveQues />

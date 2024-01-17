@@ -66,3 +66,11 @@ export interface DepositItemResponseT {
   card: DepositItemT;
   result: boolean;
 }
+
+export interface TopDepositsResponse {
+  count: number
+  results: {
+    id: number
+    vklad: DepositItemT
+  }[]
+}

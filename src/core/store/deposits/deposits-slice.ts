@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getDeposits, getMonthOffers, getSpecialOffers } from './deposits-actions';
+import { getDeposits, getMonthOffers, getSpecialOffers, getTopDeposits } from './deposits-actions';
 import { RequestStatus } from '@/models/Services';
-import { DepositItemT, DepositsResponseT } from '@/models/Deposit/Deposit';
+import { DepositItemT, DepositsResponseT, TopDepositsResponse } from '@/models/Deposit/Deposit';
 
 interface InitialStateI {
   deposits: {
@@ -15,6 +15,10 @@ interface InitialStateI {
   specialOffers: {
     status: RequestStatus,
     data: DepositsResponseT<DepositItemT>
+  }
+  topDeposits: {
+    status: RequestStatus
+    data: TopDepositsResponse
   }
 }
 
@@ -30,6 +34,10 @@ const initialState: InitialStateI = {
   specialOffers: {
     status: 'initial',
     data: {} as DepositsResponseT<DepositItemT>
+  },
+  topDeposits: {
+    status: 'initial',
+    data: {} as TopDepositsResponse
   }
 };
 
@@ -87,6 +95,20 @@ export const depositsSlice = createSlice({
         })
         .addCase(getSpecialOffers.rejected, (state) => {
           state.specialOffers.status = 'error'
+        }),
+
+      builder
+        .addCase(getTopDeposits.pending, (state) => {
+          state.topDeposits.status = 'loading'
+        })
+        .addCase(getTopDeposits.fulfilled, (state, action) => {
+          state.topDeposits = {
+            status: 'success',
+            data: action.payload
+          }
+        })
+        .addCase(getTopDeposits.rejected, (state) => {
+          state.topDeposits.status = 'error'
         })
   }
 });

@@ -34,3 +34,14 @@ export const getSpecialOffers = createAsyncThunk(
 			return rejectWithValue(err.response.data.message)
 		}
 	})
+
+export const getTopDeposits = createAsyncThunk(
+	'deposits/getTopDeposots',
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await DepositsApi.getTopDeposits()
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})

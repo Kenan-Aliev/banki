@@ -8,24 +8,18 @@ type accT = {
   text: string;
 };
 
-const acc: accT[] = [
-  { numb: '01', sub: 'Вопрос - ответ', text: '' },
-  {
-    numb: '02',
-    sub: 'Отзывы о вкладах',
-    text: 'Оставьте свое мнение о банковских продуктах. Помогите другим сделать выбор финансового партнёра.',
-  },
-  { numb: '03', sub: 'Собственный форум', text: '' },
-];
+interface Props {
+  data: accT[]
+}
 
-const Communicate = () => {
+const Communicate = ({ data }: Props) => {
   return (
     <div className={s.comm}>
       <div className={s.comm_i}>
         <div className={s.title}>
           Как мы <mark>ведем коммуникацию</mark> с нашими клиентами
         </div>
-        <Accordeon items={acc} />
+        <Accordeon items={data} />
       </div>
     </div>
   );

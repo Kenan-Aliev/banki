@@ -1,12 +1,13 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import s from './SpecialOfferItem.module.scss';
 import Image from 'next/image';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-import mockOfferImage from '@/assets/icons/offer_img1.png';
-import mockBankImage from '@/assets/icons/banki_icon/dom.svg';
 import { DepositItemT } from '@/models/Deposit/Deposit';
 import { baseUrl } from '@/core/const/baseUrl';
 import { Typography, Box } from '@mui/material';
+import Application from '@/components/Application/Application';
 
 interface SpecialOfferItemProps {
   item: DepositItemT;
@@ -14,12 +15,23 @@ interface SpecialOfferItemProps {
 
 const SpecialOfferItem = (props: SpecialOfferItemProps) => {
   const {
-    item: { deposit_name, interest_rate, term_range, special_offer_details, bank_logo, bank_title },
+    item: { deposit_name, interest_rate, term_range, special_offer_details, bank_logo, bank_title, deposit_id },
   } = props;
+
+  const [applicationModal, setApplicationModal] = useState(false)
+
+  const handleChangeApplicationModal = () => {
+    setApplicationModal(!applicationModal)
+  }
 
   return (
     <div className={s.item}>
-      <Image alt={'icon'} className={s.img} src={mockOfferImage} />
+      <Application
+        handleClose={handleChangeApplicationModal}
+        open={applicationModal}
+        productId={deposit_id}
+        productType='deposit'
+      />
       <div className={s.item_info}>
         <Box sx={{
           display: 'flex',
@@ -41,7 +53,6 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
           <Typography component='p'>{bank_title}</Typography>
         </Box>
         <div className={s.name}>{deposit_name}</div>
-        {/*TODO wait for api bonus*/}
         <div className={s.bonus}>
           {special_offer_details}
         </div>
@@ -58,7 +69,12 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
             </div>
           )}
         </div>
-        <BlueBtn text={'Посмотреть'} width={230} height={40} fSize={16} />
+        <BlueBtn
+          text={'Оставить заявку'}
+          width={230}
+          height={40}
+          fSize={16}
+          onClick={handleChangeApplicationModal} />
       </div>
     </div>
   );

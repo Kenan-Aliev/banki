@@ -24,7 +24,7 @@ export default function CreditsIpotekaPage() {
       <Compilations />
       <OffersMonth />
       <LatestNews />
-      <Communicate />
+      <Communicate data={[]}/>
       <Feedback title={'Отзывы'} sub={'об ипотеке'} />
       <FrequentQuestions title={''} items={dataMap} />
     </PageWrapper>

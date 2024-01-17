@@ -21,7 +21,7 @@ export default function InsuranceIpotekaPage() {
       <Company />
       <LastBuy />
       <HowItWorks title={'Как оформить полис '} sub={'для ипотеки онлайн'} items={dataMap} />
-      <OurStrongs />
+      <OurStrongs data={[]}/>
       <LatestNews />
       <Feedback sub={'об ипотечном страховании'} title={'Отзывы'} />
       <FrequentQuestions title={''} items={questionMap} />

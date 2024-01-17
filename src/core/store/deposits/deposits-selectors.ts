@@ -9,3 +9,6 @@ export const selectMonthOffers = (state: RootState) => state.deposits.monthOffer
 export const selectGetMonthsOffersStatus = (state: RootState) => state.deposits.monthOffers.status
 
 export const selectSpecialOffers = (state: RootState) => state.deposits.specialOffers.data
+
+export const selectTopDeposits = (state: RootState) => state.deposits.topDeposits.data?.results
+	?.map((d) => d.vklad)

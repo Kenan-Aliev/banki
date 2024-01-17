@@ -9,11 +9,12 @@ import HowItWorks from '@/components/HowItWorks/HowItWorks';
 export default function MasterCardsPage() {
   const itWorksMap = data.SelectCardsPage.ourData;
   const dataMap = data.SelectCardsPage.questData;
+  const ourStrongs = data.SelectCardsPage.ourStrongs
   return (
     <Wrapper>
       <Navigation />
       <HowItWorks title={'Как работает '} sub={'сервис'} items={itWorksMap} />
-      <OurStrongs />
+      <OurStrongs data={ourStrongs} />
       <FrequentQuestions title={'Важная информация'} items={dataMap} />
     </Wrapper>
   );

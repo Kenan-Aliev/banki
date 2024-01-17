@@ -205,7 +205,7 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
       />
       <LatestNews category='Занять' />
       <Mailing />
-      <Communicate />
+      <Communicate data={[]}/>
       <Feedback title={'Отзывы '} sub={'о кредитах'} category='Кредиты' />
       <CreditTopBankList credits={topCredits} />
       <FrequentQuestions title={'Важные вопросы'} items={staticData.questData} />

@@ -11,11 +11,11 @@ type Props = {
   text: string;
 };
 
-const AccordeonItem = ({ numb, sub }: Props) => {
+const AccordeonItem = ({ numb, sub,text }: Props) => {
   const [active, setActive] = useState<boolean>(false);
   const handleActive = () => setActive(!active);
   return (
-    <div className={s.acc_item} onClick={handleActive} style={{ maxHeight: active && '250px' }}>
+    <div className={s.acc_item} onClick={handleActive} style={{ maxHeight: active && 'fit-content' }}>
       <div className={s.info}>
         <div>
           <span>{numb}</span>
@@ -24,9 +24,7 @@ const AccordeonItem = ({ numb, sub }: Props) => {
         <Image className={active ? s.image_a : s.image} src={arr} alt={'стрелочка вниз'} />
       </div>
       <div className={s.text}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pellentesque sagittis dolor in
-        ornare. Morbi vitae metus tempor, maximus ante vel, suscipit libero. Vivamus sagittis nunc nec laoreet
-        eleifend. P
+        {text}
       </div>
     </div>
   );

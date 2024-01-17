@@ -118,7 +118,7 @@ const MortgagePage = (props: MortgagePageProps) => {
       <Mailing />
       {/* <Compilations /> */}
       <OfferMonth offers={monthOffers.results} category='Ипотека' />
-      <Communicate />
+      <Communicate data={[]}/>
       <Feedback title={'Отзывы '} sub={'об ипотеке'} category='Ипотека' />
       <FrequentQuestions title={''} items={staticData.questData} />
     </PageWrapper>

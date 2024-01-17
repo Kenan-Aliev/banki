@@ -17,18 +17,21 @@ import Feedback from '@/components/FeedBacks/Feedback/Feedback';
 import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions';
 import TopBanks from '@/components/TopBanks/TopBanks';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { getDeposits, getMonthOffers, getSpecialOffers } from '@/core/store/deposits/deposits-actions';
+import { getDeposits, getMonthOffers, getSpecialOffers, getTopDeposits } from '@/core/store/deposits/deposits-actions';
 import { getDepositsI } from '@/models/Services';
-import { selectGetDepositsStatus, selectMonthOffers, selectSpecialOffers } from '@/core/store/deposits/deposits-selectors';
+import { selectMonthOffers, selectSpecialOffers } from '@/core/store/deposits/deposits-selectors';
 import { getBanks } from '@/core/store/banks/banks-actions';
 import { resetDeposits } from '@/core/store/deposits/deposits-slice';
 import { resetBanks } from '@/core/store/banks/banks-slice';
+import data from '@/core/data'
 
 
 
 const DepositsPage = () => {
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
+
+  const communicateData = data.DepositsPage.communicate
 
   const [currentOffer, setCurrentOffer] = useState<number>(1);
   const [filterData, setFilterData] = useState<getDepositsI>({
@@ -54,7 +57,7 @@ const DepositsPage = () => {
     else {
       if (value === false) {
         delete filterData[prop]
-        setFilterData({...filterData})
+        setFilterData({ ...filterData })
       }
       else {
         setFilterData({ ...filterData, [prop]: value, offset: 0 })
@@ -96,14 +99,19 @@ const DepositsPage = () => {
     dispatch(getBanks({ offset: 0, limit: 100 }))
   }
 
+  const fetchTopDeposits = () => {
+    dispatch(getTopDeposits())
+  }
+
 
   useEffect(() => {
     fetchBanks()
     fetchMonthOffers()
     fetchSpecialOffers()
-
+    fetchTopDeposits()
     return () => {
       dispatch(resetBanks())
+      dispatch(resetDeposits())
     }
   }, [])
 
@@ -157,10 +165,10 @@ const DepositsPage = () => {
       <Mailing />
       <LatestNews />
       <SpecialOffersDeposit deposits={specialOffers.results} />
-      <Communicate />
+      <Communicate data={communicateData} />
       <Feedback title={'Отзывы '} sub={'о вкладах'} category='Вклады' />
       {/* <FrequentQuestions title={'Частые вопросы'} items={staticData.questData} /> */}
-      <TopBanks banks={[]} />
+      <TopBanks />
     </PageWrapper>
   );
 };

@@ -14,11 +14,11 @@ export default function NewsPage() {
   return (
     <Wrapper>
       <Navigation setCurrent={setCurrent} current={current} />
-      {current === 'Сегодня' && <News news={list} />}
+      {/* {current === 'Сегодня' && <News news={list} />}
       {current === 'Накопить' && <News news={safeList} />}
       {current === 'Занять' && <News news={loansList} />}
       {current === 'Застраховать' && <News news={insuranceList} />}
-      {current === 'Обезопасить' && <News news={saveList} />}
+      {current === 'Обезопасить' && <News news={saveList} />} */}
     </Wrapper>
   );
 }
