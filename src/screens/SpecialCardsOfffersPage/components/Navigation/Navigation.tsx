@@ -8,9 +8,10 @@ interface INavigation {
     active: boolean;
     link: string;
   }[];
+  onClick?: (parametr: string) => void
 }
 
-const Navigation = ({ data }: INavigation) => {
+const Navigation = ({ data, onClick }: INavigation) => {
   return (
     <div className={styles.main_container}>
       <div className={styles.nav_container}>
@@ -24,7 +25,7 @@ const Navigation = ({ data }: INavigation) => {
         <p className={styles.text}>Специальные</p>
         <p className={styles.blue_text}>предложения</p>
       </div>
-      <Parametrs data={data} />
+      <Parametrs data={data} onClick={onClick} />
     </div>
   );
 };

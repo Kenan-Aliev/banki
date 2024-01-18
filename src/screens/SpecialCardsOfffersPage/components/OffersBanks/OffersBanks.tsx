@@ -1,27 +1,46 @@
+'use client'
+
 import React from 'react';
 import styles from './OffersBanks.module.scss';
 import Items from '@/screens/SpecialCardsOfffersPage/components/OffersBanks/Items/Items';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-import { nanoid } from 'nanoid';
 import { CreditCardT } from '@/models/Cards/Cards';
+import { getCardsI } from '@/models/Services';
+import { selectCards, selectCardsStatus } from '@/core/store/cards/cards-selectors';
+import { useAppSelector } from '@/hooks/redux';
+import Loading from '@/app/loading';
 
 interface OffersBanksProps {
-  cards: CreditCardT[];
   title?: string;
+  filterData: getCardsI
+  handleChangeFilter: (prop: string, value: any) => void
 }
 
 const OffersBanks = (props: OffersBanksProps) => {
-  const { cards, title } = props;
+  const { filterData, title, handleChangeFilter } = props;
+  const { results: cards, count } = useAppSelector(selectCards)
+  const getCardsStatus = useAppSelector(selectCardsStatus)
 
   return (
     <div className={styles.container}>
       {title ? <div className={styles.title}>{title}</div> : ''}
       <div className={styles.map_cont}>
-        {cards.slice(0, 12).map((item) => (
-          <Items key={nanoid()} item={item} />
-        ))}
+        {getCardsStatus === 'loading' ?
+          <Loading />
+          :
+          cards?.map((item, index) => (
+            <Items key={index} item={item} />
+          ))
+        }
       </div>
-      <BlueBtn text={'Показать еще'} width={236} fSize={20} height={60} />
+      {count && count > filterData.offset + filterData.limit
+        ?
+        <div className={styles.btn_cont}>
+          <BlueBtn text={'Показать еще'} width={235}
+            onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
+          />
+        </div>
+        : null}
     </div>
   );
 };

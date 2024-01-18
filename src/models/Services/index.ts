@@ -16,7 +16,7 @@ export interface getBusinessCreditsI {
 }
 
 export interface getCardsI {
-    card_type: string
+    card_type?: string
     offset: number
     limit: number
     issuing_bank?: string[] | string;

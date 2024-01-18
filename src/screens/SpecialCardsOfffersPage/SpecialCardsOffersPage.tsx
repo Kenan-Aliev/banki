@@ -2,11 +2,13 @@
 import Wrapper from '@/containers/Wrapper';
 import Navigation from '@/screens/SpecialCardsOfffersPage/components/Navigation/Navigation';
 import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import OffersBanks from './components/OffersBanks/OffersBanks';
-import { creditCards } from '@/core/data/cards/credit_cards';
 import data from '@/core/data';
-import { CreditCardT } from '@/models/Cards/Cards';
+import { useAppDispatch } from '@/hooks/redux';
+import { getCardsI } from '@/models/Services';
+import { resetCards } from '@/core/store/cards/cards-slice';
+import { getCards } from '@/core/store/cards/cards-actions';
 
 type questItem = {
   title: string;
@@ -21,12 +23,68 @@ interface SpecialCardsOffersPageProps {
 
 export default function SpecialCardsOffersPage(props: SpecialCardsOffersPageProps) {
   const { staticData } = props;
-  const staticCards: CreditCardT[] = creditCards;
+  const dispatch = useAppDispatch()
+
+  const [filterData, setFilterData] = useState<getCardsI>({
+    limit: 10,
+    offset: 0,
+  })
+  const [tabs, setTabs] = useState(data.SpecialOffersCards.choises)
+  const [activeTab, setActiveTab] = useState('Все')
+
+  const handleChangeActiveTab = (tab: string) => {
+    const filterValue = tab === 'Дебетовые карты' ? 'debit' : tab === 'Кредитные карты' ? 'credit' : tab
+    const newTabs = [...tabs]
+    const idx = newTabs.findIndex((tab) => tab.name.toLowerCase() === activeTab.toLowerCase())
+    newTabs[idx].active = !newTabs[idx].active
+    const activeTabIdx = newTabs.findIndex((t) => t.name.toLowerCase() === tab.toLowerCase())
+    newTabs[activeTabIdx].active = !newTabs[activeTabIdx].active
+
+    setTabs(newTabs)
+    setActiveTab(tab)
+    handleChangeFilter('card_type', filterValue)
+  }
+
+
+  const handleChangeFilter = (prop: string, value: any) => {
+    if (prop === 'offset') {
+      setFilterData({ ...filterData, [prop]: value })
+    }
+
+    else if (prop === 'card_type' && value === 'Все') {
+      delete filterData.card_type
+      setFilterData({ ...filterData, offset: 0 })
+      dispatch(resetCards())
+    }
+    else {
+      setFilterData({ ...filterData, [prop]: value, offset: 0 })
+      dispatch(resetCards())
+    }
+  }
+
+  const fetchCards = (params: getCardsI) => {
+    dispatch(getCards(params))
+  }
+
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCards())
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchCards(filterData)
+  }, [filterData])
+
 
   return (
     <Wrapper>
-      <Navigation data={data.SpecialOffersCards.choises} />
-      <OffersBanks cards={staticCards} />
+      <Navigation data={tabs} onClick={handleChangeActiveTab} />
+      <OffersBanks
+        filterData={filterData}
+        handleChangeFilter={handleChangeFilter}
+      />
       <FrequentQuestions title={'Частые вопросы'} items={staticData.questData} />
     </Wrapper>
   );
