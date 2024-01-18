@@ -28,6 +28,7 @@ export default function SpecialCardsOffersPage(props: SpecialCardsOffersPageProp
   const [filterData, setFilterData] = useState<getCardsI>({
     limit: 10,
     offset: 0,
+    special_offer: true
   })
   const [tabs, setTabs] = useState(data.SpecialOffersCards.choises)
   const [activeTab, setActiveTab] = useState('Все')
