@@ -33,7 +33,7 @@ const Stock = ({ promotions }: Props) => {
             title={el.title}
             sup={el.subtitle}
             img={el.img}
-            isMobile={width <= 480}
+            isMobile={width && width <= 480}
         />
     ));
 
