@@ -8,7 +8,7 @@ import searchImg from '@/assets/icons/search.svg';
 import Nav from '@/components/Header/Nav/Nav';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import logo from '@/assets/icons/logo.png';
+import logo from '@/assets/icons/logo.svg';
 
 type navItemsT = {
   name: string;

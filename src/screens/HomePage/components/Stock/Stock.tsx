@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import s from './Stock.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import StockItem from '@/components/StockItem/StockItem';

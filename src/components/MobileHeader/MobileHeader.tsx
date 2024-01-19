@@ -5,7 +5,7 @@ import userImg from '@/assets/icons/User.svg';
 import Image from 'next/image';
 import MobileNav from '@/components/MobileHeader/MobileNav/MobileNav';
 import Link from 'next/link';
-import logo from '@/assets/icons/logo.png';
+import logo from '@/assets/icons/logo.svg';
 
 const MobileHeader = () => {
   const [visible, setVisible] = useState<boolean>(false);
