@@ -43,3 +43,14 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .bank_item {
+    width: 100%;
+    .info {
+      div {
+        width: auto;
+      }
+    }
+  }
+}
