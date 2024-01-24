@@ -15,6 +15,7 @@ import PageWrapper from '@/containers/PageWrapper';
 export default function CreditsIpotekaPage() {
   const dataMap = data.CreditsIpotekaPage.questData;
   const items = data.MortgagePage.choices;
+  const communicate = data.DepositsPage.communicate
   return (
     <PageWrapper>
       {/* <IntroMortgage items={items} /> */}
@@ -24,7 +25,7 @@ export default function CreditsIpotekaPage() {
       <Compilations />
       <OffersMonth />
       <LatestNews />
-      <Communicate data={[]}/>
+      <Communicate data={communicate}/>
       <Feedback title={'Отзывы'} sub={'об ипотеке'} />
       <FrequentQuestions title={''} items={dataMap} />
     </PageWrapper>

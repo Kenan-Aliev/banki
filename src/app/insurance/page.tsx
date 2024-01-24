@@ -6,6 +6,11 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Страхование',
 };
-const Page = () => <InsurancePage data={data.InsurancePage} SearchItems={data.InsuranceCompanysMass} />;
+const Page = () => <InsurancePage
+  data={{
+    ...data.InsurancePage,
+    communicate: data.DepositsPage.communicate
+  }}
+  SearchItems={data.InsuranceCompanysMass} />;
 
 export default Page;

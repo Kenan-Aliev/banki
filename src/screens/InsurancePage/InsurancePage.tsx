@@ -13,6 +13,12 @@ import Communicate from '@/components/Communicate/Communicate';
 import Feedback from '@/components/FeedBacks/Feedback/Feedback';
 import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions';
 
+type communicateT = {
+  numb: string
+  sub: string
+  text: string
+}
+
 type ChooseT = {
   name: string;
   active: boolean;
@@ -39,6 +45,7 @@ type Props = {
     banksSlideItems: StaticImageData[];
     specialOffers: OfferI[];
     questData: questT[];
+    communicate: communicateT[]
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   SearchItems?: any[];
@@ -66,7 +73,7 @@ const InsurancePage = ({ data, SearchItems }: Props) => {
       <SpecialOffersInsurance insuranceList={data.specialOffers} />
       <LatestNews />
       <Mailing />
-      <Communicate data={[]}/>
+      <Communicate data={data.communicate} />
       <Feedback title={'Отзывы '} sub={'о страховых компаниях'} />
       <FrequentQuestions title={''} items={data.questData} />
     </PageWrapper>

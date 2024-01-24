@@ -25,6 +25,7 @@ import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 
 export default function CreditMapPage() {
   const staticData = data.CreditCardsPage;
+  const communicate = data.DepositsPage.communicate
   const monthOffers = useAppSelector(selectMonthOffers)
   const topCreditCards = useAppSelector(selectTopCreditCards)
 
@@ -151,7 +152,7 @@ export default function CreditMapPage() {
       {/* <Mailing /> */}
       <Compilations />
       <LatestNews />
-      <Communicate data={[]}/>
+      <Communicate data={communicate} />
       <Feedback title={'Отзывы '} sub={'о кредитных картах'} category='Кредитные карты' />
       <BanksWithButton
         cards={topCreditCards}

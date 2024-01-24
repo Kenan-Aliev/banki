@@ -23,6 +23,7 @@ import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 
 export default function DebitCardsPage() {
   const dataMap = data.DebitCardsPage.questData;
+  const communicate = data.DepositsPage.communicate
 
   const monthOffers = useAppSelector(selectMonthOffers)
   const topDebitCards = useAppSelector(selectTopDebitCards)
@@ -143,7 +144,7 @@ export default function DebitCardsPage() {
       {/* <Mailing /> */}
       <Compilations />
       <LatestNews />
-      <Communicate data={[]}/>
+      <Communicate data={communicate}/>
       <Feedback title={'Отзывы '} sub={'о дебетовых картах'} category='Дебетовые карты' />
       <BanksWithButton
         cards={topDebitCards}

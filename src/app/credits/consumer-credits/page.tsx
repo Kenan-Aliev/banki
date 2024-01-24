@@ -11,5 +11,11 @@ export const metadata: Metadata = {
 export default async function ConsumerCredits() {
   const banks = (await BanksApi.getBanks({ offset: 0, limit: 50, type: 'bank' })).data.results
 
-  return <ConsumerCreditsPage staticData={data.ConsumerCredits} sliderBanks={banks}/>;
+  return <ConsumerCreditsPage
+    staticData={{
+      catalogData: data.ConsumerCredits.catalogData,
+      communicate: data.DepositsPage.communicate,
+      questData: data.ConsumerCredits.questData
+    }}
+    sliderBanks={banks} />;
 }

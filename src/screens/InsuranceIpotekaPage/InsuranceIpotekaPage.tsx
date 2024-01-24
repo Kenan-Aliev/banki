@@ -14,6 +14,7 @@ import LastBuy from '@/components/LastBuy/LastBuy';
 export default function InsuranceIpotekaPage() {
   const dataMap = data.InsuranceIpoteka.ourData;
   const questionMap = data.InsuranceIpoteka.questData;
+  const ourStrongs = data.InsuranceIpoteka.ourStrongs
   return (
     <Wrapper>
       <Navigation />
@@ -21,7 +22,7 @@ export default function InsuranceIpotekaPage() {
       <Company />
       <LastBuy />
       <HowItWorks title={'Как оформить полис '} sub={'для ипотеки онлайн'} items={dataMap} />
-      <OurStrongs data={[]}/>
+      <OurStrongs data={ourStrongs}/>
       <LatestNews />
       <Feedback sub={'об ипотечном страховании'} title={'Отзывы'} />
       <FrequentQuestions title={''} items={questionMap} />

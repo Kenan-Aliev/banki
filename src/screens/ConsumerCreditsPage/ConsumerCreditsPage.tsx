@@ -22,6 +22,12 @@ import { getCreditTypes, getCredits, getMonthOffers, getTopCredits } from '@/cor
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 import { selectCreditTypes, selectMonthOffers, selectTopCredits } from '@/core/store/credits/credits-selectors';
 
+type communicateT = {
+  numb: string
+  sub: string
+  text: string
+}
+
 type catalogT = {
   img: StaticImageData;
   name: string;
@@ -36,6 +42,7 @@ interface ConsumerCreditsPageProps {
   staticData: {
     catalogData: catalogT[];
     questData: ItemT[];
+    communicate: communicateT[]
   };
   sliderBanks: BankT[];
 }
@@ -205,7 +212,7 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
       />
       <LatestNews category='Занять' />
       <Mailing />
-      <Communicate data={[]}/>
+      <Communicate data={staticData.communicate} />
       <Feedback title={'Отзывы '} sub={'о кредитах'} category='Кредиты' />
       <CreditTopBankList credits={topCredits} />
       <FrequentQuestions title={'Важные вопросы'} items={staticData.questData} />
