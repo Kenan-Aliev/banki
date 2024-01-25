@@ -7,6 +7,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/ReactToastify.min.css'
 import Footer from '@/components/Footer/Footer';
 import { Metadata } from 'next';
+import YandexMetrika from '@/components/YandexMetrics';
+import { Google } from '@mui/icons-material';
+import GoogleAnalytics from '@/components/GoogleAnalitics';
 
 export const metadata: Metadata = {
   icons: {
@@ -19,6 +22,16 @@ function RootLayout({ children }: { children: React.ReactNode }) {
     <html lang='ru'>
       <body>
         <StoreProvider>
+          <YandexMetrika
+            yid={96230933}
+            accurateTrackBounce={true}
+            clickmap={true}
+            trackLinks={true}
+            webvisor={true}
+          />
+          <GoogleAnalytics
+            gaTrackingId='G-1QQKWLLLX9'
+          />
           <Header />
           <MobileHeader />
           {children}
