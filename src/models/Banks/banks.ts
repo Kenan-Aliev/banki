@@ -1,8 +1,6 @@
 export interface BanksResponseT {
     results: BankT[];
     count: number;
-    next: string | null
-    previous: string | null
 }
 
 export interface BankT {

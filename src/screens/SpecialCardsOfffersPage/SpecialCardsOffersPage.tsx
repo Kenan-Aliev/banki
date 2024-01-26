@@ -7,7 +7,6 @@ import OffersBanks from './components/OffersBanks/OffersBanks';
 import data from '@/core/data';
 import { useAppDispatch } from '@/hooks/redux';
 import { getCardsI } from '@/models/Services';
-import { resetCards } from '@/core/store/cards/cards-slice';
 import { getCards } from '@/core/store/cards/cards-actions';
 
 type questItem = {
@@ -51,15 +50,12 @@ export default function SpecialCardsOffersPage(props: SpecialCardsOffersPageProp
     if (prop === 'offset') {
       setFilterData({ ...filterData, [prop]: value })
     }
-
     else if (prop === 'card_type' && value === 'Все') {
       delete filterData.card_type
       setFilterData({ ...filterData, offset: 0 })
-      dispatch(resetCards())
     }
     else {
       setFilterData({ ...filterData, [prop]: value, offset: 0 })
-      dispatch(resetCards())
     }
   }
 
@@ -68,11 +64,6 @@ export default function SpecialCardsOffersPage(props: SpecialCardsOffersPageProp
   }
 
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetCards())
-    }
-  }, [])
 
   useEffect(() => {
     fetchCards(filterData)

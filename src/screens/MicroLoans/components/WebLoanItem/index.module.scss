@@ -1,6 +1,5 @@
 .wrapper {
   width: 278px;
-  height: 320px;
   padding: 24px;
   border-radius: 7px;
   border: 1px solid #d9dbdf;
@@ -14,13 +13,10 @@
 
     .info {
       .title {
-        max-width: 100px;
         color: #121212;
         font-variant-numeric: lining-nums proportional-nums;
         font-size: 16px;
-        font-style: normal;
         font-weight: 500;
-        line-height: normal;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

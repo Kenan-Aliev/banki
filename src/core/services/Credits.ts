@@ -20,6 +20,9 @@ const CreditsApi = {
   getTopCredits() {
     return instance.get<TopCreditsResponse>(`/credit/top/`);
   },
+  getTopMicroCredits() {
+    return instance.get<TopCreditsResponse>(`/credit/top-mikro/`);
+  },
 };
 
 export default CreditsApi;

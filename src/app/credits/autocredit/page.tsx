@@ -2,11 +2,15 @@ import React from 'react';
 import { Metadata } from 'next';
 import AutocreditPage from '@/screens/AutocreditPage/AutocreditPage';
 import data from '@/core/data/index';
+import CreditsApi from '@/core/services/Credits';
 
 export const metadata: Metadata = {
-  title: 'Автокердит',
+  title: 'Автокредиты',
 };
 
-const Page = () => <AutocreditPage data={data.Autocredits} />;
+export default async function Microloans() {
+  const creditType = (await CreditsApi.getCreditTypes()).data.find((type) => type.title === 'Автокредит')
 
-export default Page;
+  return <AutocreditPage data={data.Autocredits} creditType={creditType} />;
+}
+

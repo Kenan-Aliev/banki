@@ -7,7 +7,7 @@ export const getCredits = createAsyncThunk(
 	async (params: getCreditsI, { rejectWithValue }) => {
 		try {
 			const response = await CreditsApi.getCredits(params)
-			return response.data
+			return { offset: params.offset, data: response.data }
 		} catch (err: any) {
 			return rejectWithValue(err.response.data.message)
 		}
@@ -53,6 +53,17 @@ export const getTopCredits = createAsyncThunk(
 	async (_, { rejectWithValue }) => {
 		try {
 			const response = await CreditsApi.getTopCredits()
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})
+
+export const getTopMicroCredits = createAsyncThunk(
+	'credits/getTopMicroCredits',
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await CreditsApi.getTopMicroCredits()
 			return response.data
 		} catch (err: any) {
 			return rejectWithValue(err.response.data.message)

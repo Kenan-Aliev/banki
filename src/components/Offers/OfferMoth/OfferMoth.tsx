@@ -70,7 +70,7 @@ const OfferMonth = (props: OfferMonthProps) => {
         if (category === 'Вклады') {
           const of = { ...offer } as DepositItemT;
           return mapOffer(of, DepositOfferItem, of.deposit_id);
-        } else if (category === 'Кредиты') {
+        } else if (category === 'Кредиты' || category === 'Микрозаймы') {
           const of = { ...offer } as CreditItemT;
           return mapOffer(of, CreditOfferItem, of.id);
         }
@@ -113,10 +113,10 @@ const OfferMonth = (props: OfferMonthProps) => {
           rightArr={true}
           responsive={{
             "320": 1,
-            "480": 2,
-            "640": 3,
-            "768": 3,
-            "1500": 4
+            "480": slides && slides.length > 2 ? 2 : slides?.length,
+            "640": slides && slides.length > 3 ? 3 : slides?.length,
+            "768": slides && slides.length > 3 ? 3 : slides?.length,
+            "1500": slides && slides.length > 4 ? 4 : slides?.length
           }}
         />
       </div>

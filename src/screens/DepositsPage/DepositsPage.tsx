@@ -21,8 +21,6 @@ import { getDeposits, getMonthOffers, getSpecialOffers, getTopDeposits } from '@
 import { getDepositsI } from '@/models/Services';
 import { selectMonthOffers, selectSpecialOffers } from '@/core/store/deposits/deposits-selectors';
 import { getBanks } from '@/core/store/banks/banks-actions';
-import { resetDeposits } from '@/core/store/deposits/deposits-slice';
-import { resetBanks } from '@/core/store/banks/banks-slice';
 import data from '@/core/data'
 
 
@@ -53,16 +51,12 @@ const DepositsPage = () => {
     if (prop === 'offset') {
       setFilterData({ ...filterData, [prop]: value })
     }
-
+    else if (value === false) {
+      delete filterData[prop]
+      setFilterData({ ...filterData, offset: 0 })
+    }
     else {
-      if (value === false) {
-        delete filterData[prop]
-        setFilterData({ ...filterData })
-      }
-      else {
-        setFilterData({ ...filterData, [prop]: value, offset: 0 })
-      }
-      dispatch(resetDeposits())
+      setFilterData({ ...filterData, [prop]: value, offset: 0 })
     }
   }
 
@@ -71,7 +65,6 @@ const DepositsPage = () => {
   }
 
   const cleanFilter = () => {
-    dispatch(resetDeposits())
     setFilterData({
       limit: 10,
       offset: 0,
@@ -109,10 +102,6 @@ const DepositsPage = () => {
     fetchMonthOffers()
     fetchSpecialOffers()
     fetchTopDeposits()
-    return () => {
-      dispatch(resetBanks())
-      dispatch(resetDeposits())
-    }
   }, [])
 
   useEffect(() => {
@@ -122,7 +111,6 @@ const DepositsPage = () => {
     }
     fetchDeposits(filter)
   }, [filterData])
-
 
 
   return (

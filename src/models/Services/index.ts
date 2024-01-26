@@ -154,6 +154,8 @@ export interface getReviewsCategoriesData {
 export interface getCreditsI {
     max_rating?: string
     min_rating?: string
+    min_summ?: string
+    max_summ?: string
     offerOfTheMonth?: boolean
     bank?: string | string[]
     loanType?: string

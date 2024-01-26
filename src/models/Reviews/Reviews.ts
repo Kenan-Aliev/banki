@@ -15,14 +15,10 @@ export interface ReviewsCategory {
 
 export interface ReviewsListResponse {
 	count: number
-	next: string | null
-	previous: string | null
 	results: Review[]
 }
 
 export interface ReviewsCategoriesResponse {
 	count: number
-	next: string | null
-	previous: string | null
 	results: ReviewsCategory[]
 }

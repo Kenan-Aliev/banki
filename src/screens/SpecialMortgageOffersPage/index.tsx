@@ -9,7 +9,6 @@ import data from '@/core/data/index';
 import { getMortgages } from '@/models/Services';
 import { useAppDispatch } from '@/hooks/redux';
 import { getSpecialOffers } from '@/core/store/mortgages/mortgage-actions';
-import { resetSpecialOffers } from '@/core/store/mortgages/mortgage-slice';
 
 type questItem = {
   title: string;
@@ -31,7 +30,6 @@ export default function SpecialMortgageOffersPage(props: SpecialMortgageOffersPa
   })
 
   const handleChangeParams = (prop: string, value: any) => {
-    dispatch(resetSpecialOffers())
     setParams({
       ...params, [prop]: value
     })
@@ -41,11 +39,6 @@ export default function SpecialMortgageOffersPage(props: SpecialMortgageOffersPa
     dispatch(getSpecialOffers(params))
   }
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetSpecialOffers())
-    }
-  }, [])
 
   useEffect(() => {
     fetchSpecialOffers(params)

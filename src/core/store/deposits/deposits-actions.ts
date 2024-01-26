@@ -7,7 +7,7 @@ export const getDeposits = createAsyncThunk(
 	async (params: getDepositsI, { rejectWithValue }) => {
 		try {
 			const response = await DepositsApi.getDeposits(params)
-			return response.data
+			return { offset: params.offset, data: response.data }
 		} catch (err: any) {
 			return rejectWithValue(err.response.data.message)
 		}

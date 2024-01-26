@@ -45,18 +45,26 @@ export const depositsSlice = createSlice({
   name: 'deposits',
   initialState,
   reducers: {
-    resetDeposits: (state) => {
-      state.deposits.data = {} as DepositsResponseT<DepositItemT>
-    }
   },
   extraReducers: (builder) => {
     builder.
       addCase(getDeposits.fulfilled, (state, action) => {
-        state.deposits = {
-          status: 'success',
-          data: {
-            ...action.payload,
-            results: [...state.deposits.data.results ?? [], ...action.payload.results ?? []]
+        if (action.payload.offset === 0) {
+          state.deposits = {
+            status: 'success',
+            data: {
+              count: action.payload.data.count,
+              results: action.payload.data.results
+            }
+          }
+        }
+        else {
+          state.deposits = {
+            status: 'success',
+            data: {
+              count: action.payload.data.count,
+              results: [...state.deposits.data.results ?? [], ...action.payload.data.results ?? []]
+            }
           }
         }
       })
@@ -112,7 +120,5 @@ export const depositsSlice = createSlice({
         })
   }
 });
-
-export const { resetDeposits } = depositsSlice.actions
 
 export default depositsSlice.reducer;

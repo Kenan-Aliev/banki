@@ -7,6 +7,7 @@ import BlueLikeBtn from '@/UI/BlueLikeBtn/BlueLikeBtn';
 import warn from '@/assets/icons/warning_icon.svg';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import { CreditItemT } from '@/models/Credits/Credits';
+import { baseUrl } from '@/core/const/baseUrl';
 
 interface WebLoanItemProps {
   item: CreditItemT;
@@ -14,20 +15,16 @@ interface WebLoanItemProps {
 
 const WebLoanItem = (props: WebLoanItemProps) => {
   const {
-    item: { loanName, loan_amount, loan_term},
+    item: { loanName, loan_amount, loan_term, bank_logo, bank_title, currency, min_rating, max_rating },
   } = props;
 
   return (
     <div className={s.wrapper}>
       <div className={s.header}>
-        <Image alt={''} src={sq} />
+        <Image alt={''} src={baseUrl + bank_logo} width={50} height={50} />
         <div className={s.info}>
-          <div className={s.title}>{loanName}</div>
-          <div className={s.sub}>{'description'}</div>
-          <div className={s.star}>
-            <Image alt={'star'} src={star} />
-            4,3
-          </div>
+          <div className={s.title}>{bank_title}</div>
+          <div className={s.sub}>{loanName}</div>
         </div>
       </div>
       <div className={s.line} />
@@ -35,23 +32,22 @@ const WebLoanItem = (props: WebLoanItemProps) => {
         <div>
           <span>Сумма</span>
           <span>
-            {loan_amount?.min} - {loan_amount?.max} ₽
+            {loan_amount?.min} - {loan_amount?.max} {currency}
           </span>
         </div>
         <div>
           <span>Срок</span>
           <span>
-            {loan_term?.min} - {loan_term?.max} день
+            {loan_term?.min} - {loan_term?.max} мес.
           </span>
         </div>
         <div>
           <span>Ставка</span>
-          <span>{'rate'}%</span>
+          <span>{min_rating} - {max_rating}%</span>
         </div>
       </div>
       <div className={s.line}></div>
       <div className={s.btn_cont}>
-        <BlueLikeBtn title={'Узнать вероятность одобрения'} />
         <div className={s.warn}>
           <Image alt={'warning'} src={warn} />
         </div>

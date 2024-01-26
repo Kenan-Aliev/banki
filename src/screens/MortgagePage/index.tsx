@@ -12,7 +12,6 @@ import { getMortgages } from '@/models/Services';
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { getAllMortgages, getMonthOffers } from '@/core/store/mortgages/mortgage-actions';
-import { resetMortgages } from '@/core/store/mortgages/mortgage-slice';
 import MortgagesList from '@/components/mortgages/MortgageOfferList';
 import { selectMonthOffers } from '@/core/store/mortgages/mortgage-selectors';
 
@@ -54,7 +53,6 @@ const MortgagePage = (props: MortgagePageProps) => {
       setFilterData({ ...filterData, [prop]: value })
     }
     else {
-      dispatch(resetMortgages())
       setFilterData({ ...filterData, [prop]: value, offset: 0 })
     }
   }
@@ -75,10 +73,6 @@ const MortgagePage = (props: MortgagePageProps) => {
 
   useEffect(() => {
     fetchMonthOffers()
-
-    return () => {
-      dispatch(resetMortgages())
-    }
   }, [])
 
   useEffect(() => {
@@ -118,7 +112,7 @@ const MortgagePage = (props: MortgagePageProps) => {
       <Mailing />
       {/* <Compilations /> */}
       <OfferMonth offers={monthOffers.results} category='Ипотека' />
-      <Communicate data={[]}/>
+      <Communicate data={[]} />
       <Feedback title={'Отзывы '} sub={'об ипотеке'} category='Ипотека' />
       <FrequentQuestions title={''} items={staticData.questData} />
     </PageWrapper>

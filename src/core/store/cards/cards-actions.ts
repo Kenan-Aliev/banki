@@ -7,7 +7,7 @@ export const getCards = createAsyncThunk(
 	async (params: getCardsI, { rejectWithValue }) => {
 		try {
 			const response = await CardsApi.getCards(params)
-			return response.data
+			return { offset: params.offset, data: response.data }
 		} catch (err: any) {
 			return rejectWithValue(err.response.data.message)
 		}
@@ -35,16 +35,16 @@ export const getTopCreditCards = createAsyncThunk(
 		}
 	})
 
-	export const getTopDebitCards = createAsyncThunk(
-		'cards/getTopDebitCards',
-		async (_, { rejectWithValue }) => {
-			try {
-				const response = await CardsApi.getTopDebitCards()
-				return response.data
-			} catch (err: any) {
-				return rejectWithValue(err.response.data.message)
-			}
-		})
+export const getTopDebitCards = createAsyncThunk(
+	'cards/getTopDebitCards',
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await CardsApi.getTopDebitCards()
+			return response.data
+		} catch (err: any) {
+			return rejectWithValue(err.response.data.message)
+		}
+	})
 
 
 

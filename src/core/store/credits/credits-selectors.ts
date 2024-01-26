@@ -14,3 +14,6 @@ export const selectGetCreditDetailsStatus = (state: RootState) => state.credits.
 
 export const selectTopCredits = (state: RootState) =>
 	state.credits.topCredits.data?.results?.map((result) => result.credit)
+
+export const selectTopMicroCredits = (state: RootState) =>
+	state.credits.topMicroCredits.data?.results?.map(result => result.credit)

@@ -30,11 +30,11 @@ const SliderBanksCons = ({ data }: Props) => {
         leftArr={true}
         rightArr={true}
         responsive={{
-          "320": 2,
-          "480": 3,
-          "640": 3,
-          "768": 5,
-          "1500": 5
+          "320": slides && slides.length > 2 ? 2 : slides?.length,
+          "480": slides && slides.length > 3 ? 3 : slides?.length,
+          "640": slides && slides.length > 3 ? 3 : slides?.length,
+          "768": slides && slides.length > 5 ? 5 : slides?.length,
+          "1500": slides && slides.length > 5 ? 5 : slides?.length
         }}
       />
     </div>

@@ -58,8 +58,6 @@ export type DepositItemT = {
 export interface DepositsResponseT<T> {
   results: T[];
   count: number;
-  next: string | null
-  previous: string | null
 };
 
 export interface DepositItemResponseT {

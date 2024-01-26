@@ -8,7 +8,7 @@ export const getBanks = createAsyncThunk(
 	async (params: getAllBanksT, { rejectWithValue }) => {
 		try {
 			const response = await BanksApi.getBanks(params)
-			return response.data
+			return { offset: params.offset, data: response.data }
 		} catch (err: any) {
 			return rejectWithValue(err.response.data.message)
 		}

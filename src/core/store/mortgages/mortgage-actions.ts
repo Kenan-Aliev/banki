@@ -7,7 +7,7 @@ export const getAllMortgages = createAsyncThunk(
 	async (params: getMortgages, { rejectWithValue }) => {
 		try {
 			const response = await MortgagesApi.getMorgages(params)
-			return response.data
+			return { offset: params.offset, data: response.data }
 		} catch (err: any) {
 			return rejectWithValue(err.response.data.message)
 		}
@@ -31,7 +31,7 @@ export const getSpecialOffers = createAsyncThunk(
 	async (params: getMortgages, { rejectWithValue }) => {
 		try {
 			const response = await MortgagesApi.getMorgages(params)
-			return response.data
+			return { offset: params.offset, data: response.data }
 		} catch (err: any) {
 			return rejectWithValue(err.response.data.message)
 		}

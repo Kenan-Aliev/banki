@@ -31,29 +31,28 @@ export const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
   reducers: {
-    resetReviews: (state) => {
-      state.reviews = {
-        data: {} as ReviewsListResponse,
-        status: 'initial'
-      }
-    },
-    resetCategories: (state) => {
-      state.categories = {
-        data: {} as ReviewsCategoriesResponse,
-        status: 'initial'
-      }
-    }
   },
   extraReducers: (builder) => {
     builder.addCase(getReviews.pending, (state) => {
       state.reviews.status = 'loading'
     })
       .addCase(getReviews.fulfilled, (state, action) => {
-        state.reviews = {
-          status: 'success',
-          data: {
-            ...action.payload,
-            results: [...state.reviews.data.results ?? [], ...action.payload.results ?? []]
+        if (action.payload.offset === 0) {
+          state.reviews = {
+            status: 'success',
+            data: {
+              count: action.payload.data.count,
+              results: action.payload.data.results
+            }
+          }
+        }
+        else {
+          state.reviews = {
+            status: 'success',
+            data: {
+              count: action.payload.data.count,
+              results: [...state.reviews.data.results ?? [], ...action.payload.data.results ?? []]
+            }
           }
         }
       })
@@ -66,11 +65,22 @@ export const reviewsSlice = createSlice({
           state.categories.status = 'loading'
         })
         .addCase(getReviewsCategories.fulfilled, (state, action) => {
-          state.categories = {
-            status: 'success',
-            data: {
-              ...action.payload,
-              results: [...state.categories.data.results ?? [], ...action.payload.results ?? []]
+          if (action.payload.offset === 0) {
+            state.categories = {
+              data: {
+                count: action.payload.data.count,
+                results: action.payload.data.results
+              },
+              status: 'success'
+            }
+          }
+          else {
+            state.categories = {
+              status: 'success',
+              data: {
+                count: action.payload.data.count,
+                results: [...state.categories.data.results ?? [], ...action.payload.data.results ?? []]
+              }
             }
           }
         })
@@ -81,5 +91,4 @@ export const reviewsSlice = createSlice({
 });
 
 
-export const { resetReviews, resetCategories } = reviewsSlice.actions
 export default reviewsSlice.reducer;

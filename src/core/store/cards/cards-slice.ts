@@ -45,12 +45,7 @@ export const cardsSlice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
-    resetCards: (state) => {
-      state.cards = {
-        status: 'initial',
-        data: {} as CardItemsResponseT
-      }
-    }
+
   },
   extraReducers: (builder) => {
     builder
@@ -58,11 +53,22 @@ export const cardsSlice = createSlice({
         state.cards.status = 'loading'
       })
       .addCase(getCards.fulfilled, (state, action) => {
-        state.cards = {
-          status: 'success',
-          data: {
-            ...action.payload,
-            results: [...state.cards.data.results ?? [], ...action.payload.results ?? []]
+        if (action.payload.offset === 0) {
+          state.cards = {
+            status: 'success',
+            data: {
+              count: action.payload.data.count,
+              results: action.payload.data.results
+            }
+          }
+        }
+        else {
+          state.cards = {
+            status: 'success',
+            data: {
+              count: action.payload.data.count,
+              results: [...state.cards.data.results ?? [], ...action.payload.data.results ?? []]
+            }
           }
         }
       })
@@ -111,6 +117,5 @@ export const cardsSlice = createSlice({
   }
 });
 
-export const { resetCards } = cardsSlice.actions
 
 export default cardsSlice.reducer;

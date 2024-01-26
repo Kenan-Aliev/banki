@@ -9,13 +9,13 @@ import HowItWorks from '@/components/HowItWorks/HowItWorks';
 import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions';
 import { StaticImageData } from 'next/image';
 import { BankT } from '@/models/Banks/banks';
-import { resetCredits } from '@/core/store/credits/credits-slice';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { useAppDispatch } from '@/hooks/redux';
 import { selectCreditTypes } from '@/core/store/credits/credits-selectors';
 import { getCreditsI } from '@/models/Services';
-import { getCreditTypes, getCredits } from '@/core/store/credits/credits-actions';
+import { getCredits } from '@/core/store/credits/credits-actions';
 import CreditBankList from '@/components/credits/CreditBankList';
 import data from '@/core/data/index';
+import { CreditType } from '@/models/Credits/Credits';
 
 type ourStrongT = {
   num: string
@@ -40,11 +40,10 @@ type Props = {
     ourStrongs: ourStrongT[]
   };
   sliderBanks: BankT[];
+  creditType: CreditType
 };
 
-const RefinancingCredits = ({ data, sliderBanks }: Props) => {
-  const creditTypes = useAppSelector(selectCreditTypes)
-
+const RefinancingCredits = ({ data, sliderBanks, creditType }: Props) => {
   // const itWorksMap = data..ourData;
 
   const dispatch = useAppDispatch()
@@ -53,16 +52,12 @@ const RefinancingCredits = ({ data, sliderBanks }: Props) => {
     limit: 10,
     offset: 0,
     ordering: 'min_summ',
-    // loanType: '5'
+    loanType: String(creditType.id)
   })
 
   const handleChangeFilter = (prop: string, value: any) => {
     if (prop === 'offset') {
       setFilterData({ ...filterData, [prop]: value })
-    }
-    else {
-      setFilterData({ ...filterData, [prop]: value, offset: 0 })
-      dispatch(resetCredits())
     }
   }
 
@@ -71,28 +66,9 @@ const RefinancingCredits = ({ data, sliderBanks }: Props) => {
     dispatch(getCredits(params))
   }
 
-  const fetchCreditTypes = () => {
-    dispatch(getCreditTypes())
-  }
-
-  useEffect(() => {
-    fetchCreditTypes()
-    return () => {
-      dispatch(resetCredits())
-    }
-  }, [])
-
   useEffect(() => {
     fetchCredits(filterData)
   }, [filterData])
-
-  // useEffect(() => {
-  //   if (creditTypes && creditTypes.length > 0) {
-  //     const creditType = creditTypes.find((type) => type.title === 'Рефинансирование')
-  //     handleChangeFilter('loanType', creditType.id)
-  //   }
-  // }, [creditTypes])
-
 
   return (
     <PageWrapper>

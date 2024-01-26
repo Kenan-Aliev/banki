@@ -3,64 +3,94 @@
 import React, { useState } from 'react';
 import s from './IntroAuto.module.scss';
 import MoneySelect from '@/UI/MoneySelect/MoneySelect';
-import CustomInputTitle from '@/UI/CustomInputTitle/CustomInputTitle';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-import CustomInput from '@/UI/CustomInput/CustomInput';
-import { Modal } from '@/UI/Modal';
-import { ModalInnerWrapper } from '@/UI/ModalInnerWrapper';
+import { Stack } from '@mui/material';
+import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
+import { timeframe } from '@/core/data/filters';
+import { getCreditsI } from '@/models/Services';
+import { useAppSelector } from '@/hooks/redux';
+import { selectCredits } from '@/core/store/credits/credits-selectors';
 
-const IntroAuto = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [many, setMany] = useState(0);
-  const [bid, setBid] = useState(0);
-  const [monthlyPayment, setMonthlyPayment] = useState(0);
-  const [durationInYars, setDurationInYars] = useState(0);
+interface Props {
+  handleChangeFilter: (prop: string, value: any) => void
+  filterData: getCreditsI
+  handleScrollToCredits: () => void
+}
+
+const IntroAuto = (props: Props) => {
+  const { filterData, handleChangeFilter, handleScrollToCredits } = props
+
+  const [timer, setTimer] = useState(null)
+  const [summa, setSumma] = useState(0)
+
+  const creditsCount = useAppSelector(selectCredits)?.count
+
+  const handleChangeSumma = (prop: string, value: any) => {
+    switch (prop) {
+      case "summa":
+        setSumma(value)
+        if (timer) {
+          clearTimeout(timer);
+        }
+        setTimer(
+          setTimeout(() => {
+            handleChangeFilter(prop, value)
+          }, 1000)
+        );
+        break
+      case 'currency':
+        handleChangeFilter(prop, value)
+        break
+    }
+  }
 
   return (
-    <>
-      <div className={s.intro}>
-        <div className={s.info_cont}>
-          <div className={s.breadCrumbs}>
-            Главная / Кредиты / <mark>Автокредиты</mark>
-          </div>
-          <div className={s.title}>Подобрать кредит на автомобиль</div>
-          <p>Мастер персонального подбора кредитов на покупку автомобиля.</p>
-          <div className={s.calc}>
-            <MoneySelect width={385} />
-            <CustomInputTitle title={'Ставка'} width={188} value={12} setValue={(e) => setBid(e)} />
-            <CustomInputTitle
-              title={'Ежемесячный платеж'}
-              width={188}
-              setValue={(e) => setMonthlyPayment(e)}
+    <div className={s.intro}>
+      <div className={s.info_cont}>
+        <div className={s.breadCrumbs}>
+          Главная / Кредиты / <mark>Автокредиты</mark>
+        </div>
+        <h1 className={s.title}>Подобрать кредит на автомобиль</h1>
+        <p>Рассчитать кредит на авто, сравнить условия по автокредитованию, выяснить,
+          где лучше взять кредит на машину, и оформить онлайн-заявку в банк</p>
+        <div className={s.calc}>
+          <MoneySelect
+            width={385}
+            amount={summa}
+            currency={filterData.currency ?? ''}
+            handleChange={handleChangeSumma}
+            title='Стоимость автомобиля'
+            moneyProp='summa'
+          />
+          <Stack
+            direction='row'
+            sx={{
+              gap: '10px',
+              width: '100%',
+              alignItems: 'center',
+              "@media(max-width:640px)": {
+                flexWrap: 'wrap'
+              }
+            }}
+          >
+            <CustomWhiteSelectTitle2
+              items={timeframe}
+              labelName='Срок'
+              isAllExist={true}
+              name='credit'
+              prop='credit'
+              onChange={handleChangeFilter}
+              defaultValue={filterData.credit ?? ''}
+              value={filterData.credit ?? ''}
             />
-            <CustomInputTitle title={'Срок в годах'} width={385} setValue={(e) => setDurationInYars(e)} />
-            <BlueBtn text={'Подобрать кредит'} width={385} onClick={() => setModalIsOpen(true)} />
-          </div>
+            <BlueBtn text={'Показать'}
+              count={creditsCount ?? 0}
+              width={173}
+              onClick={() => handleScrollToCredits()} />
+          </Stack>
         </div>
       </div>
-      {modalIsOpen && (
-        <Modal onClose={() => setModalIsOpen(false)}>
-          <ModalInnerWrapper className={s.modal}>
-            <CustomInput place='Имя' width={385} />
-            <CustomInput place='Фамилия' width={385} />
-            <CustomInput place='Номер телефона' width={385} />
-            <MoneySelect width={385} amount={many} />
-            <CustomInputTitle title={'Ставка'} width={385} value={bid} />
-            <CustomInputTitle title={'Ежемесячный платеж'} width={385} value={monthlyPayment} />
-            <CustomInputTitle title={'Срок в годах'} width={385} value={durationInYars} />
-            <BlueBtn
-              text={'Отправить'}
-              width={385}
-              height={60}
-              onClick={() => {
-                alert('Данные отправлены!');
-                setModalIsOpen(false);
-              }}
-            />
-          </ModalInnerWrapper>
-        </Modal>
-      )}
-    </>
+    </div>
   );
 };
 

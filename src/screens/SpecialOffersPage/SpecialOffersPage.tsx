@@ -4,7 +4,6 @@ import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions'
 import PageWrapper from '@/containers/PageWrapper';
 import IntroSpecialOffer from '@/screens/SpecialOffersPage/components/IntroSpecialOffer/IntroSpecialOffer';
 import SpecialOffersList from './components/SpecialOffersList/SpecialOffersList';
-import { resetDeposits } from '@/core/store/deposits/deposits-slice';
 import { getDepositsI } from '@/models/Services';
 import { useAppDispatch } from '@/hooks/redux';
 import { getDeposits } from '@/core/store/deposits/deposits-actions';
@@ -52,7 +51,6 @@ const SpecialOffersPage = (props: SpecialOfferPageProps) => {
 
     else {
       setFilterData({ ...filterData, [prop]: value, offset: 0 })
-      dispatch(resetDeposits())
     }
   }
 
@@ -61,12 +59,6 @@ const SpecialOffersPage = (props: SpecialOfferPageProps) => {
   }
 
 
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetDeposits())
-    }
-  }, [])
 
   useEffect(() => {
     fetchDeposits(filterData)

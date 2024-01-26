@@ -8,7 +8,6 @@ import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { getReviews, getReviewsCategories } from '@/core/store/reviews/reviews-actions';
 import { selectGetReviewsStatus, selectReviews, selectReviewsCategories } from '@/core/store/reviews/reviews-selectors';
-import { resetCategories, resetReviews } from '@/core/store/reviews/reviews-slice';
 import Loading from '@/app/loading';
 
 type Props = {
@@ -43,7 +42,6 @@ const Feedback = ({ title, sub, chois, category }: Props) => {
   const [currentChoise, setCurrentChoise] = useState(0);
 
   const fetchReviews = () => {
-    dispatch(resetReviews())
     dispatch(getReviews({ limit: 3, offset: 0, product_type: String(currentChoise) }))
   }
 
@@ -53,10 +51,6 @@ const Feedback = ({ title, sub, chois, category }: Props) => {
 
   useEffect(() => {
     fetchReviewsCategories()
-    return () => {
-      dispatch(resetReviews())
-      dispatch(resetCategories())
-    }
   }, [])
 
   useEffect(() => {

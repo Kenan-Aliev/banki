@@ -9,7 +9,7 @@ export const getReviews = createAsyncThunk(
 	async (params: getReviewsListData, { rejectWithValue }) => {
 		try {
 			const response = await ReviewsApi.getReviews(params)
-			return response.data
+			return { offset: params.offset, data: response.data }
 		} catch (err: any) {
 			return rejectWithValue(err.response.data.message)
 		}
@@ -20,7 +20,7 @@ export const getReviewsCategories = createAsyncThunk(
 	async (params: getReviewsCategoriesData, { rejectWithValue }) => {
 		try {
 			const response = await ReviewsApi.getReviewsCategories(params)
-			return response.data
+			return { offset: params.offset, data: response.data }
 		} catch (err: any) {
 			return rejectWithValue(err.response.data.message)
 		}

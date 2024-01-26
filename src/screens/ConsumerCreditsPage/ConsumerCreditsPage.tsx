@@ -17,7 +17,6 @@ import { creditsData } from '@/core/data/credits/all-credits';
 import { BankT } from '@/models/Banks/banks';
 import { getCreditsI } from '@/models/Services';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { resetCredits } from '@/core/store/credits/credits-slice';
 import { getCreditTypes, getCredits, getMonthOffers, getTopCredits } from '@/core/store/credits/credits-actions';
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 import { selectCreditTypes, selectMonthOffers, selectTopCredits } from '@/core/store/credits/credits-selectors';
@@ -72,17 +71,15 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
     else {
       if (value === false) {
         delete filterData[prop]
-        setFilterData({ ...filterData })
+        setFilterData({ ...filterData, offset: 0 })
       }
       else {
         setFilterData({ ...filterData, [prop]: value, offset: 0 })
       }
-      dispatch(resetCredits())
     }
   }
 
   const cleanFilter = () => {
-    dispatch(resetCredits())
     setFilterData({
       limit: 10,
       offset: 0,
@@ -100,7 +97,6 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
   const handleShowCatalogItems = (item: string) => {
     const handleCreditType = (creditType: string) => {
       const credit = creditTypes.find((type) => type.title === creditType)
-      dispatch(resetCredits())
       setFilterData({
         limit: 10,
         offset: 0,
@@ -118,7 +114,6 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
         break
 
       case "Без справок":
-        dispatch(resetCredits())
         setFilterData({
           limit: 10,
           offset: 0,
@@ -157,9 +152,6 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
     fetchCreditTypes()
     fetchTopCredits()
 
-    return () => {
-      dispatch(resetCredits())
-    }
   }, [])
 
   useEffect(() => {

@@ -13,12 +13,10 @@ import data from '@/core/data/index';
 import Compilations from '@/screens/DebetCardsPage/components/Сompilations/Сompilations';
 import BanksWithButton from '@/components/BanksWithButton/BanksWithButton';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { selectMonthOffers, selectTopCreditCards, selectTopDebitCards } from '@/core/store/cards/cards-selectors';
+import { selectMonthOffers, selectTopDebitCards } from '@/core/store/cards/cards-selectors';
 import { getCardsI } from '@/models/Services';
-import { getCards, getMonthOffers, getTopCreditCards, getTopDebitCards } from '@/core/store/cards/cards-actions';
-import { resetCards } from '@/core/store/cards/cards-slice';
+import { getCards, getMonthOffers, getTopDebitCards } from '@/core/store/cards/cards-actions';
 import { getBanks } from '@/core/store/banks/banks-actions';
-import { resetBanks } from '@/core/store/banks/banks-slice';
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 
 export default function DebitCardsPage() {
@@ -43,7 +41,6 @@ export default function DebitCardsPage() {
   }
 
   const cleanFilter = () => {
-    dispatch(resetCards())
     setFilterData({
       limit: 10,
       offset: 0,
@@ -64,15 +61,10 @@ export default function DebitCardsPage() {
         limit: 10,
         ordering: filterData.ordering
       }
-      dispatch(resetCards());
-    } else if (prop === 'offset') {
-      newFilterData[prop] = value;
     } else if (value === false) {
       delete newFilterData[prop];
-      dispatch(resetCards());
     } else {
       newFilterData[prop] = value;
-      dispatch(resetCards());
     }
     setFilterData(newFilterData);
   };
@@ -100,10 +92,6 @@ export default function DebitCardsPage() {
     fetchBanks()
     fetchMonthOffers()
     fetchTopDebitCards()
-    return () => {
-      dispatch(resetBanks())
-      dispatch(resetCards())
-    }
   }, [])
 
   useEffect(() => {
@@ -144,7 +132,7 @@ export default function DebitCardsPage() {
       {/* <Mailing /> */}
       <Compilations />
       <LatestNews />
-      <Communicate data={communicate}/>
+      <Communicate data={communicate} />
       <Feedback title={'Отзывы '} sub={'о дебетовых картах'} category='Дебетовые карты' />
       <BanksWithButton
         cards={topDebitCards}

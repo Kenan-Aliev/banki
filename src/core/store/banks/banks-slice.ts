@@ -29,18 +29,27 @@ export const banksSlice = createSlice({
 	name: 'banks',
 	initialState,
 	reducers: {
-		resetBanks: (state) => {
-			state.banks.data = {} as BanksResponseT
-		}
+
 	},
 	extraReducers: (builder) => {
 		builder.
 			addCase(getBanks.fulfilled, (state, action) => {
-				state.banks = {
-					status: 'success',
-					data: {
-						...action.payload,
-						results: [...state.banks.data.results ?? [], ...action.payload.results ?? []]
+				if (action.payload.offset === 0) {
+					state.banks = {
+						status: 'success',
+						data: {
+							count: action.payload.data.count,
+							results: action.payload.data.results
+						}
+					}
+				}
+				else {
+					state.banks = {
+						status: 'success',
+						data: {
+							count: action.payload.data.count,
+							results: [...state.banks.data.results ?? [], ...action.payload.data.results ?? []]
+						}
 					}
 				}
 			})
@@ -66,7 +75,5 @@ export const banksSlice = createSlice({
 				})
 	}
 });
-
-export const { resetBanks } = banksSlice.actions
 
 export default banksSlice.reducer;

@@ -1,7 +1,7 @@
 import { CreditItemT, CreditType, CreditsResponseT, TopCreditsResponse } from '@/models/Credits/Credits';
 import { RequestStatus } from '@/models/Services';
 import { createSlice } from '@reduxjs/toolkit';
-import { getCredits, getCreditTypes, getMonthOffers, getCreditDetails, getTopCredits } from './credits-actions';
+import { getCredits, getCreditTypes, getMonthOffers, getCreditDetails, getTopCredits, getTopMicroCredits } from './credits-actions';
 
 interface initialStateI {
   credits: {
@@ -21,6 +21,10 @@ interface initialStateI {
     data: CreditItemT
   },
   topCredits: {
+    status: RequestStatus
+    data: TopCreditsResponse
+  },
+  topMicroCredits: {
     status: RequestStatus
     data: TopCreditsResponse
   }
@@ -46,6 +50,10 @@ const initialState: initialStateI = {
   topCredits: {
     status: 'initial',
     data: {} as TopCreditsResponse
+  },
+  topMicroCredits: {
+    data: {} as TopCreditsResponse,
+    status: 'initial'
   }
 };
 
@@ -53,12 +61,6 @@ export const creditsSlice = createSlice({
   name: 'credits',
   initialState,
   reducers: {
-    resetCredits: (state) => {
-      state.credits = {
-        status: 'initial',
-        data: {} as CreditsResponseT
-      }
-    }
   },
   extraReducers: (builder) => {
     builder
@@ -66,11 +68,22 @@ export const creditsSlice = createSlice({
         state.credits.status = 'loading'
       })
       .addCase(getCredits.fulfilled, (state, action) => {
-        state.credits = {
-          status: 'success',
-          data: {
-            ...action.payload,
-            results: [...state.credits.data.results ?? [], ...action.payload.results ?? []]
+        if (action.payload.offset === 0) {
+          state.credits = {
+            status: 'success',
+            data: {
+              results: action.payload.data.results,
+              count: action.payload.data.count
+            }
+          }
+        }
+        else {
+          state.credits = {
+            status: 'success',
+            data: {
+              count: action.payload.data.count,
+              results: [...state.credits.data.results ?? [], ...action.payload.data.results ?? []]
+            }
           }
         }
       })
@@ -132,10 +145,24 @@ export const creditsSlice = createSlice({
         })
         .addCase(getTopCredits.rejected, (state) => {
           state.topCredits.status = 'error'
+        }),
+
+      builder
+        .addCase(getTopMicroCredits.pending, (state) => {
+          state.topMicroCredits.status = 'loading'
         })
+        .addCase(getTopMicroCredits.fulfilled, (state, action) => {
+          state.topMicroCredits = {
+            status: 'success',
+            data: action.payload
+          }
+        })
+        .addCase(getTopMicroCredits.rejected, (state) => {
+          state.topMicroCredits.status = 'error'
+        })
+
   }
 });
 
-export const { resetCredits } = creditsSlice.actions
 
 export default creditsSlice.reducer;

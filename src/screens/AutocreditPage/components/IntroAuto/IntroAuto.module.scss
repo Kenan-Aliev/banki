@@ -2,8 +2,8 @@
   width: 100%;
   height: 425px;
   border-radius: 14px;
-  border: 1px solid #D9DBDF;
-  background: url("../../../../assets/icons/auto_credit_back.png") no-repeat white right;
+  border: 1px solid #d9dbdf;
+  background: url('../../../../assets/icons/auto_credit_back.png') no-repeat white right;
 
   .info_cont {
     margin-top: 2.5rem;
@@ -11,7 +11,7 @@
     .breadCrumbs {
       mark {
         background: transparent;
-        color: #B4B4B4;
+        color: #b4b4b4;
       }
 
       color: #121212;
@@ -42,16 +42,15 @@
     }
 
     .calc {
+      width: 50%;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       padding: 24px 16px;
       margin-top: 2rem;
-      width: 810px;
-      height: 175px;
       border-radius: 14px;
-      border: 1px solid #4DA7FF;
-      background: rgba(217, 231, 250, 0.40);
+      border: 1px solid #4da7ff;
+      background: rgba(217, 231, 250, 0.4);
       backdrop-filter: blur(9.973308563232422px);
     }
   }
@@ -62,23 +61,13 @@
   flex-direction: column;
   gap: 15px;
 
-      .calc {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      padding: 24px 16px;
-      // margin-top: 2rem;
-      // width: 810px;
-      // height: 175px;
-      // border-radius: 14px;
-      // border: 1px solid #4DA7FF;
-      // background: rgba(217, 231, 250, 0.40);
-      // backdrop-filter: blur(9.973308563232422px);
-    }
-
+  .calc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 24px 16px;
+  }
 }
-
-
 
 @media (max-width: 480px) {
   .intro {
@@ -88,11 +77,11 @@
 
     .info_cont {
       margin: 0;
-      .title{
+      .title {
         font-size: 20px;
         text-align: center;
       }
-      .breadCrumbs{
+      .breadCrumbs {
         text-align: center;
       }
       p {
@@ -110,25 +99,10 @@
         width: 100%;
         height: auto;
 
-        div {
-          width: 100% !important;
-          backdrop-filter: none;
-          input {
-            width: 100% !important;
-
-          }
-
-          div {
-            width: 20% !important;
-          }
-
-        }
-
         button {
           width: 100% !important;
         }
       }
     }
-
   }
 }

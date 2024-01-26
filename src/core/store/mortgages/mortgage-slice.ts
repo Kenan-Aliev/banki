@@ -37,12 +37,6 @@ export const mortgageSlice = createSlice({
   name: 'mortgage',
   initialState,
   reducers: {
-    resetMortgages: (state) => {
-      state.mortgages = {
-        status: 'initial',
-        data: {} as MortgagesResponseT
-      }
-    },
     resetSpecialOffers: (state) => {
       state.specialOffers = {
         status: 'initial',
@@ -57,11 +51,22 @@ export const mortgageSlice = createSlice({
         state.mortgages.status = 'loading'
       })
       .addCase(getAllMortgages.fulfilled, (state, action) => {
-        state.mortgages = {
-          status: 'success',
-          data: {
-            ...action.payload,
-            results: [...state.mortgages.data.results ?? [], ...action.payload.results ?? []]
+        if (action.payload.offset === 0) {
+          state.mortgages = {
+            data: {
+              count: action.payload.data.count,
+              results: action.payload.data.results
+            },
+            status: 'success'
+          }
+        }
+        else {
+          state.mortgages = {
+            status: 'success',
+            data: {
+              count: action.payload.data.count,
+              results: [...state.mortgages.data.results ?? [], ...action.payload.data.results ?? []]
+            }
           }
         }
       })
@@ -88,11 +93,22 @@ export const mortgageSlice = createSlice({
           state.specialOffers.status = 'loading'
         })
         .addCase(getSpecialOffers.fulfilled, (state, action) => {
-          state.specialOffers = {
-            status: 'success',
-            data: {
-              ...action.payload,
-              results: [...state.specialOffers.data.results ?? [], ...action.payload.results ?? []]
+          if (action.payload.offset === 0) {
+            state.specialOffers = {
+              status: 'success',
+              data: {
+                count: action.payload.data.count,
+                results: action.payload.data.results
+              }
+            }
+          }
+          else {
+            state.specialOffers = {
+              status: 'success',
+              data: {
+                count: action.payload.data.count,
+                results: [...state.specialOffers.data.results ?? [], ...action.payload.data.results ?? []]
+              }
             }
           }
         })
@@ -102,6 +118,5 @@ export const mortgageSlice = createSlice({
   }
 });
 
-export const { resetMortgages, resetSpecialOffers } = mortgageSlice.actions
 
 export default mortgageSlice.reducer;

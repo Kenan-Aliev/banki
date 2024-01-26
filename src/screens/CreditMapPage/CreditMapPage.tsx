@@ -14,10 +14,8 @@ import data from '@/core/data/index';
 import BanksWithButton from '@/components/BanksWithButton/BanksWithButton';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { getCardsI } from '@/models/Services';
-import { resetCards } from '@/core/store/cards/cards-slice';
 import { getBanks } from '@/core/store/banks/banks-actions';
 import { getCards, getMonthOffers, getTopCreditCards } from '@/core/store/cards/cards-actions';
-import { resetBanks } from '@/core/store/banks/banks-slice';
 import CardsList from '@/components/CardsList/CardsList';
 import { selectMonthOffers, selectTopCreditCards } from '@/core/store/cards/cards-selectors';
 import bonusImg from '@/assets/icons/credit_cards_bonus.jpg'
@@ -44,7 +42,6 @@ export default function CreditMapPage() {
   }
 
   const cleanFilter = () => {
-    dispatch(resetCards())
     setFilterData({
       limit: 10,
       offset: 0,
@@ -65,15 +62,10 @@ export default function CreditMapPage() {
         limit: 10,
         ordering: filterData.ordering
       }
-      dispatch(resetCards());
-    } else if (prop === 'offset') {
-      newFilterData[prop] = value;
     } else if (value === false) {
       delete newFilterData[prop];
-      dispatch(resetCards());
     } else {
       newFilterData[prop] = value;
-      dispatch(resetCards());
     }
     setFilterData(newFilterData);
   };
@@ -101,10 +93,6 @@ export default function CreditMapPage() {
     fetchBanks()
     fetchMonthOffers()
     fetchTopCreditCards()
-    return () => {
-      dispatch(resetBanks())
-      dispatch(resetCards())
-    }
   }, [])
 
   useEffect(() => {

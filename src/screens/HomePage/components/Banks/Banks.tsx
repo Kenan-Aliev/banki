@@ -11,7 +11,6 @@ import { BankT } from "@/models/Banks/banks";
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { selectBanks } from '@/core/store/banks/banks-selectors';
 import { getBanks } from '@/core/store/banks/banks-actions';
-import { resetBanks } from '@/core/store/banks/banks-slice';
 
 type Props = {
     data: BankT[];
@@ -54,7 +53,6 @@ const Banks = ({ data }: Props) => {
     }
 
     const handleFilterBanks = (value: string) => {
-        dispatch(resetBanks())
         if (value) {
             dispatch(getBanks({ name: value, limit: 5, offset: 0 }))
         }

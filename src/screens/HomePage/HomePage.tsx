@@ -12,7 +12,6 @@ import Banks from '@/screens/HomePage/components/Banks/Banks';
 import Calculate from './components/Calculate/Calculate';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import s from './HomePage.module.scss';
-import { resetBanks } from '@/core/store/banks/banks-slice';
 import { BankT } from '@/models/Banks/banks';
 
 
@@ -36,11 +35,6 @@ const HomePage = ({ data, banks }: Props) => {
         serviceItems.filter((i) => i.text.toLowerCase().includes(searchVal.toLowerCase()));
 
 
-    useEffect(() => {
-        return () => {
-            dispatch(resetBanks())
-        }
-    }, []);
 
     return (
         <PageWrapper>

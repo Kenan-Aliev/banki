@@ -10,8 +10,6 @@ import TopBanks from '@/components/TopBanks/TopBanks';
 import { getDepositsI } from '@/models/Services';
 import { getDeposits, getMonthOffers, getTopDeposits } from '@/core/store/deposits/deposits-actions';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { resetDeposits } from '@/core/store/deposits/deposits-slice';
-import { resetBanks } from '@/core/store/banks/banks-slice';
 import { getBanks } from '@/core/store/banks/banks-actions';
 import { selectMonthOffers } from '@/core/store/deposits/deposits-selectors';
 
@@ -43,22 +41,18 @@ const SavingAccountsPage = ({ staticData }: SavingAccountsPageProps) => {
       setFilterData({ ...filterData, [prop]: value })
     }
 
+    else if (value === false) {
+      delete filterData[prop]
+      setFilterData({ ...filterData })
+    }
     else {
-      if (value === false) {
-        delete filterData[prop]
-        setFilterData({ ...filterData })
-      }
-      else {
-        setFilterData({ ...filterData, [prop]: value, offset: 0 })
-      }
-      dispatch(resetDeposits())
+      setFilterData({ ...filterData, [prop]: value, offset: 0 })
     }
   }
 
 
 
   const cleanFilter = () => {
-    dispatch(resetDeposits())
     setFilterData({
       limit: 10,
       offset: 0,
@@ -93,10 +87,6 @@ const SavingAccountsPage = ({ staticData }: SavingAccountsPageProps) => {
     fetchBanks()
     fetchMonthOffers()
     fetchTopDeposits()
-    return () => {
-      dispatch(resetBanks())
-      dispatch(resetDeposits())
-    }
   }, [])
 
   useEffect(() => {
