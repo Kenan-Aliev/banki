@@ -1,13 +1,15 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import s from './index.module.scss';
 import Image from 'next/image';
-import sq from '@/assets/icons/blue_sq.svg';
-import star from '@/assets/icons/yellow_star.svg';
-import BlueLikeBtn from '@/UI/BlueLikeBtn/BlueLikeBtn';
 import warn from '@/assets/icons/warning_icon.svg';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import { CreditItemT } from '@/models/Credits/Credits';
 import { baseUrl } from '@/core/const/baseUrl';
+import { currencies } from '@/core/data/currency';
+import CreditInfoModal from '@/components/credits/CreditInfoModal';
+import Application from '@/components/Application/Application';
 
 interface WebLoanItemProps {
   item: CreditItemT;
@@ -15,11 +17,44 @@ interface WebLoanItemProps {
 
 const WebLoanItem = (props: WebLoanItemProps) => {
   const {
-    item: { loanName, loan_amount, loan_term, bank_logo, bank_title, currency, min_rating, max_rating },
+    item: { id, loanName, loan_amount, loan_term, bank_logo, bank_title, currency, min_rating, max_rating, bank },
   } = props;
+
+  const [infoModal, setInfoModal] = useState(false)
+  const [applicationModal, setApplicationModal] = useState(false)
+
+  const cur = currencies.find((c) => c.value == currency)?.text
+
+  const handleChangeInfoModal = () => {
+    setInfoModal(!infoModal)
+  }
+
+  const handleChangeApplicationModal = () => {
+    setApplicationModal(!applicationModal)
+  }
 
   return (
     <div className={s.wrapper}>
+      {
+        infoModal && <CreditInfoModal
+          open={infoModal}
+          handleClose={handleChangeInfoModal}
+          bank={{
+            id: bank,
+            name: bank_title
+          }}
+          loan={{
+            id,
+            name: loanName
+          }}
+        />
+      }
+      <Application
+        handleClose={handleChangeApplicationModal}
+        open={applicationModal}
+        productId={id}
+        productType='microloan'
+      />
       <div className={s.header}>
         <Image alt={''} src={baseUrl + bank_logo} width={50} height={50} />
         <div className={s.info}>
@@ -32,7 +67,7 @@ const WebLoanItem = (props: WebLoanItemProps) => {
         <div>
           <span>Сумма</span>
           <span>
-            {loan_amount?.min} - {loan_amount?.max} {currency}
+            {loan_amount?.min} - {loan_amount?.max} {cur}
           </span>
         </div>
         <div>
@@ -48,10 +83,15 @@ const WebLoanItem = (props: WebLoanItemProps) => {
       </div>
       <div className={s.line}></div>
       <div className={s.btn_cont}>
-        <div className={s.warn}>
+        <div className={s.warn} onClick={handleChangeInfoModal}>
           <Image alt={'warning'} src={warn} />
         </div>
-        <BlueBtn text='Получить деньги' height={40} width={183} fSize={16} />
+        <BlueBtn
+          text='Получить деньги'
+          height={40}
+          width={183}
+          fSize={16}
+          onClick={handleChangeApplicationModal} />
       </div>
     </div>
   );

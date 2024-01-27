@@ -1,6 +1,9 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import s from './IntroMicroloans.module.scss';
 import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
+import Application from '@/components/Application/Application';
 
 type ItemT = {
   name: string;
@@ -13,6 +16,11 @@ type Props = {
 };
 
 const IntroMicroloans = ({ items, current, setActive }: Props) => {
+  const [applicationModal, setApplicationModal] = useState(false)
+
+  const handleChangeApplicationModal = () => {
+    setApplicationModal(!applicationModal)
+  }
   return (
     <div className={s.intro}>
       <div className={s.info_cont}>
@@ -26,12 +34,18 @@ const IntroMicroloans = ({ items, current, setActive }: Props) => {
           Выгодные предложения по срочным микрозаймам для физических лиц.
           <br /> Выбирайте низкие проценты, удобные способы оплаты и зачисления денег на карту.
           <br />
-          <mark>Оставьте заявку на микрозайм онлайн.</mark>
+          <mark onClick={handleChangeApplicationModal}>Оставьте заявку на микрозайм онлайн.</mark>
         </div>
         <div className={s.ch_cont}>
           <ChoiseItemsMap currentChoise={current} setActive={setActive} choiseItems={items} />
         </div>
       </div>
+      <Application
+        handleClose={handleChangeApplicationModal}
+        open={applicationModal}
+        productId={0}
+        productType='microloan'
+      />
     </div>
   );
 };

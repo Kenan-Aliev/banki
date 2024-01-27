@@ -5,7 +5,6 @@ import IntroMicroloans from '@/screens/MicroLoans/components/IntroMicroloans/Int
 import Bonus from '@/components/Bonus/Bonus';
 import SliderBanksCons from '@/screens/ConsumerCreditsPage/Components/SliderBanksCons/SliderBanksCons';
 import WebLoans from '@/screens/MicroLoans/components/WebLoans';
-import BrokerList from '@/components/investment/BrokersList';
 import CatalogItems from '@/components/Catalog/CatalogItems/CatalogItems';
 import LatestNews from '@/components/LatestNews/LatestNews';
 import Feedback from '@/components/FeedBacks/Feedback/Feedback';
@@ -132,7 +131,7 @@ const MicroloansPage = (props: MicroloansPageProps) => {
         handleChangeFilterData={handleChangeFilter}
       />
       <OfferMonth offers={monthOffers.results} category='Микрозаймы' />
-      {/* <BrokerList title={'Микрокредитные организации'} brokers={staticData.microLoansBanks} /> */}
+      <SliderBanksCons data={banks} showName={true} title='Микрокредитные организации' />
       <CatalogItems title={'Каталог микрозаймов'} items={staticData.catalogData} width={'100%'} />
       <LatestNews />
       <Feedback title={'Отзывы '} sub={'о МФО'} category='МФО (микрофинансовые компании)' />

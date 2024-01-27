@@ -9,6 +9,7 @@ import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import { Modal } from '@/UI/Modal';
 import { ModalInnerWrapper } from '@/UI/ModalInnerWrapper';
 import CustomInput from '@/UI/CustomInput/CustomInput';
+import Application from '@/components/Application/Application';
 
 const IntroRefinancing = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -65,51 +66,12 @@ const IntroRefinancing = () => {
           </div>
         </div>
       </div>
-      {modalIsOpen && (
-        <Modal onClose={() => setModalIsOpen(false)}>
-          <ModalInnerWrapper className={s.modal}>
-            <div className={s.modalItem}>
-              <CustomInput place='Имя' />
-              <CustomInput place='Фамилия' />
-              <CustomInput place='Номер телефона' />
-            </div>
-            <div className={s.modalItem}>
-              <CustomWhiteSelectTitle
-                width={385}
-                title={'Цель'}
-                options={[{
-                  text: "Рефинансирование кредита",
-                  value: 1
-                }]}
-                value={target}
-              />
-              <MoneySelect width={385} amount={many} />
-              <CustomWhiteSelectTitle
-                width={385}
-                title={'Сумма выплат в месяц'}
-                options={[{
-                  text: '10 000',
-                  value: 10000
-                }]}
-                value={manySet}
-              />
-              <CustomInputTitle title={'Срок в годах'} width={385} value={durationInYars} />
-            </div>
-            <div className={s.modalItem}>
-              <CustomInputTitle title={'Ставка'} width={385} value={bid} />
-              <CustomInputTitle title={'Ежемесячный платеж'} width={385} value={monthMany} />
-              <BlueBtn
-                text={'Подобрать'}
-                width={385}
-                onClick={() => {
-                  alert('Данные отправлены!');
-                  setModalIsOpen(false);
-                }}
-              />
-            </div>
-          </ModalInnerWrapper>
-        </Modal>
-      )}
+      <Application
+        open={modalIsOpen}
+        handleClose={() => setModalIsOpen(false)}
+        productId={0}
+        productType='refinance-credit'
+      />
     </>
   );
 };
