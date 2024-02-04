@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.scss';
 import Image from 'next/image';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import { MortgageItemT } from '@/models/Mortgages/Mortgages';
 import { baseUrl } from '@/core/const/baseUrl';
+import Application from '@/components/Application/Application';
 
 interface MortgageSpecialItemProps {
   item: MortgageItemT;
@@ -21,8 +22,20 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
     },
   } = props;
 
+  const [applicationModalIsOpen, setApplicationModalIsOpen] = useState(false)
+
+  const handleChangeApplicationModal = () => {
+    setApplicationModalIsOpen(!applicationModalIsOpen)
+  }
+
   return (
     <div className={styles.container}>
+      <Application
+        handleClose={handleChangeApplicationModal}
+        open={applicationModalIsOpen}
+        productId={0}
+        productType=''
+      />
       <div className={styles.img}>
         <Image src={baseUrl + bank_logo} alt={''} width={20} height={20} />
       </div>
@@ -40,7 +53,13 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
             <p className={styles.text}>до {loan_term.max} мес.</p>
           </div>
         </div>
-        <BlueBtn text={'Посмотреть'} width={231} height={40} fSize={16} />
+        <BlueBtn
+          text={'Оставить заявку'}
+          width={231}
+          height={40}
+          fSize={16}
+          onClick={handleChangeApplicationModal}
+        />
       </div>
     </div>
   );

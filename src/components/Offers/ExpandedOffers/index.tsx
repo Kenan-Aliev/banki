@@ -13,11 +13,12 @@ import DebitCardItem from '@/components/DebitCardItem';
 type ItemsTypes = 'Депозиты' | 'Кредиты' | 'Ипотека' | 'Кредитные карты' | 'Дебетовые карты'
 
 const ExpandedItems = ({
-	activeCurrency, items, itemsName
+	activeCurrency, items, itemsName, showPayment
 }: {
 	items: any[]
 	activeCurrency: string
 	itemsName: ItemsTypes
+	showPayment?: boolean
 }) => {
 
 	const expandedItems = useMemo(() => {
@@ -31,7 +32,7 @@ const ExpandedItems = ({
 			case "Кредиты":
 				return items.map((item) => {
 					const credit = item as CreditItemT
-					return <CreditBankItem item={credit} activeCurrency={activeCurrency} key={credit.id} />
+					return <CreditBankItem item={credit} activeCurrency={activeCurrency} key={credit.id} showPayment={showPayment} />
 				}
 				)
 			case "Ипотека":

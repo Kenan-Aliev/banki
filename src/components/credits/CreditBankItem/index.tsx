@@ -85,6 +85,7 @@ interface CreditBankItemProps {
   child?: boolean;
   count?: number
   activeCurrency?: string
+  showPayment?: boolean
 }
 
 const CreditBankItem = (props: CreditBankItemProps) => {
@@ -93,7 +94,8 @@ const CreditBankItem = (props: CreditBankItemProps) => {
     openChildren,
     child,
     count,
-    activeCurrency
+    activeCurrency,
+    showPayment
   } = props;
 
   const [infoModal, setInfoModal] = useState(false)
@@ -101,6 +103,34 @@ const CreditBankItem = (props: CreditBankItemProps) => {
   const currency = currencies.find((c) => c.value == activeCurrency)?.text
   const handleChangeInfoModal = () => {
     setInfoModal(!infoModal)
+  }
+
+  const calculateMonthlyPayment = (loanAmount: number, annualInterestRate: number, loanTermMonths: number): number => {
+    // Преобразование годовой ставки в ежемесячную исходя из количества месяцев
+    const monthlyInterestRate = (annualInterestRate / 12) / 100;
+
+    // Формула аннуитетного платежа
+    const monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -loanTermMonths));
+
+    return monthlyPayment;
+  }
+
+  const renderPayment = () => {
+    const interestRate = min_rating === max_rating ? `${min_rating} %` : `${min_rating} - ${max_rating} %`;
+
+    if (showPayment) {
+      const minPayment = calculateMonthlyPayment(loan_amount.min, min_rating, loan_term.min);
+      const maxPayment = calculateMonthlyPayment(loan_amount.max, max_rating, loan_term.max);
+
+      const formattedMinPayment = isNaN(minPayment) ? 'Н/Д' : minPayment.toFixed(1);
+      const formattedMaxPayment = isNaN(maxPayment) ? 'Н/Д' : maxPayment.toFixed(1);
+
+      const paymentRange = min_rating === max_rating ? formattedMinPayment : `${formattedMinPayment} - ${formattedMaxPayment}`;
+
+      return `${paymentRange} ${activeCurrency ? currency : creditCurrency}`;
+    } else {
+      return interestRate;
+    }
   }
 
   return (
@@ -130,7 +160,16 @@ const CreditBankItem = (props: CreditBankItemProps) => {
           >
             {bank_title}
           </Typography>
-          <Typography>{loanName}</Typography>
+          <Typography
+            sx={{
+              width: '90%',
+              '@media(max-width:600px)': {
+                width: '100%'
+              }
+            }}
+          >
+            {loanName}
+          </Typography>
         </Grid>
         <Grid item xs={12} lg={2} xl={2} sx={infoItemGridStyles}>
           <Box sx={{
@@ -139,11 +178,11 @@ const CreditBankItem = (props: CreditBankItemProps) => {
             alignItems: 'center',
             marginBottom: '10px'
           }}>
-            <Typography sx={infoItemTitleStyles}>Ставка</Typography>
+            <Typography sx={infoItemTitleStyles}>{showPayment ? 'Платеж' : 'Ставка'}</Typography>
             <Image src={ques_I} alt={'иконка вопроса'} />
           </Box>
           <Typography sx={infoItemTextStyles}>
-            {min_rating === max_rating ? min_rating : `${min_rating} - ${max_rating}`} %
+            {renderPayment()}
           </Typography>
         </Grid>
         <Grid item xs={12} lg={2} xl={2} sx={infoItemGridStyles}>

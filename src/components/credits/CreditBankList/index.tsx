@@ -20,10 +20,11 @@ interface CreditBankListProps {
   }[];
   filterData: getCreditsI
   handleChangeFilter: (prop: string, value: any) => void
+  showPayment?: boolean
 }
 
 const CreditBankList = (props: CreditBankListProps) => {
-  const { options, filterData, handleChangeFilter } = props;
+  const { options, filterData, handleChangeFilter, showPayment } = props;
   const { results: credits, count } = useAppSelector(selectCredits)
   const getCreditsStatus = useAppSelector(selectGetCreditsStatus)
 
@@ -86,6 +87,7 @@ const CreditBankList = (props: CreditBankListProps) => {
                       count={bankIdCounts[bank] - 1}
                       openChildren={handleOpenChildren}
                       activeCurrency={filterData.currency}
+                      showPayment={showPayment}
                     />
                   </li>
                   {
@@ -94,6 +96,7 @@ const CreditBankList = (props: CreditBankListProps) => {
                         items={filteredCredits}
                         activeCurrency={filterData.currency}
                         itemsName='Кредиты'
+                        showPayment={showPayment}
                       />
                     )
                   }
