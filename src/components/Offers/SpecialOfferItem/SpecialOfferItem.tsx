@@ -29,8 +29,7 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModal}
-        productId={deposit_id}
-        productType='deposit'
+        childModel='special-offer'
       />
       <div className={s.item_info}>
         <Box sx={{

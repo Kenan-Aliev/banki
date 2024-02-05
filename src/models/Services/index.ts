@@ -126,10 +126,17 @@ export interface getBanksOfficesT {
 }
 
 export interface sendApplicationData {
-    name: string,
-    phone: number,
-    product: string,
-    product_id: number
+    additional_of_applicant?:
+    {
+        key: string,
+        value: string
+    }[]
+    model_id?: number
+    name: string
+    email?: string
+    phone: string
+    parent_model: string
+    model: string
 }
 
 export interface getReviewsListData {

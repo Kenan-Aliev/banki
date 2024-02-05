@@ -108,8 +108,7 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
       <Application
         open={openApplicationForm}
         handleClose={handleChangeApplicationForm}
-        productId={deposit_id}
-        productType='deposit' />
+      />
       <Grid container mb='10px'>
         <Grid item xs={3} sm={3} md={3} lg={0.7} xl={0.7}>
           <Image src={baseUrl + bank_logo} alt={'иконка банка'} width={50} height={50} />

@@ -33,8 +33,7 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModalIsOpen}
-        productId={0}
-        productType=''
+        childModel='special-offer'
       />
       <div className={styles.img}>
         <Image src={baseUrl + bank_logo} alt={''} width={20} height={20} />

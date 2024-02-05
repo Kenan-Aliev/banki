@@ -25,8 +25,6 @@ const IntroCredits = () => {
       <Application
         handleClose={handleChangeModal}
         open={modalIsOpen}
-        productId={1}
-        productType='credit-master'
       />
       <div className={s.info}>
         <div className={s.breadCrumbs}>

@@ -28,8 +28,8 @@ const BankCardItem = (props: BankCardItemProps) => {
       <Application
         open={applicationModal}
         handleClose={handleChangeApplicationForm}
-        productId={id}
-        productType='credit-card' />
+        modelId={id}
+      />
       <div className={styles.text_container}>
         {bank_title}
         <span>{name}</span>

@@ -17,8 +17,6 @@ const Navigation = () => {
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModal}
-        productId={0}
-        productType='mortgage'
       />
       <div className={styles.navigation_container}>
         <p>Главная</p>

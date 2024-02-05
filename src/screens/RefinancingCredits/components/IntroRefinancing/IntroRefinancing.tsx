@@ -69,8 +69,6 @@ const IntroRefinancing = () => {
       <Application
         open={modalIsOpen}
         handleClose={() => setModalIsOpen(false)}
-        productId={0}
-        productType='refinance-credit'
       />
     </>
   );

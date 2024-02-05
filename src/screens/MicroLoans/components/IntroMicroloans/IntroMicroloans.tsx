@@ -43,8 +43,6 @@ const IntroMicroloans = ({ items, current, setActive }: Props) => {
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModal}
-        productId={0}
-        productType='microloan'
       />
     </div>
   );

@@ -36,8 +36,6 @@ const IntroCreditRating = () => {
         <Application
           handleClose={handleChangeIsModalOpen}
           open={isModalOpen}
-          productId={1}
-          productType='credit-rating'
         />
       </div>
     </div>

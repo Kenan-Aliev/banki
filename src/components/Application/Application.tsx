@@ -1,3 +1,5 @@
+'use client'
+
 import React, { } from 'react';
 import { Box, Typography, Modal, Grid, Stack, FormGroup, Checkbox, FormControlLabel, TextField, InputAdornment } from '@mui/material'
 import { TripOrigin, RadioButtonUnchecked } from '@mui/icons-material';
@@ -10,14 +12,16 @@ import * as Yup from 'yup';
 import { useAppDispatch } from '@/hooks/redux';
 import { sendApplication } from '@/core/store/users/users-actions';
 import InputMask from 'react-input-mask';
+import { usePathname } from 'next/navigation';
+import { sendApplicationData } from '@/models/Services';
 
 
 
 interface Props {
 	open: boolean
 	handleClose: () => void
-	productId: number
-	productType: string
+	modelId?: number
+	childModel?: string
 }
 
 const waveBoxStyle = {
@@ -84,9 +88,9 @@ const style = {
 	}
 };
 
-function Application({ handleClose, open, productId, productType }: Props) {
+function Application({ handleClose, open, childModel, modelId }: Props) {
 	const dispatch = useAppDispatch()
-
+	const pathname = usePathname().split('/').slice(1)
 	const operators: string[] = ["70", "77", "75", "55", "50", "99", "22"];
 	const operatorRegex = operators.join('|');
 	const phoneRegex = new RegExp(`^(?:${operatorRegex})\\d{7}$`);
@@ -117,11 +121,18 @@ function Application({ handleClose, open, productId, productType }: Props) {
 		},
 		validationSchema: validationSchema,
 		onSubmit: (values) => {
-			const req = {
+			const req: sendApplicationData = {
 				...values,
-				phone: Number('996' + values.phone),
-				product_id: productId,
-				product: productType
+				phone: '996' + values.phone,
+				parent_model: pathname[0],
+				model: childModel ? childModel : pathname[1] ?? pathname[0],
+				model_id: modelId,
+				additional_of_applicant: [
+					{
+						key: 'string',
+						value: 'string'
+					}
+				]
 			}
 			dispatch(sendApplication(req))
 			resetForm();
@@ -231,6 +242,7 @@ function Application({ handleClose, open, productId, productType }: Props) {
 								<BlueBtn
 									text='Отправить'
 									type='submit'
+									onClick={handleSubmit}
 								/>
 							</Grid>
 							<FormGroup>

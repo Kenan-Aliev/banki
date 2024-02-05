@@ -19,8 +19,6 @@ const HowWorks = () => {
       <Application
         handleClose={handleChangeOpenModal}
         open={isModalOpen}
-        productId={1}
-        productType='credit-master'
       />
       <div className={s.arrow}>
         <Image src={arrow} alt="Стрелка" />

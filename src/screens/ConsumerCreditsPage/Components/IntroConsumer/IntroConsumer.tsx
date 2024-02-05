@@ -78,8 +78,7 @@ const IntroConsumer = (props: Props) => {
       <Application
         open={isApplicationModalOpen}
         handleClose={handleChangeApplicationModal}
-        productId={0}
-        productType='credit' />
+      />
 
       <Filters
         open={isFilterModalOpen}

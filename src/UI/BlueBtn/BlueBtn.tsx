@@ -7,6 +7,7 @@ interface Props extends React.ComponentPropsWithoutRef<'button'> {
   height?: number;
   fSize?: number;
   count?: number;
+  onClick?: (e?: any) => void
 }
 
 const BlueBtn = ({ text, width, height, fSize, count, onClick }: Props) => {

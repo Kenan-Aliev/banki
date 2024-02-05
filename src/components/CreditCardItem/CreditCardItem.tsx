@@ -91,8 +91,8 @@ const CreditCardItem = (props: CreditCardItemProps) => {
       <Application
         open={applicationModal}
         handleClose={handleChangeApplicationForm}
-        productId={id}
-        productType='credit-card' />
+        modelId={id}
+      />
       <Grid container mb='10px'>
         <Grid item xs={5} sm={3} md={3} lg={2.5} xl={2.5}>
           <Image src={image} alt={'иконка карты'} width={200} height={100} />

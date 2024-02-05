@@ -4,7 +4,7 @@ import { sendApplicationData } from '@/models/Services';
 const UsersApi = {
 	sendApplication(data: sendApplicationData) {
 		return instance.post(
-			'/send-request', data
+			'/applicant/', data
 		);
 	}
 };

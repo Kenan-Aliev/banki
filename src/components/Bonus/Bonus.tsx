@@ -40,8 +40,7 @@ const Bonus = (props: BonusProps) => {
       <Application
         open={openApplicationForm}
         handleClose={handleChangeApplicationForm}
-        productId={1}
-        productType='deposit' />
+      />
       {img ? <Image src={img} alt={'logo bank'} width={200} height={200} /> : <div className={s.logo}>Логотип</div>}
       <div className={s.info}
       >

@@ -16,8 +16,6 @@ const IntroGetLoan = () => {
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModalIsOpen}
-        productId={0}
-        productType='microloan'
       />
       <div className={s.info}>
         <div className={s.breadCrumbs}>

@@ -36,10 +36,10 @@ const Header = () => {
     { name: 'Вклады', id: 1, link: 'deposits' },
     { name: 'Кредиты', id: 2, link: 'credits' },
     { name: 'Ипотека', id: 3, link: 'ipoteka' },
-    { name: 'Страхование', id: 4, link: 'insurance' },
-    { name: 'Инвестиции', id: 5, link: 'investment' },
+    // { name: 'Страхование', id: 4, link: 'insurance' },
+    // { name: 'Инвестиции', id: 5, link: 'investment' },
     { name: 'Карты', id: 6, link: 'cards' },
-    { name: 'Бизнес', id: 7, link: 'business' },
+    // { name: 'Бизнес', id: 7, link: 'business' },
     { name: 'Новости', id: 8, link: 'news' },
     { name: 'Ещё', id: 9, link: 'more' },
   ];

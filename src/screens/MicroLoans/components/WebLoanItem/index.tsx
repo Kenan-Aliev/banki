@@ -52,8 +52,7 @@ const WebLoanItem = (props: WebLoanItemProps) => {
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModal}
-        productId={id}
-        productType='microloan'
+        modelId={id}
       />
       <div className={s.header}>
         <Image alt={''} src={baseUrl + bank_logo} width={50} height={50} />
