@@ -126,13 +126,15 @@ function Application({ handleClose, open, childModel, modelId }: Props) {
 				phone: '996' + values.phone,
 				parent_model: pathname[0],
 				model: childModel ? childModel : pathname[1] ?? pathname[0],
-				model_id: modelId,
 				additional_of_applicant: [
 					{
 						key: 'string',
 						value: 'string'
 					}
 				]
+			}
+			if (modelId) {
+				req.model_id = modelId
 			}
 			dispatch(sendApplication(req))
 			resetForm();
@@ -259,13 +261,13 @@ function Application({ handleClose, open, childModel, modelId }: Props) {
 								>
 									<Grid item xs={12} sm={12} md={7} lg={12} xl={12}>
 										<FormControlLabel
-											control={<Checkbox checkedIcon={<TripOrigin />} icon={<RadioButtonUnchecked color='primary' />} />}
+											control={<Checkbox checkedIcon={<TripOrigin />} icon={<RadioButtonUnchecked color='primary' />} checked />}
 											label="Предоставляю своё согласие на обработку персональных данных"
 										/>
 									</Grid>
 									<Grid item xs={12} sm={12} md={7} lg={12} xl={12}>
 										<FormControlLabel
-											control={<Checkbox checkedIcon={<TripOrigin />} icon={<RadioButtonUnchecked color='primary' />} />}
+											control={<Checkbox checkedIcon={<TripOrigin />} icon={<RadioButtonUnchecked color='primary' />} checked />}
 											label="Предоставляю своё согласие на получение рекламы и информационных сообщений"
 										/>
 									</Grid>

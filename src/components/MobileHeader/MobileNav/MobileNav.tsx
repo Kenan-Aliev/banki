@@ -9,12 +9,9 @@ type Props = {
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const MobileNav = ({ visible, setVisible }: Props) => {
-  const [current, setCurrent] = useState<string>('');
   const navMap = mobileNav.map((el, index) => (
     <MobileNavItem
       setVisible={setVisible}
-      setCurrent={setCurrent}
-      current={current}
       name={el.name}
       navs={el.navs}
       key={index}
