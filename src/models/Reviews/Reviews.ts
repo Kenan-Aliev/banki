@@ -5,6 +5,9 @@ export interface Review {
 	verified: boolean
 	product_type: string
 	rating: number
+	bank_logo: string
+	bank_name: string
+	publish_date: string
 }
 
 export interface ReviewsCategory {
