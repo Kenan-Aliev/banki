@@ -5,18 +5,34 @@ import styles from './Navigation.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import Application from '@/components/Application/Application';
 import { Grid } from '@mui/material';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 const Navigation = () => {
   const [applicationModal, setApplicationModal] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
 
   const handleChangeApplicationModal = () => {
     setApplicationModal(!applicationModal)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationModal()
+    handleChangeSuccessModal()
   }
   return (
     <div className={styles.main_container}>
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModal}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       <div className={styles.navigation_container}>
         <p>Главная</p>

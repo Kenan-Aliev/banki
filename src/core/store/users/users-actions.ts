@@ -5,10 +5,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const sendApplication = createAsyncThunk(
 	'users/sendApplication',
-	async (data: sendApplicationData, { rejectWithValue }) => {
+	async ({ cb, data }: { data: sendApplicationData, cb: () => void }, { rejectWithValue }) => {
 		try {
 			const response = await UsersApi.sendApplication(data)
-			toastSuccess('Вы успешно отправили заявку')
+			cb()
 			return response.data
 		} catch (err: any) {
 			toastError('Произошла ошибка')

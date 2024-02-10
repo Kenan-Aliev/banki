@@ -10,10 +10,11 @@ interface Props extends React.ComponentPropsWithoutRef<'button'> {
   onClick?: (e?: any) => void
 }
 
-const BlueBtn = ({ text, width, height, fSize, count, onClick }: Props) => {
+const BlueBtn = ({ text, width, height, fSize, count, onClick, disabled }: Props) => {
   return (
     <button
       onClick={onClick}
+      disabled={disabled}
       className={s.btn}
       style={{
         width: `${width ? width + 'px' : '100%'}`,

@@ -8,6 +8,7 @@ import { DepositItemT } from '@/models/Deposit/Deposit';
 import { baseUrl } from '@/core/const/baseUrl';
 import { Typography, Box } from '@mui/material';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 interface SpecialOfferItemProps {
   item: DepositItemT;
@@ -19,9 +20,19 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
   } = props;
 
   const [applicationModal, setApplicationModal] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
 
   const handleChangeApplicationModal = () => {
     setApplicationModal(!applicationModal)
+  }
+  
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationModal()
+    handleChangeSuccessModal()
   }
 
   return (
@@ -29,7 +40,12 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModal}
-        childModel='special-offer'
+        modelId={deposit_id}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       <div className={s.item_info}>
         <Box sx={{

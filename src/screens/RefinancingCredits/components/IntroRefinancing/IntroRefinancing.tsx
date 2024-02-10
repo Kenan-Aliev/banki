@@ -6,13 +6,12 @@ import CustomWhiteSelectTitle from '@/UI/CustomWhiteSelectTitle/CustomWhiteSelec
 import MoneySelect from '@/UI/MoneySelect/MoneySelect';
 import CustomInputTitle from '@/UI/CustomInputTitle/CustomInputTitle';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
-import { Modal } from '@/UI/Modal';
-import { ModalInnerWrapper } from '@/UI/ModalInnerWrapper';
-import CustomInput from '@/UI/CustomInput/CustomInput';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 const IntroRefinancing = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [succesModal, setSuccessModal] = useState(false)
   const [many, setMany] = useState(0);
   const [target, setTarget] = useState('');
   const [durationInYars, setDurationInYars] = useState(0);
@@ -20,6 +19,18 @@ const IntroRefinancing = () => {
   const [bid, setBid] = useState(0);
   const [monthMany, setMonthMany] = useState(0);
 
+  const handleChangeApplicationModal = () => {
+    setModalIsOpen(!modalIsOpen)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationModal()
+    handleChangeSuccessModal()
+  }
   return (
     <>
       <div className={s.intro}>
@@ -68,7 +79,12 @@ const IntroRefinancing = () => {
       </div>
       <Application
         open={modalIsOpen}
-        handleClose={() => setModalIsOpen(false)}
+        handleClose={handleChangeApplicationModal}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
     </>
   );

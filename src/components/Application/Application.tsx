@@ -9,19 +9,23 @@ import Image from 'next/image';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useAppDispatch } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { sendApplication } from '@/core/store/users/users-actions';
 import InputMask from 'react-input-mask';
 import { usePathname } from 'next/navigation';
 import { sendApplicationData } from '@/models/Services';
+import { models } from '@/core/data/applicationModels';
+import { selectSendApplicationStatus } from '@/core/store/users/users-selectors';
+import { RequestStatus } from '@/models/Services';
+
 
 
 
 interface Props {
 	open: boolean
 	handleClose: () => void
+	onSuccessSendApplication: () => void
 	modelId?: number
-	childModel?: string
 }
 
 const waveBoxStyle = {
@@ -88,8 +92,10 @@ const style = {
 	}
 };
 
-function Application({ handleClose, open, childModel, modelId }: Props) {
+function Application({ handleClose, open, modelId, onSuccessSendApplication }: Props) {
 	const dispatch = useAppDispatch()
+	const reqStatus = useAppSelector(selectSendApplicationStatus)
+
 	const pathname = usePathname().split('/').slice(1)
 	const operators: string[] = ["70", "77", "75", "55", "50", "99", "22"];
 	const operatorRegex = operators.join('|');
@@ -105,6 +111,7 @@ function Application({ handleClose, open, childModel, modelId }: Props) {
 	const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.target;
 		const formattedValue = value.replace(/\D/g, ''); // Очищаем от всего, кроме цифр
+
 
 		handleChange({
 			target: {
@@ -124,8 +131,8 @@ function Application({ handleClose, open, childModel, modelId }: Props) {
 			const req: sendApplicationData = {
 				...values,
 				phone: '996' + values.phone,
-				parent_model: pathname[0],
-				model: childModel ? childModel : pathname[1] ?? pathname[0],
+				parent_model: models[pathname[0]].parentModel,
+				model: models[pathname[0]].childModel,
 				additional_of_applicant: [
 					{
 						key: 'string',
@@ -136,7 +143,7 @@ function Application({ handleClose, open, childModel, modelId }: Props) {
 			if (modelId) {
 				req.model_id = modelId
 			}
-			dispatch(sendApplication(req))
+			dispatch(sendApplication({ cb: onSuccessSendApplication, data: req }))
 			resetForm();
 		}
 	});
@@ -245,6 +252,7 @@ function Application({ handleClose, open, childModel, modelId }: Props) {
 									text='Отправить'
 									type='submit'
 									onClick={handleSubmit}
+									disabled={reqStatus === 'loading'}
 								/>
 							</Grid>
 							<FormGroup>

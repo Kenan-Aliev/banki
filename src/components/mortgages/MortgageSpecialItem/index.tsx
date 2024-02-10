@@ -5,6 +5,7 @@ import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import { MortgageItemT } from '@/models/Mortgages/Mortgages';
 import { baseUrl } from '@/core/const/baseUrl';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 interface MortgageSpecialItemProps {
   item: MortgageItemT;
@@ -18,14 +19,26 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
       conditions,
       interest_rate,
       bank_logo,
-      loan_term
+      loan_term,
+      id
     },
   } = props;
 
   const [applicationModalIsOpen, setApplicationModalIsOpen] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
+
 
   const handleChangeApplicationModal = () => {
     setApplicationModalIsOpen(!applicationModalIsOpen)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationModal()
+    handleChangeSuccessModal()
   }
 
   return (
@@ -33,7 +46,12 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModalIsOpen}
-        childModel='special-offer'
+        modelId={id}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       <div className={styles.img}>
         <Image src={baseUrl + bank_logo} alt={''} width={20} height={20} />

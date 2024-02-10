@@ -4,18 +4,34 @@ import React, { useState } from 'react';
 import s from './IntroGetLoan.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 const IntroGetLoan = () => {
   const [applicationModalIsOpen, setApplicationModalIsOpen] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
 
   const handleChangeApplicationModal = () => {
     setApplicationModalIsOpen(!applicationModalIsOpen)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationModal()
+    handleChangeSuccessModal()
   }
   return (
     <div className={s.intro}>
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModalIsOpen}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       <div className={s.info}>
         <div className={s.breadCrumbs}>

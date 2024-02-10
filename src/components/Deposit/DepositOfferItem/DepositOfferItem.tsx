@@ -10,6 +10,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { currencies } from '@/core/data/currency';
 import { baseUrl } from '@/core/const/baseUrl';
 import { Grid, Box, Typography, Button, SxProps, Theme } from '@mui/material';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 
 
@@ -96,6 +97,8 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
   } = props;
 
   const [openApplicationForm, setOpenApplicationForm] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
+
 
   const currency = currencies.find((c) => c.value == activeCurrency)?.text
 
@@ -103,11 +106,26 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
     setOpenApplicationForm(!openApplicationForm)
   }
 
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationForm()
+    handleChangeSuccessModal()
+  }
+
   return (
     <Box sx={rootBoxStyles}>
       <Application
         open={openApplicationForm}
         handleClose={handleChangeApplicationForm}
+        onSuccessSendApplication={onSuccessSendApplication}
+        modelId={deposit_id}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       <Grid container mb='10px'>
         <Grid item xs={3} sm={3} md={3} lg={0.7} xl={0.7}>

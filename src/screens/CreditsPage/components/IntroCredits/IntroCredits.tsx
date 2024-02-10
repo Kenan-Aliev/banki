@@ -13,18 +13,34 @@ import CustomInput from '@/UI/CustomInput/CustomInput';
 import CustomInputTitle from '@/UI/CustomInputTitle/CustomInputTitle';
 import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 const IntroCredits = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [succesModal, setSuccessModal] = useState(false)
 
   const handleChangeModal = () => {
     setModalIsOpen(!modalIsOpen)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeModal()
+    handleChangeSuccessModal()
   }
   return (
     <div className={s.intro}>
       <Application
         handleClose={handleChangeModal}
         open={modalIsOpen}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       <div className={s.info}>
         <div className={s.breadCrumbs}>

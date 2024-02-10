@@ -6,6 +6,7 @@ import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import { CardItemT } from '@/models/Cards/Cards';
 import { currencies } from '@/core/data/currency';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 interface BankCardItemProps {
   item: CardItemT;
@@ -17,11 +18,21 @@ const BankCardItem = (props: BankCardItemProps) => {
   } = props;
 
   const [applicationModal, setApplicationModal] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
 
   const cur = currencies.find((c) => c.value.toLowerCase() == currency?.toLowerCase())?.text
 
   const handleChangeApplicationForm = () => {
     setApplicationModal(!applicationModal)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationForm()
+    handleChangeSuccessModal()
   }
   return (
     <div className={styles.main_container}>
@@ -29,6 +40,11 @@ const BankCardItem = (props: BankCardItemProps) => {
         open={applicationModal}
         handleClose={handleChangeApplicationForm}
         modelId={id}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       <div className={styles.text_container}>
         {bank_title}

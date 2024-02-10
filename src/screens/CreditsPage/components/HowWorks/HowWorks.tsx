@@ -8,17 +8,34 @@ import o2 from '@/assets/icons/serv_d.png';
 import Application from '@/components/Application/Application';
 import Link from 'next/link';
 import arrow from "@/assets/icons/credits_how_it_works_arrow.svg"
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 const HowWorks = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
+
   const handleChangeOpenModal = () => {
     setIsModalOpen(!isModalOpen)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeOpenModal()
+    handleChangeSuccessModal()
   }
   return (
     <div className={s.wrapper}>
       <Application
         handleClose={handleChangeOpenModal}
         open={isModalOpen}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       <div className={s.arrow}>
         <Image src={arrow} alt="Стрелка" />

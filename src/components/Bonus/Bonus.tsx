@@ -6,6 +6,7 @@ import arr_r from '@/assets/icons/banki_icon/Стрелка_right.svg';
 import Image, { StaticImageData } from 'next/image';
 import Application from '../Application/Application';
 import { Box } from '@mui/material';
+import SendApplicationSuccesModal from '../SendApplicationSuccesModal';
 
 interface BonusProps {
   title?: string;
@@ -23,11 +24,20 @@ const Bonus = (props: BonusProps) => {
   } = props;
 
   const [openApplicationForm, setOpenApplicationForm] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
 
   const handleChangeApplicationForm = () => {
     setOpenApplicationForm(!openApplicationForm)
   }
 
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationForm()
+    handleChangeSuccessModal()
+  }
   return (
     <Box className={s.bonus}
       sx={{
@@ -40,6 +50,11 @@ const Bonus = (props: BonusProps) => {
       <Application
         open={openApplicationForm}
         handleClose={handleChangeApplicationForm}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       {img ? <Image src={img} alt={'logo bank'} width={200} height={200} /> : <div className={s.logo}>Логотип</div>}
       <div className={s.info}

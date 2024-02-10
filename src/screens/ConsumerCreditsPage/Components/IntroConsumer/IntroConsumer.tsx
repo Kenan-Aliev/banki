@@ -14,6 +14,7 @@ import { getCreditsI } from '@/models/Services';
 import { BankT } from '@/models/Banks/banks';
 import { useAppSelector } from '@/hooks/redux';
 import { selectCredits } from '@/core/store/credits/credits-selectors';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 
 interface Props {
@@ -28,6 +29,7 @@ const IntroConsumer = (props: Props) => {
   const { cleanFilter, filterData, handleChangeFilter, handleScrollToCredits, banks } = props
 
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
   const [availableCreditsCount, setAvailableCreditsCount] = useState<number>(null)
   const [timer, setTimer] = useState(null)
@@ -41,6 +43,15 @@ const IntroConsumer = (props: Props) => {
 
   const handleChangeApplicationModal = () => {
     setIsApplicationModalOpen(!isApplicationModalOpen)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationModal()
+    handleChangeSuccessModal()
   }
 
   const handleChangeFilterModal = () => {
@@ -78,8 +89,13 @@ const IntroConsumer = (props: Props) => {
       <Application
         open={isApplicationModalOpen}
         handleClose={handleChangeApplicationModal}
-      />
+        onSuccessSendApplication={onSuccessSendApplication}
 
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
+      />
       <Filters
         open={isFilterModalOpen}
         handleClose={handleChangeFilterModal}

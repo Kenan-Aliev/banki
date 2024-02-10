@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import s from './IntroMicroloans.module.scss';
 import ChoiseItemsMap from '@/components/Choise/ChoiseItemsMap/ChoiseItemsMap';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 type ItemT = {
   name: string;
@@ -17,9 +18,19 @@ type Props = {
 
 const IntroMicroloans = ({ items, current, setActive }: Props) => {
   const [applicationModal, setApplicationModal] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
 
   const handleChangeApplicationModal = () => {
     setApplicationModal(!applicationModal)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationModal()
+    handleChangeSuccessModal()
   }
   return (
     <div className={s.intro}>
@@ -43,6 +54,11 @@ const IntroMicroloans = ({ items, current, setActive }: Props) => {
       <Application
         handleClose={handleChangeApplicationModal}
         open={applicationModal}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
     </div>
   );

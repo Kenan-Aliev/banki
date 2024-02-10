@@ -10,6 +10,7 @@ import { baseUrl } from '@/core/const/baseUrl';
 import { currencies } from '@/core/data/currency';
 import CreditInfoModal from '@/components/credits/CreditInfoModal';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 interface WebLoanItemProps {
   item: CreditItemT;
@@ -22,6 +23,7 @@ const WebLoanItem = (props: WebLoanItemProps) => {
 
   const [infoModal, setInfoModal] = useState(false)
   const [applicationModal, setApplicationModal] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
 
   const cur = currencies.find((c) => c.value == currency)?.text
 
@@ -31,6 +33,15 @@ const WebLoanItem = (props: WebLoanItemProps) => {
 
   const handleChangeApplicationModal = () => {
     setApplicationModal(!applicationModal)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationModal()
+    handleChangeSuccessModal()
   }
 
   return (
@@ -53,6 +64,11 @@ const WebLoanItem = (props: WebLoanItemProps) => {
         handleClose={handleChangeApplicationModal}
         open={applicationModal}
         modelId={id}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
       />
       <div className={s.header}>
         <Image alt={''} src={baseUrl + bank_logo} width={50} height={50} />

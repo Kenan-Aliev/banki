@@ -4,12 +4,24 @@ import React, { useState } from 'react';
 import s from './IntroCreditRating.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
 
 const IntroCreditRating = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
+
 
   const handleChangeIsModalOpen = () => {
     setIsModalOpen(!isModalOpen)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeIsModalOpen()
+    handleChangeSuccessModal()
   }
   return (
     <div className={s.intro}>
@@ -36,6 +48,11 @@ const IntroCreditRating = () => {
         <Application
           handleClose={handleChangeIsModalOpen}
           open={isModalOpen}
+          onSuccessSendApplication={onSuccessSendApplication}
+        />
+        <SendApplicationSuccesModal
+          open={succesModal}
+          handleClose={handleChangeSuccessModal}
         />
       </div>
     </div>

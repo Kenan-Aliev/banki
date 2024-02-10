@@ -9,6 +9,7 @@ import { currencies } from '@/core/data/currency';
 import { Grid, Box, Typography, SxProps, Theme } from '@mui/material';
 import { CardItemT } from '@/models/Cards/Cards';
 import Application from '@/components/Application/Application';
+import SendApplicationSuccesModal from '../SendApplicationSuccesModal';
 
 
 const rootBoxStyles: SxProps<Theme> = {
@@ -81,16 +82,33 @@ const DebitCardItem = (props: DebitCardItemProps) => {
 	} = props;
 
 	const [applicationModal, setApplicationModal] = useState(false)
+	const [succesModal, setSuccessModal] = useState(false)
+
 	const cur = currencies.find((c) => c.value.toLowerCase() == currency.toLowerCase())?.text
 
 	const handleChangeApplicationForm = () => {
 		setApplicationModal(!applicationModal)
+	}
+
+	const handleChangeSuccessModal = () => {
+		setSuccessModal(!succesModal)
+	}
+
+	const onSuccessSendApplication = () => {
+		handleChangeApplicationForm()
+		handleChangeSuccessModal()
 	}
 	return (
 		<Box sx={rootBoxStyles}>
 			<Application
 				open={applicationModal}
 				handleClose={handleChangeApplicationForm}
+				modelId={id}
+				onSuccessSendApplication={onSuccessSendApplication}
+			/>
+			<SendApplicationSuccesModal
+				open={succesModal}
+				handleClose={handleChangeSuccessModal}
 			/>
 			<Grid container mb='10px'>
 				<Grid item xs={5} sm={3} md={3} lg={2.5} xl={2.5}>
