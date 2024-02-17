@@ -50,12 +50,12 @@ const IntroAuto = (props: Props) => {
         <div className={s.breadCrumbs}>
           Главная / Кредиты / <mark>Автокредиты</mark>
         </div>
-        <h1 className={s.title}>Подобрать кредит на автомобиль</h1>
+        <h1 className={s.title}>Автокредиты в Кыргызстане</h1>
         <p>Рассчитать кредит на авто, сравнить условия по автокредитованию, выяснить,
           где лучше взять кредит на машину, и оформить онлайн-заявку в банк</p>
         <div className={s.calc}>
           <MoneySelect
-            width={385}
+            width={355}
             amount={summa}
             currency={filterData.currency ?? ''}
             handleChange={handleChangeSumma}
@@ -85,7 +85,7 @@ const IntroAuto = (props: Props) => {
             />
             <BlueBtn text={'Показать'}
               count={creditsCount ?? 0}
-              width={173}
+              width={250}
               onClick={() => handleScrollToCredits()} />
           </Stack>
         </div>

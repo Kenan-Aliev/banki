@@ -49,7 +49,10 @@ function Footer() {
 
 					<Accordion
 						elevation={0}
+
 						sx={{
+							display: 'flex',
+							flexDirection: 'column-reverse',
 							background: 'inherit',
 							border: 'none',
 							mt: '20px',
@@ -59,7 +62,7 @@ function Footer() {
 						}}
 					>
 						<AccordionSummary
-							expandIcon={<ExpandMore sx={{ color: '#4DA7FF' }} />}
+							expandIcon={<ExpandMore sx={{ color: '#4DA7FF', transform: 'rotate(180deg)' }} />}
 							sx={{
 								width: 'fit-content',
 								color: '#4DA7FF',
@@ -90,7 +93,7 @@ function Footer() {
 						</AccordionDetails>
 					</Accordion>
 				</Box>
-			</PageWrapper>
+			</PageWrapper >
 			<FooterLinks />
 		</>
 

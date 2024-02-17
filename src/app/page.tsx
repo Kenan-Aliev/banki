@@ -5,7 +5,8 @@ import HomePage from '@/screens/HomePage/HomePage';
 import BanksApi from '@/core/services/Banks';
 
 export const metadata: Metadata = {
-  title: 'Главная',
+  title: 'Все банки - Вклады, Кредиты, Ипотека, Кредитные карты, рейтинг банков',
+  description: ' Подбор и сравнение вкладов, кредитов, ипотеки, кредитных карт. Калькуляторы финансовых продуктов. Рейтинги банков, отзывы клиентов. Новости.'
 };
 
 export default async function Home() {

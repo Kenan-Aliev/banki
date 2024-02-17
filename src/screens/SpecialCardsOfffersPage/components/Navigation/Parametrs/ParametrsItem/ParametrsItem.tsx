@@ -11,7 +11,7 @@ type Props = {
 const ParametrsItem = ({ active, text, onClick }: Props) => {
   return <div
     className={active ? styles.parametr_container_active : styles.parametr_container}
-    onClick={() => onClick(text)}
+    onClick={() => onClick ? onClick(text) : null}
   >
     {text}
   </div>;

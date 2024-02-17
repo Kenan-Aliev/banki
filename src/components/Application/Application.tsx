@@ -26,6 +26,8 @@ interface Props {
 	handleClose: () => void
 	onSuccessSendApplication: () => void
 	modelId?: number
+	bank_name?: string
+	product_name?: string
 }
 
 const waveBoxStyle = {
@@ -92,7 +94,7 @@ const style = {
 	}
 };
 
-function Application({ handleClose, open, modelId, onSuccessSendApplication }: Props) {
+function Application({ handleClose, open, modelId, onSuccessSendApplication, bank_name, product_name }: Props) {
 	const dispatch = useAppDispatch()
 	const reqStatus = useAppSelector(selectSendApplicationStatus)
 
@@ -133,6 +135,8 @@ function Application({ handleClose, open, modelId, onSuccessSendApplication }: P
 				phone: '996' + values.phone,
 				parent_model: models[pathname[0]].parentModel,
 				model: models[pathname[0]].childModel,
+				product_name,
+				bank_name,
 				additional_of_applicant: [
 					{
 						key: 'string',

@@ -137,6 +137,8 @@ export interface sendApplicationData {
     phone: string
     parent_model: string
     model: string
+    bank_name?: string
+    product_name?: string
 }
 
 export interface getReviewsListData {

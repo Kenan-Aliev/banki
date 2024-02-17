@@ -26,7 +26,7 @@ const MobileHeader = () => {
         <Link href={'/'} className={s.logo}>
           <Image src={logo}  alt={'logo'}/>
         </Link>
-        <Image alt={'icon'} priority src={userImg} width={20} height={20} />
+        {/* <Image alt={'icon'} priority src={userImg} width={20} height={20} /> */}
       </header>
     </>
   );

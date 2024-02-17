@@ -25,7 +25,7 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
   const handleChangeApplicationModal = () => {
     setApplicationModal(!applicationModal)
   }
-  
+
   const handleChangeSuccessModal = () => {
     setSuccessModal(!succesModal)
   }
@@ -42,6 +42,8 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
         open={applicationModal}
         modelId={deposit_id}
         onSuccessSendApplication={onSuccessSendApplication}
+        bank_name={bank_title}
+        product_name={deposit_name}
       />
       <SendApplicationSuccesModal
         open={succesModal}

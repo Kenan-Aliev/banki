@@ -122,6 +122,8 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
         handleClose={handleChangeApplicationForm}
         onSuccessSendApplication={onSuccessSendApplication}
         modelId={deposit_id}
+        bank_name={bank_title}
+        product_name={deposit_name}
       />
       <SendApplicationSuccesModal
         open={succesModal}

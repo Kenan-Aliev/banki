@@ -46,7 +46,7 @@ const AutocreditPage = ({ creditType, data }: Props) => {
     limit: 10,
     offset: 0,
     currency: 'kgs',
-    ordering: 'min_summ',
+    ordering: 'min_rating',
     loanType: String(creditType.id)
   })
 
@@ -87,16 +87,16 @@ const AutocreditPage = ({ creditType, data }: Props) => {
         <CreditBankList
           options={[
             {
+              text: 'По минимальной процентной ставке',
+              value: 'min_rating'
+            },
+            {
               text: 'По минимальной сумме',
               value: 'min_summ'
             },
             {
               text: 'По максимальной сумме',
               value: 'max_summ'
-            },
-            {
-              text: 'По минимальной процентной ставке',
-              value: 'min_rating'
             }
           ]}
           filterData={filterData}

@@ -9,18 +9,40 @@ import Nav from '@/components/Header/Nav/Nav';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import logo from '@/assets/icons/logo.svg';
+import { useRouter } from 'next/navigation';
+import path from 'path';
 
 type navItemsT = {
   name: string;
   id: number;
   link: string;
+  mainLink: string
 };
 
 const Header = () => {
   const pathName = usePathname();
   const [currentPage, setCurrentPage] = useState<string>('');
   const [currentLink, setCurrentLink] = useState<string>('');
+  const [element, setElement] = useState<Element | null>(null)
   const [vis, setVis] = useState<boolean>(false);
+
+
+  const handleScrollToSearch = () => {
+    if (pathName === '/' && element) {
+      element.scrollIntoView({
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (document) {
+      setElement(document.querySelector('[class*="Search"]'))
+    }
+  }, [])
+
+
+  const router = useRouter()
 
   useEffect(() => {
     const pa = pathName.split('/');
@@ -33,22 +55,23 @@ const Header = () => {
   };
 
   const navItems: navItemsT[] = [
-    { name: 'Вклады', id: 1, link: 'deposits' },
-    { name: 'Кредиты', id: 2, link: 'credits' },
-    { name: 'Ипотека', id: 3, link: 'ipoteka' },
+    { name: 'Вклады', id: 1, mainLink: 'deposits', link: '/deposits' },
+    { name: 'Кредиты', id: 2, mainLink: 'credits', link: '/credits/consumer-credits' },
+    { name: 'Ипотека', id: 3, mainLink: 'ipoteka', link: '/ipoteka/credits' },
     // { name: 'Страхование', id: 4, link: 'insurance' },
     // { name: 'Инвестиции', id: 5, link: 'investment' },
-    { name: 'Карты', id: 6, link: 'cards' },
+    { name: 'Карты', id: 6, mainLink: 'cards', link: '/cards/credit-cards' },
     // { name: 'Бизнес', id: 7, link: 'business' },
-    { name: 'Новости', id: 8, link: 'news' },
-    { name: 'Ещё', id: 9, link: 'more' },
+    { name: 'Новости', id: 8, mainLink: 'news', link: '/news' },
+    { name: 'Ещё', id: 9, mainLink: 'more', link: '/' },
   ];
   const navMap = navItems.map((el) => {
     return (
       <p
         key={el.id}
-        className={currentPage.includes(el.link) ? s.nav_item_active : s.nav_item}
+        className={currentPage.includes(el.mainLink) ? s.nav_item_active : s.nav_item}
         onMouseEnter={() => onMouseNav(el.name)}
+        onClick={() => router.push(el.link)}
       >
         {el.name}
       </p>
@@ -63,7 +86,7 @@ const Header = () => {
         </Link>
         <nav className={s.nav}>{navMap}</nav>
         <nav className={s.icons}>
-          <Link
+          {/* <Link
             href={'/profile/applications'}
             className={currentPage.includes('profile') ? s.active_link : ''}
           >
@@ -79,8 +102,8 @@ const Header = () => {
               />
             </svg>
           </Link>
-          <Image alt={'icon'} priority src={pointImg} width={24} height={24} />
-          <Image alt={'icon'} priority src={searchImg} width={24} height={24} />
+          <Image alt={'icon'} priority src={pointImg} width={24} height={24} /> */}
+          <Image alt={'icon'} priority src={searchImg} width={24} height={24} onClick={handleScrollToSearch} />
         </nav>
       </header>
       {vis && <Nav path={currentLink} setActive={setVis} />}

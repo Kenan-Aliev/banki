@@ -35,7 +35,7 @@ const DepositsPage = () => {
   const [filterData, setFilterData] = useState<getDepositsI>({
     limit: 10,
     offset: 0,
-    ordering: 'interest_rate',
+    ordering: '-interest_rate',
     currency: 'kgs',
   })
   const monthOffers = useAppSelector(selectMonthOffers)
@@ -132,7 +132,7 @@ const DepositsPage = () => {
         <OffersBanks
           options={[{
             text: 'По процентной ставке',
-            value: 'interest_rate'
+            value: '-interest_rate'
           },
           {
             text: 'По минимальному взносу',

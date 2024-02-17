@@ -48,6 +48,8 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
         open={applicationModalIsOpen}
         modelId={id}
         onSuccessSendApplication={onSuccessSendApplication}
+        bank_name={bank_title}
+        product_name={name}
       />
       <SendApplicationSuccesModal
         open={succesModal}

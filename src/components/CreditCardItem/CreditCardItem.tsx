@@ -105,6 +105,8 @@ const CreditCardItem = (props: CreditCardItemProps) => {
         handleClose={handleChangeApplicationForm}
         onSuccessSendApplication={onSuccessSendApplication}
         modelId={id}
+        bank_name={bank_title}
+        product_name={name}
       />
       <SendApplicationSuccesModal
         open={succesModal}
