@@ -3,7 +3,7 @@ import s from './FeedbackItem.module.scss';
 import Image from 'next/image';
 import star from '@/assets/icons/Star.svg';
 import { Review } from '@/models/Reviews/Reviews';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
 interface Props {
   review: Review
@@ -16,28 +16,30 @@ const FeedbackItem = ({ review }: Props) => {
   return (
     <div className={s.feedback_item}>
       <Stack direction='row' sx={{
-        justifyContent: 'space-between',
-        // alignItems: 'center',
-        "@media(max-width:600px)": {
-          flexDirection: "column-reverse"
-        }
+        m: '20px 0',
+        alignItems: 'center',
+        gap: '10px 20px',
       }}>
-        <div className={s.title}>{title}</div>
+        <Typography
+          component='h2'
+          sx={{
+            fontSize: '18px',
+            fontWeight: 700
+          }}>
+          {bank_name}
+        </Typography>
         <Box sx={{
-          width: '25%',
-          height: '80px',
+          height: '60px',
           "& img": {
             width: '100%',
             objectFit: 'contain',
-            borderRadius: '10px'
-          },
-          "@media(max-width:600px)": {
-            width: '35%'
+            height: '100%',
           }
         }}>
-          <Image src={bank_logo} alt='Логотип банка' width={100} height={100} />
+          <Image src={bank_logo} alt='Логотип банка' width={500} height={500} />
         </Box>
       </Stack>
+      <div className={s.title}>{title}</div>
       <div className={s.stars}>
         {new Array(rating).fill(0).map((num, index) => {
           return <Image alt={'star icon'} src={star} key={index} />
