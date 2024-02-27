@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import styles from './index.module.scss';
 import Image from 'next/image';
@@ -6,6 +8,9 @@ import { MortgageItemT } from '@/models/Mortgages/Mortgages';
 import { baseUrl } from '@/core/const/baseUrl';
 import Application from '@/components/Application/Application';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
+import { usePathname } from 'next/navigation';
 
 interface MortgageSpecialItemProps {
   item: MortgageItemT;
@@ -26,7 +31,7 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
 
   const [applicationModalIsOpen, setApplicationModalIsOpen] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
-
+  const pathname = usePathname().split('/').slice(1)
 
   const handleChangeApplicationModal = () => {
     setApplicationModalIsOpen(!applicationModalIsOpen)
@@ -77,7 +82,10 @@ const MortgageSpecialItem = (props: MortgageSpecialItemProps) => {
           width={231}
           height={40}
           fSize={16}
-          onClick={handleChangeApplicationModal}
+          onClick={() => {
+            handleChangeApplicationModal()
+            gtagEvent('click', models[pathname[0]].parentModel)
+          }}
         />
       </div>
     </div>

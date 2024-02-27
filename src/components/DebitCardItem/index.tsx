@@ -10,6 +10,9 @@ import { Grid, Box, Typography, SxProps, Theme } from '@mui/material';
 import { CardItemT } from '@/models/Cards/Cards';
 import Application from '@/components/Application/Application';
 import SendApplicationSuccesModal from '../SendApplicationSuccesModal';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { usePathname } from 'next/navigation';
+import { models } from '@/core/data/applicationModels';
 
 
 const rootBoxStyles: SxProps<Theme> = {
@@ -83,6 +86,7 @@ const DebitCardItem = (props: DebitCardItemProps) => {
 
 	const [applicationModal, setApplicationModal] = useState(false)
 	const [succesModal, setSuccessModal] = useState(false)
+	const pathname = usePathname().split('/').slice(1)
 
 	const cur = currencies.find((c) => c.value.toLowerCase() == currency.toLowerCase())?.text
 
@@ -198,7 +202,14 @@ const DebitCardItem = (props: DebitCardItemProps) => {
 							marginLeft: 0
 						}
 					}}>
-					<BlueBtn text={'Оформить карту'} fSize={20} onClick={handleChangeApplicationForm} />
+					<BlueBtn
+						text={'Оформить карту'}
+						fSize={20}
+						onClick={() => {
+							handleChangeApplicationForm()
+							gtagEvent('click', models[pathname[0]].parentModel)
+						}}
+					/>
 				</Box>
 			</Box>
 		</Box >

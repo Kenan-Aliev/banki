@@ -6,10 +6,14 @@ import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import Application from '@/components/Application/Application';
 import { Grid } from '@mui/material';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { usePathname } from 'next/navigation';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
 
 const Navigation = () => {
   const [applicationModal, setApplicationModal] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
+  const pathname = usePathname().split('/').slice(1)
 
   const handleChangeApplicationModal = () => {
     setApplicationModal(!applicationModal)
@@ -51,7 +55,10 @@ const Navigation = () => {
         <Grid item xs={12} lg={3} xl={3}>
           <BlueBtn
             text={'Подобрать ипотеку'}
-            onClick={handleChangeApplicationModal}
+            onClick={() => {
+              handleChangeApplicationModal()
+              gtagEvent('click', models[pathname[0]].parentModel)
+            }}
           />
         </Grid>
       </Grid>

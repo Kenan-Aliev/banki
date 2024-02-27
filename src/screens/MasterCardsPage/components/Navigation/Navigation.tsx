@@ -6,10 +6,14 @@ import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import Link from 'next/link';
 import Application from '@/components/Application/Application';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
+import { usePathname } from 'next/navigation';
 
 const Navigation = () => {
   const [applicationModal, setApplicationModal] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
+  const pathname = usePathname().split('/').slice(1)
 
   const handleChangeApplicationModal = () => {
     setApplicationModal(!applicationModal)
@@ -52,7 +56,10 @@ const Navigation = () => {
         width={245}
         height={60}
         fSize={20}
-        onClick={handleChangeApplicationModal}
+        onClick={() => {
+          handleChangeApplicationModal()
+          gtagEvent('click', models[pathname[0]].parentModel)
+        }}
       />
     </div>
   );

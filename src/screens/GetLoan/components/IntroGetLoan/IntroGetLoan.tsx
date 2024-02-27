@@ -5,10 +5,14 @@ import s from './IntroGetLoan.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import Application from '@/components/Application/Application';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { usePathname } from 'next/navigation';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
 
 const IntroGetLoan = () => {
   const [applicationModalIsOpen, setApplicationModalIsOpen] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
+  const pathname = usePathname().split('/').slice(1)
 
   const handleChangeApplicationModal = () => {
     setApplicationModalIsOpen(!applicationModalIsOpen)
@@ -45,7 +49,14 @@ const IntroGetLoan = () => {
           <br /> на сервисе vsebanki.kg. Заполните заявку и отправьте ее сразу
           <br /> во все проверенные МФО
         </div>
-        <BlueBtn text={'Подобрать займ'} width={238} onClick={handleChangeApplicationModal} />
+        <BlueBtn
+          text={'Подобрать займ'}
+          width={238}
+          onClick={() => {
+            handleChangeApplicationModal()
+            gtagEvent('click', models[pathname[0]].parentModel)
+          }}
+        />
       </div>
     </div>
   );

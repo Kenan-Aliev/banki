@@ -15,6 +15,9 @@ import { BankT } from '@/models/Banks/banks';
 import { useAppSelector } from '@/hooks/redux';
 import { selectCredits } from '@/core/store/credits/credits-selectors';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { usePathname } from 'next/navigation';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
 
 
 interface Props {
@@ -34,6 +37,7 @@ const IntroConsumer = (props: Props) => {
   const [availableCreditsCount, setAvailableCreditsCount] = useState<number>(null)
   const [timer, setTimer] = useState(null)
   const [summa, setSumma] = useState(0)
+  const pathname = usePathname().split('/').slice(1)
 
   const creditsCount = useAppSelector(selectCredits)?.count
   const banksData = banks.map((bank) => ({
@@ -122,7 +126,13 @@ const IntroConsumer = (props: Props) => {
           Вам остается только сравнить, выбрать самый выгодный вариант и оформить{' '}
           <mark>онлайн-заявку.</mark>
         </p>
-        <BlueBtn text={'Оформить заявку'} width={248} onClick={handleChangeApplicationModal} />
+        <BlueBtn
+          text={'Оформить заявку'}
+          width={248}
+          onClick={() => {
+            handleChangeApplicationModal()
+            gtagEvent('click', models[pathname[0]].parentModel)
+          }} />
 
         <div className={s.calculate}>
           <MoneySelect

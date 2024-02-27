@@ -8,6 +8,9 @@ import CustomInputTitle from '@/UI/CustomInputTitle/CustomInputTitle';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import Application from '@/components/Application/Application';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
+import { usePathname } from 'next/navigation';
 
 const IntroRefinancing = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -18,6 +21,8 @@ const IntroRefinancing = () => {
   const [manySet, setManнSet] = useState('');
   const [bid, setBid] = useState(0);
   const [monthMany, setMonthMany] = useState(0);
+  const pathname = usePathname().split('/').slice(1)
+
 
   const handleChangeApplicationModal = () => {
     setModalIsOpen(!modalIsOpen)
@@ -72,7 +77,14 @@ const IntroRefinancing = () => {
             <div className={s.right}>
               <CustomInputTitle title={'Ставка'} width={188} setValue={(e) => setBid(e)} />
               <CustomInputTitle title={'Ежемесячный платеж'} width={188} setValue={(e) => setMonthMany(e)} />
-              <BlueBtn text={'Рефинансировать кредит'} width={385} onClick={() => setModalIsOpen(true)} />
+              <BlueBtn
+                text={'Рефинансировать кредит'}
+                width={385}
+                onClick={() => {
+                  handleChangeApplicationModal()
+                  gtagEvent('click', models[pathname[0]].parentModel)
+                }}
+              />
             </div>
           </div>
         </div>

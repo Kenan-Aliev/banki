@@ -17,6 +17,7 @@ import { sendApplicationData } from '@/models/Services';
 import { models } from '@/core/data/applicationModels';
 import { selectSendApplicationStatus } from '@/core/store/users/users-selectors';
 import { RequestStatus } from '@/models/Services';
+import { gtagEvent } from '@/core/config/gtagEvent';
 
 
 
@@ -147,7 +148,14 @@ function Application({ handleClose, open, modelId, onSuccessSendApplication, ban
 			if (modelId) {
 				req.model_id = modelId
 			}
-			dispatch(sendApplication({ cb: onSuccessSendApplication, data: req }))
+			gtagEvent('submit', models[pathname[0]].parentModel)
+			dispatch(sendApplication({
+				cb: () => {
+					onSuccessSendApplication()
+					gtagEvent('success', models[pathname[0]].parentModel)
+				},
+				data: req
+			}))
 			resetForm();
 		}
 	});

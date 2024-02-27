@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import ques_I from '@/assets/icons/banki_icon/Question_i.svg';
@@ -11,6 +13,9 @@ import { currencies } from '@/core/data/currency';
 import { baseUrl } from '@/core/const/baseUrl';
 import { Grid, Box, Typography, Button, SxProps, Theme } from '@mui/material';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
+import { usePathname } from 'next/navigation';
 
 
 
@@ -98,7 +103,7 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
 
   const [openApplicationForm, setOpenApplicationForm] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
-
+  const pathname = usePathname().split('/').slice(1)
 
   const currency = currencies.find((c) => c.value == activeCurrency)?.text
 
@@ -225,7 +230,14 @@ const DepositOfferItem = React.memo((props: DepositOfferItemProps) => {
               marginLeft: 0
             }
           }}>
-          <BlueBtn text={'Открыть вклад'} fSize={20} onClick={handleChangeApplicationForm} />
+          <BlueBtn
+            text={'Открыть вклад'}
+            fSize={20}
+            onClick={() => {
+              handleChangeApplicationForm()
+              gtagEvent('click', models[pathname[0]].parentModel)
+            }}
+          />
         </Box>
       </Box>
     </Box >

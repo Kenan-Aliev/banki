@@ -9,10 +9,14 @@ import Application from '@/components/Application/Application';
 import Link from 'next/link';
 import arrow from "@/assets/icons/credits_how_it_works_arrow.svg"
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
+import { usePathname } from 'next/navigation';
 
 const HowWorks = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
+  const pathname = usePathname().split('/').slice(1)
 
   const handleChangeOpenModal = () => {
     setIsModalOpen(!isModalOpen)
@@ -49,7 +53,13 @@ const HowWorks = () => {
           <div className={s.main}>
             <Image src={o1} alt={''} />
             <div className={s.text}>
-              Нажмите <mark onClick={handleChangeOpenModal}>«Продолжить»</mark> и заполните анкету на vsebanki.kg.
+              Нажмите {" "}<mark
+                onClick={() => {
+                  handleChangeOpenModal()
+                  gtagEvent('click', models[pathname[0]].parentModel)
+                }}>
+                «Продолжить»
+              </mark> и заполните анкету на vsebanki.kg.
               <br />
               На основе вашей анкеты мы найдем банки, которые одобрят
               <br /> кредит. <mark>Это займет не более пяти минут.</mark>

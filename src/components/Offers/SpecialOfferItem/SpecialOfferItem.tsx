@@ -9,6 +9,9 @@ import { baseUrl } from '@/core/const/baseUrl';
 import { Typography, Box } from '@mui/material';
 import Application from '@/components/Application/Application';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { models } from '@/core/data/applicationModels';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { usePathname } from 'next/navigation';
 
 interface SpecialOfferItemProps {
   item: DepositItemT;
@@ -21,6 +24,8 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
 
   const [applicationModal, setApplicationModal] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
+
+  const pathname = usePathname().split('/').slice(1)
 
   const handleChangeApplicationModal = () => {
     setApplicationModal(!applicationModal)
@@ -91,7 +96,10 @@ const SpecialOfferItem = (props: SpecialOfferItemProps) => {
           width={230}
           height={40}
           fSize={16}
-          onClick={handleChangeApplicationModal} />
+          onClick={() => {
+            handleChangeApplicationModal()
+            gtagEvent('click', models[pathname[0]].parentModel)
+          }} />
       </div>
     </div>
   );

@@ -7,6 +7,9 @@ import Image, { StaticImageData } from 'next/image';
 import Application from '../Application/Application';
 import { Box } from '@mui/material';
 import SendApplicationSuccesModal from '../SendApplicationSuccesModal';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
+import { usePathname } from 'next/navigation';
 
 interface BonusProps {
   title?: string;
@@ -25,6 +28,7 @@ const Bonus = (props: BonusProps) => {
 
   const [openApplicationForm, setOpenApplicationForm] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
+  const pathname = usePathname().split('/').slice(1)
 
   const handleChangeApplicationForm = () => {
     setOpenApplicationForm(!openApplicationForm)
@@ -62,7 +66,11 @@ const Bonus = (props: BonusProps) => {
         <div className={s.title}>{title}</div>
         <p>{text}</p>
       </div>
-      <Image src={arr_r} alt={'иконка стрелки вправо'} onClick={handleChangeApplicationForm} />
+      <Image src={arr_r} alt={'иконка стрелки вправо'}
+        onClick={() => {
+          handleChangeApplicationForm()
+          gtagEvent('click', models[pathname[0]].parentModel)
+        }} />
     </Box >
   );
 };

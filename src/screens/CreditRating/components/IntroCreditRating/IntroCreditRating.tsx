@@ -5,11 +5,14 @@ import s from './IntroCreditRating.module.scss';
 import BlueBtn from '@/UI/BlueBtn/BlueBtn';
 import Application from '@/components/Application/Application';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { usePathname } from 'next/navigation';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
 
 const IntroCreditRating = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
-
+  const pathname = usePathname().split('/').slice(1)
 
   const handleChangeIsModalOpen = () => {
     setIsModalOpen(!isModalOpen)
@@ -44,7 +47,13 @@ const IntroCreditRating = () => {
           <br />
           чтобы помочь вам улучшить свои шансы на получение кредита.
         </div>
-        <BlueBtn text={'Рассчитать бесплатно'} width={300} onClick={handleChangeIsModalOpen} />
+        <BlueBtn
+          text={'Рассчитать бесплатно'}
+          width={300}
+          onClick={() => {
+            handleChangeIsModalOpen()
+            gtagEvent('click', models[pathname[0]].parentModel)
+          }} />
         <Application
           handleClose={handleChangeIsModalOpen}
           open={isModalOpen}

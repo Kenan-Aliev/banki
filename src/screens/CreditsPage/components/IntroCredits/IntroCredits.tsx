@@ -14,10 +14,14 @@ import CustomInputTitle from '@/UI/CustomInputTitle/CustomInputTitle';
 import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
 import Application from '@/components/Application/Application';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
+import { usePathname } from 'next/navigation';
 
 const IntroCredits = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [succesModal, setSuccessModal] = useState(false)
+  const pathname = usePathname().split('/').slice(1)
 
   const handleChangeModal = () => {
     setModalIsOpen(!modalIsOpen)
@@ -82,7 +86,15 @@ const IntroCredits = () => {
             prop='fw'
             labelName='Цель'
           />
-          <BlueBtn text={'Продолжить'} width={385} height={60} onClick={handleChangeModal} />
+          <BlueBtn
+            text={'Продолжить'}
+            width={385}
+            height={60}
+            onClick={() => {
+              handleChangeModal()
+              gtagEvent('click', models[pathname[0]].parentModel)
+            }}
+          />
         </div>
       </div>
     </div>

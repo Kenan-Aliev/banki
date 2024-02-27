@@ -11,6 +11,9 @@ import { currencies } from '@/core/data/currency';
 import CreditInfoModal from '@/components/credits/CreditInfoModal';
 import Application from '@/components/Application/Application';
 import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { usePathname } from 'next/navigation';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
 
 interface WebLoanItemProps {
   item: CreditItemT;
@@ -24,6 +27,7 @@ const WebLoanItem = (props: WebLoanItemProps) => {
   const [infoModal, setInfoModal] = useState(false)
   const [applicationModal, setApplicationModal] = useState(false)
   const [succesModal, setSuccessModal] = useState(false)
+  const pathname = usePathname().split('/').slice(1)
 
   const cur = currencies.find((c) => c.value == currency)?.text
 
@@ -106,7 +110,11 @@ const WebLoanItem = (props: WebLoanItemProps) => {
           height={40}
           width={183}
           fSize={16}
-          onClick={handleChangeApplicationModal} />
+          onClick={() => {
+            handleChangeApplicationModal()
+            gtagEvent('click', models[pathname[0]].parentModel)
+          }}
+        />
       </div>
     </div>
   );
