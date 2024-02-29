@@ -21,6 +21,7 @@ type Props = {
     height?: number;
     btnHidden?: boolean;
     width?: number;
+    handleClick?: () => void
 };
 
 const Search = (props: Props) => {
@@ -34,7 +35,8 @@ const Search = (props: Props) => {
         width,
         onChange,
         lupaSee,
-        filteredArr
+        filteredArr,
+        handleClick
     } = props;
 
 
@@ -62,6 +64,7 @@ const Search = (props: Props) => {
                         return (
                             <Link href={el.link}
                                 key={index}
+                                onClick={handleClick ?? undefined}
                             >
                                 <div
                                     style={{

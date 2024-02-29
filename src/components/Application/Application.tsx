@@ -18,6 +18,8 @@ import { models } from '@/core/data/applicationModels';
 import { selectSendApplicationStatus } from '@/core/store/users/users-selectors';
 import { RequestStatus } from '@/models/Services';
 import { gtagEvent } from '@/core/config/gtagEvent';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import Loading from '@/app/loading';
 
 
 
@@ -172,6 +174,7 @@ function Application({ handleClose, open, modelId, onSuccessSendApplication, ban
 				}}
 			>
 				<Box sx={style}>
+					{reqStatus === 'loading' && <Loading />}
 					<Stack
 						sx={{
 							position: 'relatvie',
@@ -192,17 +195,24 @@ function Application({ handleClose, open, modelId, onSuccessSendApplication, ban
 							sx={{
 								color: '#4DA7FF',
 								fontSize: '30px',
-								fontWeight: 600
+								fontWeight: 600,
+								"@media(max-width:600px)": {
+									fontSize: '22px'
+								}
 							}}
 						>
 							Заполните форму
 						</Typography>
 						<Typography component='p'
 							sx={{
-								width: '60%'
+								mt: '10px',
+								width: '60%',
+								"@media(max-width:600px)": {
+									width: '100%'
+								}
 							}}
 						>
-							Вам позвонит наш эксперт в ближайщие 15 минту и обсудит ваш запрос.
+							Вам позвонит наш эксперт в ближайшие 15 минут и обсудит ваш запрос.
 						</Typography>
 						<Grid
 							component='form'
@@ -282,13 +292,13 @@ function Application({ handleClose, open, modelId, onSuccessSendApplication, ban
 								>
 									<Grid item xs={12} sm={12} md={7} lg={12} xl={12}>
 										<FormControlLabel
-											control={<Checkbox checkedIcon={<TripOrigin />} icon={<RadioButtonUnchecked color='primary' />} checked />}
+											control={<Checkbox checkedIcon={<RadioButtonCheckedIcon />} icon={<RadioButtonUnchecked color='primary' />} checked />}
 											label="Предоставляю своё согласие на обработку персональных данных"
 										/>
 									</Grid>
 									<Grid item xs={12} sm={12} md={7} lg={12} xl={12}>
 										<FormControlLabel
-											control={<Checkbox checkedIcon={<TripOrigin />} icon={<RadioButtonUnchecked color='primary' />} checked />}
+											control={<Checkbox checkedIcon={<RadioButtonCheckedIcon />} icon={<RadioButtonUnchecked color='primary' />} checked />}
 											label="Предоставляю своё согласие на получение рекламы и информационных сообщений"
 										/>
 									</Grid>

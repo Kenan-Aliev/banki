@@ -33,9 +33,6 @@ const MobileNav = ({ visible, setVisible }: Props) => {
   return (
     <nav className={visible ? s.nav_a : s.nav}>
       <div className={s.line}></div>
-      {/* <div className={s.search}>
-        <input type='text' placeholder={'Поиск по сайту'} />
-      </div> */}
       <Box m='10px auto 20px' width='90%'>
         <Search
           onChange={handleChangeSearchVal}
@@ -45,6 +42,10 @@ const MobileNav = ({ visible, setVisible }: Props) => {
           height={50}
           margin={0}
           btnHidden={true}
+          handleClick={() => {
+            setSearchVal('')
+            setVisible(false)
+          }}
         />
       </Box>
 

@@ -123,7 +123,7 @@ const DepositsPage = () => {
       />
       <Bonus
         img={'https://leasing.express/wp-content/themes/leasinge/assets/images/logo.svg'}
-        title='Получи +2% к ставке при открытии счета в leasing.express до конца месяца'
+        title='Получи до 24% при открытии счета в leasing.express до конца месяца'
         text='Откройте вклад до конца месяца и наслаждайтесь дополнительной прибылью вместе с leasing.express'
       />
       <div
