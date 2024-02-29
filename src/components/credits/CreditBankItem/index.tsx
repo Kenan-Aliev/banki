@@ -12,6 +12,10 @@ import CreditInfoModal from '../CreditInfoModal';
 import { currencies } from '@/core/data/currency';
 import { baseUrl } from '@/core/const/baseUrl';
 import { Grid, Box, Typography, Button, SxProps, Theme } from '@mui/material';
+import Application from '@/components/Application/Application';
+import { usePathname } from 'next/navigation';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
 
 
 const rootBoxStyles: SxProps<Theme> = {
@@ -99,10 +103,26 @@ const CreditBankItem = (props: CreditBankItemProps) => {
   } = props;
 
   const [infoModal, setInfoModal] = useState(false)
+  const [applicationModal, setApplicationModal] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
 
+  const pathname = usePathname().split('/').slice(1)
   const currency = currencies.find((c) => c.value == activeCurrency)?.text
   const handleChangeInfoModal = () => {
     setInfoModal(!infoModal)
+  }
+
+  const handleChangeApplicationModal = () => {
+    setApplicationModal(!applicationModal)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationModal()
+    handleChangeSuccessModal()
   }
 
   const calculateMonthlyPayment = (loanAmount: number, annualInterestRate: number, loanTermMonths: number): number => {
@@ -149,6 +169,14 @@ const CreditBankItem = (props: CreditBankItemProps) => {
           }}
         />
       }
+      <Application
+        open={applicationModal}
+        handleClose={handleChangeApplicationModal}
+        onSuccessSendApplication={onSuccessSendApplication}
+        modelId={id}
+        bank_name={bank_title}
+        product_name={loanName}
+      />
       <Grid container mb='10px'>
         <Grid item xs={3} sm={3} md={3} lg={0.7} xl={0.7}>
           <Image src={baseUrl + bank_logo} alt={'иконка банка'} width={50} height={50} />
@@ -254,7 +282,11 @@ const CreditBankItem = (props: CreditBankItemProps) => {
               marginLeft: 0
             }
           }}>
-          <BlueBtn text={'Онлайн заявка'} fSize={20} />
+          <BlueBtn text={'Онлайн заявка'} fSize={20}
+            onClick={() => {
+              handleChangeApplicationModal()
+              gtagEvent('click', models[pathname[0]].parentModel)
+            }} />
         </Box>
       </Box>
     </Box >

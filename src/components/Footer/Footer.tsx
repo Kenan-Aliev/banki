@@ -71,7 +71,7 @@ function Footer() {
 						>
 							<Typography>Подробнее</Typography>
 						</AccordionSummary>
-						<AccordionDetails>
+						<AccordionDetails sx={{ padding: 0 }}>
 							<Grid container justifyContent='space-between' alignItems='flex-start' rowGap='20px' mt='30px'>
 								{keys.slice(half, end).map((productName, index) => {
 									const product = Footer[productName]
