@@ -223,7 +223,6 @@ function Application({ handleClose, open, modelId, onSuccessSendApplication, ban
 										fullWidth
 										variant='outlined'
 										name='phone'
-										type='number'
 										error={touched.phone && Boolean(errors.phone)}
 										helperText={touched.phone && errors.phone}
 										placeholder='Номер телефона'
@@ -232,7 +231,8 @@ function Application({ handleClose, open, modelId, onSuccessSendApplication, ban
 												position="start"
 											>
 												+996
-											</InputAdornment>
+											</InputAdornment>,
+											inputMode: 'numeric'
 										}}
 										sx={{
 											"& p": {
