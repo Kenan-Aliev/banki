@@ -12,6 +12,11 @@ import { currencies } from '@/core/data/currency';
 import { baseUrl } from '@/core/const/baseUrl';
 import { Grid, Box, Typography, Button, SxProps, Theme } from '@mui/material';
 import { MortgageItemT } from '@/models/Mortgages/Mortgages';
+import Application from '@/components/Application/Application';
+import { usePathname } from 'next/navigation';
+import SendApplicationSuccesModal from '@/components/SendApplicationSuccesModal';
+import { gtagEvent } from '@/core/config/gtagEvent';
+import { models } from '@/core/data/applicationModels';
 
 
 const rootBoxStyles: SxProps<Theme> = {
@@ -97,11 +102,36 @@ const MortgageOfferItem = (props: MortgageOfferProps) => {
   } = props;
 
   const [infoModal, setInfoModal] = useState(false)
+  const [openApplicationForm, setOpenApplicationForm] = useState(false)
+  const [succesModal, setSuccessModal] = useState(false)
+  const pathname = usePathname().split('/').slice(1)
 
   const currency = currencies.find((c) => c.value == activeCurrency)?.text
 
+
+  const handleChangeApplicationForm = () => {
+    setOpenApplicationForm(!openApplicationForm)
+  }
+
+  const handleChangeSuccessModal = () => {
+    setSuccessModal(!succesModal)
+  }
+
+  const onSuccessSendApplication = () => {
+    handleChangeApplicationForm()
+    handleChangeSuccessModal()
+  }
   return (
     <Box sx={rootBoxStyles}>
+      <Application
+        open={openApplicationForm}
+        handleClose={handleChangeApplicationForm}
+        onSuccessSendApplication={onSuccessSendApplication}
+      />
+      <SendApplicationSuccesModal
+        open={succesModal}
+        handleClose={handleChangeSuccessModal}
+      />
       <Grid container mb='10px'>
         <Grid item xs={3} sm={3} md={3} lg={0.7} xl={0.7}>
           <Image src={baseUrl + bank_logo} alt={'иконка банка'} width={50} height={50} />
@@ -200,7 +230,15 @@ const MortgageOfferItem = (props: MortgageOfferProps) => {
               marginLeft: 0
             }
           }}>
-          <BlueBtn text={'Онлайн заявка'} fSize={20} />
+          <BlueBtn
+            text={'Онлайн заявка'}
+            fSize={20}
+            onClick={() => {
+              handleChangeApplicationForm()
+              gtagEvent('click', models[pathname[0]].parentModel)
+            }}
+
+          />
         </Box>
       </Box>
     </Box >
