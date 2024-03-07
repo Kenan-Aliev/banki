@@ -16,6 +16,8 @@ interface BonusProps {
   img?: StaticImageData | string;
   text?: string;
   height?: number;
+  bank_name?: string
+  product_name?: string
 }
 
 const Bonus = (props: BonusProps) => {
@@ -24,6 +26,8 @@ const Bonus = (props: BonusProps) => {
     img,
     text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     height,
+    bank_name,
+    product_name
   } = props;
 
   const [openApplicationForm, setOpenApplicationForm] = useState(false)
@@ -55,6 +59,8 @@ const Bonus = (props: BonusProps) => {
         open={openApplicationForm}
         handleClose={handleChangeApplicationForm}
         onSuccessSendApplication={onSuccessSendApplication}
+        bank_name={bank_name}
+        product_name={product_name}
       />
       <SendApplicationSuccesModal
         open={succesModal}

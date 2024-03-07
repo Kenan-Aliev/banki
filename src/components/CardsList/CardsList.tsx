@@ -13,6 +13,7 @@ import { selectCards, selectCardsStatus } from '@/core/store/cards/cards-selecto
 import { CardItemT } from '@/models/Cards/Cards';
 import CreditCardItem from '../CreditCardItem/CreditCardItem';
 import DebitCardItem from '../DebitCardItem';
+import ShowMoreBtn from '@/UI/ShowMoreBtn';
 
 interface CardsListProps {
   options?: {
@@ -116,7 +117,7 @@ const CardsList = (props: CardsListProps) => {
       {count && count > filterData.offset + filterData.limit
         ?
         <div className={s.btn_cont}>
-          <BlueBtn text={'Показать еще'} width={235}
+          <ShowMoreBtn
             onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
           />
         </div>

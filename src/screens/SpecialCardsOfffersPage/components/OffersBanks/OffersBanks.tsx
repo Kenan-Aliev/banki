@@ -9,6 +9,7 @@ import { getCardsI } from '@/models/Services';
 import { selectCards, selectCardsStatus } from '@/core/store/cards/cards-selectors';
 import { useAppSelector } from '@/hooks/redux';
 import Loading from '@/app/loading';
+import ShowMoreBtn from '@/UI/ShowMoreBtn';
 
 interface OffersBanksProps {
   title?: string;
@@ -36,7 +37,7 @@ const OffersBanks = (props: OffersBanksProps) => {
       {count && count > filterData.offset + filterData.limit
         ?
         <div className={styles.btn_cont}>
-          <BlueBtn text={'Показать еще'} width={235}
+          <ShowMoreBtn
             onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
           />
         </div>

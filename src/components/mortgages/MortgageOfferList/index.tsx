@@ -12,6 +12,7 @@ import { selectGetMortgagesStatus, selectMortgages } from '@/core/store/mortgage
 import { MortgageItemT } from '@/models/Mortgages/Mortgages';
 import MortgageOfferItem from '../MortgageOfferItem';
 import ExpandedItems from '@/components/Offers/ExpandedOffers';
+import ShowMoreBtn from '@/UI/ShowMoreBtn';
 
 interface MortgagesListProps {
   options?: {
@@ -105,7 +106,7 @@ const MortgagesList = (props: MortgagesListProps) => {
       {count && count > filterData.offset + filterData.limit
         ?
         <div className={s.btn_cont}>
-          <BlueBtn text={'Показать еще'} width={235}
+          <ShowMoreBtn
             onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
           />
         </div>

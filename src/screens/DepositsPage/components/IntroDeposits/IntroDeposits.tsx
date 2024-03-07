@@ -13,6 +13,7 @@ import { selectDeposits } from '@/core/store/deposits/deposits-selectors';
 import FilterModal from '../FilterModal/FilterModal';
 import CustomWhiteSelectTitle2 from '@/UI/CustomWhiteSelectTitle2/CustomWhiteSelectTitle2';
 import { Stack } from '@mui/material';
+import { timeframe } from '@/core/data/filters';
 
 interface Props {
   handleChangeFilter: (prop: string, value: any) => void
@@ -42,8 +43,9 @@ const IntroDeposits = (props: Props) => {
 
   const handleChangeSumma = (prop: string, value: any) => {
     switch (prop) {
-      case "amount_range":
-        setSumma(value)
+      case "amount_range": {
+        const v = value[0] === '0' ? (value as string).substring(1) : value
+        setSumma(v);
         if (timer) {
           clearTimeout(timer);
         }
@@ -53,6 +55,7 @@ const IntroDeposits = (props: Props) => {
           }, 1000)
         );
         break
+      }
       case 'currency':
         handleChangeFilter(prop, value)
         break
@@ -97,15 +100,14 @@ const IntroDeposits = (props: Props) => {
             }}
           >
             <CustomWhiteSelectTitle2
-              value={filterData.bank_id ?? []}
-              items={banks}
-              multiple={true}
-              isAllExist={false}
-              defaultValue={filterData.bank_id}
-              name='bank_id'
+              items={timeframe}
+              labelName='Срок'
+              isAllExist={true}
+              name='term_range'
+              prop='term_range'
               onChange={handleChangeFilter}
-              prop='bank_id'
-              labelName='Банки'
+              defaultValue={filterData.term_range ?? ''}
+              value={filterData.term_range ?? ''}
             />
             <BlueBtn text={'Показать'}
               count={depositsCount ?? 0}
@@ -123,7 +125,10 @@ const IntroDeposits = (props: Props) => {
         banks={banks}
         count={depositsCount}
         handleScrollToDeposits={handleScrollToDeposits}
-        cleanFilter={cleanFilter}
+        cleanFilter={() => {
+          setSumma(0)
+          cleanFilter()
+        }}
       />
     </div >
   );

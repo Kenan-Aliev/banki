@@ -22,8 +22,6 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import Loading from '@/app/loading';
 
 
-
-
 interface Props {
 	open: boolean
 	handleClose: () => void
@@ -31,6 +29,7 @@ interface Props {
 	modelId?: number
 	bank_name?: string
 	product_name?: string
+	summa?:string
 }
 
 const waveBoxStyle = {

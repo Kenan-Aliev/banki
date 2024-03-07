@@ -11,6 +11,7 @@ import { getDepositsI } from '@/models/Services';
 import CustomSelect2 from '@/UI/CustomSelect2/CustomSelect2';
 import SpecialOfferItem from '@/components/Offers/SpecialOfferItem/SpecialOfferItem';
 import { currencies } from '@/core/data/currency';
+import ShowMoreBtn from '@/UI/ShowMoreBtn';
 
 interface SpecialOffersListProps {
 	options: {
@@ -54,7 +55,7 @@ const SpecialOffersList = (props: SpecialOffersListProps) => {
 			{count && count > filterData.offset + filterData.limit
 				?
 				<div className={s.btn_cont}>
-					<BlueBtn text={'Показать еще'} width={235}
+					<ShowMoreBtn
 						onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
 					/>
 				</div>

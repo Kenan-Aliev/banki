@@ -22,6 +22,7 @@ import { getDepositsI } from '@/models/Services';
 import { selectMonthOffers, selectSpecialOffers } from '@/core/store/deposits/deposits-selectors';
 import { getBanks } from '@/core/store/banks/banks-actions';
 import data from '@/core/data'
+import { Typography } from '@mui/material';
 
 
 
@@ -121,11 +122,7 @@ const DepositsPage = () => {
         handleScrollToDeposits={handleScrollToDeposits}
         cleanFilter={cleanFilter}
       />
-      <Bonus
-        img={'https://leasing.express/wp-content/themes/leasinge/assets/images/logo.svg'}
-        title='Получи до 24% при открытии счета в leasing.express до конца месяца'
-        text='Откройте вклад до конца месяца и наслаждайтесь дополнительной прибылью вместе с leasing.express'
-      />
+
       <div
         ref={ref}
       >
@@ -147,6 +144,28 @@ const DepositsPage = () => {
           handleChangeFilter={handleChangeFilter}
         />
       </div>
+      <Typography sx={{
+        "@media(min-width:600px)": {
+          display: 'none'
+        },
+        "& mark": {
+          background: 'transparent',
+          color: '#4da7ff',
+          fontSize: '14px'
+        }
+      }}>
+        Сервис vsebanki.kg позволяет быстро найти лучшие вклады с самыми высокими процентными ставками и рассчитать доходность.
+        На <mark>{new Date().toLocaleDateString()}</mark> вам доступны проверенные вклады со ставками до 24% и открытием в онлайн-режиме.
+        Сравните ставки по вкладам для физических лиц и выберите, куда лучше вложить деньги под проценты,
+        чтобы получить максимальный доход.
+      </Typography>
+      <Bonus
+        img={'https://leasing.express/wp-content/themes/leasinge/assets/images/logo.svg'}
+        title='Получи до 24% при открытии счета в leasing.express до конца месяца'
+        text='Откройте вклад до конца месяца и наслаждайтесь дополнительной прибылью вместе с leasing.express'
+        bank_name='leasing express'
+        product_name='Акция 24%'
+      />
 
       {/* <PopularOffers setActive={setCurrentOffer} active={currentOffer} data={staticData.PopularOffers} /> */}
       <OfferMonth offers={monthOffers.results} category='Вклады' />

@@ -12,6 +12,7 @@ import { getDepositsI } from '@/models/Services';
 import CustomSelect2 from '@/UI/CustomSelect2/CustomSelect2';
 import { DepositItemT } from '@/models/Deposit/Deposit';
 import ExpandedItems from '../ExpandedOffers';
+import ShowMoreBtn from '@/UI/ShowMoreBtn';
 
 interface OfferBanksProps {
   options: {
@@ -107,7 +108,7 @@ const OffersBanks = (props: OfferBanksProps) => {
       {count && count > filterData.offset + filterData.limit
         ?
         <div className={s.btn_cont}>
-          <BlueBtn text={'Показать еще'} width={235}
+          <ShowMoreBtn
             onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
           />
         </div>

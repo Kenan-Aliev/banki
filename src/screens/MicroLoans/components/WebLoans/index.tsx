@@ -10,6 +10,7 @@ import { useAppSelector } from '@/hooks/redux';
 import { selectCredits, selectGetCreditsStatus } from '@/core/store/credits/credits-selectors';
 import Loading from '@/app/loading';
 import { getCreditsI } from '@/models/Services';
+import ShowMoreBtn from '@/UI/ShowMoreBtn';
 
 interface WebLoansProps {
   filterData: getCreditsI
@@ -35,9 +36,7 @@ const WebLoans = (props: WebLoansProps) => {
       {count && count > filterData.offset + filterData.limit
         ?
         <div className={s.btn_cont}>
-          <BlueBtn
-            text={'Показать еще'}
-            width={235}
+          <ShowMoreBtn
             onClick={() => handleChangeFilterData('offset', filterData.offset + 10)}
           />
         </div>

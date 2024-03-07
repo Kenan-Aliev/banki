@@ -12,6 +12,7 @@ import { CreditItemT } from '@/models/Credits/Credits';
 import Loading from '@/app/loading';
 import CreditBankItem from '../CreditBankItem';
 import ExpandedItems from '@/components/Offers/ExpandedOffers';
+import ShowMoreBtn from '@/UI/ShowMoreBtn';
 
 interface CreditBankListProps {
   options?: {
@@ -108,7 +109,7 @@ const CreditBankList = (props: CreditBankListProps) => {
       {count && count > filterData.offset + filterData.limit
         ?
         <div className={s.btn_cont}>
-          <BlueBtn text={'Показать еще'} width={235}
+          <ShowMoreBtn
             onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
           />
         </div>

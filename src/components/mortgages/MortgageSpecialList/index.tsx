@@ -8,6 +8,7 @@ import { useAppSelector } from '@/hooks/redux';
 import { selectGetSpecialOffersStatus, selectSpecialOffers } from '@/core/store/mortgages/mortgage-selectors';
 import { getMortgages } from '@/models/Services';
 import Loading from '@/app/loading';
+import ShowMoreBtn from '@/UI/ShowMoreBtn';
 
 interface MortgageSpecialListProps {
   handleChangeParams: (prop: string, value: any) => void
@@ -37,7 +38,7 @@ const MortgageSpecialList = (props: MortgageSpecialListProps) => {
         count && count > params.offset + params.limit
           ?
           <div className={styles.btn_cont}>
-            <BlueBtn text={'Показать еще'} width={235}
+            <ShowMoreBtn
               onClick={() => handleChangeParams('offset', params.offset + 10)}
             />
           </div>
