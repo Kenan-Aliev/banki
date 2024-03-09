@@ -82,6 +82,8 @@ const AutocreditPage = ({ creditType, data }: Props) => {
       <Bonus title='Купи автомобиль в рассрочку за 1 день!'
         text='Нужны только паспорт и права, 98% одобрений, Без залога, справок и поручителей, Первоначальный платеж 25%, Срок 4 года'
         img='https://leasing.express/wp-content/themes/leasinge/assets/images/logo.svg'
+        bank_name='leasing.express'
+        product_name='Автокредит'
       />
       <div ref={ref}>
         <CreditBankList

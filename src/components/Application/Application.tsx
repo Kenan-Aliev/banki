@@ -29,7 +29,7 @@ interface Props {
 	modelId?: number
 	bank_name?: string
 	product_name?: string
-	summa?:string
+	summa?: string
 }
 
 const waveBoxStyle = {
@@ -135,8 +135,8 @@ function Application({ handleClose, open, modelId, onSuccessSendApplication, ban
 			const req: sendApplicationData = {
 				...values,
 				phone: '996' + values.phone,
-				parent_model: models[pathname[0]].parentModel,
-				model: models[pathname[0]].childModel,
+				parent_model: pathname[1] && pathname[1] === 'autocredit' ? 'autocredit' : models[pathname[0]].parentModel,
+				model: pathname[1] && pathname[1] === 'autocredit' ? 'autocredit' : models[pathname[0]].childModel,
 				product_name,
 				bank_name,
 				additional_of_applicant: [
