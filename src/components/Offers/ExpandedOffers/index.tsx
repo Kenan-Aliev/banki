@@ -10,59 +10,61 @@ import { CardItemT } from '@/models/Cards/Cards';
 import CreditCardItem from '@/components/CreditCardItem/CreditCardItem';
 import DebitCardItem from '@/components/DebitCardItem';
 
-type ItemsTypes = 'Депозиты' | 'Кредиты' | 'Ипотека' | 'Кредитные карты' | 'Дебетовые карты'
+type ItemsTypes = 'Депозиты' | 'Кредиты' | 'Ипотека' | 'Кредитные карты' | 'Дебетовые карты';
 
 const ExpandedItems = ({
-	activeCurrency, items, itemsName, showPayment
+  activeCurrency,
+  items,
+  itemsName,
+  showPayment,
 }: {
-	items: any[]
-	activeCurrency: string
-	itemsName: ItemsTypes
-	showPayment?: boolean
+  items: any[];
+  activeCurrency: string;
+  itemsName: ItemsTypes;
+  showPayment?: boolean;
 }) => {
+  const expandedItems = useMemo(() => {
+    switch (itemsName) {
+      case 'Депозиты':
+        return items.map((item) => {
+          const deposit = item as DepositItemT;
+          return <DepositOfferItem item={deposit} activeCurrency={activeCurrency} key={deposit.deposit_id} />;
+        });
+      case 'Кредиты':
+        return items.map((item) => {
+          const credit = item as CreditItemT;
+          return (
+            <CreditBankItem
+              item={credit}
+              activeCurrency={activeCurrency}
+              key={credit.id}
+              showPayment={showPayment}
+            />
+          );
+        });
+      case 'Ипотека':
+        return items.map((item) => {
+          const mortgage = item as MortgageItemT;
+          return <MortgageOfferItem item={mortgage} activeCurrency={activeCurrency} key={mortgage.id} />;
+        });
 
-	const expandedItems = useMemo(() => {
-		switch (itemsName) {
-			case "Депозиты":
-				return items.map((item) => {
-					const deposit = item as DepositItemT
-					return <DepositOfferItem item={deposit} activeCurrency={activeCurrency} key={deposit.deposit_id} />
-				}
-				)
-			case "Кредиты":
-				return items.map((item) => {
-					const credit = item as CreditItemT
-					return <CreditBankItem item={credit} activeCurrency={activeCurrency} key={credit.id} showPayment={showPayment} />
-				}
-				)
-			case "Ипотека":
-				return items.map((item) => {
-					const mortgage = item as MortgageItemT
-					return <MortgageOfferItem item={mortgage} activeCurrency={activeCurrency} key={mortgage.id} />
-				}
-				)
+      case 'Кредитные карты':
+        return items.map((item) => {
+          const card = item as CardItemT;
+          return <CreditCardItem item={card} key={card.id} />;
+        });
 
-			case 'Кредитные карты':
-				return items.map((item) => {
-					const card = item as CardItemT
-					return <CreditCardItem item={card} key={card.id} />
-				})
+      case 'Дебетовые карты':
+        return items.map((item) => {
+          const card = item as CardItemT;
+          return <DebitCardItem item={card} key={card.id} />;
+        });
 
-			case 'Дебетовые карты':
-				return items.map((item) => {
-					const card = item as CardItemT
-					return <DebitCardItem item={card} key={card.id} />
-				})
-
-			default: return null
-		}
-	}, [items])
-	return (
-		<Stack spacing={1}>
-			{expandedItems}
-		</Stack>
-
-	);
+      default:
+        return null;
+    }
+  }, [items]);
+  return expandedItems;
 };
 
-export default ExpandedItems
+export default ExpandedItems;

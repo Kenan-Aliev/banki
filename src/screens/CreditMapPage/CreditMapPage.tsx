@@ -18,38 +18,38 @@ import { getBanks } from '@/core/store/banks/banks-actions';
 import { getCards, getMonthOffers, getTopCreditCards } from '@/core/store/cards/cards-actions';
 import CardsList from '@/components/CardsList/CardsList';
 import { selectMonthOffers, selectTopCreditCards } from '@/core/store/cards/cards-selectors';
-import bonusImg from '@/assets/icons/credit_cards_bonus.jpg'
+import bonusImg from '@/assets/icons/credit_cards_bonus.jpg';
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 
-export default function CreditMapPage() {
+export default function CreditMapPage({ id }: { id?: string }) {
   const staticData = data.CreditCardsPage;
-  const communicate = data.DepositsPage.communicate
-  const monthOffers = useAppSelector(selectMonthOffers)
-  const topCreditCards = useAppSelector(selectTopCreditCards)
+  const communicate = data.DepositsPage.communicate;
+  const monthOffers = useAppSelector(selectMonthOffers);
+  const topCreditCards = useAppSelector(selectTopCreditCards);
 
-  const dispatch = useAppDispatch()
-  const ref = useRef<HTMLDivElement>(null)
+  const dispatch = useAppDispatch();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [filterData, setFilterData] = useState<getCardsI>({
     limit: 10,
     offset: 0,
     card_type: 'credit',
-    ordering: 'cashback_percentage'
-  })
+    ordering: 'cashback_percentage',
+    issuing_bank: id ? [id] : [],
+  });
 
   const fetchMonthOffers = () => {
-    dispatch(getMonthOffers({ card_type: 'credit', limit: 10, offset: 0, offer_of_the_month: true }))
-  }
+    dispatch(getMonthOffers({ card_type: 'credit', limit: 10, offset: 0, offer_of_the_month: true }));
+  };
 
   const cleanFilter = () => {
     setFilterData({
       limit: 10,
       offset: 0,
       card_type: 'credit',
-      ordering: filterData.ordering
-    })
-  }
-
+      ordering: filterData.ordering,
+    });
+  };
 
   const handleChangeFilter = (prop: string, value: any, selectOne?: boolean) => {
     let newFilterData = { ...filterData, offset: 0, limit: 10, ordering: filterData.ordering };
@@ -60,8 +60,8 @@ export default function CreditMapPage() {
         card_type: filterData.card_type,
         offset: 0,
         limit: 10,
-        ordering: filterData.ordering
-      }
+        ordering: filterData.ordering,
+      };
     } else if (value === false) {
       delete newFilterData[prop];
     } else {
@@ -72,37 +72,40 @@ export default function CreditMapPage() {
 
   const handleScrollToCards = () => {
     ref.current.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }
+      behavior: 'smooth',
+    });
+  };
 
   const fetchCards = (params: getCardsI) => {
-    dispatch(getCards(params))
-  }
+    dispatch(getCards(params));
+  };
 
   const fetchBanks = () => {
-    dispatch(getBanks({ limit: 50, offset: 0 }))
-  }
+    dispatch(getBanks({ limit: 50, offset: 0 }));
+  };
 
   const fetchTopCreditCards = () => {
-    dispatch(getTopCreditCards())
-  }
-
+    dispatch(getTopCreditCards());
+  };
 
   useEffect(() => {
-    fetchBanks()
-    fetchMonthOffers()
-    fetchTopCreditCards()
-  }, [])
+    fetchBanks();
+    fetchMonthOffers();
+    fetchTopCreditCards();
+  }, []);
 
   useEffect(() => {
     const filter = {
       ...filterData,
-      issuing_bank: filterData.issuing_bank && typeof filterData.issuing_bank !== 'string' && filterData.issuing_bank.length > 0 ? filterData.issuing_bank.join() : ''
-    }
-    fetchCards(filter)
-  }, [filterData])
-
+      issuing_bank:
+        filterData.issuing_bank &&
+        typeof filterData.issuing_bank !== 'string' &&
+        filterData.issuing_bank.length > 0
+          ? filterData.issuing_bank.join()
+          : '',
+    };
+    fetchCards(filter);
+  }, [filterData]);
 
   return (
     <Wrapper>
@@ -126,11 +129,11 @@ export default function CreditMapPage() {
           options={[
             {
               text: 'По кэшбеку',
-              value: 'cashback_percentage'
+              value: 'cashback_percentage',
             },
             {
               text: 'По кредитному лимиту',
-              value: 'credit_limit'
+              value: 'credit_limit',
             },
           ]}
         />

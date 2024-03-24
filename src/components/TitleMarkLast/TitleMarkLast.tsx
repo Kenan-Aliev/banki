@@ -7,10 +7,10 @@ type Props = {
 };
 const TitleMarkLast = ({ title, sub }: Props) => {
   return (
-    <div className={s.title}>
+    <h2 className={s.title}>
       {title}
       <mark>{sub}</mark>
-    </div>
+    </h2>
   );
 };
 

@@ -19,7 +19,7 @@ const stackStyles: SxProps<Theme> = {
 function Reference() {
 	return (
 		<Stack sx={stackStyles} gap='15px'>
-			<Typography component='p'>
+			{/* <Typography component='p'>
 				ПАО «Росбанк» – универсальный финансовый институт с хорошо развитой филиальной сетью,
 				один из крупнейших банков России. Ключевые направления деятельности – розничный бизнес,
 				обслуживание корпоративных клиентов, инвестиционно-банковские услуги,
@@ -29,8 +29,8 @@ function Reference() {
 			<Typography component='p'>
 				Банк был зарегистрирован в 1993 году под наименованием «Независимость».
 			</Typography>
-			<Typography component='p'>Дата последнего изменения: 26.07.2023</Typography>
-			<Accordion
+			<Typography component='p'>Дата последнего изменения: 26.07.2023</Typography> */}
+			{/* <Accordion
 				elevation={0}
 			>
 				<AccordionSummary
@@ -49,7 +49,7 @@ function Reference() {
 					malesuada lacus ex, sit amet blandit leo lobortis eget.
 				</Typography>
 			</AccordionDetails>
-		</Accordion>
+		</Accordion> */}
 		</Stack >
 	)
 }

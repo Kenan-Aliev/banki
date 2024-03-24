@@ -15,7 +15,6 @@ import { getAllMortgages, getMonthOffers } from '@/core/store/mortgages/mortgage
 import MortgagesList from '@/components/mortgages/MortgageOfferList';
 import { selectMonthOffers } from '@/core/store/mortgages/mortgage-selectors';
 
-
 type ChoiseT = {
   active: boolean;
   name: string;
@@ -30,54 +29,61 @@ interface MortgagePageProps {
     choices: ChoiseT[];
     questData: questT[];
   };
+  id?: string;
 }
 
 const MortgagePage = (props: MortgagePageProps) => {
-  const { staticData } = props;
+  const { staticData, id } = props;
   const [current, setCurrent] = useState<string>('Ипотека');
 
-  const monthOffers = useAppSelector(selectMonthOffers)
+  const monthOffers = useAppSelector(selectMonthOffers);
 
-  const dispatch = useAppDispatch()
-  const ref = useRef<HTMLDivElement>(null)
+  const dispatch = useAppDispatch();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [filterData, setFilterData] = useState<getMortgages>({
     limit: 10,
     offset: 0,
     currency: 'kgs',
-    ordering: 'min_interest_rate'
-  })
+    ordering: 'min_interest_rate',
+    bank: id ? [id] : [],
+  });
 
   const handleChangeFilter = (prop: string, value: any) => {
     if (prop === 'offset') {
-      setFilterData({ ...filterData, [prop]: value })
+      setFilterData({ ...filterData, [prop]: value });
+    } else {
+      setFilterData({ ...filterData, [prop]: value, offset: 0 });
     }
-    else {
-      setFilterData({ ...filterData, [prop]: value, offset: 0 })
-    }
-  }
+  };
 
   const handleScrollToMortgages = () => {
     ref.current.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }
+      behavior: 'smooth',
+    });
+  };
 
   const fetchMortgages = (params: getMortgages) => {
-    dispatch(getAllMortgages(params))
-  }
+    dispatch(getAllMortgages(params));
+  };
 
   const fetchMonthOffers = () => {
-    dispatch(getMonthOffers({ offer_of_the_month: true, limit: 10, offset: 0 }))
-  }
+    dispatch(getMonthOffers({ offer_of_the_month: true, limit: 10, offset: 0 }));
+  };
 
   useEffect(() => {
-    fetchMonthOffers()
-  }, [])
+    fetchMonthOffers();
+  }, []);
 
   useEffect(() => {
-    fetchMortgages(filterData)
-  }, [filterData])
+    fetchMortgages({
+      ...filterData,
+      bank:
+        filterData.bank && typeof filterData.bank !== 'string' && filterData.bank.length > 0
+          ? filterData.bank.join()
+          : '',
+    });
+  }, [filterData]);
 
   return (
     <PageWrapper>
@@ -92,18 +98,19 @@ const MortgagePage = (props: MortgagePageProps) => {
       <Bonus
         title='Оформи ипотеку в Demirbank онлайн'
         img='https://demirbank.kg/assets/c207871/img/logo.png'
-        text='Теперь у вас есть возможность приобрести недвижимость в ипотеку от 6%!' />
+        text='Теперь у вас есть возможность приобрести недвижимость в ипотеку от 6%!'
+      />
       <div ref={ref}>
         <MortgagesList
           options={[
             {
               text: 'По процентной ставке',
-              value: 'min_interest_rate'
+              value: 'min_interest_rate',
             },
             {
               text: 'По платежу',
-              value: 'min_credit'
-            }
+              value: 'min_credit',
+            },
           ]}
           filterData={filterData}
           handleChangeFilter={handleChangeFilter}

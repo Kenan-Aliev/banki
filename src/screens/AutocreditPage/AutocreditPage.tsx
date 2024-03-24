@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
 import PageWrapper from '@/containers/PageWrapper';
@@ -30,48 +30,56 @@ type Props = {
     worksData: ItemT[];
     questData: questT[];
     ourStrongs: {
-      num: string
-      title: string
-      sub: string
-    }[],
+      num: string;
+      title: string;
+      sub: string;
+    }[];
   };
-  creditType: CreditType
+  creditType: CreditType;
+  id?: string;
 };
 
-const AutocreditPage = ({ creditType, data }: Props) => {
-  const dispatch = useAppDispatch()
-  const ref = useRef<HTMLDivElement>(null)
+const AutocreditPage = ({ creditType, data, id }: Props) => {
+  const dispatch = useAppDispatch();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [filterData, setFilterData] = useState<getCreditsI>({
     limit: 10,
     offset: 0,
     currency: 'kgs',
     ordering: 'min_rating',
-    loanType: String(creditType.id)
-  })
+    loanType: String(creditType.id),
+    bank: id ? [id] : [],
+  });
 
   const handleChangeFilter = (prop: string, value: any) => {
     if (prop === 'offset') {
-      setFilterData({ ...filterData, [prop]: value })
+      setFilterData({ ...filterData, [prop]: value });
+    } else {
+      setFilterData({ ...filterData, [prop]: value, offset: 0 });
     }
-    else {
-      setFilterData({ ...filterData, [prop]: value, offset: 0 })
-    }
-  }
+  };
 
   const handleScrollToCredits = () => {
     ref.current.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }
+      behavior: 'smooth',
+    });
+  };
 
   const fetchCredits = (params: getCreditsI) => {
-    dispatch(getCredits(params))
-  }
+    dispatch(getCredits(params));
+  };
 
   useEffect(() => {
-    fetchCredits(filterData)
-  }, [filterData])
+    const filter = {
+      ...filterData,
+      bank:
+        filterData.bank && typeof filterData.bank !== 'string' && filterData.bank.length > 0
+          ? filterData.bank.join()
+          : '',
+    };
+    fetchCredits(filter);
+  }, [filterData]);
   return (
     <PageWrapper>
       <IntroAuto
@@ -79,7 +87,8 @@ const AutocreditPage = ({ creditType, data }: Props) => {
         filterData={filterData}
         handleScrollToCredits={handleScrollToCredits}
       />
-      <Bonus title='Купи автомобиль в рассрочку за 1 день!'
+      <Bonus
+        title='Купи автомобиль в рассрочку за 1 день!'
         text='Нужны только паспорт и права, 98% одобрений, Без залога, справок и поручителей, Первоначальный платеж 25%, Срок 4 года'
         img='https://leasing.express/wp-content/themes/leasinge/assets/images/logo.svg'
         bank_name='leasing.express'
@@ -90,16 +99,16 @@ const AutocreditPage = ({ creditType, data }: Props) => {
           options={[
             {
               text: 'По минимальной процентной ставке',
-              value: 'min_rating'
+              value: 'min_rating',
             },
             {
               text: 'По минимальной сумме',
-              value: 'min_summ'
+              value: 'min_summ',
             },
             {
               text: 'По максимальной сумме',
-              value: 'max_summ'
-            }
+              value: 'max_summ',
+            },
           ]}
           filterData={filterData}
           handleChangeFilter={handleChangeFilter}

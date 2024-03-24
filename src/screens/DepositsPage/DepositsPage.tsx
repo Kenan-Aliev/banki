@@ -17,20 +17,23 @@ import Feedback from '@/components/FeedBacks/Feedback/Feedback';
 import FrequentQuestions from '@/components/FrequentQuestions/FrequentQuestions';
 import TopBanks from '@/components/TopBanks/TopBanks';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { getDeposits, getMonthOffers, getSpecialOffers, getTopDeposits } from '@/core/store/deposits/deposits-actions';
+import {
+  getDeposits,
+  getMonthOffers,
+  getSpecialOffers,
+  getTopDeposits,
+} from '@/core/store/deposits/deposits-actions';
 import { getDepositsI } from '@/models/Services';
 import { selectMonthOffers, selectSpecialOffers } from '@/core/store/deposits/deposits-selectors';
 import { getBanks } from '@/core/store/banks/banks-actions';
-import data from '@/core/data'
+import data from '@/core/data';
 import { Typography } from '@mui/material';
 
+const DepositsPage = ({ id }: { id?: string }) => {
+  const dispatch = useAppDispatch();
+  const ref = useRef<HTMLDivElement>(null);
 
-
-const DepositsPage = () => {
-  const dispatch = useAppDispatch()
-  const ref = useRef<HTMLDivElement>(null)
-
-  const communicateData = data.DepositsPage.communicate
+  const communicateData = data.DepositsPage.communicate;
 
   const [currentOffer, setCurrentOffer] = useState<number>(1);
   const [filterData, setFilterData] = useState<getDepositsI>({
@@ -38,32 +41,31 @@ const DepositsPage = () => {
     offset: 0,
     ordering: '-interest_rate',
     currency: 'kgs',
-  })
-  const monthOffers = useAppSelector(selectMonthOffers)
-  const specialOffers = useAppSelector(selectSpecialOffers)
+    bank_id: id ? [id as string] : [],
+  });
+  const monthOffers = useAppSelector(selectMonthOffers);
+  const specialOffers = useAppSelector(selectSpecialOffers);
 
   const handleScrollToDeposits = () => {
     ref.current.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }
+      behavior: 'smooth',
+    });
+  };
 
   const handleChangeFilter = (prop: string, value: any) => {
     if (prop === 'offset') {
-      setFilterData({ ...filterData, [prop]: value })
+      setFilterData({ ...filterData, [prop]: value });
+    } else if (value === false) {
+      delete filterData[prop];
+      setFilterData({ ...filterData, offset: 0 });
+    } else {
+      setFilterData({ ...filterData, [prop]: value, offset: 0 });
     }
-    else if (value === false) {
-      delete filterData[prop]
-      setFilterData({ ...filterData, offset: 0 })
-    }
-    else {
-      setFilterData({ ...filterData, [prop]: value, offset: 0 })
-    }
-  }
+  };
 
   const fetchDeposits = (params: getDepositsI) => {
-    dispatch(getDeposits(params))
-  }
+    dispatch(getDeposits(params));
+  };
 
   const cleanFilter = () => {
     setFilterData({
@@ -71,48 +73,53 @@ const DepositsPage = () => {
       offset: 0,
       ordering: filterData.ordering,
       currency: 'kgs',
-    })
-  }
+    });
+  };
 
   const fetchMonthOffers = () => {
-    dispatch(getMonthOffers({
-      offset: 0,
-      limit: 10,
-      offer_of_the_month: true
-    }))
-  }
+    dispatch(
+      getMonthOffers({
+        offset: 0,
+        limit: 10,
+        offer_of_the_month: true,
+      }),
+    );
+  };
 
   const fetchSpecialOffers = () => {
-    dispatch(getSpecialOffers({
-      offset: 0,
-      limit: 4,
-      special_offer: true
-    }))
-  }
+    dispatch(
+      getSpecialOffers({
+        offset: 0,
+        limit: 4,
+        special_offer: true,
+      }),
+    );
+  };
   const fetchBanks = () => {
-    dispatch(getBanks({ offset: 0, limit: 100 }))
-  }
+    dispatch(getBanks({ offset: 0, limit: 100 }));
+  };
 
   const fetchTopDeposits = () => {
-    dispatch(getTopDeposits())
-  }
-
+    dispatch(getTopDeposits());
+  };
 
   useEffect(() => {
-    fetchBanks()
-    fetchMonthOffers()
-    fetchSpecialOffers()
-    fetchTopDeposits()
-  }, [])
+    fetchBanks();
+    fetchMonthOffers();
+    fetchSpecialOffers();
+    fetchTopDeposits();
+  }, []);
 
   useEffect(() => {
     const filter = {
       ...filterData,
-      bank_id: filterData.bank_id && typeof filterData.bank_id !== 'string' && filterData.bank_id.length > 0 ? filterData.bank_id.join() : ''
-    }
-    fetchDeposits(filter)
-  }, [filterData])
-
+      bank_id:
+        filterData.bank_id && typeof filterData.bank_id !== 'string' && filterData.bank_id.length > 0
+          ? filterData.bank_id.join()
+          : '',
+    };
+    fetchDeposits(filter);
+  }, [filterData]);
 
   return (
     <PageWrapper>
@@ -123,48 +130,49 @@ const DepositsPage = () => {
         cleanFilter={cleanFilter}
       />
 
-      <div
-        ref={ref}
-      >
+      <div ref={ref}>
         <OffersBanks
-          options={[{
-            text: 'По процентной ставке',
-            value: '-interest_rate'
-          },
-          {
-            text: 'По минимальному взносу',
-            value: 'min_sum'
-          },
-          {
-            text: 'По максимальному взносу',
-            value: 'max_sum'
-          }
+          options={[
+            {
+              text: 'По процентной ставке',
+              value: '-interest_rate',
+            },
+            {
+              text: 'По минимальному взносу',
+              value: 'min_sum',
+            },
+            {
+              text: 'По максимальному взносу',
+              value: 'max_sum',
+            },
           ]}
           filterData={filterData}
           handleChangeFilter={handleChangeFilter}
         />
       </div>
-      <Typography sx={{
-        "@media(min-width:600px)": {
-          display: 'none'
-        },
-        "& mark": {
-          background: 'transparent',
-          color: '#4da7ff',
-          fontSize: '14px'
-        }
-      }}>
-        Сервис vsebanki.kg позволяет быстро найти лучшие вклады с самыми высокими процентными ставками и рассчитать доходность.
-        На <mark>{new Date().toLocaleDateString()}</mark> вам доступны проверенные вклады со ставками до 24% и открытием в онлайн-режиме.
-        Сравните ставки по вкладам для физических лиц и выберите, куда лучше вложить деньги под проценты,
-        чтобы получить максимальный доход.
+      <Typography
+        sx={{
+          '@media(min-width:600px)': {
+            display: 'none',
+          },
+          '& mark': {
+            background: 'transparent',
+            color: '#4da7ff',
+            fontSize: '14px',
+          },
+        }}
+      >
+        Сервис vsebanki.kg позволяет быстро найти лучшие вклады с самыми высокими процентными ставками и
+        рассчитать доходность. На <mark>{new Date().toLocaleDateString()}</mark> вам доступны проверенные
+        вклады со ставками до 24% и открытием в онлайн-режиме. Сравните ставки по вкладам для физических лиц и
+        выберите, куда лучше вложить деньги под проценты, чтобы получить максимальный доход.
       </Typography>
       <Bonus
         img={'https://leasing.express/wp-content/themes/leasinge/assets/images/logo.svg'}
-        title='Получи до 24% при открытии счета в leasing.express до конца месяца'
+        title='Отправь заявку через сервис vsebanki.kg и получи до +0.5% годовых при открытии счета в leasing.express'
         text='Откройте вклад до конца месяца и наслаждайтесь дополнительной прибылью вместе с leasing.express'
         bank_name='leasing express'
-        product_name='Акция 24%'
+        product_name='Спецпредложение'
       />
 
       {/* <PopularOffers setActive={setCurrentOffer} active={currentOffer} data={staticData.PopularOffers} /> */}

@@ -13,20 +13,21 @@ import CustomSelect2 from '@/UI/CustomSelect2/CustomSelect2';
 import { DepositItemT } from '@/models/Deposit/Deposit';
 import ExpandedItems from '../ExpandedOffers';
 import ShowMoreBtn from '@/UI/ShowMoreBtn';
+import { Stack } from '@mui/material';
 
 interface OfferBanksProps {
   options: {
-    text: string
-    value: string | number
+    text: string;
+    value: string | number;
   }[];
-  filterData: getDepositsI
-  handleChangeFilter: (prop: string, value: any) => void
+  filterData: getDepositsI;
+  handleChangeFilter: (prop: string, value: any) => void;
 }
 
 const OffersBanks = (props: OfferBanksProps) => {
   const { options, filterData, handleChangeFilter } = props;
-  const { results: deposits, count } = useAppSelector(selectDeposits)
-  const getDepositsStatus = useAppSelector(selectGetDepositsStatus)
+  const { results: deposits, count } = useAppSelector(selectDeposits);
+  const getDepositsStatus = useAppSelector(selectGetDepositsStatus);
 
   const [expandedBankIds, setExpandedBankIds] = useState<number[]>([]);
   const [bankIdCounts, setBankIdCounts] = useState<{ [key: number]: number }>({});
@@ -52,7 +53,6 @@ const OffersBanks = (props: OfferBanksProps) => {
   const uniqueDeposits: DepositItemT[] = [];
   const addedBankIds: number[] = [];
 
-
   deposits?.forEach((item) => {
     if (!addedBankIds.includes(item.bank_id)) {
       uniqueDeposits.push(item);
@@ -60,60 +60,59 @@ const OffersBanks = (props: OfferBanksProps) => {
     }
   });
 
-
-
   return (
     <div className={s.deposits}>
       <div className={s.title}>
         <span>
-          <mark>{count ?? 0} вкладов {" "}</mark>
+          <mark>{count ?? 0} вкладов </mark>
           подобрано
         </span>
         <CustomSelect2 img={lines} options={options} handleChange={handleChangeFilter} prop={'ordering'} />
       </div>
       <ul className={s.deposit_offers}>
-        {
-          getDepositsStatus === 'loading' ?
-            <Loading />
-            :
-            uniqueDeposits?.map((item) => {
-              const { deposit_id, bank_id } = item;
-              const isExpanded = expandedBankIds.includes(bank_id);
-              const filteredDeposits = deposits.filter((item) => item.bank_id === bank_id && item.deposit_id !== deposit_id);
-              return (
-                <>
-                  <li key={deposit_id}>
-                    <DepositOfferItem
-                      item={item}
-                      activeCurrency={filterData.currency}
-                      openChildren={handleOpenChildren}
-                      child={isExpanded}
-                      count={bankIdCounts[bank_id] - 1}
-                    />
-                  </li>
-                  {
-                    isExpanded && (
-                      <ExpandedItems
-                        items={filteredDeposits}
-                        activeCurrency={filterData.currency}
-                        itemsName='Депозиты'
-                      />
-                    )
-                  }
-                </>
-              )
-            })
-        }
+        {getDepositsStatus === 'loading' ? (
+          <Loading />
+        ) : (
+          uniqueDeposits?.map((item) => {
+            const { deposit_id, bank_id } = item;
+            const isExpanded = expandedBankIds.includes(bank_id);
+            const filteredDeposits = deposits.filter(
+              (item) => item.bank_id === bank_id && item.deposit_id !== deposit_id,
+            );
+            return (
+              <Stack
+                key={deposit_id}
+                sx={{
+                  borderRadius: '14px',
+                  border: '1px solid #d9dbdf',
+                }}
+              >
+                <li>
+                  <DepositOfferItem
+                    item={item}
+                    activeCurrency={filterData.currency}
+                    openChildren={handleOpenChildren}
+                    child={isExpanded}
+                    count={bankIdCounts[bank_id] - 1}
+                  />
+                </li>
+                {isExpanded && (
+                  <ExpandedItems
+                    items={filteredDeposits}
+                    activeCurrency={filterData.currency}
+                    itemsName='Депозиты'
+                  />
+                )}
+              </Stack>
+            );
+          })
+        )}
       </ul>
-      {count && count > filterData.offset + filterData.limit
-        ?
+      {count && count > filterData.offset + filterData.limit ? (
         <div className={s.btn_cont}>
-          <ShowMoreBtn
-            onClick={() => handleChangeFilter('offset', filterData.offset + 10)}
-          />
+          <ShowMoreBtn onClick={() => handleChangeFilter('offset', filterData.offset + 10)} />
         </div>
-        : null}
-
+      ) : null}
     </div>
   );
 };

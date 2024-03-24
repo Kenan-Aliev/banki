@@ -19,36 +19,36 @@ import { getCards, getMonthOffers, getTopDebitCards } from '@/core/store/cards/c
 import { getBanks } from '@/core/store/banks/banks-actions';
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 
-export default function DebitCardsPage() {
+export default function DebitCardsPage({ id }: { id?: string }) {
   const dataMap = data.DebitCardsPage.questData;
-  const communicate = data.DepositsPage.communicate
+  const communicate = data.DepositsPage.communicate;
 
-  const monthOffers = useAppSelector(selectMonthOffers)
-  const topDebitCards = useAppSelector(selectTopDebitCards)
+  const monthOffers = useAppSelector(selectMonthOffers);
+  const topDebitCards = useAppSelector(selectTopDebitCards);
 
-  const dispatch = useAppDispatch()
-  const ref = useRef<HTMLDivElement>(null)
+  const dispatch = useAppDispatch();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [filterData, setFilterData] = useState<getCardsI>({
     limit: 10,
     offset: 0,
     card_type: 'debit',
-    ordering: 'cashback_percentage'
-  })
+    ordering: 'cashback_percentage',
+    issuing_bank: id ? [id] : [],
+  });
 
   const fetchMonthOffers = () => {
-    dispatch(getMonthOffers({ card_type: 'debit', limit: 10, offset: 0, offer_of_the_month: true }))
-  }
+    dispatch(getMonthOffers({ card_type: 'debit', limit: 10, offset: 0, offer_of_the_month: true }));
+  };
 
   const cleanFilter = () => {
     setFilterData({
       limit: 10,
       offset: 0,
       card_type: 'debit',
-      ordering: filterData.ordering
-    })
-  }
-
+      ordering: filterData.ordering,
+    });
+  };
 
   const handleChangeFilter = (prop: string, value: any, selectOne?: boolean) => {
     let newFilterData = { ...filterData, offset: 0, limit: 10, ordering: filterData.ordering };
@@ -59,8 +59,8 @@ export default function DebitCardsPage() {
         card_type: filterData.card_type,
         offset: 0,
         limit: 10,
-        ordering: filterData.ordering
-      }
+        ordering: filterData.ordering,
+      };
     } else if (value === false) {
       delete newFilterData[prop];
     } else {
@@ -71,36 +71,40 @@ export default function DebitCardsPage() {
 
   const handleScrollToCards = () => {
     ref.current.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }
+      behavior: 'smooth',
+    });
+  };
 
   const fetchCards = (params: getCardsI) => {
-    dispatch(getCards(params))
-  }
+    dispatch(getCards(params));
+  };
 
   const fetchBanks = () => {
-    dispatch(getBanks({ limit: 50, offset: 0 }))
-  }
+    dispatch(getBanks({ limit: 50, offset: 0 }));
+  };
 
   const fetchTopDebitCards = () => {
-    dispatch(getTopDebitCards())
-  }
-
+    dispatch(getTopDebitCards());
+  };
 
   useEffect(() => {
-    fetchBanks()
-    fetchMonthOffers()
-    fetchTopDebitCards()
-  }, [])
+    fetchBanks();
+    fetchMonthOffers();
+    fetchTopDebitCards();
+  }, []);
 
   useEffect(() => {
     const filter = {
       ...filterData,
-      issuing_bank: filterData.issuing_bank && typeof filterData.issuing_bank !== 'string' && filterData.issuing_bank.length > 0 ? filterData.issuing_bank.join() : ''
-    }
-    fetchCards(filter)
-  }, [filterData])
+      issuing_bank:
+        filterData.issuing_bank &&
+        typeof filterData.issuing_bank !== 'string' &&
+        filterData.issuing_bank.length > 0
+          ? filterData.issuing_bank.join()
+          : '',
+    };
+    fetchCards(filter);
+  }, [filterData]);
 
   return (
     <Wrapper>
@@ -119,11 +123,11 @@ export default function DebitCardsPage() {
           options={[
             {
               text: 'По кэшбеку',
-              value: 'cashback_percentage'
+              value: 'cashback_percentage',
             },
             {
               text: 'По кредитному лимиту',
-              value: 'credit_limit'
+              value: 'credit_limit',
             },
           ]}
         />

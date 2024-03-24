@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -14,40 +14,37 @@ import { gtagEvent } from '@/core/config/gtagEvent';
 import { usePathname } from 'next/navigation';
 import { models } from '@/core/data/applicationModels';
 
-
 const rootBoxStyles: SxProps<Theme> = {
   width: '100%',
   borderRadius: '14px',
   border: '1px solid #d9dbdf',
   background: '#fff',
   padding: '25px 20px',
-  "& h2,p": {
-    fontFamily: 'inherit'
-  }
-}
+  '& h2,p': {
+    fontFamily: 'inherit',
+  },
+};
 
 const bankTitleStyles: SxProps<Theme> = {
   color: '#000',
   fontSize: '24px',
   fontFamily: 'inherit',
   fontWeight: 'bold',
-  "@media(max-width:600px)": {
+  '@media(max-width:600px)': {
     fontSize: '18px',
-  }
-}
-
-
+  },
+};
 
 const infoItemTitleStyles: SxProps<Theme> = {
   color: '#4da7ff',
-  fontWeight: 500
-}
+  fontWeight: 500,
+};
 
 const infoItemTextStyles: SxProps<Theme> = {
   color: '#121212',
   fontWeight: 500,
-  fontSize: '20px'
-}
+  fontSize: '20px',
+};
 
 const countBtnStyles: SxProps<Theme> = {
   color: '#4da7ff',
@@ -56,24 +53,23 @@ const countBtnStyles: SxProps<Theme> = {
   display: 'flex',
   alignItems: 'center',
   gap: '5px',
-  cursor: 'pointer'
-}
+  cursor: 'pointer',
+};
 
 const infoItemGridStyles: SxProps<Theme> = {
-  "@media(max-width:600px)": {
+  '@media(max-width:600px)': {
     display: 'flex',
     justifyContent: 'space-between',
-    m: '10px 0'
-  }
-}
-
-
+    m: '10px 0',
+  },
+};
 
 interface CreditCardItemProps {
   item: CardItemT;
   openChildren?: (bankId: number) => void;
   child?: boolean;
-  count?: number
+  count?: number;
+  model?: string;
 }
 
 const CreditCardItem = (props: CreditCardItemProps) => {
@@ -82,27 +78,28 @@ const CreditCardItem = (props: CreditCardItemProps) => {
     openChildren,
     child,
     count,
+    model,
   } = props;
 
-  const [applicationModal, setApplicationModal] = useState(false)
-  const [succesModal, setSuccessModal] = useState(false)
+  const [applicationModal, setApplicationModal] = useState(false);
+  const [succesModal, setSuccessModal] = useState(false);
 
-  const pathname = usePathname().split('/').slice(1)
+  const pathname = usePathname().split('/').slice(1);
 
-  const cur = currencies.find((c) => c.value.toLowerCase() == currency.toLowerCase())?.text
+  const cur = currencies.find((c) => c.value.toLowerCase() == currency.toLowerCase())?.text;
 
   const handleChangeApplicationForm = () => {
-    setApplicationModal(!applicationModal)
-  }
+    setApplicationModal(!applicationModal);
+  };
 
   const handleChangeSuccessModal = () => {
-    setSuccessModal(!succesModal)
-  }
+    setSuccessModal(!succesModal);
+  };
 
   const onSuccessSendApplication = () => {
-    handleChangeApplicationForm()
-    handleChangeSuccessModal()
-  }
+    handleChangeApplicationForm();
+    handleChangeSuccessModal();
+  };
   return (
     <Box sx={rootBoxStyles}>
       <Application
@@ -112,43 +109,39 @@ const CreditCardItem = (props: CreditCardItemProps) => {
         modelId={id}
         bank_name={bank_title}
         product_name={name}
+        model={model}
       />
-      <SendApplicationSuccesModal
-        open={succesModal}
-        handleClose={handleChangeSuccessModal}
-      />
+      <SendApplicationSuccesModal open={succesModal} handleClose={handleChangeSuccessModal} />
       <Grid container mb='10px'>
         <Grid item xs={5} sm={3} md={3} lg={2.5} xl={2.5}>
           <Image src={image} alt={'иконка карты'} width={200} height={100} />
         </Grid>
-        <Grid item xs={5.5} sm={8} md={8} lg={3.5} xl={3.5} sx={{
-          "@media(max-width:600px)": {
-            ml: '15px'
-          }
-        }}>
-          <Typography
-            sx={bankTitleStyles}
-            component='h2'
-          >
+        <Grid
+          item
+          xs={5.5}
+          sm={8}
+          md={8}
+          lg={3.5}
+          xl={3.5}
+          sx={{
+            '@media(max-width:600px)': {
+              ml: '15px',
+            },
+          }}
+        >
+          <Typography sx={bankTitleStyles} component='h2'>
             {bank_title}
           </Typography>
           <Typography>{name}</Typography>
         </Grid>
         <Grid item xs={12} lg={2} xl={2} sx={infoItemGridStyles}>
-          <Typography
-            sx={infoItemTitleStyles}
-            mb='10px'>
+          <Typography sx={infoItemTitleStyles} mb='10px'>
             Процентная ставка
           </Typography>
-          <Typography sx={infoItemTextStyles}>
-            {interest_rate} %
-          </Typography>
+          <Typography sx={infoItemTextStyles}>{interest_rate} %</Typography>
         </Grid>
         <Grid item xs={12} lg={2} xl={2} sx={infoItemGridStyles}>
-          <Typography
-            sx={infoItemTitleStyles}
-            mb='10px'
-          >
+          <Typography sx={infoItemTitleStyles} mb='10px'>
             Обслуживание
           </Typography>
           <Typography sx={infoItemTextStyles}>
@@ -156,10 +149,7 @@ const CreditCardItem = (props: CreditCardItemProps) => {
           </Typography>
         </Grid>
         <Grid item xs={12} lg={2} xl={2} sx={infoItemGridStyles}>
-          <Typography
-            sx={infoItemTitleStyles}
-            mb='10px'
-          >
+          <Typography sx={infoItemTitleStyles} mb='10px'>
             Кредитный лимит
           </Typography>
           <Typography sx={infoItemTextStyles}>
@@ -173,46 +163,46 @@ const CreditCardItem = (props: CreditCardItemProps) => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'flex-end',
-          "@media(max-width:600px)": {
+          '@media(max-width:600px)': {
             flexDirection: 'column-reverse',
-          }
+          },
         }}
       >
-        {count && count > 0
-          ? (
-            <Box
-              sx={{
-                "@media(max-width:600px)": {
-                  m: '20px auto 0'
-                }
-              }}
-            >
-              <Typography sx={countBtnStyles}
-                onClick={(e) => openChildren(issuing_bank)}
-              >
-                Ещё {count} карт
-                {child ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-              </Typography>
-            </Box>
-          )
-          : null}
+        {count && count > 0 ? (
+          <Box
+            sx={{
+              '@media(max-width:600px)': {
+                m: '20px auto 0',
+              },
+            }}
+          >
+            <Typography sx={countBtnStyles} onClick={(e) => openChildren(issuing_bank)}>
+              Ещё {count} карт
+              {child ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+            </Typography>
+          </Box>
+        ) : null}
         <Box
           sx={{
             marginLeft: 'auto',
             width: '20%',
-            "@media(max-width:600px)": {
+            '@media(max-width:600px)': {
               width: '100%',
-              marginLeft: 0
-            }
-          }}>
-          <BlueBtn text={'Оформить карту'} fSize={20}
+              marginLeft: 0,
+            },
+          }}
+        >
+          <BlueBtn
+            text={'Оформить карту'}
+            fSize={20}
             onClick={() => {
-              handleChangeApplicationForm()
-              gtagEvent('click', models[pathname[0]].parentModel)
-            }} />
+              handleChangeApplicationForm();
+              gtagEvent('click', model ?? models[pathname[0]].parentModel);
+            }}
+          />
         </Box>
       </Box>
-    </Box >
+    </Box>
   );
 };
 

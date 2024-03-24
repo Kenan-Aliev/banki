@@ -77,7 +77,7 @@ export interface getMortgages {
     currency?: string
     summa?: string
     term?: string
-    bank?: string
+    bank?: string | string[]
     initialPayment?: string;
     age?: string
     max_interest_rate?: string

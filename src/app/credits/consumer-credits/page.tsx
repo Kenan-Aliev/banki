@@ -8,14 +8,18 @@ export const metadata: Metadata = {
   title: 'Потребительские кредиты',
 };
 
-export default async function ConsumerCredits() {
-  const banks = (await BanksApi.getBanks({ offset: 0, limit: 50, type: 'bank' })).data.results
+export default async function ConsumerCredits(props: any) {
+  const banks = (await BanksApi.getBanks({ offset: 0, limit: 50, type: 'bank' })).data.results;
 
-  return <ConsumerCreditsPage
-    staticData={{
-      catalogData: data.ConsumerCredits.catalogData,
-      communicate: data.DepositsPage.communicate,
-      questData: data.ConsumerCredits.questData
-    }}
-    sliderBanks={banks} />;
+  return (
+    <ConsumerCreditsPage
+      staticData={{
+        catalogData: data.ConsumerCredits.catalogData,
+        communicate: data.DepositsPage.communicate,
+        questData: data.ConsumerCredits.questData,
+      }}
+      sliderBanks={banks}
+      id={props.searchParams.id}
+    />
+  );
 }

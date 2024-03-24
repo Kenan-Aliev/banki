@@ -12,6 +12,13 @@ export interface BankT {
     assets: number,
     organizationInfo?: string
     logo: string
+    description: string
+    management: string
+    regulatoryInfo: string
+    foundationYear: number
+    licenseNumber: string
+    links: string
+    netProfit: number
     contacts: {
         phones: string
         address: string

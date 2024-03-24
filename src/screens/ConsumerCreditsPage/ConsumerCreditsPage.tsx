@@ -17,20 +17,29 @@ import { creditsData } from '@/core/data/credits/all-credits';
 import { BankT } from '@/models/Banks/banks';
 import { getCreditsI } from '@/models/Services';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { getCreditTypes, getCredits, getMonthOffers, getTopCredits } from '@/core/store/credits/credits-actions';
+import {
+  getCreditTypes,
+  getCredits,
+  getMonthOffers,
+  getTopCredits,
+} from '@/core/store/credits/credits-actions';
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
-import { selectCreditTypes, selectMonthOffers, selectTopCredits } from '@/core/store/credits/credits-selectors';
+import {
+  selectCreditTypes,
+  selectMonthOffers,
+  selectTopCredits,
+} from '@/core/store/credits/credits-selectors';
 
 type communicateT = {
-  numb: string
-  sub: string
-  text: string
-}
+  numb: string;
+  sub: string;
+  text: string;
+};
 
 type catalogT = {
   img: StaticImageData;
   name: string;
-  link?: string
+  link?: string;
 };
 type ItemT = {
   title: string;
@@ -41,126 +50,124 @@ interface ConsumerCreditsPageProps {
   staticData: {
     catalogData: catalogT[];
     questData: ItemT[];
-    communicate: communicateT[]
+    communicate: communicateT[];
   };
   sliderBanks: BankT[];
+  id?: string;
 }
 
 const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
-  const { staticData, sliderBanks } = props;
-  const monthOffers = useAppSelector(selectMonthOffers)
-  const creditTypes = useAppSelector(selectCreditTypes)
-  const topCredits = useAppSelector(selectTopCredits)
+  const { staticData, sliderBanks, id } = props;
+  const monthOffers = useAppSelector(selectMonthOffers);
+  const creditTypes = useAppSelector(selectCreditTypes);
+  const topCredits = useAppSelector(selectTopCredits);
 
-  const dispatch = useAppDispatch()
-  const ref = useRef<HTMLDivElement>(null)
+  const dispatch = useAppDispatch();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [filterData, setFilterData] = useState<getCreditsI>({
     limit: 10,
     offset: 0,
     currency: 'kgs',
-    ordering: 'min_summ'
-  })
-
-
+    ordering: 'min_summ',
+    bank: id ? [id] : [],
+  });
 
   const handleChangeFilter = (prop: string, value: any) => {
     if (prop === 'offset') {
-      setFilterData({ ...filterData, [prop]: value })
-    }
-    else {
+      setFilterData({ ...filterData, [prop]: value });
+    } else {
       if (value === false) {
-        delete filterData[prop]
-        setFilterData({ ...filterData, offset: 0 })
-      }
-      else {
-        setFilterData({ ...filterData, [prop]: value, offset: 0 })
+        delete filterData[prop];
+        setFilterData({ ...filterData, offset: 0 });
+      } else {
+        setFilterData({ ...filterData, [prop]: value, offset: 0 });
       }
     }
-  }
+  };
 
   const cleanFilter = () => {
     setFilterData({
       limit: 10,
       offset: 0,
       currency: 'kgs',
-      ordering: filterData.ordering
-    })
-  }
+      ordering: filterData.ordering,
+    });
+  };
 
   const handleScrollToCredits = () => {
     ref.current.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }
+      behavior: 'smooth',
+    });
+  };
 
   const handleShowCatalogItems = (item: string) => {
     const handleCreditType = (creditType: string) => {
-      const credit = creditTypes.find((type) => type.title === creditType)
+      const credit = creditTypes.find((type) => type.title === creditType);
       setFilterData({
         limit: 10,
         offset: 0,
-        loanType: String(credit?.id || ""),
+        loanType: String(credit?.id || ''),
         currency: 'kgs',
-        ordering: filterData.ordering
-      })
-      handleScrollToCredits()
-    }
+        ordering: filterData.ordering,
+      });
+      handleScrollToCredits();
+    };
 
     switch (item) {
-      case "Потребительский":
-      case "Зеленый кредит":
-        handleCreditType(item)
-        break
+      case 'Потребительский':
+      case 'Зеленый кредит':
+        handleCreditType(item);
+        break;
 
-      case "Без справок":
+      case 'Без справок':
         setFilterData({
           limit: 10,
           offset: 0,
           noDocumentsRequired: true,
           currency: 'kgs',
-          ordering: filterData.ordering
-        })
-        handleScrollToCredits()
-        break
+          ordering: filterData.ordering,
+        });
+        handleScrollToCredits();
+        break;
 
       default:
-        break
+        break;
     }
-  }
-
-
+  };
 
   const fetchCredits = (params: getCreditsI) => {
-    dispatch(getCredits(params))
-  }
+    dispatch(getCredits(params));
+  };
 
   const fetchMonthOffers = () => {
-    dispatch(getMonthOffers({ offerOfTheMonth: true, limit: 10, offset: 0 }))
-  }
+    dispatch(getMonthOffers({ offerOfTheMonth: true, limit: 10, offset: 0 }));
+  };
 
   const fetchCreditTypes = () => {
-    dispatch(getCreditTypes())
-  }
+    dispatch(getCreditTypes());
+  };
 
   const fetchTopCredits = () => {
-    dispatch(getTopCredits())
-  }
+    dispatch(getTopCredits());
+  };
 
   useEffect(() => {
-    fetchMonthOffers()
-    fetchCreditTypes()
-    fetchTopCredits()
-
-  }, [])
+    fetchMonthOffers();
+    fetchCreditTypes();
+    fetchTopCredits();
+  }, []);
 
   useEffect(() => {
     const filter = {
       ...filterData,
-      bank: filterData.bank && typeof filterData.bank !== 'string' && filterData.bank.length > 0 ? filterData.bank.join() : ''
-    }
-    fetchCredits(filter)
-  }, [filterData])
+      bank:
+        filterData.bank && typeof filterData.bank !== 'string' && filterData.bank.length > 0
+          ? filterData.bank.join()
+          : '',
+    };
+    fetchCredits(filter);
+  }, [filterData]);
 
   return (
     <PageWrapper>
@@ -171,7 +178,8 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
         cleanFilter={cleanFilter}
         banks={sliderBanks}
       />
-      <Bonus title='Акция «Воплоти мечту!'
+      <Bonus
+        title='Акция «Воплоти мечту!'
         text='Оформите кредит до 500 000 сомов и дайте волю своему воображению. Приобретайте то, что так давно откладывали!'
         img='https://btbonline.baitushum.kg/static_django/landing/images/BTB-NEW-LOGO.png'
       />
@@ -181,16 +189,16 @@ const ConsumerCreditsPage = (props: ConsumerCreditsPageProps) => {
           options={[
             {
               text: 'По минимальной сумме',
-              value: 'min_summ'
+              value: 'min_summ',
             },
             {
               text: 'По максимальной сумме',
-              value: 'max_summ'
+              value: 'max_summ',
             },
             {
               text: 'По минимальной процентной ставке',
-              value: 'min_rating'
-            }
+              value: 'min_rating',
+            },
           ]}
           filterData={filterData}
           handleChangeFilter={handleChangeFilter}

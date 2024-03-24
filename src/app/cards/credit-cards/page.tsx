@@ -7,6 +7,6 @@ export const metadata: Metadata = {
   title: 'Кредитные карты',
 };
 
-export default async function CreditMap() {
-  return <CreditMapPage />;
+export default async function CreditMap(props: any) {
+  return <CreditMapPage id={props.searchParams.id} />;
 }

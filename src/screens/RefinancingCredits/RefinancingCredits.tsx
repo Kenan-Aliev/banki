@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
 import PageWrapper from '@/containers/PageWrapper';
@@ -18,10 +18,10 @@ import data from '@/core/data/index';
 import { CreditType } from '@/models/Credits/Credits';
 
 type ourStrongT = {
-  num: string
-  title: string
-  sub: string
-}
+  num: string;
+  title: string;
+  sub: string;
+};
 
 type itemT = {
   title: string;
@@ -37,38 +37,46 @@ type Props = {
   data: {
     ourData: itemT[];
     questData: quesT[];
-    ourStrongs: ourStrongT[]
+    ourStrongs: ourStrongT[];
   };
   sliderBanks: BankT[];
-  creditType: CreditType
+  creditType: CreditType;
+  id?: string;
 };
 
-const RefinancingCredits = ({ data, sliderBanks, creditType }: Props) => {
+const RefinancingCredits = ({ data, sliderBanks, creditType, id }: Props) => {
   // const itWorksMap = data..ourData;
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const [filterData, setFilterData] = useState<getCreditsI>({
     limit: 10,
     offset: 0,
     ordering: 'min_summ',
-    loanType: String(creditType.id)
-  })
+    loanType: String(creditType.id),
+    bank: id ? [id] : [],
+  });
 
   const handleChangeFilter = (prop: string, value: any) => {
     if (prop === 'offset') {
-      setFilterData({ ...filterData, [prop]: value })
+      setFilterData({ ...filterData, [prop]: value });
     }
-  }
-
+  };
 
   const fetchCredits = (params: getCreditsI) => {
-    dispatch(getCredits(params))
-  }
+    dispatch(getCredits(params));
+  };
 
   useEffect(() => {
-    fetchCredits(filterData)
-  }, [filterData])
+    const filter = {
+      ...filterData,
+      bank:
+        filterData.bank && typeof filterData.bank !== 'string' && filterData.bank.length > 0
+          ? filterData.bank.join()
+          : '',
+    };
+    fetchCredits(filter);
+  }, [filterData]);
 
   return (
     <PageWrapper>
@@ -78,16 +86,16 @@ const RefinancingCredits = ({ data, sliderBanks, creditType }: Props) => {
         options={[
           {
             text: 'По минимальной сумме',
-            value: 'min_summ'
+            value: 'min_summ',
           },
           {
             text: 'По максимальной сумме',
-            value: 'max_summ'
+            value: 'max_summ',
           },
           {
             text: 'По минимальной процентной ставке',
-            value: 'min_rating'
-          }
+            value: 'min_rating',
+          },
         ]}
         filterData={filterData}
         handleChangeFilter={handleChangeFilter}

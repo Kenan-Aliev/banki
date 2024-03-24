@@ -82,7 +82,7 @@ const data = {
   HomePage: {
     iconsSlide: [
       { name: 'Вклады', img: vklad, w: 0, link: '/deposits' },
-      { name: 'Кредиты', img: credit, w: 68, link: '/credits' },
+      { name: 'Кредиты', img: credit, w: 68, link: '/credits/consumer-credits' },
       { name: 'Ипотека', img: ipoteka, w: 0, link: '/ipoteka' },
       { name: 'Кредитные карты', img: card, w: 0, link: '/cards/credit-cards' },
       { name: 'Дебетовые карты', img: card, w: 0, link: '/cards/debit-cards' },

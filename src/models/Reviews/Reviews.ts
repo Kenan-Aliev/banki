@@ -2,6 +2,7 @@ export interface Review {
 	id: number
 	title: string
 	content: string
+	bank_id: number
 	verified: boolean
 	product_type: string
 	rating: number

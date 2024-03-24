@@ -14,7 +14,7 @@ import { getCreditsI } from '@/models/Services';
 import { StaticImageData } from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { getCredits, getMonthOffers, getTopMicroCredits } from '@/core/store/credits/credits-actions';
-import bonusImg from '@/assets/icons/microloans_bonus_img.jpg'
+import bonusImg from '@/assets/icons/microloans_bonus_img.jpg';
 import { BankT } from '@/models/Banks/banks';
 import OfferMonth from '@/components/Offers/OfferMoth/OfferMoth';
 import { selectMonthOffers, selectTopMicroCredits } from '@/core/store/credits/credits-selectors';
@@ -23,45 +23,46 @@ import { CreditType } from '@/models/Credits/Credits';
 interface MicroloansPageProps {
   staticData: {
     chooseIntro: {
-      name: string,
-      active: boolean
-    }[]
+      name: string;
+      active: boolean;
+    }[];
     catalogData: {
-      name: string
-      img: StaticImageData
-    }[]
+      name: string;
+      img: StaticImageData;
+    }[];
     questData: {
-      title: string
-      text: string
-    }[]
+      title: string;
+      text: string;
+    }[];
   };
-  banks: BankT[]
-  creditType: CreditType
+  banks: BankT[];
+  creditType: CreditType;
+  id?: string;
 }
 
 const MicroloansPage = (props: MicroloansPageProps) => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
-  const { staticData, banks, creditType } = props;
-  const monthOffers = useAppSelector(selectMonthOffers)
-  const topMicroCredits = useAppSelector(selectTopMicroCredits)
+  const { staticData, banks, creditType, id } = props;
+  const monthOffers = useAppSelector(selectMonthOffers);
+  const topMicroCredits = useAppSelector(selectTopMicroCredits);
   const [current, setCurrent] = useState<string>(staticData.chooseIntro[0].name);
 
   const [filterData, setFilterData] = useState<getCreditsI>({
     limit: 10,
     offset: 0,
     currency: 'kgs',
-    loanType: String(creditType.id)
-  })
-
+    loanType: String(creditType.id),
+    bank: id ? [id] : [],
+  });
 
   const handleChangeActiveTab = () => {
     let updatedFilterData = { ...filterData, offset: 0 };
 
     switch (current) {
-      case "Не важна сумма":
-        delete updatedFilterData.min_summ
-        delete updatedFilterData.max_summ
+      case 'Не важна сумма':
+        delete updatedFilterData.min_summ;
+        delete updatedFilterData.max_summ;
         break;
 
       case '100000+ сом': {
@@ -74,7 +75,7 @@ const MicroloansPage = (props: MicroloansPageProps) => {
         break;
       }
       default: {
-        const [minSum, maxSum] = current.split('-').map(value => value.trim());
+        const [minSum, maxSum] = current.split('-').map((value) => value.trim());
         updatedFilterData = {
           ...updatedFilterData,
           min_summ: minSum,
@@ -86,36 +87,45 @@ const MicroloansPage = (props: MicroloansPageProps) => {
     fetchCredits(updatedFilterData);
   };
 
-
   const handleChangeFilter = (prop: string, value: any) => {
-    const filter = { ...filterData }
+    const filter = { ...filterData };
     if (prop === 'offset') {
-      filter[prop] = value
+      filter[prop] = value;
     }
-    fetchCredits(filter)
-    setFilterData({ ...filter })
-  }
+    fetchCredits(filter);
+    setFilterData({ ...filter });
+  };
 
   const fetchMonthOffers = () => {
-    dispatch(getMonthOffers({ limit: 10, offset: 0, loanType: String(creditType.id), offerOfTheMonth: true }))
-  }
+    dispatch(
+      getMonthOffers({ limit: 10, offset: 0, loanType: String(creditType.id), offerOfTheMonth: true }),
+    );
+  };
 
   const fetchTopMicroCredits = () => {
-    dispatch(getTopMicroCredits())
-  }
+    dispatch(getTopMicroCredits());
+  };
 
   const fetchCredits = (params: getCreditsI) => {
-    dispatch(getCredits(params))
-  }
+    dispatch(
+      getCredits({
+        ...params,
+        bank:
+          filterData.bank && typeof filterData.bank !== 'string' && filterData.bank.length > 0
+            ? filterData.bank.join()
+            : '',
+      }),
+    );
+  };
 
   useEffect(() => {
-    fetchMonthOffers()
-    fetchTopMicroCredits()
-  }, [])
+    fetchMonthOffers();
+    fetchTopMicroCredits();
+  }, []);
 
   useEffect(() => {
-    handleChangeActiveTab()
-  }, [current])
+    handleChangeActiveTab();
+  }, [current]);
 
   return (
     <PageWrapper>
@@ -126,10 +136,7 @@ const MicroloansPage = (props: MicroloansPageProps) => {
         img={bonusImg}
       />
       <SliderBanksCons data={banks} />
-      <WebLoans
-        filterData={filterData}
-        handleChangeFilterData={handleChangeFilter}
-      />
+      <WebLoans filterData={filterData} handleChangeFilterData={handleChangeFilter} />
       <OfferMonth offers={monthOffers.results} category='Микрозаймы' />
       <SliderBanksCons data={banks} showName={true} title='Микрокредитные организации' />
       <CatalogItems title={'Каталог микрозаймов'} items={staticData.catalogData} width={'100%'} />

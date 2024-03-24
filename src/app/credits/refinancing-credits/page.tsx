@@ -9,11 +9,20 @@ export const metadata: Metadata = {
   title: 'Рефинансирование кредитов',
 };
 
-const Page = async () => {
-  const banks = (await BanksApi.getBanks({ offset: 0, limit: 50, type: 'bank' })).data.results
-  const creditType = (await CreditsApi.getCreditTypes()).data.find((type) => type.title === 'Рефинансирование')
+const Page = async (props: any) => {
+  const banks = (await BanksApi.getBanks({ offset: 0, limit: 50, type: 'bank' })).data.results;
+  const creditType = (await CreditsApi.getCreditTypes()).data.find(
+    (type) => type.title === 'Рефинансирование',
+  );
 
-  return <RefinancingCredits data={data.RefinancingCredits} sliderBanks={banks} creditType={creditType} />;
+  return (
+    <RefinancingCredits
+      data={data.RefinancingCredits}
+      sliderBanks={banks}
+      creditType={creditType}
+      id={props.searchParams.id}
+    />
+  );
 };
 
 export default Page;

@@ -18,7 +18,7 @@ function Footer() {
 		<>
 			<PageWrapper>
 				<Box component='footer'>
-					<Typography component='h1'
+					<Typography component='h2'
 						sx={{
 							color: '#000000',
 							fontSize: '46px',
@@ -34,7 +34,7 @@ function Footer() {
 							return (
 								<Grid item key={index} xs={5.8} sm={5.8} md={2.5} lg={2.5} xl={2.5}>
 									<Typography
-										component='h3'
+										component='h4'
 										sx={{
 											fontSize: '18px',
 											mb: '10px'
