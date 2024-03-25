@@ -6,7 +6,8 @@ export interface NewsInterface {
   text: string;   // надо потом убрать
   summary?: string
   content?: string
-  image?: StaticImageData;  // убрать потом
+  image?: string;  // убрать потом
+  tags?: string[]
   subtitle?: string;        // убрать
   news_type?: {
     title: string

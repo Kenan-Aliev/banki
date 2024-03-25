@@ -110,7 +110,7 @@ const OffersBanks = (props: OfferBanksProps) => {
       </ul>
       {count && count > filterData.offset + filterData.limit ? (
         <div className={s.btn_cont}>
-          <ShowMoreBtn onClick={() => handleChangeFilter('offset', filterData.offset + 10)} />
+          <ShowMoreBtn onClick={() => handleChangeFilter('offset', filterData.offset + 20)} />
         </div>
       ) : null}
     </div>

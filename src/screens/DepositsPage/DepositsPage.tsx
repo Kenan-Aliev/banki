@@ -37,7 +37,7 @@ const DepositsPage = ({ id }: { id?: string }) => {
 
   const [currentOffer, setCurrentOffer] = useState<number>(1);
   const [filterData, setFilterData] = useState<getDepositsI>({
-    limit: 10,
+    limit: 20,
     offset: 0,
     ordering: '-interest_rate',
     currency: 'kgs',
@@ -69,7 +69,7 @@ const DepositsPage = ({ id }: { id?: string }) => {
 
   const cleanFilter = () => {
     setFilterData({
-      limit: 10,
+      limit: 20,
       offset: 0,
       ordering: filterData.ordering,
       currency: 'kgs',
