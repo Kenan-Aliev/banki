@@ -13,7 +13,7 @@ import CustomSelect2 from '@/UI/CustomSelect2/CustomSelect2';
 import { DepositItemT } from '@/models/Deposit/Deposit';
 import ExpandedItems from '../ExpandedOffers';
 import ShowMoreBtn from '@/UI/ShowMoreBtn';
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 interface OfferBanksProps {
   options: {
@@ -87,7 +87,12 @@ const OffersBanks = (props: OfferBanksProps) => {
                   border: '1px solid #d9dbdf',
                 }}
               >
-                <li>
+                <Box
+                  sx={{
+                    borderBottom: isExpanded ? '1px solid #d9dbdf' : 'none',
+                  }}
+                  component='li'
+                >
                   <DepositOfferItem
                     item={item}
                     activeCurrency={filterData.currency}
@@ -95,7 +100,7 @@ const OffersBanks = (props: OfferBanksProps) => {
                     child={isExpanded}
                     count={bankIdCounts[bank_id] - 1}
                   />
-                </li>
+                </Box>
                 {isExpanded && (
                   <ExpandedItems
                     items={filteredDeposits}

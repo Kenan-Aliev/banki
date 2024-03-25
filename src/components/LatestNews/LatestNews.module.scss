@@ -1,5 +1,8 @@
 .news {
   width: 100%;
+  border-radius: 14px;
+  border: 1px solid #d9dbdf;
+  background: #fff;
 
   .title {
     margin-top: 5rem;
@@ -31,9 +34,7 @@
     padding: 30px;
     flex-wrap: wrap;
     gap: 10px;
-    border-radius: 14px;
-    border: 1px solid #d9dbdf;
-    background: #fff;
+
     margin-bottom: 1rem;
   }
   .btn_cont {

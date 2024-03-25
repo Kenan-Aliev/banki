@@ -31,7 +31,7 @@ export default function FinanceRating({ bank }: { bank: BankT }) {
       <Table>
         <TableBody>
           <TableRow sx={rowStyles}>
-            <TableCell>Активы нетто</TableCell>
+            <TableCell sx={{ fontWeight: 600 }}>Активы нетто</TableCell>
             <TableCell align='left'>
               <Typography>{addSpacesToNumber(bank.assets)} тыс. сом</Typography>
               <Typography>{bank.fiancial_rating} место по Кыргызстану</Typography>
@@ -39,7 +39,7 @@ export default function FinanceRating({ bank }: { bank: BankT }) {
           </TableRow>
 
           <TableRow sx={rowStyles}>
-            <TableCell>Чистая прибыль</TableCell>
+            <TableCell sx={{ fontWeight: 600 }}>Чистая прибыль</TableCell>
             <TableCell align='left'>
               <Typography>{addSpacesToNumber(bank.netProfit ?? 0)} тыс. сом</Typography>
               <Typography>{bank.fiancial_rating} место по Кыргызстану</Typography>

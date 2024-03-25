@@ -28,13 +28,13 @@ export default function Contacts({ bank }: { bank: BankT }) {
           </TableRow>
 
           <TableRow sx={rowStyles}>
-            <TableCell>Адрес</TableCell>
+            <TableCell sx={{ fontWeight: 600 }}>Адрес</TableCell>
             <TableCell align='left'>{bank.contacts[0]?.address}</TableCell>
             <TableCell align='left'></TableCell>
           </TableRow>
 
           <TableRow sx={rowStyles}>
-            <TableCell>Ссылки на соцсети</TableCell>
+            <TableCell sx={{ fontWeight: 600 }}>Ссылки на соцсети</TableCell>
             <TableCell align='left'>
               <a href={bank.links} rel='noreferrer' target='_blank'>
                 {bank.links}

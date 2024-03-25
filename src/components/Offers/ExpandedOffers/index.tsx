@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { DepositItemT } from '@/models/Deposit/Deposit';
 import DepositOfferItem from '@/components/Deposit/DepositOfferItem/DepositOfferItem';
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { CreditItemT } from '@/models/Credits/Credits';
 import CreditBankItem from '@/components/credits/CreditBankItem';
 import { MortgageItemT } from '@/models/Mortgages/Mortgages';
@@ -26,10 +26,27 @@ const ExpandedItems = ({
   const expandedItems = useMemo(() => {
     switch (itemsName) {
       case 'Депозиты':
-        return items.map((item) => {
-          const deposit = item as DepositItemT;
-          return <DepositOfferItem item={deposit} activeCurrency={activeCurrency} key={deposit.deposit_id} />;
-        });
+        return (
+          <Stack
+            sx={{
+              '& .expandedOffer': {
+                borderBottom: '1px solid #d9dbdf',
+              },
+              '& .expandedOffer:last-of-type': {
+                borderBottom: 'none',
+              },
+            }}
+          >
+            {items.map((item) => {
+              const deposit = item as DepositItemT;
+              return (
+                <Box key={deposit.deposit_id} className='expandedOffer'>
+                  <DepositOfferItem item={deposit} activeCurrency={activeCurrency} />
+                </Box>
+              );
+            })}
+          </Stack>
+        );
       case 'Кредиты':
         return items.map((item) => {
           const credit = item as CreditItemT;

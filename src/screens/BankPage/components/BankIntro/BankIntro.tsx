@@ -2,9 +2,9 @@ import { Box, Grid, Stack, SxProps, Theme, Typography } from '@mui/material';
 import React from 'react';
 import Image from 'next/image';
 import financeRating from '@/assets/icons/bank_finance_rating.svg';
-import peopleRating from '@/assets/icons/bank_people_rating.svg';
+import ipoteka from '@/assets/icons/ipoteka.svg';
 import phone from '@/assets/icons/bank_phone.svg';
-import premiya from '@/assets/icons/bank_premiya.svg';
+import w_1 from '@/assets/icons/w_1.svg';
 import wave from '@/assets/icons/bank_intro_wave.svg';
 import { BankT } from '@/models/Banks/banks';
 
@@ -13,8 +13,7 @@ const gridStyles: SxProps<Theme> = {
   border: '1px solid #E0EAFF',
   borderRadius: '14px',
   alignItems: 'center',
-  justifyContent: 'center',
-  padding: '10px 0',
+  padding: '10px',
   gap: '15px',
   background: 'white',
   '& h3': {
@@ -81,9 +80,20 @@ function BankIntro(props: Props) {
         {bank.legal_name}
       </Typography>
 
-      <Grid container justifyContent='space-between' mt='30px' gap='15px'>
-        <Grid item sx={gridStyles} xs={12} sm={5.5} md={5.5} lg={2.8} xl={2.8}>
-          <Image src={financeRating} alt='Финансовый рейтинг' />
+      <Grid container justifyContent='space-between' mt='30px' gap='15px 0'>
+        <Grid item sx={gridStyles} xs={12} sm={5.5} md={5.5} lg={2.9} xl={2.9}>
+          <Box
+            sx={{
+              height: '32px',
+              width: '32px',
+              borderRadius: '6px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Image src={financeRating} alt='Финансовый рейтинг' />
+          </Box>
           <Stack>
             <Typography component='h3' fontSize='16px' fontWeight={600}>
               Финансовый рейтинг
@@ -93,7 +103,20 @@ function BankIntro(props: Props) {
             </Typography>
           </Stack>
         </Grid>
-        <Grid item sx={gridStyles} xs={12} sm={5.5} md={5.5} lg={2.8} xl={2.8}>
+        <Grid item sx={gridStyles} xs={12} sm={5.5} md={5.5} lg={2.9} xl={2.9}>
+          <Box
+            sx={{
+              height: '32px',
+              width: '32px',
+              borderRadius: '6px',
+              background: '#e0eaff',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Image src={w_1} alt='Номер лицензии' />
+          </Box>
           <Stack>
             <Typography component='h3' fontSize='16px' fontWeight={600}>
               Номер лицензии
@@ -103,7 +126,19 @@ function BankIntro(props: Props) {
             </Typography>
           </Stack>
         </Grid>
-        <Grid item sx={gridStyles} xs={12} sm={5.5} md={5.5} lg={2.8} xl={2.8}>
+        <Grid item sx={gridStyles} xs={12} sm={5.5} md={5.5} lg={2.9} xl={2.9}>
+          <Box
+            sx={{
+              height: '32px',
+              width: '32px',
+              borderRadius: '6px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Image src={phone} alt='Телефон' />
+          </Box>
           <Stack>
             <Typography component='h3' fontSize='16px' fontWeight={600}>
               Телефон
@@ -113,7 +148,20 @@ function BankIntro(props: Props) {
             </Typography>
           </Stack>
         </Grid>
-        <Grid item sx={gridStyles} xs={12} sm={5.5} md={5.5} lg={2.8} xl={2.8}>
+        <Grid item sx={gridStyles} xs={12} sm={5.5} md={5.5} lg={2.9} xl={2.9}>
+          <Box
+            sx={{
+              height: '32px',
+              width: '32px',
+              borderRadius: '6px',
+              background: '#e0eaff',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Image src={ipoteka} alt='Адрес' />
+          </Box>
           <Stack>
             <Typography component='h3' fontSize='16px' fontWeight={600}>
               Адрес
